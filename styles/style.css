@@ -1233,6 +1233,7 @@ button {
 }
 .card__name {
   margin-top: 1.25rem;
+  width: 100%;
 }
 @media screen and (max-width: 479px) {
   .card__value {

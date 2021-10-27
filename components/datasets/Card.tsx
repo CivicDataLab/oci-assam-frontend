@@ -38,18 +38,11 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
               <small>Tender value</small>
             </section>
             <section className="card__name">
-              <h4>
-                Tender enquiry form for rate contract for supply of ayurvedic
-                and homeopathic medicine.
-              </h4>
+              <h4>{datapackage.title}</h4>
               <small>Tender name</small>
             </section>
           </div>
         </section>
-
-        {/* <p className="list__details">
-          {datapackage.description || datapackage.notes}
-        </p> */}
       </a>
     </Link>
   );
