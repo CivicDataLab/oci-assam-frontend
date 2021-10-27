@@ -1,0 +1,33 @@
+@use '../settings/variables' as *;
+@use '../tools/mixins/media' as media;
+
+.mega-header {
+  background-color: $bg-dark;
+
+  &.container {
+    margin-top: 4.7rem;
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 2.6rem;
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+
+    @include media.narrowerThan('seed') {
+      grid-column: 1/3;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@use '../functions/breakpoint' as *;
+
+@mixin inbetweenBreakpoints($_narrowestBreakpoint, $_widestBreakpoint) {
+    @media screen and (min-width: breakpoint($_narrowestBreakpoint)) and (max-width: breakpoint($_widestBreakpoint)) { @content; }
+}

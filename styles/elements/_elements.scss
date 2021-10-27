@@ -1,0 +1,56 @@
+@use '../tools/mixins/media' as media;
+@use '../generic/generic' as *;
+@use '../settings/variables' as *;
+
+body {
+  --site-border: 0.5em;
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  transition: background-color var(--base-animation-duration)
+    var(--base-easing);
+  background-color: $bg-light;
+  color: $text-light-high;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: underline;
+  text-decoration-skip-ink: all;
+  text-decoration-thickness: 15%;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--color-highlight);
+
+  &:hover {
+    text-decoration-color: var(--color-accent-700);
+  }
+
+  &.button,
+  &.c2a {
+    text-decoration: none;
+  }
+}
+
+ul,
+ol {
+  margin: 0;
+  padding-inline-start: 1.25em;
+}
+
+em,
+i {
+  font-style: italic;
+  font-variation-settings: 'ital' 1;
+}
+
+strong,
+b {
+  font-weight: bolder;
+  font-weight: 550;
+}
+
+button {
+  cursor: pointer;
+}

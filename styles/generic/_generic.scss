@@ -1,0 +1,71 @@
+@use '../tools/mixins/media' as media;
+
+* {
+  box-sizing: border-box;
+  text-size-adjust: none;
+
+  &:focus {
+    scroll-padding-block-end: 8vh;
+  }
+}
+
+:focus-visible {
+  outline-width: 3px;
+  outline-color: #78aeda !important;
+  outline-style: solid;
+}
+
+:root {
+  /* Base Settings */
+  --base-spacing: 1em;
+  --base-padding: 1em;
+  --base-easing: cubic-bezier(0.85, 0, 0.15, 1);
+  --base-animation-duration: 1ms;
+  /* A commonly reused shadow */
+  --shadow-fat: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+  background-color: #fff; /* the background that you can see when you pull on one of the sides of the website */
+
+  @include media.widerThan(plant) {
+    --shadow-fat: 0 2px 5px 0 rgba(0, 0, 0, 0.06),
+      0 15px 42px 0 rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* Add Animation progressively; Only make durations longer when there is no preferences */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --base-animation-duration: 350ms;
+  }
+}
+
+::selection {
+  background-color: var(--color-accent-700);
+  color: var(--color-accent-100);
+}
+
+.scroll-stop {
+  overflow: hidden;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include media.widerThan('seedling') {
+    width: 700px;
+  }
+
+  @include media.widerThan('sprout') {
+    width: 960px;
+  }
+
+  @include media.widerThan('tree') {
+    width: 1246px;
+  }
+}
+
+.page-wrap {
+  padding: 2rem 0;
+}

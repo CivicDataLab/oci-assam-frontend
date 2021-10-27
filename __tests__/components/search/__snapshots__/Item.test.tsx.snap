@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`📸 of Input component with empty 1`] = `
+<div
+  className="mb-6 border border-gray-600 p-4"
+>
+  <h3
+    className="text-xl font-semibold"
+  >
+    <a
+      className="text-primary"
+      href="/@dataset/qw"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      12
+    </a>
+  </h3>
+  <div
+    className="flex items-center flex-wrap mt-4"
+  />
+  <a
+    className="text-gray-500 block mt-1"
+    href="/@dataset"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  >
+    dataset
+  </a>
+  <div
+    className="leading-relaxed mt-2"
+  />
+</div>
+`;

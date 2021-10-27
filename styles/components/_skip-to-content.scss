@@ -1,0 +1,39 @@
+
+@use '../tools/mixins/media' as media;
+@use '../objects/sr-only' as *;
+
+.skip-to-content {
+    $p: &;
+    transform: translateY(0);
+    background-color: #fff;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    padding-block-start: 1em;
+    padding-block-end: 1.5em;
+    padding-inline: var(--site-padding);
+    z-index: 1;
+    
+    @include media.widerThan(seedling) {
+        display: flex;
+        justify-content: space-between;
+        gap: 2em;
+    }
+
+    a {
+        font-size: .85em;
+
+        @include media.widerThan(seedling) {
+            font-size: 1em;
+        }
+    }
+    
+    &:not(:where(:active, :focus, :focus-within)) {
+        @include sr-only();
+    }
+
+    &:where(:active, :focus, :focus-within) + .site-bar {
+        margin-block-start: 0;
+    }
+}
