@@ -66,7 +66,7 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
       <div className="pagination__rows">
         <Dropdown
           default={resultSize}
-          options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          options={[10, 20, 50]}
           heading="Rows:&nbsp;"
           handleDropdownChange={handleRowsChange}
         />

@@ -364,7 +364,7 @@ body {
   --site-border: 0.5em;
   font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   transition: background-color var(--base-animation-duration) var(--base-easing);
-  background-color: #f0ebf0;
+  background-color: #f2f2f2;
   color: rgba(0, 0, 0, 0.87);
   min-height: 100vh;
 }
@@ -776,97 +776,12 @@ button {
 }
 .list__item {
   margin-top: 1rem;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #d0cdd0;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
+  border: 1px solid #f2f2f2;
   border-radius: 8px;
   background-color: white;
   position: relative;
   z-index: 10;
-}
-.list__item::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 300px;
-  display: block;
-  z-index: -1;
-  border-radius: 8px;
-}
-.list__link {
-  text-decoration: none;
-  padding: 1.5rem;
-  display: block;
-  background-color: white;
-  border-radius: 8px;
-  transition: transform 200ms ease;
-  transform: translateX(3px);
-}
-.list__link:hover {
-  transform: translateX(6px);
-}
-.list__title {
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 135%;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-.list__heading {
-  margin-top: 1rem;
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-.list__tags {
-  display: flex;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.list__tags li {
-  margin-right: 0.5rem;
-  background: rgba(0, 0, 0, 0.08);
-  border-radius: 4px;
-  padding: 4px 8px;
-  color: rgba(0, 0, 0, 0.6);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 130%;
-  text-transform: uppercase;
-}
-.list__details {
-  margin-top: 1rem;
-  color: rgba(0, 0, 0, 0.87);
-  line-height: 140%;
-  font-size: 1rem;
-  overflow: hidden;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-}
-@media screen and (max-width: 479px) {
-  .list__details {
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
-  }
-}
-.list [data-type=scheme]::before {
-  background-color: #fbb56f;
-}
-.list [data-type=scheme] .list__title {
-  color: #c28547;
-}
-.list [data-type=datastory]::before {
-  background-color: #68bb98;
-}
-.list [data-type=datastory] .list__title {
-  color: #43896b;
-}
-.list [data-type="education spendings"]::before {
-  background-color: #b780c6;
-}
-.list [data-type="education spendings"] .list__title {
-  color: #865194;
 }
 
 .pagination {
@@ -1057,7 +972,7 @@ button {
   line-height: 140%;
   display: block;
   border-bottom: 1px solid #8f8990;
-  min-width: 250px;
+  min-width: 200px;
 }
 
 .search {
@@ -1192,7 +1107,7 @@ button {
 .data-alter__sort .sort__header {
   background-color: #f1eef1;
   padding: 1.5rem;
-  border-bottom: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  border-bottom: 0px 1px 4px rgba(0, 0, 0, 0.14);
   border-radius: 12px 12px 0px 0px;
   display: flex;
   justify-content: space-between;
@@ -1265,8 +1180,88 @@ button {
   color: rgba(0, 0, 0, 0.87);
 }
 @media screen and (max-width: 979px) {
-  .sort__select {
+  .sort {
     display: none;
+  }
+}
+
+.card__link {
+  text-decoration: none;
+  padding: 1.5rem;
+  display: block;
+  background-color: white;
+  border-radius: 6px;
+  transition: transform 200ms ease;
+  display: flex;
+}
+.card__link > div {
+  width: 60px;
+  height: 60px;
+  margin-right: 1rem !important;
+}
+.card__image {
+  width: 60px;
+  width: 60px;
+}
+.card__heading {
+  font-size: 1rem;
+  color: #4a434c;
+}
+.card__date {
+  font-size: 10px;
+  line-height: 25px;
+  color: #6d676f;
+  margin-bottom: 10px;
+  display: block;
+}
+.card__content {
+  border-top: 2px solid #f1eef1;
+  padding-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card__content h4 {
+  line-height: 140%;
+  font-weight: 500;
+}
+.card__content small {
+  font-size: 12px;
+  color: #4a434c;
+}
+.card__id {
+  margin-right: 3rem;
+}
+.card__name {
+  margin-top: 1.25rem;
+}
+@media screen and (max-width: 479px) {
+  .card__value {
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+}
+.card__title {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 135%;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.card__details {
+  margin-top: 1rem;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 140%;
+  font-size: 1rem;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+@media screen and (max-width: 479px) {
+  .card__details {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
 }
 

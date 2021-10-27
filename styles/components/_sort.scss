@@ -22,9 +22,8 @@
     option {
       color: $text-light-high;
     }
-
-    @include media.narrowerThan('sprout') {
-      display: none;
-    }
+  }
+  @include media.narrowerThan('sprout') {
+    display: none;
   }
 }

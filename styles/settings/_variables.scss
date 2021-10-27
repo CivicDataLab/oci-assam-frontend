@@ -1,6 +1,6 @@
 $bg-dark: hsl(120, 34%, 26%);
 $bg-darkest: hsl(121, 91%, 17%);
-$bg-light: hsl(300, 14%, 93%);
+$bg-light: hsl(0, 0%, 95%);
 $bg-lightest: hsl(0, 0%, 100%);
 
 $color-error: hsl(0, 63%, 48%);
@@ -51,7 +51,7 @@ $gradient-sapphire: linear-gradient(
   hsl(287, 43%, 19%) 99.48%
 );
 
-$box-shadow-1: 0px 4px 12px rgba(0, 0, 0, 0.08);
+$box-shadow-1: 0px 1px 4px rgba(0, 0, 0, 0.14);
 $box-shadow-inset: inset 0px 0px 4px rgba(0, 0, 0, 0.08);
 $drop-shadow: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
 
