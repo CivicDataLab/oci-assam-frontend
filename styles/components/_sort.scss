@@ -1,0 +1,30 @@
+@use '../settings/variables' as *;
+@use '../tools/mixins/media' as media;
+
+.sort {
+  display: flex;
+  align-items: center;
+
+  &__label {
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 192%;
+    color: $grey-2;
+  }
+
+  &__select {
+    background-position: right 10% top 55%, 0 0;
+    font-size: 0.9rem;
+    border: 1px solid $bg-dark;
+    color: $bg-dark;
+    font-weight: bold;
+
+    option {
+      color: $text-light-high;
+    }
+
+    @include media.narrowerThan('sprout') {
+      display: none;
+    }
+  }
+}

@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import MegaHeader from 'components/_shared/MegaHeader';
 
 const Nav: React.FC = () => {
   const router = useRouter();
@@ -73,6 +72,18 @@ const Nav: React.FC = () => {
           <div className="header__brand">
             <Link href="/">
               <a>
+                <svg
+                  width="42"
+                  height="44"
+                  viewBox="0 0 42 44"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.76143 12.5333C6.48566 7.2265 7.34778 4.57311 9.0391 2.88175C10.5268 1.394 12.4473 0.41542 14.5254 0.0862801C16.8878 -0.287902 19.5412 0.574238 24.8478 2.29852L29.467 3.79942C34.7737 5.5237 37.427 6.38584 39.1183 8.0772C40.606 9.56496 41.5846 11.4855 41.9137 13.5636C42.2879 15.9261 41.4258 18.5795 39.7015 23.8863L37.2386 31.4667C35.5143 36.7735 34.6522 39.4269 32.9609 41.1182C31.4732 42.606 29.5527 43.5846 27.4746 43.9137C25.1122 44.2879 22.4588 43.4258 17.1522 41.7015L12.533 40.2006C7.22633 38.4763 4.573 37.6142 2.88168 35.9228C1.39396 34.435 0.41541 32.5145 0.086278 30.4364C-0.287895 28.0739 0.574224 25.4205 2.29846 20.1137L4.76143 12.5333Z"
+                    fill="#0899A0"
+                  />
+                </svg>
                 <h1>Public Procurement Explorer</h1>
               </a>
             </Link>
@@ -119,7 +130,6 @@ const Nav: React.FC = () => {
             </ul>
           </nav>
         </div>
-        <MegaHeader />
       </header>
 
       {/* Mobile Header */}
@@ -169,7 +179,6 @@ const Nav: React.FC = () => {
             </svg>
           </div>
         </div>
-        <MegaHeader />
       </header>
 
       <nav className="m-navbar">

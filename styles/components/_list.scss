@@ -14,10 +14,6 @@
     position: relative;
     z-index: 10;
 
-    &:first-of-type {
-      margin-top: 1.5rem;
-    }
-
     &::before {
       content: '';
       position: absolute;

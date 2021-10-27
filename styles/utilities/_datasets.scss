@@ -90,4 +90,21 @@
       }
     }
   }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  &__sort {
+    display: inline-flex;
+
+    .button-link {
+      svg {
+        margin-right: 1rem;
+      }
+    }
+  }
 }

@@ -3,9 +3,10 @@
 
 .mega-header {
   background-color: $bg-dark;
+  color: $text-dark-high;
 
-  &.container {
-    margin-top: 4.7rem;
+  .container {
+    padding-top: 4.7rem;
     margin-bottom: 2.5rem;
     display: block;
   }

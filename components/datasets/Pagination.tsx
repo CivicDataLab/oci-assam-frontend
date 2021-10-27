@@ -73,7 +73,7 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
       </div>
 
       <div className="pagination__jump">
-        <label className="label-flamingo" htmlFor="jumpNumber">
+        <label className="label-green" htmlFor="jumpNumber">
           Jump to: &nbsp;
           <input
             type="text"
