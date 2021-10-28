@@ -3,24 +3,18 @@
 
 /* Buttons */
 .button-link {
-  padding: 0.7rem 1.5rem !important;
+  padding: 0.7rem 1rem !important;
 
-  background: $color-flamingo;
+  background: $bg-darkest;
   color: #fff;
   border-radius: 4px;
   text-align: center;
 
   margin: 0.8rem 0 0.8rem 1rem;
+  svg {
+    margin-right: 1rem;
+  }
 }
-
-// .button__text {
-//   --int-l-text: var(--lightness, 25%);
-//   font-family: var(--typeface-headings);
-//   font-feature-settings: 'c2sc', 'smcp';
-//   font-weight: 525;
-//   font-smooth: always;
-//   -webkit-font-smoothing: antialiased;
-// }
 
 .button__icon {
   display: flex;

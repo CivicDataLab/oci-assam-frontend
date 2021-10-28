@@ -1,9 +1,8 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { initializeApollo } from '../../../lib/apolloClient';
-import Nav from '../../../components/_shared/Nav';
-import Post from '../../../components/static/Post';
-import { GET_POST_QUERY } from '../../../graphql/queries';
+import { initializeApollo } from 'lib/apolloClient';
+import Post from 'components/static/Post';
+import { GET_POST_QUERY } from 'graphql/queries';
 
 type Props = {
   variables: any;

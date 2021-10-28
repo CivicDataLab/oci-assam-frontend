@@ -66,14 +66,14 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
       <div className="pagination__rows">
         <Dropdown
           default={resultSize}
-          options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          options={[10, 20, 50]}
           heading="Rows:&nbsp;"
           handleDropdownChange={handleRowsChange}
         />
       </div>
 
       <div className="pagination__jump">
-        <label className="label-flamingo" htmlFor="jumpNumber">
+        <label className="label-green" htmlFor="jumpNumber">
           Jump to: &nbsp;
           <input
             type="text"

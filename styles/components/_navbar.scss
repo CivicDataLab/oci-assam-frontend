@@ -4,6 +4,7 @@
 .header {
   background-color: $bg-dark;
   color: $text-dark-high;
+  padding-top: 1.25rem;
 
   a {
     text-decoration: none;
@@ -19,6 +20,13 @@
   &__brand {
     display: flex;
     align-items: center;
+
+    a {
+      display: inline-flex;
+      svg {
+        margin-right: 6px;
+      }
+    }
 
     h1 {
       font-size: 1.4rem;
@@ -147,10 +155,6 @@
     margin: 0 auto;
   }
 
-  .mega-header.container  {
-    margin-top: 2rem;
-  }
-
   &__button {
     margin-right: 1rem;
   }
@@ -222,14 +226,14 @@
     }
 
     &[aria-expanded='true'] {
-      background-color: $color-violet-3;
+      background-color: $bg-darkest;
 
       &::after {
         transform: rotate(-135deg);
       }
 
       & + ul {
-        background-color: $color-violet-3;
+        background-color: $bg-darkest;
       }
     }
   }

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Dropdown = (props) => (
   <>
-    <label className="label-flamingo" htmlFor="custom_select">
+    <label className="label-green" htmlFor="custom_select">
       {props.heading}
     </label>
     <select

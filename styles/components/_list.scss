@@ -4,120 +4,15 @@
 .list {
   padding-bottom: 1.5rem;
   border-bottom: 2px solid hsla(300, 4%, 81%, 0.5);
+  padding-left: 0;
 
   &__item {
     margin-top: 1rem;
     box-shadow: $box-shadow-1;
-    border: 1px solid hsl(300, 4%, 81%);
+    border: 1px solid #f2f2f2;
     border-radius: 8px;
     background-color: $bg-lightest;
     position: relative;
     z-index: 10;
-
-    &:first-of-type {
-      margin-top: 1.5rem;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      height: 100%;
-      width: 300px;
-      display: block;
-      z-index: -1;
-      border-radius: 8px;
-    }
-  }
-
-  &__link {
-    text-decoration: none;
-    padding: 1.5rem;
-    display: block;
-    background-color: $bg-lightest;
-    border-radius: 8px;
-    transition: transform 200ms ease;
-    transform: translateX(3px);
-
-    &:hover {
-      transform: translateX(6px);
-    }
-  }
-
-  &__title {
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    line-height: 135%;
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-
-  &__heading {
-    margin-top: 1rem;
-    font-size: 1.25rem;
-    font-weight: 500;
-  }
-
-  &__tags {
-    display: flex;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-
-    li {
-      margin-right: 0.5rem;
-      background: $text-light-disabled;
-      border-radius: 4px;
-      padding: 4px 8px;
-      color: $text-light-medium;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 130%;
-      text-transform: uppercase;
-    }
-  }
-
-  &__details {
-    margin-top: 1rem;
-    color: $text-light-high;
-    line-height: 140%;
-    font-size: 1rem;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-
-    @include media.narrowerThan('seed') {
-      -webkit-line-clamp: 4;
-      line-clamp: 4;
-    }
-  }
-
-  [data-type='scheme'] {
-    &::before {
-      background-color: $color-honey;
-    }
-
-    .list__title {
-      color: $color-honey-3;
-    }
-  }
-
-  [data-type='datastory'] {
-    &::before {
-      background-color: $color-amazon;
-    }
-    .list__title {
-      color: $color-amazon-3;
-    }
-  }
-
-  [data-type='education spendings'] {
-    &::before {
-      background-color: $color-violet;
-    }
-    .list__title {
-      color: $color-violet-3;
-    }
   }
 }
