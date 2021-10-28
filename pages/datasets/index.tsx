@@ -1,16 +1,16 @@
 import { GetServerSideProps } from 'next';
-import { initializeApollo } from '../lib/apolloClient';
+import { initializeApollo } from 'lib/apolloClient';
 import { useQuery } from '@apollo/react-hooks';
-import utils from '../utils';
+import utils from 'utils';
 import Head from 'next/head';
-import Search from '../components/datasets/Search';
-import Total from '../components/datasets/Total';
-import List from '../components/datasets/List';
-import DataAlter from '../components/datasets/DataAlter';
-import { ErrorMessage } from '../components/_shared';
-import { SEARCH_QUERY } from '../graphql/queries';
-import Pagination from '../components/datasets/Pagination';
-import Filter from '../components/datasets/Filter';
+import Search from 'components/datasets/Search';
+import Total from 'components/datasets/Total';
+import List from 'components/datasets/List';
+import DataAlter from 'components/datasets/DataAlter';
+import { ErrorMessage } from 'components/_shared';
+import { SEARCH_QUERY } from 'graphql/queries';
+import Pagination from 'components/datasets/Pagination';
+import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Sort from 'components/_shared/Sort';
 
@@ -30,6 +30,12 @@ const Datasets: React.FC<Props> = ({ variables }) => {
   if (error) return <ErrorMessage message="Error loading search results." />;
   if (loading) return <div>Loading</div>;
 
+  const headerData = {
+    title: 'Contracts Data',
+    content:
+      'This page shows the public procurement data of the last 5 financial years for the contracts over INR 50 lakh value. One could download the total compiled data or explore specific tender groups using various filters like financial year, tendering organization, tender status, tender types, etc.',
+  };
+
   return (
     <>
       <Head>
@@ -37,7 +43,7 @@ const Datasets: React.FC<Props> = ({ variables }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="datasets">
-        <MegaHeader />
+        <MegaHeader data={headerData} />
 
         <div className="datasets__wrapper container">
           <Filter />

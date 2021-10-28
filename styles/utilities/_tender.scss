@@ -1,0 +1,68 @@
+@use '../settings/variables' as *;
+@use '../tools/mixins/media' as media;
+
+.tender {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button-link {
+    margin: 0;
+    align-self: flex-end;
+  }
+
+  .total-datasets {
+    width: 250px;
+    margin-bottom: 1.25rem;
+  }
+
+  &__basic {
+    display: flex;
+
+    dt {
+      max-width: 12rem;
+    }
+
+    figure {
+      height: calc(100% - 3.5rem);
+      border: 1px solid #e9fbf0;
+      border-radius: 6px;
+      box-shadow: $box-shadow-1;
+      background-color: $bg-lightest;
+      display: grid;
+
+      img {
+        object-fit: contain;
+      }
+    }
+
+    @include media.narrowerThan('sprout') {
+      flex-direction: column;
+    }
+
+  }
+
+  &__map {
+    &:last-child {
+      margin-left: 1.5rem;
+    }
+
+    @include media.narrowerThan('sprout') {
+      margin-top: 1rem;
+      justify-self: center;
+
+      &:last-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__item {
+    margin-top: 3rem;
+
+    dt {
+      max-width: 25rem;
+    }
+  }
+}

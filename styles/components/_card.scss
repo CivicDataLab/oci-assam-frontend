@@ -12,10 +12,8 @@
     // transform: translateX(3px);
     display: flex;
 
-    > div {
-      width: 60px;
-      height: 60px;
-      margin-right: 1rem !important;
+    > figure {
+      margin-right: 1rem;
     }
 
     // &:hover {

@@ -5,7 +5,7 @@ import Layout from 'components/layout/layout';
 import { DEFAULT_THEME } from '../themes';
 import { applyTheme } from '../themes/utils';
 import I18nProvider from 'next-translate/I18nProvider';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import '../styles/style.css';
 
 interface I8nObject {
@@ -34,6 +34,37 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
   const [theme] = useState(DEFAULT_THEME); // setTheme
   const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      // change focus to top
+      if (document.querySelector('#top-of-site-pixel-anchor')) {
+        (
+          document.querySelector(
+            '#top-of-site-pixel-anchor'
+          ) as HTMLInputElement
+        ).focus();
+      }
+      if (
+        document.querySelector('.m-navbar__links > [aria-expanded="true"]') ||
+        document.querySelector('.navbar__links > [aria-expanded="true"]')
+      ) {
+        const currentActive = document.querySelector('[aria-expanded="true"]');
+        currentActive.nextElementSibling.setAttribute('hidden', 'true');
+        currentActive.setAttribute(
+          'aria-label',
+          currentActive.getAttribute('data-text-for-show')
+        );
+        currentActive.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    Router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  });
 
   useEffect(() => {
     /**

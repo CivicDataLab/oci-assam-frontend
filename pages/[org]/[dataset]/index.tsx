@@ -2,15 +2,14 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import Nav from '../../../components/_shared/Nav';
-import About from '../../../components/dataset/About';
-import Org from '../../../components/dataset/Org';
-import Resources from '../../../components/dataset/Resources';
-import ResourceVisualizer from '../../../components/viz/ResourceVisualizer';
-import { initializeApollo } from '../../../lib/apolloClient';
-import { GET_DATASET_QUERY } from '../../../graphql/queries';
-import utils from '../../../utils/index';
-import { resourceGetter } from '../../../utils/resourceParser';
+import About from 'components/dataset/About';
+import Org from 'components/dataset/Org';
+import Resources from 'components/dataset/Resources';
+import ResourceVisualizer from 'components/viz/ResourceVisualizer';
+import { initializeApollo } from 'lib/apolloClient';
+import { GET_DATASET_QUERY } from 'graphql/queries';
+import utils from 'utils/index';
+// import { resourceGetter } from 'utils/resourceParser';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, error, loading } = useQuery(GET_DATASET_QUERY, { variables });
@@ -24,9 +23,9 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   }
 
   const dataPackage = utils.ckanToDataPackage(data.dataset.result);
-  const resource = React.useMemo(() => {
-    return dataPackage.resources.find((resource) => resource.format === 'CSV');
-  }, [variables]);
+  // const resource = React.useMemo(() => {
+  //   return dataPackage.resources.find((resource) => resource.format === 'CSV');
+  // }, [variables]);
 
   // React.useEffect(() => {
   //   const getData = async () => {

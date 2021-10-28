@@ -1,25 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
-import { Key, ReactChild, ReactFragment, ReactPortal } from 'react';
 import Image from 'next/image';
-import { logDOM } from '@testing-library/dom';
+import { useRouter } from 'next/router';
 
 const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
-  console.log(datapackage);
+  const router = useRouter();
 
   return (
-    <Link
-      href={`/@${
-        datapackage.organization ? datapackage.organization.name : 'dataset'
-      }/${datapackage.name}`}
-    >
+    <Link href={`${router.pathname}/${datapackage.name}`}>
       <a className="card__link">
-        <Image
-          className="card__image"
-          src="/assets/icons/ellipse.png"
-          width={60}
-          height={60}
-        />
+        <figure>
+          <Image
+            className="card__image"
+            src="/assets/icons/ellipse.png"
+            width={60}
+            height={60}
+          />
+        </figure>
+
         <section>
           <h3 className="card__heading">
             {/* {datapackage.title || datapackage.name} */}

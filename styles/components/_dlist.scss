@@ -1,0 +1,32 @@
+@use '../settings/variables' as *;
+
+.dlist {
+  border: 1px solid #e9fbf0;
+  border-radius: 6px;
+  box-shadow: $box-shadow-1;
+  background-color: $bg-lightest;
+
+  div {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.25rem;
+
+    &:nth-child(2n) {
+      background-color: hsl(146, 64%, 98%);
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    line-height: 1.25rem;
+    width: 100%;
+    margin-right: 1rem;
+  }
+
+  &__desc {
+    text-align: left;
+    line-height: 150%;
+    width: 100%;
+    overflow-x: auto;
+  }
+}

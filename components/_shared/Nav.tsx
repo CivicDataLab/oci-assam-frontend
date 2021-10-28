@@ -98,7 +98,7 @@ const Nav: React.FC = () => {
                 <Link href="/datasets">
                   <a
                     className={`navbar__item ${
-                      router.pathname == '/datasets'
+                      router.pathname.includes('/datasets')
                         ? 'navbar__item--active'
                         : ''
                     }`}
