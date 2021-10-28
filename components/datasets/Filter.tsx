@@ -1,27 +1,24 @@
-const Filter = () => {
+const Filter = ({ data }) => {
+  function formatFilterName(name: string) {
+    if (name == 'res_format') {
+      return 'format';
+    } else return name;
+  }
+
   return (
-    <div className="datasets__left">
+    <div className="filters">
       <h3>Filters</h3>
-      <details>
-        <summary>Category</summary>
-        <button>Scheme (150)</button>
-        <button>Datastories (1300)</button>
-        <button>Education Spending Summary</button>
-      </details>
-
-      <details>
-        <summary>Keywords</summary>
-        <button>Scheme (150)</button>
-        <button>Datastories (1300)</button>
-        <button>Education Spending Summary</button>
-      </details>
-
-      <details>
-        <summary>Sub Sectors</summary>
-        <button>Scheme (150)</button>
-        <button>Datastories (1300)</button>
-        <button>Education Spending Summary</button>
-      </details>
+      {Object.keys(data).map((filter: any, index: number) => (
+        <details key={`filter-${index}`}>
+          <summary>{formatFilterName(data[filter].title)}</summary>
+          {data[filter].items &&
+            data[filter].items.map((item: any, index: number) => (
+              <button key={`filter-item-${index}`}>
+                {`${item.display_name} (${item.count})`}
+              </button>
+            ))}
+        </details>
+      ))}
     </div>
   );
 };

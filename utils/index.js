@@ -533,3 +533,14 @@ module.exports.prepareDataExplorers = function (datapackage) {
 
   return newDatapackage;
 };
+
+module.exports.getFilters = async (list) => {
+  try {
+    const fetchData = await fetch(
+      `https://openbudgetsindia.org/api/action/package_search?facet.field=[${list}]&facet.limit=5&rows=0`
+    ).then((res) => res.json());
+    return fetchData.result.search_facets;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
