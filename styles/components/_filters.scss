@@ -1,0 +1,95 @@
+@use '../settings/variables' as *;
+@use '../tools/mixins/media' as media;
+
+.filters {
+  scrollbar-width: thin;
+  background-color: $bg-lightest;
+  margin-right: 2rem;
+  filter: $drop-shadow;
+  border: 1px solid hsl(300, 10%, 94%);
+  border-radius: 12px;
+  height: max-content;
+  max-height: 776px;
+  padding: 1.5rem;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  @include media.narrowerThan('sprout') {
+    display: none;
+  }
+
+  h3 {
+    font-weight: 500;
+    line-height: 130%;
+    font-size: 1.25rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid #f2eff2;
+  }
+
+  details {
+    margin-top: 1rem;
+    background: $grey-5;
+    border-radius: 4px;
+    text-transform: capitalize;
+
+    &[open] {
+      border-radius: 4px 4px 0px 0px;
+
+      > summary::after {
+        transform: rotate(-180deg);
+      }
+    }
+
+    summary {
+      list-style: none;
+      padding: 13px 12px;
+      font-weight: 500;
+      line-height: 140%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      &::marker {
+        display: none;
+      }
+
+      &::after {
+        content: '▾';
+        transition: transform 150ms ease;
+        color: $grey-3;
+      }
+    }
+  }
+
+  &__button {
+    background-color: $bg-lightest;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #d1cdd1;
+    border-top: none;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+
+    &:hover {
+      background-color: $grey-6;
+    }
+
+    &:last-child {
+      border-radius: 0px 0px 4px 4px;
+    }
+  }
+
+  &--active {
+    background-color: darken($color-sapphire-0, 10);
+
+    &:hover {
+      background-color: darken($color-sapphire-0, 8);
+    }
+  }
+}

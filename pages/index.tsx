@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
 import Nav from '../components/_shared/Nav';
 import Recent from '../components/home/Recent';
-import Form from '../components/datasets/Form';
+import Search from 'components/datasets/Search';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
@@ -27,7 +27,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
             <p className="text-md font-light mb-3 w-4/5">
               {t(`common:description`)}
             </p>
-            <Form />
+            <Search />
           </div>
           <div className="mt-4">
             {/* <img src="/images/banner.svg" className="w-4/5" alt="banner_img" /> */}

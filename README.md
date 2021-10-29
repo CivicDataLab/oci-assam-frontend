@@ -62,8 +62,8 @@ $ export CMS=http://myblog.wordpress.com
 These are the default routes set up in the "starter" app.
 
 - Home `/`
-- Search `/search`
-- Dataset `/@org/dataset`
+- Datasets `/datasets`
+- Dataset `/datasets/dataset`
 - Resource `/@org/dataset/r/resource`
 - Organization `/@org`
 - Collection (aka group in CKAN) (?) - suggest to merge into org

@@ -84,7 +84,7 @@ button {
 
 :focus-visible {
   outline-width: 3px;
-  outline-color: #78aeda !important;
+  outline-color: #78aeda;
   outline-style: solid;
 }
 
@@ -1298,17 +1298,8 @@ button {
   overflow-x: auto;
 }
 
-.datasets__wrapper {
-  display: grid;
-  grid-template-columns: 312px 1fr;
-  margin-top: 2.5rem;
-}
-@media screen and (max-width: 979px) {
-  .datasets__wrapper {
-    display: block;
-  }
-}
-.datasets__left {
+.filters {
+  scrollbar-width: thin;
   background-color: white;
   margin-right: 2rem;
   filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
@@ -1321,30 +1312,34 @@ button {
   padding: 1.5rem;
   overflow-y: auto;
 }
+.filters::-webkit-scrollbar {
+  width: 5px;
+}
 @media screen and (max-width: 979px) {
-  .datasets__left {
+  .filters {
     display: none;
   }
 }
-.datasets__left h3 {
+.filters h3 {
   font-weight: 500;
   line-height: 130%;
   font-size: 1.25rem;
   padding-bottom: 1.1rem;
   border-bottom: 1px solid #f2eff2;
 }
-.datasets__left details {
+.filters details {
   margin-top: 1rem;
   background: #d0cdd0;
   border-radius: 4px;
+  text-transform: capitalize;
 }
-.datasets__left details[open] {
+.filters details[open] {
   border-radius: 4px 4px 0px 0px;
 }
-.datasets__left details[open] > summary::after {
+.filters details[open] > summary::after {
   transform: rotate(-180deg);
 }
-.datasets__left details summary {
+.filters details summary {
   list-style: none;
   padding: 13px 12px;
   font-weight: 500;
@@ -1354,15 +1349,15 @@ button {
   align-items: center;
   cursor: pointer;
 }
-.datasets__left details summary::marker {
+.filters details summary::marker {
   display: none;
 }
-.datasets__left details summary::after {
+.filters details summary::after {
   content: "▾";
   transition: transform 150ms ease;
   color: #8f8990;
 }
-.datasets__left details button {
+.filters__button {
   background-color: white;
   display: block;
   width: 100%;
@@ -1373,11 +1368,28 @@ button {
   cursor: pointer;
   transition: background-color 150ms ease;
 }
-.datasets__left details button:hover {
+.filters__button:hover {
   background-color: #f1eef1;
 }
-.datasets__left details button:last-child {
+.filters__button:last-child {
   border-radius: 0px 0px 4px 4px;
+}
+.filters--active {
+  background-color: #b8c9ff;
+}
+.filters--active:hover {
+  background-color: #c2d1ff;
+}
+
+.datasets__wrapper {
+  display: grid;
+  grid-template-columns: 312px 1fr;
+  margin-top: 2.5rem;
+}
+@media screen and (max-width: 979px) {
+  .datasets__wrapper {
+    display: block;
+  }
 }
 .datasets__total {
   display: flex;

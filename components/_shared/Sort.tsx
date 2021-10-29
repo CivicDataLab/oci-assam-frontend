@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const Sort = () => {
   const router = useRouter();
-  const [sort, setSort] = useState(router.query.sort);
+  const { q, fq, size, from } = router.query;
+  const [sort, setSort] = useState('');
 
-  const handleChange = (event) => {
+  useEffect(() => {
+    const currentSort = router.query.sort
+      ? router.query.sort
+      : 'metadata_modified:desc';
+
+    setSort(currentSort as string);
+  }, [router.query.sort]);
+
+  const handleChange = (event: any) => {
     setSort(event.target.value);
     router.push({
       pathname: '/datasets',
-      query: { sort: event.target.value },
+      query: { q, fq, size, from, sort: event.target.value },
     });
   };
   return (
@@ -22,7 +31,6 @@ const Sort = () => {
         id="field-order-by"
         name="sort"
         onChange={handleChange}
-        onBlur={handleChange}
         value={sort}
       >
         <option value="score:desc">Relevance</option>

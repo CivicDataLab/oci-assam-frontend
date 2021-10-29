@@ -4,27 +4,32 @@ import Dropdown from 'components/_shared/dropdown';
 
 const Pagination: React.FC<{ total: number }> = ({ total }) => {
   const router = useRouter();
-  const { q, sort } = router.query;
+  const { fq, q, sort } = router.query;
   const [current, setCurrent] = React.useState(1);
   const [page, setPage] = React.useState(1);
   const [resultSize, setResultSize] = React.useState(10);
+  const [maxPage, SetMaxPage] = React.useState(0);
 
   React.useEffect(() => {
     const from = router.query.from ? router.query.from : '0';
     const size = router.query.size ? router.query.size : '10';
+    SetMaxPage(Math.floor(total / parseInt(size as string)));
 
     setResultSize(parseInt(size as string));
 
     const pageNo = Math.floor(
       parseInt(from as string) / parseInt(size as string) + 1
     );
+    (document.getElementById('jumpNumber') as HTMLInputElement).value =
+      String(pageNo);
+
     setPage(pageNo);
   }, [router.query.from, router.query.size]);
 
   function fetchNewResults(size: any, from: number) {
     router.push({
       pathname: '/datasets',
-      query: { q, sort, size, from },
+      query: { q, fq, sort, size, from },
     });
   }
 
@@ -37,7 +42,7 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
 
   function handleJump(val: string) {
     const jumpVal = parseInt(val as string);
-    if (!(jumpVal < 1 || jumpVal > total || jumpVal == current)) {
+    if (!(jumpVal < 1 || jumpVal > maxPage || jumpVal == current)) {
       const size = router.query.size ? router.query.size : '10';
       const from = (jumpVal - 1) * parseInt(size as string);
 
@@ -49,7 +54,7 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
   }
 
   function handleButton(val: number) {
-    if (!((current == 1 && val == -1) || (current == total && val == 1))) {
+    if (!((current == 1 && val == -1) || (current == maxPage && val == 1))) {
       const size = router.query.size ? router.query.size : '10';
       const oldFrom = router.query.from ? router.query.from : '0';
 
@@ -78,7 +83,6 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
           <input
             type="text"
             id="jumpNumber"
-            defaultValue={page}
             onBlur={(e) => handleJump(e.target.value)}
           />
         </label>
@@ -86,7 +90,7 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
 
       <div className="pagination__control">
         <div className="pagination__page-no">
-          Page No. {<span>{page}</span>} of {<span>{total}</span>}
+          Page No. {<span>{page}</span>} of {<span>{maxPage}</span>}
         </div>
         <div className="pagination__buttons">
           <button
