@@ -84,7 +84,7 @@ button {
 
 :focus-visible {
   outline-width: 3px;
-  outline-color: #78aeda !important;
+  outline-color: #78aeda;
   outline-style: solid;
 }
 

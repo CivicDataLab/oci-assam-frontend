@@ -57,6 +57,7 @@ export const GET_RESOURCES_QUERY = gql`
 export const SEARCH_QUERY = gql`
   query search(
     $q: String
+    $fq: String
     $sort: String
     $rows: Int
     $start: Int
@@ -66,10 +67,11 @@ export const SEARCH_QUERY = gql`
   ) {
     search(
       q: $q
+      fq: $fq
       sort: $sort
       rows: $rows
       start: $start
-      facetfield: $faceField
+      facetfield: $facetField
     ) @rest(type: "Search", path: "package_search?{args}") {
       result {
         count

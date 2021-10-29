@@ -1,13 +1,11 @@
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
-// import { useQuery } from '@apollo/react-hooks';
 import utils from 'utils';
 import Head from 'next/head';
 import Search from 'components/datasets/Search';
 import Total from 'components/datasets/Total';
 import List from 'components/datasets/List';
 import DataAlter from 'components/datasets/DataAlter';
-// import { ErrorMessage } from 'components/_shared';
 import { SEARCH_QUERY } from 'graphql/queries';
 import Pagination from 'components/datasets/Pagination';
 import Filter from 'components/datasets/Filter';
@@ -17,23 +15,13 @@ import Sort from 'components/_shared/Sort';
 type Props = {
   data: any;
   facets: any;
+  loading: boolean;
 };
 
 const list = '"organization", "groups", "tags", "res_format"';
 
-const Datasets: React.FC<Props> = ({ data, facets }) => {
-  // const { loading, error, data } = useQuery(SEARCH_QUERY, {
-  //   variables,
-  //   // Setting this value to true will make the component rerender when
-  //   // the "networkStatus" changes, so we are able to know if it is fetching
-  //   // more data
-  //   notifyOnNetworkStatusChange: true,
-  // });
-
-  console.log(facets);
-
-  // if (error) return <ErrorMessage message="Error loading search results." />;
-  // if (loading) return <div>Loading</div>;
+const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
+  if (loading) return <div>Loading</div>;
 
   const headerData = {
     title: 'Contracts Data',
@@ -78,7 +66,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
               </div>
 
               <DataAlter />
-              <List variables={data} />
+              <List data={data} loading={loading} />
               <Pagination total={data.search.result.count} />
             </div>
           )}
@@ -95,7 +83,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const apolloClient = initializeApollo();
 
-  const { data } = await apolloClient.query({
+  const { data, loading } = await apolloClient.query({
     query: SEARCH_QUERY,
     variables,
   });
@@ -104,6 +92,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data,
+      loading,
       facets,
     },
   };
