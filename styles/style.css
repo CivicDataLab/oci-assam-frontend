@@ -1357,7 +1357,7 @@ button {
   transition: transform 150ms ease;
   color: #8f8990;
 }
-.filters details button {
+.filters__button {
   background-color: white;
   display: block;
   width: 100%;
@@ -1368,11 +1368,17 @@ button {
   cursor: pointer;
   transition: background-color 150ms ease;
 }
-.filters details button:hover {
+.filters__button:hover {
   background-color: #f1eef1;
 }
-.filters details button:last-child {
+.filters__button:last-child {
   border-radius: 0px 0px 4px 4px;
+}
+.filters--active {
+  background-color: #b8c9ff;
+}
+.filters--active:hover {
+  background-color: #c2d1ff;
 }
 
 .datasets__wrapper {

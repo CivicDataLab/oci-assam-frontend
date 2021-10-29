@@ -63,25 +63,33 @@
         color: $grey-3;
       }
     }
+  }
 
-    button {
-      background-color: $bg-lightest;
-      display: block;
-      width: 100%;
-      text-align: left;
-      padding: 12px;
-      border: 1px solid #d1cdd1;
-      border-top: none;
-      cursor: pointer;
-      transition: background-color 150ms ease;
+  &__button {
+    background-color: $bg-lightest;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #d1cdd1;
+    border-top: none;
+    cursor: pointer;
+    transition: background-color 150ms ease;
 
-      &:hover {
-        background-color: $grey-6;
-      }
+    &:hover {
+      background-color: $grey-6;
+    }
 
-      &:last-child {
-        border-radius: 0px 0px 4px 4px;
-      }
+    &:last-child {
+      border-radius: 0px 0px 4px 4px;
+    }
+  }
+
+  &--active {
+    background-color: darken($color-sapphire-0, 10);
+
+    &:hover {
+      background-color: darken($color-sapphire-0, 8);
     }
   }
 }

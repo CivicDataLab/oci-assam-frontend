@@ -79,7 +79,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = context.query || {};
   const variables = utils.convertToCkanSearchQuery(query);
-  const facets = await utils.getFilters(list);
+  const facets = await utils.getFilters(list, variables);
 
   const apolloClient = initializeApollo();
 

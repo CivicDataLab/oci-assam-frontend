@@ -69,10 +69,13 @@ module.exports.convertToStandardCollection = (descriptor) => {
   return standard;
 };
 
-module.exports.getFilters = async (list) => {
+module.exports.getFilters = async (list, variable) => {
   try {
+    const queryVars = `fq=${variable.fq ? variable.fq : ''}&q=${
+      variable.q ? variable.q : ''
+    }`;
     const fetchData = await fetch(
-      `https://openbudgetsindia.org/api/action/package_search?facet.field=[${list}]&facet.limit=5&rows=0`
+      `https://openbudgetsindia.org/api/action/package_search?facet.field=[${list}]&facet.limit=5&${queryVars}`
     ).then((res) => res.json());
     return fetchData.result.search_facets;
   } catch (error) {
