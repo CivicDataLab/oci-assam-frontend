@@ -158,7 +158,7 @@ const Nav: React.FC = () => {
           <div className="header__brand">
             <Link href="/">
               <a>
-                <h1>HAQ - GEST</h1>
+                <h1>OCP - Assam</h1>
               </a>
             </Link>
             <span className="header__divider" />
@@ -194,71 +194,39 @@ const Nav: React.FC = () => {
         </div>
 
         <ul className="m-navbar__container">
-          <li className="m-navbar__links">
-            <Link href="/">
-              <a className="m-navbar__item">Home</a>
-            </Link>
-          </li>
-          <li className="m-navbar__links">
-            <Link href="/">
-              <a className="m-navbar__item">Data Catalogue</a>
-            </Link>
-          </li>
-          <li className="m-navbar__links">
-            <button
-              className="m-navbar__item"
-              type="button"
-              aria-expanded="false"
-              aria-label="Show Data Explorer menu"
-              data-text-for-show="Show Data Explorer menu"
-              data-text-for-hide="Hide Data Explorer menu"
-              onClick={navButtonHandler}
-            >
-              Data Explorer
-            </button>
-            <ul className="m-navbar__nested" hidden>
-              <li>
-                <a href="#">
-                  Budget Summary <span>&#x279D;</span>
-                </a>
+          <li className="navbar__links">
+                <Link href="/datasets">
+                  <a
+                    className={`navbar__item ${
+                      router.pathname.includes('/datasets')
+                        ? 'navbar__item--active'
+                        : ''
+                    }`}
+                  >
+                    Contracts Data
+                  </a>
+                </Link>
               </li>
-              <li>
-                <a href="#">
-                  Schemes <span>&#x279D;</span>
-                </a>
+              <li className="navbar__links">
+                <Link href="/">
+                  <a className="navbar__item">Data Analysis</a>
+                </Link>
               </li>
-              <li>
-                <a href="#">
-                  Data Story <span>&#x279D;</span>
-                </a>
+              <li className="navbar__links">
+                <Link href="/">
+                  <a className="navbar__item">Data Stories</a>
+                </Link>
               </li>
-            </ul>
-          </li>
-          <li className="m-navbar__links">
-            <button
-              className="m-navbar__item"
-              type="button"
-              aria-expanded="false"
-              aria-label="Show Data Explorer menu"
-              data-text-for-show="Show Data Explorer menu"
-              data-text-for-hide="Hide Data Explorer menu"
-              onClick={navButtonHandler}
-            >
-              Resources
-            </button>
-            <ul className="m-navbar__nested" hidden>
-              <li>
-                <a href="#">
-                  The Team <span>&#x279D;</span>
-                </a>
+              <li className="navbar__links">
+                <Link href="/">
+                  <a className="navbar__item">Forum</a>
+                </Link>
               </li>
-              <li>
-                <a href="#">
-                  Glossary <span>&#x279D;</span>
-                </a>
+              <li className="navbar__links">
+                <Link href="/">
+                  <a className="navbar__item">About Us</a>
+                </Link>
               </li>
-            </ul>
-          </li>
         </ul>
       </nav>
     </>
