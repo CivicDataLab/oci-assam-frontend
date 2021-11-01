@@ -13,10 +13,13 @@
 
   &__content {
     display: flex;
-    // flex-wrap: wrap;
 
     figure {
       padding: 16px 53px;
+
+      @include media.narrowerThan('seedling') {
+        display: none;
+      }
     }
   }
 

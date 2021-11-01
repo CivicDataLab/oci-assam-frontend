@@ -1501,6 +1501,11 @@ button {
 .carousel__content figure {
   padding: 16px 53px;
 }
+@media screen and (max-width: 719px) {
+  .carousel__content figure {
+    display: none;
+  }
+}
 .carousel h2 {
   font-weight: 500;
   font-size: 24px;
