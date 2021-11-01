@@ -3,16 +3,23 @@
 
 @mixin button {
   padding: 9px 24px;
+  font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
   display: inline-block;
   line-height: 150%;
   font-weight: 500;
   transition: background-color 200ms ease;
+  display: block;
+  width: max-content;
 
   @include media.narrowerThan('sprout') {
     padding: 7px 20px;
     font-size: 0.9rem;
+  }
+
+  svg {
+    margin-right: 1rem;
   }
 }
 
@@ -33,10 +40,6 @@
   border: 1px solid $bg-dark;
   color: $bg-darkest;
   background-color: $bg-lightest;
-
-  svg {
-    margin-right: 1rem;
-  }
 
   &:hover {
     background-color: darken($bg-lightest, 10);

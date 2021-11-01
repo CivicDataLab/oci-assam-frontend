@@ -2,7 +2,7 @@ import Search from 'components/datasets/Search';
 
 const Tenders = () => {
   return (
-    <section className="tenders">
+    <section className="tenders container">
       <h2 className="headling-w-line">Search tender data of Assam</h2>
       <Search />
       <div className="tenders__icons">
@@ -23,9 +23,9 @@ const Tenders = () => {
           <h3>Food management and relief</h3>
         </div>
       </div>
-      <button className="button-primary tenders__button">
+      <a href="/" className="button-primary tenders__button">
         View Contracts Data
-      </button>
+      </a>
     </section>
   );
 };

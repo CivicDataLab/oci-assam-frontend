@@ -48,4 +48,37 @@
       margin-bottom: 2rem;
     }
   }
+
+  &__page-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 4.3rem;
+    padding-bottom: 5rem;
+
+    section {
+      max-width: 512px;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      max-width: 260px;
+    }
+
+    img {
+      margin-top: 1rem;
+      width: 95%;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 156%;
+      margin-top: 0.6rem;
+    }
+
+    a {
+      margin-top: 1rem;
+    }
+  }
 }

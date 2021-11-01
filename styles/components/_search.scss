@@ -23,7 +23,7 @@
   &__submit {
     padding: 9px 60px;
     transform: translateX(-5px);
-    line-height: 118%;
+    line-height: 135%;
 
     @include media.narrowerThan('seedling') {
       padding: 9px 24px;

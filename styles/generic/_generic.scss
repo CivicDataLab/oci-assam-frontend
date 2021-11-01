@@ -1,4 +1,5 @@
 @use '../tools/mixins/media' as media;
+@use '../settings/variables' as *;
 
 * {
   box-sizing: border-box;
@@ -13,6 +14,11 @@
   outline-width: 3px;
   outline-color: #78aeda;
   outline-style: solid;
+}
+
+::selection {
+  color: $bg-darkest !important;
+  background-color: lighten($bg-darkest, 60) !important;
 }
 
 :root {

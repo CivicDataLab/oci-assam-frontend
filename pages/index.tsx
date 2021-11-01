@@ -1,9 +1,10 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
-import Recent from '../components/home/Recent';
-import Search from 'components/datasets/Search';
+// import Recent from '../components/home/Recent';
+// import Search from 'components/datasets/Search';
 import Tenders from 'components/home/Tenders';
+import Carousel from 'components/home/Carousel';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
@@ -42,11 +43,33 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           </div>
         </div>
 
-        <div className="container">
-          <Tenders />
-        </div>
+        <Tenders />
+        <Carousel />
 
-        {/* <Recent /> */}
+        <div className="home__page-links container">
+          <section>
+            <h2 className="headling-w-line">Data Analysis</h2>
+            <img src="/assets/icons/analysis.jpg" alt="" />
+            <p>
+              Data analysis feature helps you view, analyze and use the
+              procurement data of Assam
+            </p>
+            <a className="button-primary" href="/">
+              View Data Analysis
+            </a>
+          </section>
+          <section>
+            <h2 className="headling-w-line">Data Stories</h2>
+            <img src="/assets/icons/stories.jpg" alt="" />
+            <p>
+              See stories and post done using this dataset. You can also
+              contribute your own story
+            </p>
+            <a className="button-primary" href="/">
+              View Data Stories
+            </a>
+          </section>
+        </div>
       </main>
     </>
   );

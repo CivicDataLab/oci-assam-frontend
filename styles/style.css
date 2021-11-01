@@ -88,6 +88,16 @@ button {
   outline-style: solid;
 }
 
+::-moz-selection {
+  color: #045305 !important;
+  background-color: #8ffa91 !important;
+}
+
+::selection {
+  color: #045305 !important;
+  background-color: #8ffa91 !important;
+}
+
 :root {
   /* Base Settings */
   --base-spacing: 1em;
@@ -419,12 +429,17 @@ button {
 
 .button-primary {
   padding: 9px 24px;
+  font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
   display: inline-block;
   line-height: 150%;
   font-weight: 500;
   transition: background-color 200ms ease;
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   background: #045305;
   color: white;
   border: 1px solid #045305;
@@ -435,18 +450,26 @@ button {
     font-size: 0.9rem;
   }
 }
+.button-primary svg {
+  margin-right: 1rem;
+}
 .button-primary:hover {
   background-color: #056b07;
 }
 
 .button-secondary {
   padding: 9px 24px;
+  font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
   display: inline-block;
   line-height: 150%;
   font-weight: 500;
   transition: background-color 200ms ease;
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   border: 1px solid #2c592c;
   color: #045305;
   background-color: white;
@@ -1030,7 +1053,7 @@ button {
 .search__submit {
   padding: 9px 60px;
   transform: translateX(-5px);
-  line-height: 118%;
+  line-height: 135%;
 }
 @media screen and (max-width: 719px) {
   .search__submit {
@@ -1415,7 +1438,7 @@ button {
 }
 
 .tenders {
-  padding: 50px 0;
+  padding-top: 50px;
 }
 .tenders h2 {
   max-width: 450px;
@@ -1458,6 +1481,58 @@ button {
 .tenders__button {
   margin: 3rem auto 0;
   display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.carousel {
+  margin-top: 5rem;
+  padding: 120px 0 60px;
+  background-color: #fdfcfc;
+}
+.carousel .container {
+  display: flex;
+  align-items: center;
+}
+.carousel__content {
+  display: flex;
+}
+.carousel__content figure {
+  padding: 16px 53px;
+}
+.carousel h2 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 150%;
+}
+.carousel p {
+  margin-top: 50px;
+  font-weight: 500;
+  line-height: 156%;
+}
+.carousel a {
+  margin-top: 10px;
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-weight: 500;
+  color: #045305;
+  text-decoration: none;
+  line-height: 156%;
+}
+.carousel a:hover, .carousel a:focus {
+  text-decoration: underline;
+}
+.carousel__prev {
+  margin-right: 70px;
+}
+.carousel__next {
+  margin-left: 70px;
+}
+.carousel__next svg {
+  transform: rotate(180deg);
 }
 
 .datasets__wrapper {
@@ -1478,6 +1553,12 @@ button {
 }
 .datasets__sort {
   display: inline-flex;
+}
+.datasets__sort button {
+  margin-left: 1rem;
+}
+.datasets__sort button svg {
+  margin-bottom: -2px;
 }
 
 .tender .container {
@@ -1572,4 +1653,31 @@ button {
 .home__header p {
   line-height: 150%;
   margin-bottom: 2rem;
+}
+.home__page-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 4.3rem;
+  padding-bottom: 5rem;
+}
+.home__page-links section {
+  max-width: 512px;
+  margin-bottom: 2rem;
+}
+.home__page-links h2 {
+  max-width: 260px;
+}
+.home__page-links img {
+  margin-top: 1rem;
+  width: 95%;
+}
+.home__page-links p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 156%;
+  margin-top: 0.6rem;
+}
+.home__page-links a {
+  margin-top: 1rem;
 }

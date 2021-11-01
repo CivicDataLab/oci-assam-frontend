@@ -2,7 +2,7 @@
 @use '../../tools/mixins/media' as media;
 
 .tenders {
-  padding: 50px 0;
+  padding-top: 50px;
 
   h2 {
     max-width: 450px;
@@ -23,7 +23,6 @@
   &__category {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     max-width: 185px;
     margin-bottom: 1.5rem;
 
@@ -52,5 +51,6 @@
   &__button {
     margin: 3rem auto 0;
     display: block;
+    width: max-content;
   }
 }
