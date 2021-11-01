@@ -1,0 +1,60 @@
+@use '../../settings/variables' as *;
+@use '../../tools/mixins/media' as media;
+
+.carousel {
+  margin-top: 5rem;
+  padding: 120px 0 60px;
+  background-color: $grey-5;
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    // flex-wrap: wrap;
+
+    figure {
+      padding: 16px 53px;
+    }
+  }
+
+  h2 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 150%;
+  }
+
+  p {
+    margin-top: 50px;
+    font-weight: 500;
+    line-height: 156%;
+  }
+
+  a {
+    margin-top: 10px;
+    display: block;
+    width: max-content;
+    font-weight: 500;
+    color: $bg-darkest;
+    text-decoration: none;
+    line-height: 156%;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  &__prev {
+    margin-right: 70px;
+  }
+
+  &__next {
+    margin-left: 70px;
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}

@@ -47,7 +47,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 <Total total={data.search.result.count} />
                 <div className="datasets__sort">
                   <Sort />
-                  <button className="button-link">
+                  <button className="button-primary">
                     <svg
                       width="10"
                       height="12"

@@ -42,7 +42,7 @@ const Search: React.FC = () => {
         name="q"
         value={q}
         onChange={handleChange}
-        placeholder="Search here"
+        placeholder="Try COVID, Hospital, Construction"
         aria-label="Search"
         className="search__input"
       />
@@ -58,7 +58,7 @@ const Search: React.FC = () => {
         </button>
         <button
           onClick={handleSubmit}
-          className="search__submit"
+          className="search__submit button-primary"
           type="submit"
           title="Submit search"
         >

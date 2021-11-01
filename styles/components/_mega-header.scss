@@ -8,6 +8,10 @@
   .container {
     padding-top: 4.7rem;
     display: block;
+
+    @include media.narrowerThan('plant') {
+      padding-top: 3rem;
+    }
   }
 
   h2 {

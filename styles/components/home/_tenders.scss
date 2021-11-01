@@ -1,0 +1,56 @@
+@use '../../settings/variables' as *;
+@use '../../tools/mixins/media' as media;
+
+.tenders {
+  padding-top: 50px;
+
+  h2 {
+    max-width: 450px;
+  }
+
+  .search {
+    margin: 3.5rem auto 0 auto;
+    max-width: 904px;
+  }
+
+  &__icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5.5rem;
+  }
+
+  &__category {
+    display: flex;
+    flex-direction: column;
+    max-width: 185px;
+    margin-bottom: 1.5rem;
+
+    img {
+      max-width: 149px;
+      margin: 0 auto;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 137%;
+      text-align: center;
+      margin-top: 1.25rem;
+    }
+
+    @include media.narrowerThan('sprout') {
+      max-width: 150px;
+
+      img {
+        max-width: 125px;
+      }
+    }
+  }
+
+  &__button {
+    margin: 3rem auto 0;
+    display: block;
+    width: max-content;
+  }
+}

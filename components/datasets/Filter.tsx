@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 const obj = {};
 
 const Filter = ({ data }) => {
   const router = useRouter();
   const { q, sort, size, fq } = router.query;
-  const [filter, setFilter] = useState([router.query.fq]);
+  // const [filter, setFilter] = useState([router.query.fq]);
 
   useEffect(() => {
     Object.keys(data).forEach((val) => {

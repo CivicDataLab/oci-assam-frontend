@@ -1,0 +1,84 @@
+@use '../settings/variables' as *;
+@use '../tools/mixins/media' as media;
+
+.home {
+  &__header {
+    background-color: $bg-dark;
+    color: $text-dark-high;
+    position: relative;
+    overflow: hidden;
+
+    .container {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    @include media.narrowerThan('seedling') {
+      .container {
+        justify-content: center;
+      }
+
+      figure {
+        display: none;
+      }
+    }
+
+    figure {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    section {
+      padding: 20% 0;
+      max-width: 625px;
+      z-index: 10;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 2rem;
+      line-height: 150%;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    p {
+      line-height: 150%;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__page-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 4.3rem;
+    padding-bottom: 5rem;
+
+    section {
+      max-width: 512px;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      max-width: 260px;
+    }
+
+    img {
+      margin-top: 1rem;
+      width: 95%;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 156%;
+      margin-top: 0.6rem;
+    }
+
+    a {
+      margin-top: 1rem;
+    }
+  }
+}
