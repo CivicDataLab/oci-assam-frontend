@@ -1,38 +1,44 @@
-@use '../tools/mixins/media' as media;
 @use '../settings/variables' as *;
+@use '../tools/mixins/media' as media;
 
-/* Buttons */
-.button-link {
-  padding: 0.7rem 1rem !important;
-
-  background: $bg-darkest;
-  color: #fff;
+@mixin button {
+  padding: 9px 24px;
   border-radius: 4px;
-  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 150%;
+  font-weight: 500;
+  transition: background-color 200ms ease;
 
-  margin: 0.8rem 0 0.8rem 1rem;
-  svg {
-    margin-right: 1rem;
+  @include media.narrowerThan('sprout') {
+    padding: 7px 20px;
+    font-size: 0.9rem;
   }
 }
 
-.button__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.button-primary {
+  @include button;
+  background: $bg-darkest;
+  color: $bg-lightest;
+  border: 1px solid $bg-darkest;
+
+  &:hover {
+    background-color: lighten($bg-darkest, 5);
+  }
 }
 
-.button__icon > svg {
-  height: 100%;
-  width: auto;
-}
+.button-secondary {
+  @include button;
 
-.button:hover {
-  --darker: 5%;
-  cursor: pointer;
-}
+  border: 1px solid $bg-dark;
+  color: $bg-darkest;
+  background-color: $bg-lightest;
 
-.button:focus,
-.button:active {
-  --darker: 10%;
+  svg {
+    margin-right: 1rem;
+  }
+
+  &:hover {
+    background-color: darken($bg-lightest, 10);
+  }
 }

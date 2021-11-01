@@ -1,0 +1,15 @@
+@use '../settings/variables' as *;
+
+.label-green {
+  line-height: 140%;
+  font-weight: 500;
+  color: $bg-darkest;
+}
+
+.headling-w-line {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 140%;
+  border-bottom: 1px solid $grey-3;
+  min-width: 200px;
+}

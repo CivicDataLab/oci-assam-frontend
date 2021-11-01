@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
-import Nav from '../components/_shared/Nav';
 import Recent from '../components/home/Recent';
 import Search from 'components/datasets/Search';
+import Tenders from 'components/home/Tenders';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
@@ -13,28 +13,41 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
 
   return (
     <>
-      <div className="container mx-auto">
-        <Head>
-          <title>{t(`common:title`)}</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <section className="flex justify-center items-center flex-col mt-8 mx-4 lg:flex-row">
-          <div>
-            <h1 className="text-4xl mb-3 font-thin">
-              Find, Share and Publish <br /> Quality Data with{' '}
-              <span className="text-orange-500">Datahub</span>
-            </h1>
-            <p className="text-md font-light mb-3 w-4/5">
-              {t(`common:description`)}
-            </p>
-            <Search />
+      <Head>
+        <title>{t(`common:title`)}</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className="home">
+        <div className="home__header">
+          <div className="container">
+            <figure>
+              <img src="/assets/icons/home-india.svg" alt="" />
+            </figure>
+            <section>
+              <h2>{t(`common:title`)}</h2>
+              <p>
+                It is a tool where citizens can not only explore the State’s
+                Public Procurements data but also analyse and see how such
+                datasets can be used for the betterment of government
+                processes.
+                <br />
+                <br />
+                The data that we have here is contributed by the finance
+                department, the government of Assam.
+              </p>
+              <a href="/" className="button-secondary">
+                Call to action
+              </a>
+            </section>
           </div>
-          <div className="mt-4">
-            {/* <img src="/images/banner.svg" className="w-4/5" alt="banner_img" /> */}
-          </div>
-        </section>
-        <Recent />
-      </div>
+        </div>
+
+        <div className="container">
+          <Tenders />
+        </div>
+
+        {/* <Recent /> */}
+      </main>
     </>
   );
 };
