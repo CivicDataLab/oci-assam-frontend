@@ -134,7 +134,7 @@ const Nav: React.FC = () => {
 
       {/* Mobile Header */}
       <header className="header m-header">
-        <div className="m-header__container">
+        <div className="container">
           <button
             className="m-header__button"
             type="button"
@@ -158,7 +158,7 @@ const Nav: React.FC = () => {
           <div className="header__brand">
             <Link href="/">
               <a>
-                <h1>OCP - Assam</h1>
+                <h1>OCI - Assam</h1>
               </a>
             </Link>
             <span className="header__divider" />
@@ -195,38 +195,38 @@ const Nav: React.FC = () => {
 
         <ul className="m-navbar__container">
           <li className="navbar__links">
-                <Link href="/datasets">
-                  <a
-                    className={`navbar__item ${
-                      router.pathname.includes('/datasets')
-                        ? 'navbar__item--active'
-                        : ''
-                    }`}
-                  >
-                    Contracts Data
-                  </a>
-                </Link>
-              </li>
-              <li className="navbar__links">
-                <Link href="/">
-                  <a className="navbar__item">Data Analysis</a>
-                </Link>
-              </li>
-              <li className="navbar__links">
-                <Link href="/">
-                  <a className="navbar__item">Data Stories</a>
-                </Link>
-              </li>
-              <li className="navbar__links">
-                <Link href="/">
-                  <a className="navbar__item">Forum</a>
-                </Link>
-              </li>
-              <li className="navbar__links">
-                <Link href="/">
-                  <a className="navbar__item">About Us</a>
-                </Link>
-              </li>
+            <Link href="/datasets">
+              <a
+                className={`navbar__item ${
+                  router.pathname.includes('/datasets')
+                    ? 'navbar__item--active'
+                    : ''
+                }`}
+              >
+                Contracts Data
+              </a>
+            </Link>
+          </li>
+          <li className="navbar__links">
+            <Link href="/">
+              <a className="navbar__item">Data Analysis</a>
+            </Link>
+          </li>
+          <li className="navbar__links">
+            <Link href="/">
+              <a className="navbar__item">Data Stories</a>
+            </Link>
+          </li>
+          <li className="navbar__links">
+            <Link href="/">
+              <a className="navbar__item">Forum</a>
+            </Link>
+          </li>
+          <li className="navbar__links">
+            <Link href="/">
+              <a className="navbar__item">About Us</a>
+            </Link>
+          </li>
         </ul>
       </nav>
     </>
