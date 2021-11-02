@@ -1,5 +1,5 @@
-@use '../settings/variables' as *;
-@use '../tools/mixins/narrowerThan' as *;
+@use '../../settings/variables' as *;
+@use '../../tools/mixins/narrowerThan' as *;
 
 .header {
   background-color: $bg-dark;

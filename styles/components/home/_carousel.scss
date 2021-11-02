@@ -51,13 +51,34 @@
   }
 
   &__prev {
-    margin-right: 70px;
+    margin-right: 4rem;
   }
 
   &__next {
-    margin-left: 70px;
+    margin-left: 4rem;
     svg {
       transform: rotate(180deg);
+    }
+  }
+
+  &__item {
+    display: none;
+
+    &--current {
+      display: flex;
+    }
+  }
+
+  @include media.narrowerThan('seedling') {
+    figure {
+      display: none;
+    }
+    &__prev {
+      margin-right: 2rem;
+    }
+
+    &__next {
+      margin-left: 2rem;
     }
   }
 }

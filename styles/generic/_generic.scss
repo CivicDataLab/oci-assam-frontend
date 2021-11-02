@@ -5,20 +5,21 @@
   box-sizing: border-box;
   text-size-adjust: none;
 
-  &:focus {
-    scroll-padding-block-end: 8vh;
-  }
+  // &:focus {
+  //   scroll-padding-block-end: 8vh;
+  // }
 }
 
-:focus-visible {
+:focus-visible,
+button:focus-visible {
   outline-width: 3px;
   outline-color: #78aeda;
   outline-style: solid;
 }
 
 ::selection {
-  color: $bg-darkest !important;
-  background-color: lighten($bg-darkest, 60) !important;
+  color: $bg-darkest;
+  background-color: lighten($bg-darkest, 60);
 }
 
 :root {
@@ -42,11 +43,6 @@
   :root {
     --base-animation-duration: 350ms;
   }
-}
-
-::selection {
-  background-color: var(--color-accent-700);
-  color: var(--color-accent-100);
 }
 
 .scroll-stop {
