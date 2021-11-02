@@ -78,24 +78,22 @@ button {
      -moz-text-size-adjust: none;
           text-size-adjust: none;
 }
-*:focus {
-  scroll-padding-block-end: 8vh;
-}
 
-:focus-visible {
+:focus-visible,
+button:focus-visible {
   outline-width: 3px;
   outline-color: #78aeda;
   outline-style: solid;
 }
 
 ::-moz-selection {
-  color: #045305 !important;
-  background-color: #8ffa91 !important;
+  color: #045305;
+  background-color: #8ffa91;
 }
 
 ::selection {
-  color: #045305 !important;
-  background-color: #8ffa91 !important;
+  color: #045305;
+  background-color: #8ffa91;
 }
 
 :root {
@@ -122,15 +120,6 @@ button {
     --base-animation-duration: 350ms;
   }
 }
-::-moz-selection {
-  background-color: var(--color-accent-700);
-  color: var(--color-accent-100);
-}
-::selection {
-  background-color: var(--color-accent-700);
-  color: var(--color-accent-100);
-}
-
 .scroll-stop {
   overflow: hidden;
 }
@@ -293,13 +282,6 @@ button::-moz-focus-inner,
 [type=submit]::-moz-focus-inner {
   border-style: none;
   padding: 0;
-}
-
-button:-moz-focusring,
-[type=button]:-moz-focusring,
-[type=reset]:-moz-focusring,
-[type=submit]:-moz-focusring {
-  outline: 1px dotted ButtonText;
 }
 
 fieldset {
@@ -1531,13 +1513,30 @@ button {
   text-decoration: underline;
 }
 .carousel__prev {
-  margin-right: 70px;
+  margin-right: 4rem;
 }
 .carousel__next {
-  margin-left: 70px;
+  margin-left: 4rem;
 }
 .carousel__next svg {
   transform: rotate(180deg);
+}
+.carousel__item {
+  display: none;
+}
+.carousel__item--current {
+  display: flex;
+}
+@media screen and (max-width: 719px) {
+  .carousel figure {
+    display: none;
+  }
+  .carousel__prev {
+    margin-right: 2rem;
+  }
+  .carousel__next {
+    margin-left: 2rem;
+  }
 }
 
 .datasets__wrapper {

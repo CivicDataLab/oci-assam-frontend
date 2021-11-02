@@ -1,8 +1,52 @@
+import React, { useEffect } from 'react';
+import Link from 'next/link';
+
+const data = [
+  {
+    text: 'The Assam Public Procurement Rules, which were approved by the cabinet in September 2020 have now been brought into force with effect from 1st September 2021.',
+    link: '/',
+    image: '/assets/icons/assam.png',
+  },
+  {
+    text: 'The Assam Public Procurement Rules 2, which were approved by the cabinet in September 2020 have now been brought into force with effect from 1st September 2021.',
+    link: '/',
+    image: '/assets/icons/assam.png',
+  },
+  {
+    text: 'The Assam Public Procurement Rules 3, which were approved by the cabinet in September 2020 have now been brought into force with effect from 1st September 2021.',
+    link: '/',
+    image: '/assets/icons/assam.png',
+  },
+];
+
 const Carousel = () => {
+  let pos = 0;
+
+  function updateCarousel(n: number) {
+    if (n == -1 && pos == 0) pos = data.length - 1;
+    else if (n == 1 && pos == data.length - 1) pos = 0;
+    else pos += n;
+
+    document
+      .querySelector(`.carousel__item--current`)
+      .classList.remove('carousel__item--current');
+    document
+      .querySelector(`#carousel-${pos}`)
+      .classList.add('carousel__item--current');
+  }
+  useEffect(() => {
+    document
+      .querySelector('#carousel-0')
+      .classList.add('carousel__item--current');
+  }, []);
   return (
     <section className="carousel">
       <div className="container">
-        <button className="carousel__prev">
+        <button
+          className="carousel__prev"
+          onClick={() => updateCarousel(-1)}
+          type="button"
+        >
           <span className="sr-only">Previous Slide</span>
           <svg
             width="14"
@@ -19,21 +63,31 @@ const Carousel = () => {
             />
           </svg>
         </button>
-        <div className="carousel__content">
-          <article>
-            <h2>Did you Know ?</h2>
-            <p>
-              The Assam Public Procurement Rules, which were approved by the
-              cabinet in September 2020 have now been brought into force with
-              effect from 1st September 2021.
-            </p>
-            <a href="/">Click to know more</a>
-          </article>
-          <figure>
-            <img src="/assets/icons/assam.png" alt="" />
-          </figure>
-        </div>
-        <button className="carousel__next">
+        <ul className="carousel__content" aria-live="polite">
+          {data.map((item, index) => {
+            return (
+              <li
+                key={`carousel-${index}`}
+                id={`carousel-${index}`}
+                className="carousel__item"
+              >
+                <article>
+                  <h2>Did you Know?</h2>
+                  <p>{item.text}</p>
+                  <a href={item.link}>Click to know more</a>
+                </article>
+                <figure>
+                  <img src={item.image} alt="" />
+                </figure>
+              </li>
+            );
+          })}
+        </ul>
+        <button
+          className="carousel__next"
+          onClick={() => updateCarousel(1)}
+          type="button"
+        >
           <span className="sr-only">Previous Slide</span>
           <svg
             width="14"
