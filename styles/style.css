@@ -736,7 +736,7 @@ button {
 }
 .pagination__back svg {
   transform: rotate(180deg);
-  fill: #e8e8e8;
+  fill: #545454;
 }
 .pagination__next {
   margin-left: 0.5rem;

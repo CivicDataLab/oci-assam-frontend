@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 const obj = {};
 
 const Filter = ({ data }) => {
-  console.log(data);
-
   const router = useRouter();
   const { q, sort, size, fq } = router.query;
   // const [filter, setFilter] = useState([router.query.fq]);
