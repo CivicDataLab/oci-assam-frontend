@@ -39,6 +39,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'jsx-a11y/no-onchange': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
   },
   settings: {
     react: {

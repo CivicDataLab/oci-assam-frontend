@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
-import { useQuery } from '@apollo/react-hooks';
+// import { useQuery } from '@apollo/react-hooks';
 import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
 import utils from 'utils/index';
@@ -9,22 +9,29 @@ import DList from 'components/_shared/DList';
 import Image from 'next/image';
 
 type Props = {
-  variables: any;
+  data: any;
+  loading: boolean;
 };
 
-const DetailsItem: React.FC<Props> = ({ variables }) => {
-  const { data, error, loading } = useQuery(GET_DATASET_QUERY, { variables });
-  if (loading) return <div>Loading</div>;
+const DetailsItem: React.FC<Props> = ({ data, loading }) => {
+  // const { data, error, loading } = useQuery(GET_DATASET_QUERY, { variables });
+  // if (loading) return <div>Loading</div>;
 
-  if (error) {
-    console.log(error);
-    return <div>Error</div>;
-  }
+  // if (error) {
+  //   console.log(error);
+  //   return <div>Error</div>;
+  // }
+
+  if (loading) return <div>Loading</div>;
   const dataPackage = utils.ckanToDataPackage(data.dataset.result);
+  console.log(dataPackage);
 
   const headerData = {
-    title: 'Tender Details',
-    content: 'Tip: Place the pointer over the titles to know more about them.',
+    title: dataPackage.title || dataPackage.name,
+    content: dataPackage.organization.title,
+    date: new Date(dataPackage.metadata_created).toLocaleDateString('en-US'),
+    previousPage: 'Contracts Data',
+    previousLink: '/datasets',
   };
 
   const basicContent = [
@@ -156,7 +163,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     id: context.query.details,
   };
 
-  await apolloClient.query({
+  const { data, loading } = await apolloClient.query({
     query: GET_DATASET_QUERY,
     variables,
   });
@@ -164,7 +171,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
-      variables,
+      data,
+      loading,
     },
   };
 };

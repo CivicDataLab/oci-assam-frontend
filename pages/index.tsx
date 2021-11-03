@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
 // import Recent from '../components/home/Recent';
 // import Search from 'components/datasets/Search';
-import Tenders from 'components/home/Tenders';
+import HomeSearch from 'components/home/HomeSearch';
 import Carousel from 'components/home/Carousel';
 import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
@@ -43,7 +43,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           </div>
         </div>
 
-        <Tenders />
+        <HomeSearch />
         <Carousel />
 
         <div className="home__page-links container">

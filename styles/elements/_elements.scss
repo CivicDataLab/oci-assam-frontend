@@ -16,7 +16,8 @@ body {
 a {
   text-decoration: underline;
   text-decoration-skip-ink: all;
-  text-decoration-thickness: 15%;
+  text-decoration-thickness: .07em;
+  text-underline-offset: 1.5px;
 }
 
 a {
