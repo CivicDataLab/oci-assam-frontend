@@ -22,11 +22,6 @@ a {
 
 a {
   color: inherit;
-  text-decoration-color: var(--color-highlight);
-
-  &:hover {
-    text-decoration-color: var(--color-accent-700);
-  }
 
   &.button,
   &.c2a {

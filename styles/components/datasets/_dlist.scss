@@ -1,4 +1,5 @@
 @use '../../settings/variables' as *;
+@use '../../tools/mixins/media' as media;
 
 .dlist {
   border: 1px solid #e9fbf0;
@@ -6,21 +7,64 @@
   box-shadow: $box-shadow-1;
   background-color: $bg-lightest;
 
-  div {
+  > div {
     display: flex;
     align-items: center;
     padding: 1rem 1.25rem;
+
+    @include media.narrowerThan('seed') {
+      flex-direction: column;
+      align-items: flex-start;
+
+      dt {
+        margin-bottom: .7rem;
+      }
+    }
 
     &:nth-child(2n) {
       background-color: hsl(146, 64%, 98%);
     }
   }
 
+  &__multiple {
+    div {
+      display: grid;
+      grid-template-columns: 200px repeat(4, 1fr);
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+
+      .dlist__desc {
+        width: max-content;
+      }
+
+      @include media.narrowerThan('sprout') {
+        display: block;
+
+        dd {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    @include media.narrowerThan('plant') {
+      flex-direction: column;
+      align-items: flex-start !important;
+
+      dt {
+        margin-bottom: .7rem;
+      }
+    }
+  }
+
   &__title {
     font-weight: 500;
-    line-height: 1.25rem;
     width: 100%;
     margin-right: 1rem;
+
+    svg {
+      margin-left: 6px;
+    }
   }
 
   &__desc {
@@ -28,5 +72,17 @@
     line-height: 150%;
     width: 100%;
     overflow-x: auto;
+  }
+
+  &__view {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 157%;
+    color: $bg-darkest;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
