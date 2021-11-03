@@ -2,3 +2,9 @@
 @forward 'mega-header';
 @forward 'skip-to-content';
 @forward 'search';
+
+.heading-3 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 92%;
+}

@@ -16,16 +16,12 @@ body {
 a {
   text-decoration: underline;
   text-decoration-skip-ink: all;
-  text-decoration-thickness: 15%;
+  text-decoration-thickness: .07em;
+  text-underline-offset: 1.5px;
 }
 
 a {
   color: inherit;
-  text-decoration-color: var(--color-highlight);
-
-  &:hover {
-    text-decoration-color: var(--color-accent-700);
-  }
 
   &.button,
   &.c2a {

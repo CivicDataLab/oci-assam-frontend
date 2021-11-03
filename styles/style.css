@@ -370,17 +370,12 @@ a {
   text-decoration: underline;
   -webkit-text-decoration-skip-ink: all;
           text-decoration-skip-ink: all;
-  text-decoration-thickness: 15%;
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 1.5px;
 }
 
 a {
   color: inherit;
-  -webkit-text-decoration-color: var(--color-highlight);
-          text-decoration-color: var(--color-highlight);
-}
-a:hover {
-  -webkit-text-decoration-color: var(--color-accent-700);
-          text-decoration-color: var(--color-accent-700);
 }
 a.button, a.c2a {
   text-decoration: none;
@@ -409,7 +404,7 @@ button {
 }
 
 .button-primary {
-  padding: 9px 24px;
+  padding: 9px 12px;
   font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
@@ -427,7 +422,6 @@ button {
 }
 @media screen and (max-width: 979px) {
   .button-primary {
-    padding: 7px 20px;
     font-size: 0.9rem;
   }
 }
@@ -439,7 +433,7 @@ button {
 }
 
 .button-secondary {
-  padding: 9px 24px;
+  padding: 9px 12px;
   font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
@@ -457,7 +451,6 @@ button {
 }
 @media screen and (max-width: 979px) {
   .button-secondary {
-    padding: 7px 20px;
     font-size: 0.9rem;
   }
 }
@@ -490,41 +483,40 @@ button {
   font-weight: 500;
   line-height: 140%;
   border-bottom: 1px solid #adadad;
-  min-width: 200px;
 }
 
-.tenders {
+.home-search {
   padding-top: 50px;
 }
-.tenders h2 {
+.home-search h2 {
   max-width: 450px;
 }
-.tenders .search {
+.home-search .search {
   margin: 3.5rem auto 0 auto;
   max-width: 904px;
 }
-.tenders__icons {
+.home-search__icons {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 5.5rem;
 }
 @media screen and (max-width: 330px) {
-  .tenders__icons {
+  .home-search__icons {
     justify-content: center;
   }
 }
-.tenders__category {
+.home-search__category {
   display: flex;
   flex-direction: column;
   max-width: 185px;
   margin-bottom: 1.5rem;
 }
-.tenders__category img {
+.home-search__category img {
   max-width: 149px;
   margin: 0 auto;
 }
-.tenders__category h3 {
+.home-search__category h3 {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 137%;
@@ -532,14 +524,14 @@ button {
   margin-top: 1.25rem;
 }
 @media screen and (max-width: 979px) {
-  .tenders__category {
+  .home-search__category {
     max-width: 150px;
   }
-  .tenders__category img {
+  .home-search__category img {
     max-width: 125px;
   }
 }
-.tenders__button {
+.home-search__button {
   margin: 3rem auto 0;
   display: block;
   width: -webkit-max-content;
@@ -1074,25 +1066,75 @@ button {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   background-color: white;
 }
-.dlist div {
+.dlist > div {
   display: flex;
   align-items: center;
   padding: 1rem 1.25rem;
 }
-.dlist div:nth-child(2n) {
+@media screen and (max-width: 479px) {
+  .dlist > div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dlist > div dt {
+    margin-bottom: 0.7rem;
+  }
+}
+.dlist > div:nth-child(2n) {
   background-color: #f7fdf9;
+}
+.dlist__multiple div {
+  display: grid;
+  grid-template-columns: 200px repeat(4, 1fr);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.dlist__multiple div .dlist__desc {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+@media screen and (max-width: 979px) {
+  .dlist__multiple div {
+    display: block;
+  }
+  .dlist__multiple div dd {
+    margin-bottom: 0.5rem;
+  }
+}
+@media screen and (max-width: 1199px) {
+  .dlist__multiple {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .dlist__multiple dt {
+    margin-bottom: 0.7rem;
+  }
 }
 .dlist__title {
   font-weight: 500;
-  line-height: 1.25rem;
   width: 100%;
   margin-right: 1rem;
+}
+.dlist__title svg {
+  margin-left: 6px;
 }
 .dlist__desc {
   text-align: left;
   line-height: 150%;
   width: 100%;
   overflow-x: auto;
+}
+.dlist__view {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 157%;
+  color: #045305;
+}
+.dlist__view:hover {
+  text-decoration: underline;
 }
 
 .filters {
@@ -1419,15 +1461,16 @@ button {
   color: #fdfcfc;
 }
 .mega-header .container {
-  padding-top: 4.7rem;
+  padding-top: 3rem;
   display: block;
 }
 @media screen and (max-width: 1199px) {
   .mega-header .container {
-    padding-top: 3rem;
+    padding-top: 1.5rem;
   }
 }
 .mega-header h2 {
+  margin-top: 2rem;
   font-size: 2.5rem;
   font-weight: 500;
   line-height: 2.6rem;
@@ -1439,7 +1482,11 @@ button {
   line-height: 1.5;
   grid-column: 2/3;
   grid-row: 2/3;
+}
+.mega-header p:first-of-type {
   padding-top: 1rem;
+}
+.mega-header p:last-child {
   padding-bottom: 2.5rem;
 }
 @media screen and (max-width: 479px) {
@@ -1543,6 +1590,12 @@ button {
   display: block;
 }
 
+.heading-3 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 92%;
+}
+
 .datasets__wrapper {
   display: grid;
   grid-template-columns: 312px 1fr;
@@ -1573,6 +1626,18 @@ button {
   display: flex;
   flex-direction: column;
 }
+.tender .mega-header p {
+  font-size: 12px;
+}
+.tender .mega-header p:first-of-type {
+  padding-top: 10px;
+}
+.tender .headling-w-line {
+  width: 250px;
+}
+.tender .dlist {
+  margin-top: 1.5rem;
+}
 .tender .button-primary {
   margin: 0;
   align-self: flex-end;
@@ -1584,28 +1649,35 @@ button {
   width: 250px;
   margin-bottom: 1.25rem;
 }
-.tender__basic {
-  display: flex;
-}
-.tender__basic dt {
-  max-width: 12rem;
-}
-.tender__basic figure {
-  height: calc(100% - 3.5rem);
+.tender__image {
+  margin-top: 1.5rem;
+  width: 300px;
+  padding: 0 2rem;
   border: 1px solid #e9fbf0;
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   background-color: white;
   display: grid;
 }
-.tender__basic figure img {
+.tender__image img {
   -o-object-fit: contain;
      object-fit: contain;
+}
+.tender__basic {
+  display: flex;
+}
+.tender__basic dt {
+  max-width: 12rem;
 }
 @media screen and (max-width: 979px) {
   .tender__basic {
     flex-direction: column;
   }
+}
+.tender__map {
+  display: grid;
+  grid-template-rows: -webkit-max-content 1fr;
+  grid-template-rows: max-content 1fr;
 }
 .tender__map:last-child {
   margin-left: 1.5rem;
