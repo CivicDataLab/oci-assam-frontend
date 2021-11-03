@@ -29,41 +29,36 @@
     border-bottom: 1px solid #f2eff2;
   }
 
-  details {
+  &__heading {
     margin-top: 1rem;
-    background: $grey-5;
     border-radius: 4px;
-    text-transform: capitalize;
 
-    &[open] {
-      border-radius: 4px 4px 0px 0px;
-
-      > summary::after {
-        transform: rotate(-180deg);
-      }
-    }
-
-    summary {
-      list-style: none;
+    button {
+      text-transform: capitalize;
       padding: 13px 12px;
       font-weight: 500;
       line-height: 140%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: pointer;
-      border: 1px solid #d1cdd1;
+      width: 100%;
+      border: 1px solid $bg-darkest;
+      color: $bg-darkest;
       border-radius: 4px;
+    }
 
-      &::marker {
-        display: none;
-      }
+    svg {
+      height: 7px;
+      margin-left: 0.5em;
+      transition: transform 150ms ease;
+    }
 
-      &::after {
-        content: '▾';
-        transition: transform 150ms ease;
-        color: $grey-3;
-      }
+    [aria-expanded='true'] svg {
+      transform: rotate(-180deg);
+    }
+
+    [aria-expanded] path {
+      fill: currentColor;
     }
   }
 
@@ -87,7 +82,7 @@
     }
   }
 
-  &--active {
+  [aria-pressed="true"] {
     background-color: darken($color-sapphire-0, 10);
 
     &:hover {

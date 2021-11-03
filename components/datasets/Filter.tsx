@@ -1,30 +1,49 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 const obj = {};
 
 const Filter = ({ data }) => {
+  console.log(data);
+
   const router = useRouter();
   const { q, sort, size, fq } = router.query;
   // const [filter, setFilter] = useState([router.query.fq]);
 
+  function headingCollapsable() {
+    const headings = document.querySelectorAll('.filters__heading');
+
+    Array.prototype.forEach.call(headings, (h) => {
+      const btn = h.querySelector('button');
+      const target = h.nextElementSibling;
+
+      btn.onclick = () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+        btn.setAttribute('aria-expanded', !expanded);
+        target.hidden = expanded;
+      };
+    });
+  }
+
   useEffect(() => {
+    headingCollapsable();
+
     Object.keys(data).forEach((val) => {
       obj[val] = [];
     });
-    if (fq) {
-      console.log(fq);
 
-      (fq as string).split(':').forEach((activeID) => {
-        if (activeID.includes(' ')) {
-          activeID.split(' ').forEach((buttonID) => {
-            if (document.getElementById(buttonID))
-              document
-                .getElementById(buttonID)
-                .classList.add('filters--active');
-          });
+    // if filter query available on page load, add class
+    if (fq) {
+      const splitQuery = (fq as string).split(/[\s,\s:]+/);
+      let check = splitQuery[0];
+      splitQuery.forEach((query) => {
+        if (obj[query]) {
+          check = query;
+          return;
         }
-        if (document.getElementById(activeID))
-          document.getElementById(activeID).classList.add('filters--active');
+        obj[check].push(query);
+        if (document.getElementById(query))
+          document.getElementById(query).setAttribute('aria-pressed', 'true');
       });
     }
   }, []);
@@ -39,13 +58,18 @@ const Filter = ({ data }) => {
     const selectedFilter = e.target as HTMLInputElement;
     const type = selectedFilter.dataset.type;
     const value = selectedFilter.id;
-    selectedFilter.classList.toggle('filters--active');
+
+    const pressed = selectedFilter.getAttribute('aria-pressed');
+    selectedFilter.setAttribute(
+      'aria-pressed',
+      pressed == 'false' ? 'true' : 'false'
+    );
 
     const index = obj[type].indexOf(value);
     if (index > -1) {
       obj[type].splice(index, 1);
     } else {
-      obj[type].push(value);
+      obj[type].push(value.includes(' ') ? `"${value}"` : value);
     }
 
     const eachType = [];
@@ -67,21 +91,32 @@ const Filter = ({ data }) => {
     <div className="filters">
       <h3>Filters</h3>
       {Object.keys(data).map((filter: any, index: number) => (
-        <details key={`filter-${index}`}>
-          <summary>{formatFilterName(data[filter].title)}</summary>
-          {data[filter].items &&
-            data[filter].items.map((item: any) => (
-              <button
-                className="filters__button"
-                key={item.name}
-                data-type={data[filter].title}
-                id={item.name}
-                onClick={handleFilterChange}
-              >
-                {`${item.display_name} (${item.count})`}
-              </button>
-            ))}
-        </details>
+        <React.Fragment key={`filters-${index}`}>
+          <h4 className="filters__heading" key={`filter-${index}`}>
+            <button aria-expanded="false">
+              {formatFilterName(data[filter].title)}
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 144 72">
+                <path d="M72 72C72 71.98 0 0 0 0h144L72 72" />
+              </svg>
+            </button>
+          </h4>
+          <div hidden>
+            {data[filter].items &&
+              data[filter].items.map((item: any) => (
+                <button
+                  className="filters__button"
+                  key={item.name}
+                  data-type={data[filter].title}
+                  id={item.name}
+                  onClick={handleFilterChange}
+                  type="button"
+                  aria-pressed="false"
+                >
+                  {`${item.display_name} (${item.count})`}
+                </button>
+              ))}
+          </div>
+        </React.Fragment>
       ))}
     </div>
   );

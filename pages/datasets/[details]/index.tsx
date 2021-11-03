@@ -94,7 +94,7 @@ const DetailsItem: React.FC<Props> = ({ variables }) => {
       <main className="tender">
         <MegaHeader data={headerData} />
         <div className="page-wrap container">
-          <button className="button-link">
+          <button className="button-primary">
             <svg
               width="10"
               height="12"
