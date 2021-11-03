@@ -18,7 +18,7 @@ type Props = {
   loading: boolean;
 };
 
-const list = '"organization", "groups", "tags", "res_format"';
+const list = '"organization", "groups", "res_format"';
 
 const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
   if (loading) return <div>Loading</div>;

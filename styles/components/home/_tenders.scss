@@ -18,6 +18,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 5.5rem;
+
+    @media screen and (max-width: 330px) {
+      justify-content: center;
+    }
   }
 
   &__category {

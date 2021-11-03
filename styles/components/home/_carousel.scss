@@ -50,12 +50,17 @@
     }
   }
 
+  button {
+    min-width: 44px;
+    height: 44px;
+  }
+
   &__prev {
-    margin-right: 4rem;
+    margin-right: 3rem;
   }
 
   &__next {
-    margin-left: 4rem;
+    margin-left: 3rem;
     svg {
       transform: rotate(180deg);
     }

@@ -7,9 +7,13 @@
     flex-direction: column;
   }
 
-  .button-link {
+  .button-primary {
     margin: 0;
     align-self: flex-end;
+
+    svg {
+      margin-bottom: -2px;
+    }
   }
 
   .total-datasets {
@@ -40,7 +44,6 @@
     @include media.narrowerThan('sprout') {
       flex-direction: column;
     }
-
   }
 
   &__map {
