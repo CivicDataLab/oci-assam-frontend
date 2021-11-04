@@ -1,7 +1,11 @@
-const Total: React.FC<{ total: number }> = ({ total }) => {
+const Total: React.FC<{ total: number; text?: string }> = ({
+  total,
+  text,
+}) => {
   return (
     <h3 className="total-datasets">
-      {total.toLocaleString('en', { useGrouping: true })} tenders
+      {total.toLocaleString('en', { useGrouping: true })}{' '}
+      {text ? text : 'results'}
     </h3>
   );
 };
