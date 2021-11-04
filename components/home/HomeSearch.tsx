@@ -3,7 +3,7 @@ import Search from 'components/datasets/Search';
 const HomeSearch = () => {
   return (
     <section className="home-search container">
-      <h2 className="headling-w-line">Search tender data of Assam</h2>
+      <h2 className="heading-w-line">Search tender data of Assam</h2>
       <Search />
       <div className="home-search__icons">
         <div className="home-search__category">

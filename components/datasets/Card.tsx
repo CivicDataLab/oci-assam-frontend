@@ -19,10 +19,7 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
         </figure>
 
         <section>
-          <h3 className="card__heading">
-            {/* {datapackage.title || datapackage.name} */}
-            {datapackage.organization.title}
-          </h3>
+          <h3 className="card__heading">{datapackage.organization.title}</h3>
           <small className="card__date">
             21st September 2016 . 2016 - 2017
           </small>

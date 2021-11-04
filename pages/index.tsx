@@ -48,7 +48,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
 
         <div className="home__page-links container">
           <section>
-            <h2 className="headling-w-line">Data Analysis</h2>
+            <h2 className="heading-w-line">Data Analysis</h2>
             <img src="/assets/icons/analysis.jpg" alt="" />
             <p>
               Data analysis feature helps you view, analyze and use the
@@ -59,7 +59,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
             </a>
           </section>
           <section>
-            <h2 className="headling-w-line">Data Stories</h2>
+            <h2 className="heading-w-line">Data Stories</h2>
             <img src="/assets/icons/stories.jpg" alt="" />
             <p>
               See stories and post done using this dataset. You can also

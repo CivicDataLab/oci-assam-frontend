@@ -118,7 +118,7 @@ const Tender: React.FC<Props> = ({ data, loading }) => {
         <MegaHeader data={headerData} />
         <div className="page-wrap container">
           <section>
-            <h3 className="headling-w-line">Contract Details</h3>
+            <h3 className="heading-w-line">Contract Details</h3>
           </section>
           <button className="button-primary">
             <svg
@@ -183,7 +183,7 @@ const Tender: React.FC<Props> = ({ data, loading }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const apolloClient = initializeApollo();
   const variables = {
-    id: context.query.details,
+    id: context.query.tender,
   };
 
   const { data, loading } = await apolloClient.query({

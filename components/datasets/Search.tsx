@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const Search: React.FC = () => {
+const Search: React.FC<{ text?: string }> = ({ text }) => {
   const router = useRouter();
   const [q, setQ] = useState(router.query.q);
   const [sort, setSort] = useState(router.query.sort);
@@ -42,7 +42,7 @@ const Search: React.FC = () => {
         name="q"
         value={q}
         onChange={handleChange}
-        placeholder="Try COVID, Hospital, Construction"
+        placeholder={text ? text : 'Try COVID, Hospital, Construction'}
         aria-label="Search"
         className="search__input"
       />

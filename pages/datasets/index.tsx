@@ -44,7 +44,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
             <div className="datasets__right">
               <Search />
               <div className="datasets__total">
-                <Total total={data.search.result.count} />
+                <Total text="contracts" total={data.search.result.count} />
                 <div className="datasets__sort">
                   <Sort />
                   <button className="button-primary">
