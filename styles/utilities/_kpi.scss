@@ -6,6 +6,36 @@
     margin-top: 0;
   }
 
+  &__summary {
+    grid-column: 1/2;
+    padding: 20px 14px;
+    background-color: $bg-lightest;
+    border-radius: 4px;
+    border: 1px solid $bg-lighter;
+    box-shadow: $box-shadow-1;
+    height: max-content;
+    margin-top: 1rem;
+    margin-right: 2rem;
+
+    @include media.narrowerThan('sprout') {
+      margin: 2rem auto;
+    }
+
+    strong {
+      margin-top: 2rem;
+      display: block;
+      line-height: 135%;
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-top: 4px;
+      line-height: 135%;
+      color: $text-light-medium;
+      font-size: 15px;
+    }
+  }
+
   &__explain {
     margin-top: 14px;
   }

@@ -46,6 +46,18 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
 
         <div className="datasets__wrapper container">
           <Filter data={facets} />
+          <section className="kpi__summary">
+            <h3 className="heading3-w-line">Filtered summary</h3>
+
+            <strong>31.4kCr</strong>
+            <p>Total number of tenders published</p>
+
+            <strong>103kr</strong>
+            <p>Total number of bids received</p>
+
+            <strong>₹ 31.4kCr</strong>
+            <p>Total value of tenders awarded</p>
+          </section>
           {data && (
             <div className="datasets__right">
               <h2 className="heading-w-line">

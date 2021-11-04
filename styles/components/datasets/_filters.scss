@@ -7,7 +7,7 @@
   margin-right: 2rem;
   filter: $drop-shadow;
   border: 1px solid hsl(300, 10%, 94%);
-  border-radius: 12px;
+  border-radius: 4px;
   height: max-content;
   max-height: 776px;
   padding: 1.5rem;
@@ -19,14 +19,6 @@
 
   @include media.narrowerThan('sprout') {
     display: none;
-  }
-
-  h3 {
-    font-weight: 500;
-    line-height: 130%;
-    font-size: 1.25rem;
-    padding-bottom: 1.1rem;
-    border-bottom: 1px solid #f2eff2;
   }
 
   &__heading {

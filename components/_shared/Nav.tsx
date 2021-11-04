@@ -108,7 +108,7 @@ const Nav: React.FC = () => {
                 </Link>
               </li>
               <li className="navbar__links">
-                <Link href="/">
+                <Link href="/kpi">
                   <a className="navbar__item">Data Analysis</a>
                 </Link>
               </li>
@@ -208,7 +208,7 @@ const Nav: React.FC = () => {
             </Link>
           </li>
           <li className="navbar__links">
-            <Link href="/">
+            <Link href="/kpi">
               <a className="navbar__item">Data Analysis</a>
             </Link>
           </li>

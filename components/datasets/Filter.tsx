@@ -87,7 +87,7 @@ const Filter = ({ data }) => {
 
   return (
     <div className="filters">
-      <h3>Filters</h3>
+      <h3 className="heading3-w-line">Filters</h3>
       {Object.keys(data).map((filter: any, index: number) => (
         <React.Fragment key={`filters-${index}`}>
           <h4 className="filters__heading" key={`filter-${index}`}>
