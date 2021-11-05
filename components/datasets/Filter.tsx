@@ -40,6 +40,7 @@ const Filter = ({ data }) => {
           return;
         }
         obj[check].push(query);
+
         if (document.getElementById(query))
           document.getElementById(query).setAttribute('aria-pressed', 'true');
       });
@@ -78,6 +79,7 @@ const Filter = ({ data }) => {
       }
     });
     const filter = eachType.join(' ');
+    console.log(filter);
 
     router.push({
       pathname: '/datasets',

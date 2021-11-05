@@ -1,0 +1,170 @@
+@use '../settings/variables' as *;
+@use '../tools/mixins/media' as media;
+
+.analysis {
+  @include media.widerThan('seedling') {
+    .heading-w-line {
+      width: 250px;
+    }
+  }
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 312px 1fr;
+    margin-top: 1.5rem;
+
+    @include media.narrowerThan('sprout') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .viz {
+    background-color: $bg-lightest;
+    border: 1px solid $bg-lighter;
+    border-radius: 6px;
+    box-shadow: $box-shadow-1;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+
+      @include media.narrowerThan('seed') {
+        display: block;
+      }
+    }
+
+    &__tabs {
+      display: flex;
+      align-items: center;
+
+      li {
+        min-width: 0;
+
+        &:first-of-type {
+          margin-right: 1.25rem;
+        }
+      }
+
+      a {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-decoration: none;
+        padding-bottom: 5px;
+        min-width: 120%;
+        display: block;
+        text-align: center;
+        border-bottom: 2px solid transparent;
+
+        svg {
+          margin-bottom: -3px;
+          margin-right: 5px;
+
+          &.svg-stroke {
+            stroke: $grey-1;
+          }
+        }
+
+        &[aria-selected='true'] {
+          color: $bg-darkest;
+          border-bottom: 2px solid $bg-darkest;
+
+          svg {
+            fill: $bg-darkest;
+
+            &.svg-stroke {
+              stroke: $bg-darkest;
+            }
+          }
+        }
+      }
+    }
+
+    &__tags {
+      display: flex;
+      span {
+        margin-right: 1.25rem;
+        display: flex;
+        align-items: center;
+
+        &::before {
+          width: 24px;
+          height: 24px;
+          content: '';
+          margin-right: 0.5rem;
+          border-radius: 4px;
+        }
+
+        &:nth-of-type(1) {
+          &::before {
+            background-color: #1e49be;
+          }
+        }
+        &:nth-of-type(2) {
+          &::before {
+            background-color: #da952d;
+          }
+        }
+        &:nth-of-type(3) {
+          &::before {
+            background-color: #5c0e09;
+          }
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      @include media.narrowerThan('seed') {
+        margin-top: 1.25rem;
+      }
+    }
+
+    figure {
+      margin: 2rem;
+    }
+  }
+
+  &__news {
+    margin-top: 2rem;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    article {
+      margin-top: 1.25rem;
+      padding: 1.5rem;
+      background-color: $bg-lightest;
+      border: 1px solid $bg-lighter;
+      border-radius: 6px;
+      box-shadow: $box-shadow-1;
+      width: 48%;
+
+      @include media.narrowerThan('seedling') {
+        width: 100%;
+      }
+    }
+
+    h4 {
+      font-weight: 500;
+      line-height: 150%;
+    }
+
+    p {
+      line-height: 156%;
+      color: $grey-2;
+      margin-top: 1rem;
+    }
+  }
+}
