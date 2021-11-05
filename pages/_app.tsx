@@ -57,6 +57,19 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
         );
         currentActive.setAttribute('aria-expanded', 'false');
       }
+
+      if (document.querySelector('.m-navbar--active')) {
+        document
+          .querySelector('.m-navbar--active')
+          .classList.remove('m-navbar--active');
+        document
+          .querySelector('.navbar-backdrop--active')
+          .classList.remove('navbar-backdrop--active');
+
+        document
+          .querySelector('.m-header__button')
+          .setAttribute('aria-expanded', 'false');
+      }
     };
 
     Router.events.on('routeChangeComplete', handleRouteChange);
