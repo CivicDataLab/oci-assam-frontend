@@ -100,8 +100,7 @@
       left: -20%;
       z-index: 10;
       opacity: 0;
-
-      
+      width: 0;
 
       &::before {
         border-left: 0.8em solid transparent;

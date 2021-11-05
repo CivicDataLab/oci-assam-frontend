@@ -1162,6 +1162,7 @@ button {
   left: -20%;
   z-index: 10;
   opacity: 0;
+  width: 0;
 }
 .dlist__toggletip [role=status]::before {
   border-left: 0.8em solid transparent;
@@ -1800,7 +1801,7 @@ button {
 }
 @media screen and (max-width: 479px) {
   .tender .button-primary {
-    margin: 1rem 0;
+    margin-top: 1rem;
   }
 }
 .tender .total-datasets {
@@ -1823,6 +1824,7 @@ button {
 }
 .tender__basic {
   display: flex;
+  margin-top: 1.5rem;
 }
 .tender__basic dt {
   max-width: 12rem;
@@ -1983,6 +1985,14 @@ button {
 .analysis__heading {
   display: grid;
   grid-template-columns: 1fr 121px;
+}
+@media screen and (max-width: 479px) {
+  .analysis__heading {
+    grid-template-columns: 1fr;
+  }
+  .analysis__heading .button-primary {
+    margin-top: 1rem;
+  }
 }
 .analysis__content {
   display: grid;
