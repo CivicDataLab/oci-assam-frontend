@@ -37,6 +37,8 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
 
   useEffect(() => {
     const handleRouteChange = () => {
+      // always remove the scroll stopper
+      document.querySelector('body').classList.remove('scroll-stop');
       // change focus to top
       if (document.querySelector('#top-of-site-pixel-anchor')) {
         (
