@@ -2,15 +2,13 @@
 @use '../tools/mixins/media' as media;
 
 .analysis {
-  @include media.widerThan('seedling') {
-    .heading-w-line {
-      width: 250px;
-    }
+  .heading-w-line {
+    max-width: 250px;
   }
 
   &__heading {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 121px;
   }
 
   &__content {
@@ -89,8 +87,11 @@
 
     &__tags {
       display: flex;
+      flex-wrap: wrap;
+
       span {
         margin-right: 1.25rem;
+        margin-top: .5rem;
         display: flex;
         align-items: center;
 

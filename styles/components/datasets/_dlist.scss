@@ -74,9 +74,10 @@
   &__toggletip {
     position: relative;
     button {
-      &[aria-pressed="true"] {
-        +[role="status"] {
+      &[aria-pressed='true'] {
+        + [role='status'] {
           opacity: 100;
+          width: 212px;
         }
       }
 
@@ -87,7 +88,6 @@
 
     [role='status'] {
       position: absolute;
-      width: 212px;
       max-width: 60vw;
       font-weight: normal;
       font-size: 12px;
@@ -100,7 +100,8 @@
       left: -20%;
       z-index: 10;
       opacity: 0;
-      transition: opacity 200ms ease-in;
+
+      
 
       &::before {
         border-left: 0.8em solid transparent;
@@ -114,6 +115,14 @@
         position: absolute;
         z-index: 9;
       }
+
+      @include media.narrowerThan('seed') {
+        left: -100px;
+
+        &::before {
+          left: 50%;
+        }
+      }
     }
   }
 
@@ -123,6 +132,7 @@
     overflow-x: auto;
     align-self: center;
     padding: 0.5rem;
+    padding-left: 0;
   }
 
   &__view {

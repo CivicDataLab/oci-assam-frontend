@@ -1,10 +1,14 @@
 @use '../settings/variables' as *;
+@use '../tools/mixins/media' as media;
 
 @mixin heading {
   font-size: 1.5rem;
   font-weight: 500;
   height: max-content;
-  width: max-content;
+
+  @include media.narrowerThan('seed') {
+    width: 100%;
+  }
 }
 
 .label-green {
@@ -17,6 +21,7 @@
   @include heading();
   line-height: 140%;
   border-bottom: 1px solid $grey-3;
+  width: 120%;
 }
 
 .heading3-w-line {
