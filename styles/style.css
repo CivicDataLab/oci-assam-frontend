@@ -483,11 +483,14 @@ button {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   line-height: 140%;
   border-bottom: 1px solid #adadad;
+  width: 120%;
+}
+@media screen and (max-width: 479px) {
+  .heading-w-line {
+    width: 100%;
+  }
 }
 
 .heading3-w-line {
@@ -496,11 +499,13 @@ button {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   line-height: 130%;
   border-bottom: 1px solid #f1eef1;
+}
+@media screen and (max-width: 479px) {
+  .heading3-w-line {
+    width: 100%;
+  }
 }
 
 .home-search {
@@ -1138,13 +1143,13 @@ button {
 }
 .dlist__toggletip button[aria-pressed=true] + [role=status] {
   opacity: 100;
+  width: 212px;
 }
 .dlist__toggletip button svg {
   pointer-events: none;
 }
 .dlist__toggletip [role=status] {
   position: absolute;
-  width: 212px;
   max-width: 60vw;
   font-weight: normal;
   font-size: 12px;
@@ -1157,7 +1162,6 @@ button {
   left: -20%;
   z-index: 10;
   opacity: 0;
-  transition: opacity 200ms ease-in;
 }
 .dlist__toggletip [role=status]::before {
   border-left: 0.8em solid transparent;
@@ -1171,12 +1175,21 @@ button {
   position: absolute;
   z-index: 9;
 }
+@media screen and (max-width: 479px) {
+  .dlist__toggletip [role=status] {
+    left: -100px;
+  }
+  .dlist__toggletip [role=status]::before {
+    left: 50%;
+  }
+}
 .dlist__desc {
   text-align: left;
   width: 100%;
   overflow-x: auto;
   align-self: center;
   padding: 0.5rem;
+  padding-left: 0;
 }
 .dlist__view {
   text-decoration: none;
@@ -1764,7 +1777,16 @@ button {
   padding-top: 10px;
 }
 .tender .heading-w-line {
-  width: 250px;
+  max-width: 250px;
+}
+.tender__heading {
+  display: grid;
+  grid-template-columns: 1fr 121px;
+}
+@media screen and (max-width: 479px) {
+  .tender__heading {
+    grid-template-columns: 1fr;
+  }
 }
 .tender .dlist {
   margin-top: 1.5rem;
@@ -1775,6 +1797,11 @@ button {
 }
 .tender .button-primary svg {
   margin-bottom: -2px;
+}
+@media screen and (max-width: 479px) {
+  .tender .button-primary {
+    margin: 1rem 0;
+  }
 }
 .tender .total-datasets {
   width: 250px;
@@ -1950,14 +1977,12 @@ button {
   background-color: #f0e0e6;
 }
 
-@media screen and (min-width: 720px) {
-  .analysis .heading-w-line {
-    width: 250px;
-  }
+.analysis .heading-w-line {
+  max-width: 250px;
 }
 .analysis__heading {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 121px;
 }
 .analysis__content {
   display: grid;
@@ -2026,9 +2051,11 @@ button {
 }
 .analysis .viz__tags {
   display: flex;
+  flex-wrap: wrap;
 }
 .analysis .viz__tags span {
   margin-right: 1.25rem;
+  margin-top: 0.5rem;
   display: flex;
   align-items: center;
 }

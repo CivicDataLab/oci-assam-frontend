@@ -17,7 +17,16 @@
   }
 
   .heading-w-line {
-    width: 250px;
+    max-width: 250px;
+  }
+
+  &__heading {
+    display: grid;
+    grid-template-columns: 1fr 121px;
+
+    @include media.narrowerThan('seed') {
+      grid-template-columns: 1fr;
+    }
   }
 
   .dlist {
@@ -30,6 +39,10 @@
 
     svg {
       margin-bottom: -2px;
+    }
+
+    @include media.narrowerThan('seed') {
+      margin: 1rem 0;
     }
   }
 
