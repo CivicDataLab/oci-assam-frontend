@@ -1687,9 +1687,22 @@ button {
   margin-top: 4.3rem;
   padding-bottom: 5rem;
 }
+@media screen and (max-width: 719px) {
+  .home__page-links {
+    justify-content: center;
+  }
+}
 .home__page-links section {
   max-width: 512px;
-  margin-bottom: 2rem;
+  width: 40%;
+}
+@media screen and (max-width: 719px) {
+  .home__page-links section {
+    width: 100%;
+  }
+  .home__page-links section:first-of-type {
+    margin-bottom: 2rem;
+  }
 }
 .home__page-links h2 {
   max-width: 260px;

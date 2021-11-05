@@ -56,9 +56,22 @@
     margin-top: 4.3rem;
     padding-bottom: 5rem;
 
+    @include media.narrowerThan('seedling') {
+      justify-content: center;
+    }
+
     section {
       max-width: 512px;
-      margin-bottom: 2rem;
+      width: 40%;
+      // margin-bottom: 2rem;
+
+      @include media.narrowerThan('seedling') {
+        width: 100%;
+
+        &:first-of-type {
+          margin-bottom: 2rem;
+        }
+      }
     }
 
     h2 {
