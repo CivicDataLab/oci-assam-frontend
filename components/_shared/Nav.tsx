@@ -109,12 +109,28 @@ const Nav: React.FC = () => {
               </li>
               <li className="navbar__links">
                 <Link href="/kpi">
-                  <a className="navbar__item">Data Analysis</a>
+                  <a
+                    className={`navbar__item ${
+                      router.pathname.includes('/kpi')
+                        ? 'navbar__item--active'
+                        : ''
+                    }`}
+                  >
+                    Data Analysis
+                  </a>
                 </Link>
               </li>
               <li className="navbar__links">
                 <Link href="/">
-                  <a className="navbar__item">Data Stories</a>
+                  <a
+                    className={`navbar__item ${
+                      router.pathname.includes('/stories')
+                        ? 'navbar__item--active'
+                        : ''
+                    }`}
+                  >
+                    Data Stories
+                  </a>
                 </Link>
               </li>
               <li className="navbar__links">
@@ -209,12 +225,28 @@ const Nav: React.FC = () => {
           </li>
           <li className="navbar__links">
             <Link href="/kpi">
-              <a className="navbar__item">Data Analysis</a>
+              <a
+                className={`navbar__item ${
+                  router.pathname.includes('/kpi')
+                    ? 'navbar__item--active'
+                    : ''
+                }`}
+              >
+                Data Analysis
+              </a>
             </Link>
           </li>
           <li className="navbar__links">
             <Link href="/">
-              <a className="navbar__item">Data Stories</a>
+              <a
+                className={`navbar__item ${
+                  router.pathname.includes('/stories')
+                    ? 'navbar__item--active'
+                    : ''
+                }`}
+              >
+                Data Stories
+              </a>
             </Link>
           </li>
           <li className="navbar__links">

@@ -1,5 +1,12 @@
 @use '../settings/variables' as *;
 
+@mixin heading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  height: max-content;
+  width: max-content;
+}
+
 .label-green {
   line-height: 140%;
   font-weight: 500;
@@ -7,15 +14,13 @@
 }
 
 .heading-w-line {
-  font-size: 1.5rem;
-  font-weight: 500;
+  @include heading();
   line-height: 140%;
   border-bottom: 1px solid $grey-3;
 }
 
 .heading3-w-line {
-  font-weight: 500;
+  @include heading();
   line-height: 130%;
-  font-size: 1.5rem;
   border-bottom: 1px solid $grey-4;
 }
