@@ -34,12 +34,8 @@
     .stories-card {
       padding: 0;
       width: 32%;
-
-      article {
-        flex-direction: column;
-        justify-content: flex-start;
-        height: 100%;
-      }
+      flex-direction: column;
+      justify-content: flex-start;
 
       &__content {
         padding: 1rem;
@@ -58,11 +54,15 @@
         width: 100%;
       }
 
-      img {
+      a {
         margin-right: 0;
-        max-height: 219px;
         max-width: 100%;
-        height: 172px;
+        width: 100%;
+      }
+
+      img {
+        max-height: 219px;
+        width: 100%;
         border-radius: 6px 6px 0 0;
       }
 
@@ -75,5 +75,9 @@
         line-clamp: 3;
       }
     }
+  }
+
+  a {
+    text-decoration: none;
   }
 }
