@@ -42,6 +42,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
           <Filter data={facets} />
           {data && (
             <div className="datasets__right">
+              <h2 className="heading-w-line">Browse Contracts</h2>
               <Search />
               <div className="datasets__total">
                 <Total text="contracts" total={data.search.result.count} />
