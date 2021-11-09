@@ -26,13 +26,24 @@ const Stories = ({ data }) => {
         <div className="stories__wrapper container">
           {data.items.length > 0 && (
             <>
-              <StoriesCard data={data.items[0]} />
+              <StoriesCard data={data.items[0]} length={500} />
               <section className="stories__team">
-                <h3 className="heading-w-line">Stories from our team</h3>
+                <div>
+                  <h3 className="heading-w-line">Stories from our team</h3>
+                  <button type="button" className="button-primary">
+                    Submit Article for Review
+                  </button>
+                </div>
                 <div>
                   {data.items.map((story, index) => {
                     if (index == 0) return;
-                    return <StoriesCard key={`story-${index}`} data={story} />;
+                    return (
+                      <StoriesCard
+                        key={`story-${index}`}
+                        data={story}
+                        length={125}
+                      />
+                    );
                   })}
                 </div>
               </section>
