@@ -2168,20 +2168,31 @@ button {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-@media screen and (max-width: 1349px) {
+@media screen and (max-width: 719px) {
   .kpi__list {
-    justify-content: space-evenly;
+    justify-content: center;
   }
 }
 .kpi__item {
   margin-top: 1rem;
-  max-width: 286px;
+  width: 32%;
+  max-width: 400px;
   background-color: white;
   padding: 1.25rem 1rem;
   height: 286px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   border-radius: 6px;
   border-radius: 1px solid #f7fdf9;
+}
+@media screen and (max-width: 1349px) {
+  .kpi__item {
+    width: 48%;
+  }
+}
+@media screen and (max-width: 719px) {
+  .kpi__item {
+    width: 100%;
+  }
 }
 .kpi__link {
   text-decoration: none;
@@ -2210,11 +2221,11 @@ button {
 .kpi__tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-self: flex-end;
 }
 .kpi__tags li {
-  width: 114px;
+  width: 49%;
   height: 24px;
   font-size: 10px;
   border-radius: 18px;
