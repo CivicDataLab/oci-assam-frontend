@@ -21,7 +21,6 @@
 
     @include media.narrowerThan('sprout') {
       flex-direction: column;
-      margin-top: 1.25rem;
 
       img {
         max-width: 100%;
@@ -72,55 +71,5 @@
     font-size: 1rem;
     margin-top: 2rem;
     color: $text-light-high;
-  }
-}
-
-.stories__team {
-  margin-top: 2.5rem;
-
-  > div {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  .stories-card {
-    padding: 0;
-    width: 32%;
-
-    article {
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    &__content {
-      padding: 1rem;
-      padding-top: 0;
-    }
-
-    @include media.narrowerThan('sprout') {
-      width: 49%;
-    }
-
-    @include media.narrowerThan('seed') {
-      width: 100%;
-    }
-
-    img {
-      margin-right: 0;
-      max-height: 219px;
-      max-width: 100%;
-      height: 172px;
-      border-radius: 6px 6px 0 0;
-    }
-
-    h3 {
-      margin-top: 1.25rem;
-    }
-
-    p {
-      -webkit-line-clamp: 3;
-      line-clamp: 3;
-    }
   }
 }

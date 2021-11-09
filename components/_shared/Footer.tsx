@@ -23,13 +23,13 @@ const Footer = () => {
           <h2>Other pages</h2>
           <ul>
             <li>
-              <a href="/">Contracts Data</a>
+              <a href="/datasets">Contracts Data</a>
             </li>
             <li>
-              <a href="/">Data Analysis</a>
+              <a href="/analysis">Data Analysis</a>
             </li>
             <li>
-              <a href="/">Data Stories</a>
+              <a href="/stories">Data Stories</a>
             </li>
             <li>
               <a href="/">Forum</a>

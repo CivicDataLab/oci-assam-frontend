@@ -23,18 +23,18 @@ const Stories = ({ data }) => {
       <main className="stories">
         <MegaHeader data={headerData} />
 
-        <div className="stories__wrapper container">
+        <div className="container">
           {data.items.length > 0 && (
             <>
               <StoriesCard data={data.items[0]} length={500} />
               <section className="stories__team">
-                <div>
+                <div className="stories__header">
                   <h3 className="heading-w-line">Stories from our team</h3>
                   <button type="button" className="button-primary">
                     Submit Article for Review
                   </button>
                 </div>
-                <div>
+                <div className="stories__wrapper">
                   {data.items.map((story, index) => {
                     if (index == 0) return;
                     return (

@@ -1764,7 +1764,7 @@ button {
   line-height: 92%;
 }
 
-.stories__wrapper {
+.stories .container {
   padding-top: 1.5rem;
 }
 .stories .heading-w-line {
@@ -1776,6 +1776,61 @@ button {
   .stories .button-primary {
     margin-top: 1rem;
   }
+}
+.stories__header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.stories__team {
+  margin-top: 2.5rem;
+}
+.stories__team .stories__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.stories__team .stories-card {
+  padding: 0;
+  width: 32%;
+}
+.stories__team .stories-card article {
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+.stories__team .stories-card__content {
+  padding: 1rem;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+@media screen and (max-width: 979px) {
+  .stories__team .stories-card {
+    width: 49%;
+  }
+}
+@media screen and (max-width: 479px) {
+  .stories__team .stories-card {
+    width: 100%;
+  }
+}
+.stories__team .stories-card img {
+  margin-right: 0;
+  max-height: 219px;
+  max-width: 100%;
+  height: 172px;
+  border-radius: 6px 6px 0 0;
+}
+.stories__team .stories-card h3 {
+  margin-top: 1.25rem;
+}
+.stories__team .stories-card p {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 .stories-card {
@@ -1798,7 +1853,6 @@ button {
 @media screen and (max-width: 979px) {
   .stories-card article {
     flex-direction: column;
-    margin-top: 1.25rem;
   }
   .stories-card article img {
     max-width: 100%;
@@ -1841,51 +1895,6 @@ button {
   font-size: 1rem;
   margin-top: 2rem;
   color: rgba(0, 0, 0, 0.87);
-}
-
-.stories__team {
-  margin-top: 2.5rem;
-}
-.stories__team > div {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.stories__team .stories-card {
-  padding: 0;
-  width: 32%;
-}
-.stories__team .stories-card article {
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.stories__team .stories-card__content {
-  padding: 1rem;
-  padding-top: 0;
-}
-@media screen and (max-width: 979px) {
-  .stories__team .stories-card {
-    width: 49%;
-  }
-}
-@media screen and (max-width: 479px) {
-  .stories__team .stories-card {
-    width: 100%;
-  }
-}
-.stories__team .stories-card img {
-  margin-right: 0;
-  max-height: 219px;
-  max-width: 100%;
-  height: 172px;
-  border-radius: 6px 6px 0 0;
-}
-.stories__team .stories-card h3 {
-  margin-top: 1.25rem;
-}
-.stories__team .stories-card p {
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
 }
 
 .home__header {
