@@ -1,7 +1,7 @@
 @use '../../tools/mixins/media' as media;
 
 .stories {
-  &__wrapper {
+  .container {
     padding-top: 1.5rem;
   }
 
@@ -13,5 +13,71 @@
     .button-primary {
       margin-top: 1rem;
     }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  &__team {
+    margin-top: 2.5rem;
+
+    .stories__wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .stories-card {
+      padding: 0;
+      width: 32%;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      &__content {
+        padding: 1rem;
+        padding-top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      @include media.narrowerThan('sprout') {
+        width: 49%;
+      }
+
+      @include media.narrowerThan('seed') {
+        width: 100%;
+      }
+
+      a {
+        margin-right: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      img {
+        max-height: 219px;
+        width: 100%;
+        border-radius: 6px 6px 0 0;
+      }
+
+      h3 {
+        margin-top: 1.25rem;
+      }
+
+      p {
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
   }
 }

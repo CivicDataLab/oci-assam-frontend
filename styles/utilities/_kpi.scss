@@ -54,20 +54,28 @@
     flex-wrap: wrap;
     justify-content: space-between;
 
-    @include media.narrowerThan('tree') {
-      justify-content: space-evenly;
+    @include media.narrowerThan('seedling') {
+      justify-content: center;
     }
   }
 
   &__item {
     margin-top: 1rem;
-    max-width: 286px;
+    width: 32%;
+    max-width: 400px;
     background-color: $bg-lightest;
     padding: 1.25rem 1rem;
     height: 286px;
     box-shadow: $box-shadow-1;
     border-radius: 6px;
     border-radius: 1px solid $bg-lighter;
+
+    @include media.narrowerThan('tree') {
+      width: 48%;
+    }
+    @include media.narrowerThan('seedling') {
+      width: 100%;
+    }
   }
 
   &__link {
@@ -102,11 +110,12 @@
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-self: flex-end;
 
     li {
-      width: 114px;
+      width: 49%;
+      // max-width: 120px;
       height: 24px;
       font-size: 10px;
       border-radius: 18px;
