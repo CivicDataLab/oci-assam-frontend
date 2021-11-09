@@ -2,6 +2,7 @@
 @use '../../tools/mixins/narrowerThan' as *;
 
 .footer {
+  margin-top: 5rem;
   background-color: $bg-dark;
   color: $text-dark-high;
 
