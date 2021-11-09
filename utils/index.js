@@ -3,6 +3,14 @@
 // const slugify = require('slugify');
 // const config = require('../next.config.js');
 
+module.exports.getMediumBanner = (postContent) => {
+  const srcIndex = postContent.indexOf('src=');
+  const srcStart = srcIndex + 5;
+  const srcEnd = postContent.substring(srcStart).indexOf('"') + srcStart;
+  const src = postContent.substring(srcStart, srcEnd);
+  return src;
+};
+
 /*
 Takes single field descriptor from datastore data dictionary and coverts into
 tableschema field descriptor.

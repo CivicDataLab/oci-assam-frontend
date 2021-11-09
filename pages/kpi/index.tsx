@@ -24,7 +24,6 @@ const list = '"organization", "groups", "res_format", "tags"';
 const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
   const router = useRouter();
   const result = data.search.result.results;
-  console.log(result);
 
   if (loading) return <div>Loading</div>;
 

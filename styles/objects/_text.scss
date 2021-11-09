@@ -5,6 +5,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   height: max-content;
+  max-width: max-content;
 
   @include media.narrowerThan('seed') {
     width: 100%;

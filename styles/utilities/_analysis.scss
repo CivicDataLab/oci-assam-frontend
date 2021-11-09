@@ -2,13 +2,12 @@
 @use '../tools/mixins/media' as media;
 
 .analysis {
-  .heading-w-line {
-    max-width: 250px;
-  }
+  
 
   &__heading {
-    display: grid;
-    grid-template-columns: 1fr 121px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 
     @include media.narrowerThan('seed') {
       grid-template-columns: 1fr;

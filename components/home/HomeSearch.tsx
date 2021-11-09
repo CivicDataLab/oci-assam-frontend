@@ -23,7 +23,7 @@ const HomeSearch = () => {
           <h3>Food management and relief</h3>
         </div>
       </div>
-      <a href="/" className="button-primary home-search__button">
+      <a href="/datasets" className="button-primary home-search__button">
         View Contracts Data
       </a>
     </section>

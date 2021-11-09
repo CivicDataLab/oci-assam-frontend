@@ -54,7 +54,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
               Data analysis feature helps you view, analyze and use the
               procurement data of Assam
             </p>
-            <a className="button-primary" href="/">
+            <a className="button-primary" href="/analysis">
               View Data Analysis
             </a>
           </section>
@@ -65,7 +65,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
               See stories and post done using this dataset. You can also
               contribute your own story
             </p>
-            <a className="button-primary" href="/">
+            <a className="button-primary" href="/stories">
               View Data Stories
             </a>
           </section>

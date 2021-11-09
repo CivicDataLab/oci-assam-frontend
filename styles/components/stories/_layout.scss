@@ -1,0 +1,17 @@
+@use '../../tools/mixins/media' as media;
+
+.stories {
+  &__wrapper {
+    padding-top: 1.5rem;
+  }
+
+  .heading-w-line {
+    max-width: max-content;
+  }
+
+  @include media.narrowerThan('seed') {
+    .button-primary {
+      margin-top: 1rem;
+    }
+  }
+}

@@ -121,7 +121,7 @@ const Nav: React.FC = () => {
                 </Link>
               </li>
               <li className="navbar__links">
-                <Link href="/">
+                <Link href="/stories">
                   <a
                     className={`navbar__item ${
                       router.pathname.includes('/stories')
@@ -237,7 +237,7 @@ const Nav: React.FC = () => {
             </Link>
           </li>
           <li className="navbar__links">
-            <Link href="/">
+            <Link href="/stories">
               <a
                 className={`navbar__item ${
                   router.pathname.includes('/stories')
