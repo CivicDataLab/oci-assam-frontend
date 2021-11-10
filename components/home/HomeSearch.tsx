@@ -1,10 +1,19 @@
+import { useRouter } from 'next/router';
 import Search from 'components/datasets/Search';
 
 const HomeSearch = () => {
+  const router = useRouter();
+
+  function handleRouteChange(val: any) {
+    router.push({
+      pathname: '/datasets',
+      query: { q: val.value },
+    });
+  }
   return (
     <section className="home-search container">
       <h2 className="heading-w-line">Search tender data of Assam</h2>
-      <Search />
+      <Search newSearch={handleRouteChange} />
       <div className="home-search__icons">
         <div className="home-search__category">
           <img src="/assets/icons/covid.svg" alt="" />
