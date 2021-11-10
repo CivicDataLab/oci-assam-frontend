@@ -32,18 +32,26 @@ const Filter = ({ data }) => {
 
     // if filter query available on page load, add class
     if (fq) {
-      const splitQuery = (fq as string).split(/[\s,\s:]+/);
+      const splitQuery = (fq as string).split(
+        /[\s:]+(?=(?:(?:[^"]*"){2})*[^"]*$)/
+      );
       let check = splitQuery[0];
       splitQuery.forEach((query) => {
         if (obj[query]) {
           check = query;
           return;
         }
-        obj[check].push(query);
+        let filterID: string;
+        if (query.includes(' ')) filterID = query.replaceAll(/"/g, '');
+        else filterID = query;
 
-        if (document.getElementById(query))
-          document.getElementById(query).setAttribute('aria-pressed', 'true');
+        obj[check].push(query);
+        if (document.getElementById(filterID))
+          document
+            .getElementById(filterID)
+            .setAttribute('aria-pressed', 'true');
       });
+      console.log(obj);
     }
   }, []);
 
@@ -79,7 +87,6 @@ const Filter = ({ data }) => {
       }
     });
     const filter = eachType.join(' ');
-    console.log(filter);
 
     router.push({
       pathname: '/datasets',
