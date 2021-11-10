@@ -2,9 +2,11 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import Dropdown from 'components/_shared/dropdown';
 
-const Pagination: React.FC<{ total: number }> = ({ total }) => {
+const Pagination: React.FC<{ total: number; newPage: any }> = ({
+  total,
+  newPage,
+}) => {
   const router = useRouter();
-  const { fq, q, sort } = router.query;
   const [current, setCurrent] = React.useState(1);
   const [page, setPage] = React.useState(1);
   const [resultSize, setResultSize] = React.useState(10);
@@ -26,18 +28,17 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
     setPage(pageNo);
   }, [router.query.from, router.query.size]);
 
-  function fetchNewResults(size: any, from: number) {
-    router.push({
-      pathname: '/datasets',
-      query: { q, fq, sort, size, from },
+  function fetchNewResults(val: any, type: string) {
+    newPage({
+      query: type,
+      value: val,
     });
   }
 
   function handleRowsChange(e: any) {
     const size = e.target.value;
-    const from = (current - 1) * size;
 
-    fetchNewResults(size, from);
+    fetchNewResults(size, 'size');
   }
 
   function handleJump(val: string) {
@@ -49,7 +50,7 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
       const pageNo = Math.floor(from / parseInt(size as string) + 1);
       setCurrent(pageNo);
 
-      fetchNewResults(size, from);
+      fetchNewResults(from, 'from');
     }
   }
 
@@ -62,7 +63,7 @@ const Pagination: React.FC<{ total: number }> = ({ total }) => {
         parseInt(oldFrom as string) + val * parseInt(size as string);
       setCurrent((prevCurrent) => prevCurrent + val * 1);
 
-      fetchNewResults(size, from);
+      fetchNewResults(from, 'from');
     }
   }
 

@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const Sort = () => {
+const Sort: React.FC<{ newSort: any }> = ({ newSort }) => {
   const router = useRouter();
-  const { q, fq, size, from } = router.query;
   const [sort, setSort] = useState('');
 
   useEffect(() => {
@@ -16,9 +15,10 @@ const Sort = () => {
 
   const handleChange = (event: any) => {
     setSort(event.target.value);
-    router.push({
-      pathname: '/datasets',
-      query: { q, fq, size, from, sort: event.target.value },
+
+    newSort({
+      query: 'sort',
+      value: event.target.value,
     });
   };
   return (

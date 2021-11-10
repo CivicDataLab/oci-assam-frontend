@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 const obj = {};
 
-const Filter = ({ data }) => {
-  const router = useRouter();
-  const { q, sort, size, fq } = router.query;
-  // const [filter, setFilter] = useState([router.query.fq]);
-
+const Filter = ({ data, newFilters, fq }) => {
   function headingCollapsable() {
     const headings = document.querySelectorAll('.filters__heading');
 
-    Array.prototype.forEach.call(headings, (h) => {
+    Array.prototype.forEach.call(headings, (h: any) => {
       const btn = h.querySelector('button');
       const target = h.nextElementSibling;
 
@@ -45,13 +40,12 @@ const Filter = ({ data }) => {
         if (query.includes(' ')) filterID = query.replaceAll(/"/g, '');
         else filterID = query;
 
-        obj[check].push(query);
+        obj[check].push(filterID);
         if (document.getElementById(filterID))
           document
             .getElementById(filterID)
             .setAttribute('aria-pressed', 'true');
       });
-      console.log(obj);
     }
   }, []);
 
@@ -88,9 +82,9 @@ const Filter = ({ data }) => {
     });
     const filter = eachType.join(' ');
 
-    router.push({
-      pathname: '/datasets',
-      query: { fq: filter, q, sort, size, from: '0' },
+    newFilters({
+      query: 'fq',
+      value: filter,
     });
   }
 
