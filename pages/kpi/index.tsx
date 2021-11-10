@@ -25,26 +25,23 @@ const list = '"organization", "groups", "res_format", "tags"';
 const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
   const router = useRouter();
   const result = data.search.result.results;
-  const { q, sort, size, fq, from } = router.query;
+  const { q, size, fq, from } = router.query;
   const [search, setSearch] = useState(q);
-  const [sorts, setSorts] = useState(sort);
   const [items, setItems] = useState(size);
   const [filters, setFilters] = useState(fq);
   const [pages, setPages] = useState(from);
+
   useEffect(() => {
     router.push({
       pathname: router.pathname,
-      query: { fq: filters, q: search, sort: sorts, size: items, from: pages },
+      query: { fq: filters, q: search, size: items, from: pages },
     });
-  }, [filters, search, sorts, pages, items]);
+  }, [filters, search, pages, items]);
 
   function handleRouteChange(val: any) {
     switch (val.query) {
       case 'q':
         setSearch(val.value);
-        break;
-      case 'sort':
-        setSorts(val.value);
         break;
       case 'size':
         setItems(val.value);

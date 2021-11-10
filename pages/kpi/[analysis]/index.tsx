@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { initializeApollo } from 'lib/apolloClient';
 // import { useQuery } from '@apollo/react-hooks';
 import { GET_DATASET_QUERY } from 'graphql/queries';
@@ -35,22 +36,32 @@ const news = [
   },
 ];
 
-const list = '"organization", "groups", "res_format"';
+const list = '"organization", "groups", "res_format", "tags"';
 
 const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
+  const router = useRouter();
+
+  const { fq } = router.query;
+  const [filters, setFilters] = useState(fq);
+
+  // useEffect(() => {
+  //   console.log(router);
+
+  //   if (filters)
+  //     router.push({
+  //       pathname: router.pathname,
+  //       query: { fq: filters },
+  //     });
+  // }, [filters]);
+
+  function handleRouteChange(val: any) {
+    setFilters(val.value);
+  }
   useEffect(() => {
     const tablist = document.querySelector('.viz__tabs');
     const panels = document.querySelectorAll('.viz figure');
     utils.tabbedInterface(tablist, panels);
   }, []);
-
-  // const { data, error, loading } = useQuery(GET_DATASET_QUERY, { variables });
-  // if (loading) return <div>Loading</div>;
-
-  // if (error) {
-  //   console.log(error);
-  //   return <div>Error</div>;
-  // }
 
   if (loading) return <div>Loading</div>;
   const dataPackage = utils.ckanToDataPackage(data.dataset.result);
@@ -92,7 +103,11 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
           </section>
 
           <section className="analysis__content">
-            <Filter data={facets} />
+            <Filter
+              data={facets}
+              newFilters={handleRouteChange}
+              fq={filters}
+            />
             <div className="viz">
               <div className="viz__header">
                 <ul className="viz__tabs">
