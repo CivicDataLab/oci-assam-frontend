@@ -9,6 +9,7 @@
   .container {
     display: flex;
     align-items: center;
+    position: relative;
   }
 
   &__content {
@@ -50,7 +51,8 @@
     }
   }
 
-  button {
+  &__prev,
+  &__next {
     min-width: 44px;
     height: 44px;
   }
@@ -71,6 +73,69 @@
 
     &--current {
       display: flex;
+    }
+  }
+
+  &__nav {
+    position: absolute;
+    bottom: -2.5rem;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+
+    li {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin: 0 5px;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background: transparent;
+
+      &::before {
+        font-size: 1rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0.5rem;
+        height: 0.5rem;
+        content: ' ';
+        text-align: center;
+        color: $bg-light;
+        border: 1px solid $bg-darkest;
+        border-radius: 50%;
+      }
+
+      &[aria-pressed='true'] {
+        &::before {
+          background-color: $bg-darkest;
+        }
+      }
+
+      &:focus-visible {
+        &::before {
+          outline-width: 5px;
+          outline-color: #78aeda;
+          outline-style: solid;
+        }
+      }
     }
   }
 

@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 const obj = {};
 
-const Filter = ({ data }) => {
-  const router = useRouter();
-  const { q, sort, size, fq } = router.query;
-  // const [filter, setFilter] = useState([router.query.fq]);
-
+const Filter = ({ data, newFilters, fq }) => {
   function headingCollapsable() {
     const headings = document.querySelectorAll('.filters__heading');
 
-    Array.prototype.forEach.call(headings, (h) => {
+    Array.prototype.forEach.call(headings, (h: any) => {
       const btn = h.querySelector('button');
       const target = h.nextElementSibling;
 
@@ -32,17 +27,24 @@ const Filter = ({ data }) => {
 
     // if filter query available on page load, add class
     if (fq) {
-      const splitQuery = (fq as string).split(/[\s,\s:]+/);
+      const splitQuery = (fq as string).split(
+        /[\s:]+(?=(?:(?:[^"]*"){2})*[^"]*$)/
+      );
       let check = splitQuery[0];
       splitQuery.forEach((query) => {
         if (obj[query]) {
           check = query;
           return;
         }
-        obj[check].push(query);
+        let filterID: string;
+        if (query.includes(' ')) filterID = query.replaceAll(/"/g, '');
+        else filterID = query;
 
-        if (document.getElementById(query))
-          document.getElementById(query).setAttribute('aria-pressed', 'true');
+        obj[check].push(filterID);
+        if (document.getElementById(filterID))
+          document
+            .getElementById(filterID)
+            .setAttribute('aria-pressed', 'true');
       });
     }
   }, []);
@@ -79,11 +81,10 @@ const Filter = ({ data }) => {
       }
     });
     const filter = eachType.join(' ');
-    console.log(filter);
 
-    router.push({
-      pathname: '/datasets',
-      query: { fq: filter, q, sort, size, from: '0' },
+    newFilters({
+      query: 'fq',
+      value: filter,
     });
   }
 

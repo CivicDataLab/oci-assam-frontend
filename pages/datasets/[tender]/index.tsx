@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
-// import { useQuery } from '@apollo/react-hooks';
 import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
 import utils from 'utils/index';
@@ -14,14 +13,6 @@ type Props = {
 };
 
 const Tender: React.FC<Props> = ({ data, loading }) => {
-  // const { data, error, loading } = useQuery(GET_DATASET_QUERY, { variables });
-  // if (loading) return <div>Loading</div>;
-
-  // if (error) {
-  //   console.log(error);
-  //   return <div>Error</div>;
-  // }
-
   if (loading) return <div>Loading</div>;
   const dataPackage = utils.ckanToDataPackage(data.dataset.result);
 

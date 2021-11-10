@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
 import utils from 'utils';
@@ -24,6 +25,35 @@ const list = '"organization", "groups", "res_format", "tags"';
 const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
   const router = useRouter();
   const result = data.search.result.results;
+  const { q, size, fq, from } = router.query;
+  const [search, setSearch] = useState(q);
+  const [items, setItems] = useState(size);
+  const [filters, setFilters] = useState(fq);
+  const [pages, setPages] = useState(from);
+
+  useEffect(() => {
+    router.push({
+      pathname: router.pathname,
+      query: { fq: filters, q: search, size: items, from: pages },
+    });
+  }, [filters, search, pages, items]);
+
+  function handleRouteChange(val: any) {
+    switch (val.query) {
+      case 'q':
+        setSearch(val.value);
+        break;
+      case 'size':
+        setItems(val.value);
+        break;
+      case 'fq':
+        setFilters(val.value);
+        break;
+      case 'from':
+        setPages(val.value);
+        break;
+    }
+  }
 
   if (loading) return <div>Loading</div>;
 
@@ -44,7 +74,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
         <Carousel />
 
         <div className="datasets__wrapper container">
-          <Filter data={facets} />
+          <Filter data={facets} newFilters={handleRouteChange} fq={filters} />
           <section className="kpi__summary">
             <h3 className="heading3-w-line">Filtered summary</h3>
 
@@ -66,7 +96,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 This Text should explain what a KPI is and inform the user that
                 they can click on the cards below and analyse them.
               </p>
-              <Search text="Search KPIs" />
+              <Search text="Search KPIs" newSearch={handleRouteChange} />
               <div className="datasets__total">
                 <Total text="results" total={data.search.result.count} />
               </div>
@@ -93,7 +123,10 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 ))}
               </ul>
               {/* <List data={data} loading={loading} /> */}
-              <Pagination total={data.search.result.count} />
+              <Pagination
+                total={data.search.result.count}
+                newPage={handleRouteChange}
+              />
             </div>
           )}
         </div>

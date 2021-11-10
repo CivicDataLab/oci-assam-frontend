@@ -1,24 +1,28 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const Search: React.FC<{ text?: string }> = ({ text }) => {
+const Search: React.FC<{ text?: string; newSearch: any }> = ({
+  text,
+  newSearch,
+}) => {
   const router = useRouter();
   const [q, setQ] = useState(router.query.q);
-  const [sort, setSort] = useState(router.query.sort);
+  // const [sort, setSort] = useState(router.query.sort);
 
   const handleChange = (event) => {
-    switch (event.target.name) {
-      case 'q':
-        setQ(event.target.value);
-        break;
-      case 'sort':
-        setSort(event.target.value);
-        router.push({
-          pathname: '/datasets',
-          query: { q, sort: event.target.value },
-        });
-        break;
-    }
+    setQ(event.target.value);
+    // switch (event.target.name) {
+    //   case 'q':
+    //     setQ(event.target.value);
+    //     break;
+    //   case 'sort':
+    //     setSort(event.target.value);
+    //     router.push({
+    //       pathname: '/datasets',
+    //       query: { q, sort: event.target.value },
+    //     });
+    //     break;
+    // }
   };
 
   function handleClear() {
@@ -29,9 +33,10 @@ const Search: React.FC<{ text?: string }> = ({ text }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    router.push({
-      pathname: '/datasets',
-      query: { q, sort },
+
+    newSearch({
+      query: 'q',
+      value: q,
     });
   };
 

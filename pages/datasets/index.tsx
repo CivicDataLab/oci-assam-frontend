@@ -1,7 +1,9 @@
+import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
 import utils from 'utils';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import Search from 'components/datasets/Search';
 import Total from 'components/datasets/Total';
 import List from 'components/datasets/List';
@@ -22,6 +24,40 @@ const list = '"organization", "groups", "res_format", "tags"';
 
 const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
   if (loading) return <div>Loading</div>;
+  const router = useRouter();
+  const { q, sort, size, fq, from } = router.query;
+  const [search, setSearch] = useState(q);
+  const [sorts, setSorts] = useState(sort);
+  const [items, setItems] = useState(size);
+  const [filters, setFilters] = useState(fq);
+  const [pages, setPages] = useState(from);
+
+  useEffect(() => {
+    router.push({
+      pathname: router.pathname,
+      query: { fq: filters, q: search, sort: sorts, size: items, from: pages },
+    });
+  }, [filters, search, sorts, pages, items]);
+
+  function handleRouteChange(val: any) {
+    switch (val.query) {
+      case 'q':
+        setSearch(val.value);
+        break;
+      case 'sort':
+        setSorts(val.value);
+        break;
+      case 'size':
+        setItems(val.value);
+        break;
+      case 'fq':
+        setFilters(val.value);
+        break;
+      case 'from':
+        setPages(val.value);
+        break;
+    }
+  }
 
   const headerData = {
     title: 'Contracts Data',
@@ -39,15 +75,15 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
         <MegaHeader data={headerData} />
 
         <div className="datasets__wrapper container">
-          <Filter data={facets} />
+          <Filter data={facets} newFilters={handleRouteChange} fq={filters} />
           {data && (
             <div className="datasets__right">
               <h2 className="heading-w-line">Browse Contracts</h2>
-              <Search />
+              <Search newSearch={handleRouteChange} />
               <div className="datasets__total">
                 <Total text="contracts" total={data.search.result.count} />
                 <div className="datasets__sort">
-                  <Sort />
+                  <Sort newSort={handleRouteChange} />
                   <button className="button-primary">
                     <svg
                       width="10"
@@ -68,7 +104,10 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
 
               <DataAlter />
               <List data={data} loading={loading} />
-              <Pagination total={data.search.result.count} />
+              <Pagination
+                total={data.search.result.count}
+                newPage={handleRouteChange}
+              />
             </div>
           )}
         </div>

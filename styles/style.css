@@ -576,6 +576,7 @@ button {
 .carousel .container {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .carousel__content {
   display: flex;
@@ -612,7 +613,7 @@ button {
 .carousel a:hover, .carousel a:focus {
   text-decoration: underline;
 }
-.carousel button {
+.carousel__prev, .carousel__next {
   min-width: 44px;
   height: 44px;
 }
@@ -630,6 +631,59 @@ button {
 }
 .carousel__item--current {
   display: flex;
+}
+.carousel__nav {
+  position: absolute;
+  bottom: -2.5rem;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.carousel__nav li {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+}
+.carousel__nav button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.carousel__nav button::before {
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  content: " ";
+  text-align: center;
+  color: #f2f2f2;
+  border: 1px solid #045305;
+  border-radius: 50%;
+}
+.carousel__nav button[aria-pressed=true]::before {
+  background-color: #045305;
+}
+.carousel__nav button:focus-visible::before {
+  outline-width: 5px;
+  outline-color: #78aeda;
+  outline-style: solid;
 }
 @media screen and (max-width: 719px) {
   .carousel figure {
