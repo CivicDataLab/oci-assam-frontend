@@ -13,6 +13,8 @@ import Pagination from 'components/datasets/Pagination';
 import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Sort from 'components/_shared/Sort';
+import 'wicg-inert';
+import Modal from 'components/_shared/Modal';
 
 type Props = {
   data: any;
@@ -59,6 +61,30 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
     }
   }
 
+  function createDialog() {
+    const unique = +new Date();
+
+    // create dialog
+    const dialog = document.createElement('div');
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-labelledby', `q-${unique}`);
+    dialog.innerHTML = `
+    <p class="message" id="q-${unique}">${'question'}</p>
+    <div class="buttons>
+      <button class="okay">OK</button>
+      <button class="cancel">Cancel</button>
+    </div>
+    `;
+
+    document.body.appendChild(dialog);
+
+    const elems = document.getElementById('__next');
+    elems.setAttribute('inert', '');
+    // Array.prototype.forEach.call(elems, (elem) => {
+    //   elem.setAtrribute('inert', 'inert');
+    // });
+  }
+
   const headerData = {
     title: 'Contracts Data',
     content:
@@ -84,7 +110,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 <Total text="contracts" total={data.search.result.count} />
                 <div className="datasets__sort">
                   <Sort newSort={handleRouteChange} />
-                  <button className="button-primary">
+                  <button className="button-primary" onClick={Modal}>
                     <svg
                       width="10"
                       height="12"
