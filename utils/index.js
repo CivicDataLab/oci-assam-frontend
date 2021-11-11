@@ -83,7 +83,7 @@ module.exports.getFilters = async (list, variable) => {
       variable.q ? variable.q : ''
     }`;
     const fetchData = await fetch(
-      `https://openbudgetsindia.org/api/action/package_search?facet.field=[${list}]&facet.limit=5&${queryVars}`
+      `https://openbudgetsindia.org/api/action/package_search?facet.field=[${list}]&facet.limit=20&${queryVars}`
     ).then((res) => res.json());
     return fetchData.result.search_facets;
   } catch (error) {
