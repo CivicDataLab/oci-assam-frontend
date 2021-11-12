@@ -1,8 +1,9 @@
 @use '../../settings/variables' as *;
 @use '../../tools/mixins/media' as media;
+@use '../../settings/theme' as *;
 
 .mega-header {
-  background-color: $bg-dark;
+  background-color: $bg-header;
   color: $text-dark-high;
 
   .container {

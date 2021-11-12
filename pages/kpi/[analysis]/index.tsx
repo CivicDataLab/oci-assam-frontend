@@ -119,6 +119,7 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
                 labelledby: 'dialog-head',
                 describedby: 'dialog-para',
               }}
+              closeTimeoutMS={200}
               preventScroll={true}
             >
               <section className="dialog__header">
@@ -138,70 +139,72 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
                   &#x78;
                 </button>
               </section>
-              <section className="dialog__options">
-                <label htmlFor="downloadOption1">
-                  <input
-                    type="radio"
-                    id="downloadOption1"
-                    name="dialog-option"
-                    value="tender-only"
-                  />
-                  Download the details of this tender
-                </label>
-
-                <label htmlFor="downloadOption2">
-                  <input
-                    type="radio"
-                    id="downloadOption2"
-                    name="dialog-option"
-                    value="all-details"
-                  />
-                  Download the details of this tender along with all the
-                  attached documents
-                </label>
-              </section>
-              <section className="dialog__format">
-                <p>Choose file format</p>
+              <section className="dialog__body">
                 <div>
-                  <label htmlFor="downloadFormat1">
+                  <label htmlFor="downloadOption1">
                     <input
                       type="radio"
-                      id="downloadFormat1"
-                      name="dialog-download"
-                      value="csv"
+                      id="downloadOption1"
+                      name="dialog-option"
+                      value="tender-only"
                     />
-                    CSV File
+                    Download the details of this tender
                   </label>
 
-                  <label htmlFor="downloadFormat1">
+                  <label htmlFor="downloadOption2">
                     <input
                       type="radio"
-                      id="downloadFormat2"
-                      name="dialog-download"
-                      value="xls"
+                      id="downloadOption2"
+                      name="dialog-option"
+                      value="all-details"
                     />
-                    XLS File
+                    Download the details of this tender along with all the
+                    attached documents
                   </label>
+                </div>
+                <div className="dialog__format">
+                  <p>Choose file format</p>
+                  <div>
+                    <label htmlFor="downloadFormat1">
+                      <input
+                        type="radio"
+                        id="downloadFormat1"
+                        name="dialog-download"
+                        value="csv"
+                      />
+                      CSV File
+                    </label>
 
-                  <label htmlFor="downloadFormat1">
-                    <input
-                      type="radio"
-                      id="downloadFormat3"
-                      name="dialog-download"
-                      value="pdf"
-                    />
-                    PDF File
-                  </label>
+                    <label htmlFor="downloadFormat1">
+                      <input
+                        type="radio"
+                        id="downloadFormat2"
+                        name="dialog-download"
+                        value="xls"
+                      />
+                      XLS File
+                    </label>
 
-                  <label htmlFor="downloadFormat1">
-                    <input
-                      type="radio"
-                      id="downloadFormat4"
-                      name="dialog-download"
-                      value="zip"
-                    />
-                    ZIP File
-                  </label>
+                    <label htmlFor="downloadFormat1">
+                      <input
+                        type="radio"
+                        id="downloadFormat3"
+                        name="dialog-download"
+                        value="pdf"
+                      />
+                      PDF File
+                    </label>
+
+                    <label htmlFor="downloadFormat1">
+                      <input
+                        type="radio"
+                        id="downloadFormat4"
+                        name="dialog-download"
+                        value="zip"
+                      />
+                      ZIP File
+                    </label>
+                  </div>
                 </div>
               </section>
               <button

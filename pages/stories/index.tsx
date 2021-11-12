@@ -48,7 +48,7 @@ const Stories = ({ data }) => {
                   <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={handleButtonClick}
-                    className="dialog"
+                    className="dialog dialog--small"
                     overlayClassName="dialog__backdrop"
                     contentLabel="Download Tenders"
                     aria={{
@@ -57,7 +57,7 @@ const Stories = ({ data }) => {
                     }}
                     preventScroll={true}
                   >
-                    <section className="dialog__header">
+                    <section className="dialog__header dialog__header--small">
                       <div>
                         <h1 id="dialog-head">Submit your article</h1>
                         <p id="dialog-para">
@@ -75,7 +75,7 @@ const Stories = ({ data }) => {
                         &#x78;
                       </button>
                     </section>
-                    <section className="dialog__url">
+                    <section className="dialog__body">
                       <label htmlFor="urlInput">
                         <h2>URL</h2>
                       </label>
@@ -116,19 +116,9 @@ const Stories = ({ data }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data = await parser.parseURL('https://medium.com/feed/civicdatalab');
-
-  // const query = context.query || {};
-  // const data = useMediumFeed('civicdatalab');
-  // const variables = utils.convertToCkanSearchQuery(query);
-
   const apolloClient = initializeApollo();
-
-  // const { data, loading } = await apolloClient.query({
-  //   query: SEARCH_QUERY,
-  //   variables,
-  // });
 
   return {
     props: {

@@ -46,6 +46,10 @@
         height: 100%;
       }
 
+      &__footer {
+        align-self: flex-start;
+      }
+
       @include media.narrowerThan('sprout') {
         width: 49%;
       }
@@ -58,6 +62,7 @@
         margin-right: 0;
         max-width: 100%;
         width: 100%;
+        display: block;
       }
 
       img {

@@ -57,17 +57,6 @@
 
   &__footer {
     align-self: flex-end;
-    // display: flex;
-    // align-items: flex-end;
-    // justify-content: space-between;
-
-    // button {
-    //   width: 50px;
-    //   height: 50px;
-    //   position: absolute;
-    //   right: 0;
-    //   bottom: 0;
-    // }
   }
 
   @include media.narrowerThan('sprout') {
@@ -76,6 +65,8 @@
     a {
       max-width: 100%;
       margin-right: 0;
+      display: grid;
+      justify-content: center;
     }
 
     h3 {

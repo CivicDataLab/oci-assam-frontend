@@ -969,11 +969,6 @@ button {
   z-index: 1000;
   width: 100%;
   border-radius: 12px 12px 0px 0px;
-  transform: translateY(100%);
-  transition: transform 200ms ease;
-}
-.data-alter__sort--active {
-  transform: translateY(0);
 }
 .data-alter__sort .sort__header {
   background-color: #f1eef1;
@@ -995,7 +990,8 @@ button {
   line-height: 1.5;
 }
 @media screen and (max-width: 479px) {
-  .data-alter__sort .sort__header h3, .data-alter__sort .sort__header button {
+  .data-alter__sort .sort__header h3,
+.data-alter__sort .sort__header button {
     line-height: 1rem;
   }
 }
@@ -1013,21 +1009,18 @@ button {
 .data-alter__sort fieldset input {
   margin-right: 0.75rem;
   padding: 6px 0;
-  accent-color: #fa5c81;
+  accent-color: #045305;
   transform: scale(1.3);
 }
-.data-alter__backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 990;
+.data-alter__sort.ReactModal__Content {
   transform: translateY(100%);
+  transition: transform 200ms ease-in-out;
 }
-.data-alter__backdrop--active {
+.data-alter__sort.ReactModal__Content--after-open {
   transform: translateY(0);
+}
+.data-alter__sort.ReactModal__Content--before-close {
+  transform: translateY(100%);
 }
 
 .sort {
@@ -1826,20 +1819,25 @@ button {
   transform: translate(-50%, -50%);
   z-index: 1000;
   background-color: white;
-  padding: 2rem;
   padding-bottom: 1rem;
   border-radius: 6px;
   max-width: 550px;
+  width: 100%;
   display: grid;
+}
+.dialog input {
+  margin-right: 1rem;
+  accent-color: #045305;
 }
 .dialog input[type=radio] {
   padding: 6px 0;
-  accent-color: #045305;
   transform: scale(1.3);
   margin-right: 0.5rem;
 }
 .dialog__header {
-  position: relative;
+  background-color: #f1eef1;
+  border-radius: 6px 6px 0px 0px;
+  padding: 2rem;
 }
 .dialog__header h1 {
   margin: 0;
@@ -1850,14 +1848,15 @@ button {
   font-size: 14px;
   margin-top: 0.3rem;
 }
-.dialog__options label {
+.dialog__body {
+  padding: 2rem;
+  padding-top: 0;
+}
+.dialog__body label {
   display: flex;
   margin-top: 1.5rem;
   align-items: center;
   font-weight: 500;
-}
-.dialog__options label input {
-  margin-right: 1rem;
 }
 .dialog__format {
   margin-top: 2rem;
@@ -1872,13 +1871,12 @@ button {
   flex-wrap: wrap;
 }
 .dialog__submit {
-  margin-top: 3rem;
   justify-self: center;
 }
 .dialog__close {
   position: absolute;
-  top: -1.8rem;
-  right: -1.8rem;
+  top: 0;
+  right: 0;
   width: 44px;
   height: 44px;
   font-size: 1.5rem;
@@ -1897,6 +1895,41 @@ button {
   margin-top: 1.75rem;
 }
 .dialog__url input {
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #045305;
+  width: 100%;
+  font-weight: 300;
+  font-size: 14px;
+  padding: 6px;
+}
+@media screen and (max-width: 979px) {
+  .dialog {
+    top: initial;
+    left: initial;
+    bottom: 0;
+    max-width: 100%;
+    transform: initial;
+  }
+  .dialog.ReactModal__Content {
+    transform: translateY(100%);
+    transition: transform 200ms ease-in-out;
+  }
+  .dialog.ReactModal__Content--after-open {
+    transform: translateY(0);
+  }
+  .dialog.ReactModal__Content--before-close {
+    transform: translateY(100%);
+  }
+}
+.dialog--small .dialog__header {
+  padding: 1rem 2rem;
+}
+.dialog--small .dialog__body h2 {
+  font-weight: 500;
+  margin-top: 1.75rem;
+}
+.dialog--small .dialog__body input {
   margin-top: 6px;
   border-radius: 6px;
   border: 1px solid #045305;
@@ -1953,6 +1986,9 @@ button {
   justify-content: space-between;
   height: 100%;
 }
+.stories__team .stories-card__footer {
+  align-self: flex-start;
+}
 @media screen and (max-width: 979px) {
   .stories__team .stories-card {
     width: 49%;
@@ -1967,6 +2003,7 @@ button {
   margin-right: 0;
   max-width: 100%;
   width: 100%;
+  display: block;
 }
 .stories__team .stories-card img {
   max-height: 219px;
@@ -2040,6 +2077,8 @@ button {
   .stories-card a {
     max-width: 100%;
     margin-right: 0;
+    display: grid;
+    justify-content: center;
   }
   .stories-card h3 {
     margin-top: 1.25rem;
