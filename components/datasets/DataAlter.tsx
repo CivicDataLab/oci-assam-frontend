@@ -1,62 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#__next');
 
 const DataAlter = () => {
   const router = useRouter();
   const q = router.query.q;
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentSort, setCurrentSort] = useState(
+    router.query.sort ? router.query.sort : 'metadata_modified:desc'
+  );
 
-  function closeModal() {
-    const backdrop = document.querySelector(
-      '.data-alter__backdrop'
-    ) as HTMLInputElement;
-    const sort = document.querySelector(
-      '.data-alter__sort'
-    ) as HTMLInputElement;
-
-    sort.classList.remove('data-alter__sort--active');
-    backdrop.classList.remove('data-alter__backdrop--active');
-    document.querySelector('body').classList.remove('scroll-stop');
+  function handleButtonClick() {
+    setModalIsOpen(!modalIsOpen);
   }
 
   React.useEffect(() => {
-    // close the modal on backdrop click
-    const backdrop = document.querySelector(
-      '.data-alter__backdrop'
-    ) as HTMLInputElement;
-    const sort = document.querySelector(
-      '.data-alter__sort'
-    ) as HTMLInputElement;
-
-    backdrop.addEventListener('click', () => {
-      closeModal();
-    });
-
-    // set current sort as checked
-    const sortVal = router.query.sort
-      ? router.query.sort
-      : 'metadata_modified:desc';
-    const currentSort = document.getElementById(
-      sortVal as string
-    ) as HTMLInputElement;
-    currentSort.checked = true;
-  }, []);
-
-  function handleSortButton() {
-    const backdrop = document.querySelector(
-      '.data-alter__backdrop'
-    ) as HTMLInputElement;
-    const sort = document.querySelector(
-      '.data-alter__sort'
-    ) as HTMLInputElement;
-
-    sort.classList.add('data-alter__sort--active');
-    backdrop.classList.add('data-alter__backdrop--active');
-    document.querySelector('body').classList.add('scroll-stop');
-  }
+    setTimeout(() => {
+      // set current sort as checked, timer because modal creation is creating issues
+      const selectedSort = document.getElementById(
+        currentSort as string
+      ) as HTMLInputElement;
+      if (selectedSort) selectedSort.checked = true;
+    }, 50);
+  }, [currentSort, modalIsOpen]);
 
   function handleSortChange(e: any) {
     const val = e.target.value;
-    closeModal();
+    setCurrentSort(e.target.value);
+    handleButtonClick();
 
     router.push({
       pathname: '/datasets',
@@ -68,7 +41,7 @@ const DataAlter = () => {
       <div className="data-alter">
         <span className="data-alter__text">Alter Datasets</span>
         <div className="data-alter__buttons">
-          <button type="button" onClick={handleSortButton}>
+          <button type="button" onClick={handleButtonClick}>
             <div className="data-alter__svg">
               <svg
                 width="24"
@@ -93,7 +66,7 @@ const DataAlter = () => {
             </div>
             Add Filters
           </button>
-          <button type="button" onClick={handleSortButton}>
+          <button type="button" onClick={handleButtonClick}>
             <div className="data-alter__svg">
               <svg
                 width="19"
@@ -136,15 +109,24 @@ const DataAlter = () => {
         </button>
       </div>
 
-      <div className="data-alter__backdrop" />
-
-      <div className="data-alter__sort">
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={handleButtonClick}
+        className="data-alter__sort"
+        overlayClassName="dialog__backdrop data-alter__overlay"
+        // contentLabel="Download Tenders"
+        closeTimeoutMS={200}
+        aria={{
+          labelledby: 'dialog-head',
+        }}
+        preventScroll={true}
+      >
         <div className="sort__header">
-          <h3>Sort Datasets</h3>
+          <h3 id="dialog-head">Sort Datasets</h3>
           <button
             type="button"
             aria-label="Close navigation"
-            onClick={closeModal}
+            onClick={handleButtonClick}
           >
             &#x78;
           </button>
@@ -201,7 +183,7 @@ const DataAlter = () => {
             Popular
           </label>
         </fieldset>
-      </div>
+      </Modal>
     </>
   );
 };

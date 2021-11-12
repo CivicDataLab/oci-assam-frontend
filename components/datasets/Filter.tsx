@@ -25,26 +25,17 @@ const Filter = ({ data, newFilters, fq }) => {
       obj[val] = [];
     });
 
-    // if filter query available on page load, add class
+    // if filter query available on page load, add class to relevant buttons
     if (fq) {
-      const splitQuery = (fq as string).split(
-        /[\s:]+(?=(?:(?:[^"]*"){2})*[^"]*$)/
-      );
-      let check = splitQuery[0];
-      splitQuery.forEach((query) => {
-        if (obj[query]) {
-          check = query;
-          return;
-        }
-        let filterID: string;
-        if (query.includes(' ')) filterID = query.replaceAll(/"/g, '');
-        else filterID = query;
+      const removeEscape = fq.replaceAll(/"/g, '');
+      const splitFilters = removeEscape.split(' AND ');
 
-        obj[check].push(filterID);
-        if (document.getElementById(filterID))
-          document
-            .getElementById(filterID)
-            .setAttribute('aria-pressed', 'true');
+      splitFilters.forEach((query: any) => {
+        const id = query.split(':')[0];
+        const value = query.split(':')[1];
+        obj[id].push(value);
+        if (document.getElementById(value))
+          document.getElementById(value).setAttribute('aria-pressed', 'true');
       });
     }
   }, []);
@@ -70,17 +61,21 @@ const Filter = ({ data, newFilters, fq }) => {
     if (index > -1) {
       obj[type].splice(index, 1);
     } else {
-      obj[type].push(value.includes(' ') ? `"${value}"` : value);
+      obj[type].push(value);
     }
 
-    const eachType = [];
+    console.log(obj);
+
+    const final = [];
+    let filter: string;
     Object.keys(obj).forEach((val) => {
       if (obj[val].length > 0) {
-        const str = obj[val].join(' ');
-        eachType.push(`${val}:${str}`);
+        obj[val].forEach((item: string) => final.push(`${val}:"${item}"`));
+
+        filter = final.join(' AND ');
       }
     });
-    const filter = eachType.join(' ');
+    console.log(filter);
 
     newFilters({
       query: 'fq',
