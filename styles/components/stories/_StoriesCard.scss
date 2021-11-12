@@ -14,16 +14,18 @@
   position: relative;
 
   a {
-    max-width: 35%;
+    // max-width: 35%;
     margin-right: 2rem;
   }
 
   img {
     max-width: 100%;
     object-fit: cover;
+    max-height: 400px;
   }
 
   &__content {
+    display: grid;
     width: 100%;
 
     h3 {
@@ -54,17 +56,18 @@
   }
 
   &__footer {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    align-self: flex-end;
+    // display: flex;
+    // align-items: flex-end;
+    // justify-content: space-between;
 
-    button {
-      width: 50px;
-      height: 50px;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-    }
+    // button {
+    //   width: 50px;
+    //   height: 50px;
+    //   position: absolute;
+    //   right: 0;
+    //   bottom: 0;
+    // }
   }
 
   @include media.narrowerThan('sprout') {

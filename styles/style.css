@@ -1812,6 +1812,13 @@ button {
   margin-right: 14px;
 }
 
+.ReactModal__Body--open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 .dialog {
   position: fixed;
   top: 50%;
@@ -1819,15 +1826,20 @@ button {
   transform: translate(-50%, -50%);
   z-index: 1000;
   background-color: white;
-  padding: 30px;
+  padding: 2rem;
+  padding-bottom: 1rem;
   border-radius: 6px;
-  border: 1px solid #222;
+  max-width: 550px;
+  display: grid;
 }
-.dialog input {
+.dialog input[type=radio] {
   padding: 6px 0;
-  accent-color: #fa5c81;
+  accent-color: #045305;
   transform: scale(1.3);
   margin-right: 0.5rem;
+}
+.dialog__header {
+  position: relative;
 }
 .dialog__header h1 {
   margin: 0;
@@ -1839,8 +1851,13 @@ button {
   margin-top: 0.3rem;
 }
 .dialog__options label {
-  display: block;
+  display: flex;
   margin-top: 1.5rem;
+  align-items: center;
+  font-weight: 500;
+}
+.dialog__options label input {
+  margin-right: 1rem;
 }
 .dialog__format {
   margin-top: 2rem;
@@ -1853,6 +1870,40 @@ button {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.dialog__submit {
+  margin-top: 3rem;
+  justify-self: center;
+}
+.dialog__close {
+  position: absolute;
+  top: -1.8rem;
+  right: -1.8rem;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+}
+.dialog__backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 990;
+}
+.dialog__url h2 {
+  font-weight: 500;
+  margin-top: 1.75rem;
+}
+.dialog__url input {
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #045305;
+  width: 100%;
+  font-weight: 300;
+  font-size: 14px;
+  padding: 6px;
 }
 
 .heading-3 {
@@ -1946,15 +1997,16 @@ button {
   position: relative;
 }
 .stories-card a {
-  max-width: 35%;
   margin-right: 2rem;
 }
 .stories-card img {
   max-width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  max-height: 400px;
 }
 .stories-card__content {
+  display: grid;
   width: 100%;
 }
 .stories-card__content h3 {
@@ -1979,16 +2031,7 @@ button {
   color: rgba(0, 0, 0, 0.87);
 }
 .stories-card__footer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-.stories-card__footer button {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  align-self: flex-end;
 }
 @media screen and (max-width: 979px) {
   .stories-card {

@@ -13,8 +13,9 @@ import Pagination from 'components/datasets/Pagination';
 import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Sort from 'components/_shared/Sort';
-import 'wicg-inert';
-import Modal from 'components/_shared/Modal';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
@@ -33,6 +34,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
   const [items, setItems] = useState(size);
   const [filters, setFilters] = useState(fq);
   const [pages, setPages] = useState(from);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     router.push({
@@ -61,28 +63,8 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
     }
   }
 
-  function createDialog() {
-    const unique = +new Date();
-
-    // create dialog
-    const dialog = document.createElement('div');
-    dialog.setAttribute('role', 'dialog');
-    dialog.setAttribute('aria-labelledby', `q-${unique}`);
-    dialog.innerHTML = `
-    <p class="message" id="q-${unique}">${'question'}</p>
-    <div class="buttons>
-      <button class="okay">OK</button>
-      <button class="cancel">Cancel</button>
-    </div>
-    `;
-
-    document.body.appendChild(dialog);
-
-    const elems = document.getElementById('__next');
-    elems.setAttribute('inert', '');
-    // Array.prototype.forEach.call(elems, (elem) => {
-    //   elem.setAtrribute('inert', 'inert');
-    // });
+  function handleButtonClick() {
+    setModalIsOpen(!modalIsOpen);
   }
 
   const headerData = {
@@ -110,7 +92,11 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 <Total text="contracts" total={data.search.result.count} />
                 <div className="datasets__sort">
                   <Sort newSort={handleRouteChange} />
-                  <button className="button-primary" onClick={Modal}>
+                  <button
+                    id="modalTrigger"
+                    className="button-primary"
+                    onClick={handleButtonClick}
+                  >
                     <svg
                       width="10"
                       height="12"
@@ -125,6 +111,109 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                     </svg>
                     Download
                   </button>
+                  <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={handleButtonClick}
+                    className="dialog"
+                    overlayClassName="dialog__backdrop"
+                    contentLabel="Download Tenders"
+                    aria={{
+                      labelledby: 'dialog-head',
+                      describedby: 'dialog-para',
+                    }}
+                    preventScroll={true}
+                  >
+                    <section className="dialog__header">
+                      <div>
+                        <h1 id="dialog-head">Download Tenders</h1>
+                        <p id="dialog-para">
+                          Select your desired option to download the tenders
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        className="dialog__close"
+                        id="modalCancel"
+                        aria-label="Close navigation"
+                        onClick={handleButtonClick}
+                      >
+                        &#x78;
+                      </button>
+                    </section>
+                    <section className="dialog__options">
+                      <label htmlFor="downloadOption1">
+                        <input
+                          type="radio"
+                          id="downloadOption1"
+                          name="dialog-option"
+                          value="tender-only"
+                        />
+                        Download the details of this tender
+                      </label>
+
+                      <label htmlFor="downloadOption2">
+                        <input
+                          type="radio"
+                          id="downloadOption2"
+                          name="dialog-option"
+                          value="all-details"
+                        />
+                        Download the details of this tender along with all the
+                        attached documents
+                      </label>
+                    </section>
+                    <section className="dialog__format">
+                      <p>Choose file format</p>
+                      <div>
+                        <label htmlFor="downloadFormat1">
+                          <input
+                            type="radio"
+                            id="downloadFormat1"
+                            name="dialog-download"
+                            value="csv"
+                          />
+                          CSV File
+                        </label>
+
+                        <label htmlFor="downloadFormat1">
+                          <input
+                            type="radio"
+                            id="downloadFormat2"
+                            name="dialog-download"
+                            value="xls"
+                          />
+                          XLS File
+                        </label>
+
+                        <label htmlFor="downloadFormat1">
+                          <input
+                            type="radio"
+                            id="downloadFormat3"
+                            name="dialog-download"
+                            value="pdf"
+                          />
+                          PDF File
+                        </label>
+
+                        <label htmlFor="downloadFormat1">
+                          <input
+                            type="radio"
+                            id="downloadFormat4"
+                            name="dialog-download"
+                            value="zip"
+                          />
+                          ZIP File
+                        </label>
+                      </div>
+                    </section>
+                    <button
+                      className="button-primary dialog__submit"
+                      id="modalSubmit"
+                      onClick={handleButtonClick}
+                    >
+                      Download
+                    </button>
+                  </Modal>
                 </div>
               </div>
 

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_DATASET_QUERY } from 'graphql/queries';
@@ -6,6 +7,9 @@ import utils from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
 import DList from 'components/_shared/DList';
 import Image from 'next/image';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
@@ -13,6 +17,12 @@ type Props = {
 };
 
 const Tender: React.FC<Props> = ({ data, loading }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  function handleButtonClick() {
+    setModalIsOpen(!modalIsOpen);
+  }
+
   if (loading) return <div>Loading</div>;
   const dataPackage = utils.ckanToDataPackage(data.dataset.result);
 
@@ -111,7 +121,7 @@ const Tender: React.FC<Props> = ({ data, loading }) => {
           <section className="tender__heading">
             <h3 className="heading-w-line">Contract Details</h3>
 
-            <button className="button-primary">
+            <button className="button-primary" onClick={handleButtonClick}>
               <svg
                 width="10"
                 height="12"
@@ -126,6 +136,109 @@ const Tender: React.FC<Props> = ({ data, loading }) => {
               </svg>
               Download
             </button>
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={handleButtonClick}
+              className="dialog"
+              overlayClassName="dialog__backdrop"
+              contentLabel="Download Tenders"
+              aria={{
+                labelledby: 'dialog-head',
+                describedby: 'dialog-para',
+              }}
+              preventScroll={true}
+            >
+              <section className="dialog__header">
+                <div>
+                  <h1 id="dialog-head">Download Tenders</h1>
+                  <p id="dialog-para">
+                    Select your desired option to download the tenders
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="dialog__close"
+                  id="modalCancel"
+                  aria-label="Close navigation"
+                  onClick={handleButtonClick}
+                >
+                  &#x78;
+                </button>
+              </section>
+              <section className="dialog__options">
+                <label htmlFor="downloadOption1">
+                  <input
+                    type="radio"
+                    id="downloadOption1"
+                    name="dialog-option"
+                    value="tender-only"
+                  />
+                  Download the details of this tender
+                </label>
+
+                <label htmlFor="downloadOption2">
+                  <input
+                    type="radio"
+                    id="downloadOption2"
+                    name="dialog-option"
+                    value="all-details"
+                  />
+                  Download the details of this tender along with all the
+                  attached documents
+                </label>
+              </section>
+              <section className="dialog__format">
+                <p>Choose file format</p>
+                <div>
+                  <label htmlFor="downloadFormat1">
+                    <input
+                      type="radio"
+                      id="downloadFormat1"
+                      name="dialog-download"
+                      value="csv"
+                    />
+                    CSV File
+                  </label>
+
+                  <label htmlFor="downloadFormat1">
+                    <input
+                      type="radio"
+                      id="downloadFormat2"
+                      name="dialog-download"
+                      value="xls"
+                    />
+                    XLS File
+                  </label>
+
+                  <label htmlFor="downloadFormat1">
+                    <input
+                      type="radio"
+                      id="downloadFormat3"
+                      name="dialog-download"
+                      value="pdf"
+                    />
+                    PDF File
+                  </label>
+
+                  <label htmlFor="downloadFormat1">
+                    <input
+                      type="radio"
+                      id="downloadFormat4"
+                      name="dialog-download"
+                      value="zip"
+                    />
+                    ZIP File
+                  </label>
+                </div>
+              </section>
+              <button
+                className="button-primary dialog__submit"
+                id="modalSubmit"
+                onClick={handleButtonClick}
+              >
+                Download
+              </button>
+            </Modal>
           </section>
 
           <section className="tender__basic">

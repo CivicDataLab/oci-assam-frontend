@@ -23,9 +23,9 @@ const DataAlter = () => {
     const backdrop = document.querySelector(
       '.data-alter__backdrop'
     ) as HTMLInputElement;
-    const sort = document.querySelector(
-      '.data-alter__sort'
-    ) as HTMLInputElement;
+    // const sort = document.querySelector(
+    //   '.data-alter__sort'
+    // ) as HTMLInputElement;
 
     backdrop.addEventListener('click', () => {
       closeModal();
