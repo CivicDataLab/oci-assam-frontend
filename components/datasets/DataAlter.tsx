@@ -4,36 +4,84 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#__next');
 
-const DataAlter = () => {
+const sort = [
+  {
+    id: 'metadata_modified:desc',
+    name: 'Last Modified',
+  },
+  {
+    id: 'score:desc',
+    name: 'Relevance',
+  },
+  {
+    id: 'title_string:asc',
+    name: 'Name Ascending',
+  },
+  {
+    id: 'title_string:desc',
+    name: 'Name Descending',
+  },
+  {
+    id: 'views_recent:desc',
+    name: 'Popular',
+  },
+];
+
+const obj = {};
+const DataAlter = ({ data, newData, fq }) => {
   const router = useRouter();
-  const q = router.query.q;
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [sortIsOpen, setSortIsOpen] = useState(false);
+  const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [currentSort, setCurrentSort] = useState(
     router.query.sort ? router.query.sort : 'metadata_modified:desc'
   );
 
-  function handleButtonClick() {
-    setModalIsOpen(!modalIsOpen);
+  function handleSortClick() {
+    setSortIsOpen(!sortIsOpen);
+  }
+  function handleFilterClick() {
+    setFilterIsOpen(!filterIsOpen);
   }
 
   React.useEffect(() => {
+    // set current sort as checked, timer because modal creation is creating issues
     setTimeout(() => {
-      // set current sort as checked, timer because modal creation is creating issues
       const selectedSort = document.getElementById(
         currentSort as string
       ) as HTMLInputElement;
       if (selectedSort) selectedSort.checked = true;
+
+      // Create filter object
+      Object.keys(data).forEach((val) => {
+        obj[val] = [];
+      });
+
+      // if filters found, add check them
+      if (fq) {
+        const removeEscape = fq.replaceAll(/"/g, '');
+        const splitFilters = removeEscape.split(' AND ');
+
+        splitFilters.forEach((query: any) => {
+          const id = query.split(':')[0];
+          const value = query.split(':')[1];
+          obj[id].push(value);
+          if (document.getElementById(value))
+            document
+              .getElementById(value)
+              .setAttribute('aria-pressed', 'true');
+        });
+      }
     }, 50);
-  }, [currentSort, modalIsOpen]);
+  }, [currentSort, sortIsOpen]);
 
   function handleSortChange(e: any) {
     const val = e.target.value;
     setCurrentSort(e.target.value);
-    handleButtonClick();
+    handleSortClick();
 
-    router.push({
-      pathname: '/datasets',
-      query: { q, sort: val },
+    newData({
+      query: 'sort',
+      value: val,
     });
   }
   return (
@@ -41,7 +89,7 @@ const DataAlter = () => {
       <div className="data-alter">
         <span className="data-alter__text">Alter Datasets</span>
         <div className="data-alter__buttons">
-          <button type="button" onClick={handleButtonClick}>
+          <button type="button" onClick={handleFilterClick}>
             <div className="data-alter__svg">
               <svg
                 width="24"
@@ -66,7 +114,7 @@ const DataAlter = () => {
             </div>
             Add Filters
           </button>
-          <button type="button" onClick={handleButtonClick}>
+          <button type="button" onClick={handleSortClick}>
             <div className="data-alter__svg">
               <svg
                 width="19"
@@ -84,104 +132,94 @@ const DataAlter = () => {
             Sort Results
           </button>
         </div>
-        <button className="data-alter__mobile">
-          <div className="data-alter__svg">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5.6669 7.48003C8.76024 11.4534 13.3336 17.3334 13.3336 17.3334V24C13.3336 25.4667 14.5336 26.6667 16.0002 26.6667C17.4669 26.6667 18.6669 25.4667 18.6669 24V17.3334C18.6669 17.3334 23.2402 11.4534 26.3336 7.48003C27.0136 6.60003 26.3869 5.33337 25.2669 5.33337H6.72024C5.61357 5.33337 4.9869 6.60003 5.6669 7.48003Z"
-                fill="#4965B2"
-              />
-              <path
-                d="M25.334 14.3334C28.0954 14.3334 30.334 12.0948 30.334 9.33337C30.334 6.57194 28.0954 4.33337 25.334 4.33337C22.5726 4.33337 20.334 6.57194 20.334 9.33337C20.334 12.0948 22.5726 14.3334 25.334 14.3334Z"
-                fill="#4965B2"
-                stroke="white"
-                strokeWidth="2"
-              />
-            </svg>
-          </div>
-          <span className="sr-only">Alter Datasets</span>
-        </button>
       </div>
 
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={handleButtonClick}
-        className="data-alter__sort"
-        overlayClassName="dialog__backdrop data-alter__overlay"
-        // contentLabel="Download Tenders"
+        isOpen={sortIsOpen}
+        onRequestClose={handleSortClick}
+        className="dialog"
+        overlayClassName="dialog__backdrop"
         closeTimeoutMS={200}
         aria={{
           labelledby: 'dialog-head',
         }}
         preventScroll={true}
       >
-        <div className="sort__header">
-          <h3 id="dialog-head">Sort Datasets</h3>
+        <div className="dialog__header">
+          <h1 id="dialog-head">Sort Datasets</h1>
           <button
             type="button"
+            className="dialog__close"
             aria-label="Close navigation"
-            onClick={handleButtonClick}
+            onClick={handleSortClick}
           >
             &#x78;
           </button>
         </div>
         <fieldset
-          className="sort__options"
+          className="dialog__body"
           onChange={(e) => handleSortChange(e)}
         >
-          <legend className="sr-only">Sort Datasets</legend>
-          <label htmlFor="metadata_modified:desc">
-            <input
-              type="radio"
-              value="metadata_modified:desc"
-              name="sort-group"
-              id="metadata_modified:desc"
-            />
-            Last Modified
-          </label>
-          <label htmlFor="score:desc">
-            <input
-              type="radio"
-              value="score:desc"
-              name="sort-group"
-              id="score:desc"
-            />
-            Relevance
-          </label>
-          <label htmlFor="title_string:asc">
-            <input
-              type="radio"
-              value="title_string:asc"
-              name="sort-group"
-              id="title_string:asc"
-            />
-            Name Ascending
-          </label>
-          <label htmlFor="title_string:desc">
-            <input
-              type="radio"
-              value="title_string:desc"
-              name="sort-group"
-              id="title_string:desc"
-            />
-            Name Descending
-          </label>
+          <legend className="sr-only">Sort Results</legend>
+          {sort.map((elm, index) => {
+            return (
+              <label key={`sort-${index}`} htmlFor={elm.id}>
+                <input
+                  type="radio"
+                  value={elm.id}
+                  name="sort-group"
+                  id={elm.id}
+                />
+                {elm.name}
+              </label>
+            );
+          })}
+        </fieldset>
+      </Modal>
 
-          <label htmlFor="views_recent:desc">
-            <input
-              type="radio"
-              value="views_recent:desc"
-              name="sort-group"
-              id="views_recent:desc"
-            />
-            Popular
-          </label>
+      <Modal
+        isOpen={filterIsOpen}
+        onRequestClose={handleFilterClick}
+        className="dialog"
+        overlayClassName="dialog__backdrop"
+        closeTimeoutMS={200}
+        aria={{
+          labelledby: 'dialog-head',
+        }}
+        preventScroll={true}
+      >
+        <div className="dialog__header">
+          <h1 id="dialog-head">Add Filters</h1>
+          <button
+            type="button"
+            className="dialog__close"
+            aria-label="Close navigation"
+            onClick={handleFilterClick}
+          >
+            &#x78;
+          </button>
+        </div>
+        <fieldset
+          className="dialog__body"
+          // onChange={(e) => handleSortChange(e)}
+        >
+          <legend className="sr-only">Add Filters</legend>
+          {Object.keys(data).map((filter: any, index: number) => {
+            return (
+              data[filter].items &&
+              data[filter].items.map((item: any) => (
+                <label key={`sort-${index}`} htmlFor={item.name}>
+                  <input
+                    type="checkbox"
+                    value={item.name}
+                    name="sort-group"
+                    id={item.name}
+                  />
+                  {item.display_name}
+                </label>
+              ))
+            );
+          })}
         </fieldset>
       </Modal>
     </>

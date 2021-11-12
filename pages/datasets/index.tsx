@@ -220,7 +220,11 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 </div>
               </div>
 
-              <DataAlter />
+              <DataAlter
+                data={facets}
+                newData={handleRouteChange}
+                fq={filters}
+              />
               <List data={data} loading={loading} />
               <Pagination
                 total={data.search.result.count}
