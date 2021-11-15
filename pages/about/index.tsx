@@ -104,7 +104,9 @@ const About = () => {
             </ul>
           </section>
           <section className="about__team">
-            <h3>members</h3>
+            <h3>
+              <span /> members
+            </h3>
             <p>Meet the doers &amp; builders</p>
 
             <ul>

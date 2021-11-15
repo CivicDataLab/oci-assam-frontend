@@ -29,6 +29,15 @@
       font-weight: 500;
       line-height: 130%;
       color: $text-light-light;
+
+      span {
+        background: #4965b2;
+        border-radius: 2px;
+        width: 3rem;
+        display: inline-block;
+        height: 3px;
+        margin-right: .5rem;
+      }
     }
 
     p {
