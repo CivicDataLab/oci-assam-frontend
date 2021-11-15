@@ -18,8 +18,24 @@
     figure {
       padding: 16px 53px;
 
+      img {
+        width: 100%;
+      }
+
       @include media.narrowerThan('seedling') {
         display: none;
+      }
+    }
+
+    @include media.widerThan('seedling') {
+      figure {
+        display: grid;
+        align-items: center;
+        padding-right: 0;
+      }
+
+      article {
+        width: 90%;
       }
     }
   }

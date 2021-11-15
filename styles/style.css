@@ -584,9 +584,22 @@ button {
 .carousel__content figure {
   padding: 16px 53px;
 }
+.carousel__content figure img {
+  width: 100%;
+}
 @media screen and (max-width: 719px) {
   .carousel__content figure {
     display: none;
+  }
+}
+@media screen and (min-width: 720px) {
+  .carousel__content figure {
+    display: grid;
+    align-items: center;
+    padding-right: 0;
+  }
+  .carousel__content article {
+    width: 90%;
   }
 }
 .carousel h2 {
