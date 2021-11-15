@@ -1,0 +1,87 @@
+@use '../../settings/variables' as *;
+@use '../../tools/mixins/media' as media;
+.about {
+  .partners {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    justify-content: space-between;
+
+    li {
+      width: 48%;
+      height: 100%;
+
+      @include media.narrowerThan('sprout') {
+        width: 100%;
+
+        &:first-child {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
+  &__team {
+    margin-top: 4rem;
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 130%;
+      color: $text-light-light;
+    }
+
+    p {
+      font-size: 2.5rem;
+      line-height: 130%;
+      margin-top: 10px;
+    }
+
+    ul {
+      margin-top: 3rem;
+      background-color: $bg-lightest;
+      border-radius: 12px;
+      border: 1px solid $grey-4;
+      padding: 0 6rem 5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    li {
+      width: 33.3%;
+      display: flex;
+      justify-content: center;
+    }
+
+    @include media.narrowerThan('plant') {
+      ul {
+        padding: 0 3rem 5rem;
+      }
+    }
+
+    @include media.narrowerThan('sprout') {
+      li {
+        width: 50%;
+      }
+    }
+
+    @include media.narrowerThan('seedling') {
+      ul {
+        padding: 0 1rem 5rem;
+      }
+
+      li img {
+        width: 170px;
+        height: 170px;
+      }
+    }
+
+    @include media.narrowerThan('seed') {
+      li img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  }
+}

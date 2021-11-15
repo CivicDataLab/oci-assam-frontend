@@ -1,0 +1,66 @@
+@use '../../settings/variables' as *;
+@use '../../tools/mixins/media' as media;
+
+.partners {
+  &__card {
+    background-color: $bg-lightest;
+    padding: 1.5rem;
+    border-radius: 12px;
+    filter: $drop-shadow;
+    border: 1px solid $grey-4;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 133%;
+    }
+
+    small {
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: $text-light-light;
+      font-weight: 500;
+    }
+
+    img {
+      height: 108px;
+      width: 108px;
+      object-fit: cover;
+      margin-right: 1.25rem;
+      border-radius: 4px;
+    }
+
+    section {
+      border-bottom: 1px solid $grey-4;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+  }
+
+  &__social {
+    margin-top: 1rem;
+  }
+
+  &--dark-img {
+    background-color: #222;
+  }
+
+  &__body {
+    line-height: 137%;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid $grey-4;
+  }
+
+  &__footer {
+    line-height: 137%;
+    padding-top: 0.8rem;
+    display: block;
+    color: $bg-darkest;
+    text-decoration: none;
+  }
+}

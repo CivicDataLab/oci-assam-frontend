@@ -52,9 +52,10 @@ const DataAlter = ({ data, newData, fq }) => {
       if (selectedSort) selectedSort.checked = true;
 
       // Create filter object
-      Object.keys(data).forEach((val) => {
-        obj[val] = [];
-      });
+      if (data)
+        Object.keys(data).forEach((val) => {
+          obj[val] = [];
+        });
 
       // if filters found, add check them
       if (fq) {
@@ -204,22 +205,23 @@ const DataAlter = ({ data, newData, fq }) => {
           // onChange={(e) => handleSortChange(e)}
         >
           <legend className="sr-only">Add Filters</legend>
-          {Object.keys(data).map((filter: any, index: number) => {
-            return (
-              data[filter].items &&
-              data[filter].items.map((item: any) => (
-                <label key={`sort-${index}`} htmlFor={item.name}>
-                  <input
-                    type="checkbox"
-                    value={item.name}
-                    name="sort-group"
-                    id={item.name}
-                  />
-                  {item.display_name}
-                </label>
-              ))
-            );
-          })}
+          {data &&
+            Object.keys(data).map((filter: any, index: number) => {
+              return (
+                data[filter].items &&
+                data[filter].items.map((item: any) => (
+                  <label key={`sort-${index}`} htmlFor={item.name}>
+                    <input
+                      type="checkbox"
+                      value={item.name}
+                      name="sort-group"
+                      id={item.name}
+                    />
+                    {item.display_name}
+                  </label>
+                ))
+              );
+            })}
         </fieldset>
       </Modal>
     </>
