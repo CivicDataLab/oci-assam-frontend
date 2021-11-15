@@ -139,8 +139,16 @@ const Nav: React.FC = () => {
                 </Link>
               </li>
               <li className="navbar__links">
-                <Link href="/">
-                  <a className="navbar__item">About Us</a>
+                <Link href="/about">
+                  <a
+                    className={`navbar__item ${
+                      router.pathname.includes('/about')
+                        ? 'navbar__item--active'
+                        : ''
+                    }`}
+                  >
+                    About Us
+                  </a>
                 </Link>
               </li>
             </ul>
@@ -255,8 +263,16 @@ const Nav: React.FC = () => {
             </Link>
           </li>
           <li className="navbar__links">
-            <Link href="/">
-              <a className="navbar__item">About Us</a>
+            <Link href="/about">
+              <a
+                className={`navbar__item ${
+                  router.pathname.includes('/about')
+                    ? 'navbar__item--active'
+                    : ''
+                }`}
+              >
+                About Us
+              </a>
             </Link>
           </li>
         </ul>

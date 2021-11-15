@@ -1,0 +1,28 @@
+@use '../../settings/variables' as *;
+@use '../../tools/mixins/media' as media;
+
+.team {
+  &__card {
+    text-align: center;
+    margin-top: 5rem;
+
+    img {
+      border-radius: 50%;
+    }
+
+    h4 {
+      margin-top: 1rem;
+    }
+
+    small {
+      font-weight: 500;
+      color: $grey-2;
+      margin-top: 6px;
+      display: block;
+    }
+  }
+
+  &__social {
+    margin-top: 1rem;
+  }
+}
