@@ -2051,6 +2051,14 @@ button {
   line-height: 130%;
   color: rgba(0, 0, 0, 0.32);
 }
+.about__team h3 span {
+  background: #4965b2;
+  border-radius: 2px;
+  width: 3rem;
+  display: inline-block;
+  height: 3px;
+  margin-right: 0.5rem;
+}
 .about__team p {
   font-size: 2.5rem;
   line-height: 130%;
