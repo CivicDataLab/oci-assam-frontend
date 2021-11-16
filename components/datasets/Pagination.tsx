@@ -10,12 +10,12 @@ const Pagination: React.FC<{ total: number; newPage: any }> = ({
   const [current, setCurrent] = React.useState(1);
   const [page, setPage] = React.useState(1);
   const [resultSize, setResultSize] = React.useState(10);
-  const [maxPage, SetMaxPage] = React.useState(0);
+  const [maxPage, SetMaxPage] = React.useState(1);
 
   React.useEffect(() => {
     const from = router.query.from ? router.query.from : '0';
     const size = router.query.size ? router.query.size : '10';
-    SetMaxPage(Math.floor(total / parseInt(size as string)));
+    SetMaxPage(Math.floor(total / parseInt(size as string)) + 1);
 
     setResultSize(parseInt(size as string));
 
@@ -27,6 +27,7 @@ const Pagination: React.FC<{ total: number; newPage: any }> = ({
 
     setPage(pageNo);
   }, [router.query.from, router.query.size]);
+  console.log(maxPage);
 
   function fetchNewResults(val: any, type: string) {
     newPage({
