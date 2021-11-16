@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
-import utils from 'utils/index';
+import { tabbedInterface } from 'utils/index';
 
 Modal.setAppElement('#__next');
 
@@ -28,8 +28,18 @@ const sort = [
   },
 ];
 
+type Props = {
+  data: any;
+  newData: boolean;
+  fq: any;
+};
+
 const objMobile = {};
-const DataAlter = ({ data, newData, fq }) => {
+const DataAlter: React.FC<{ data?: any; newData?: any; fq?: any }> = ({
+  data,
+  newData,
+  fq,
+}) => {
   const router = useRouter();
   const [sortIsOpen, setSortIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
@@ -43,7 +53,7 @@ const DataAlter = ({ data, newData, fq }) => {
       const panels = document.querySelectorAll(
         '.dialog__body [role="tabpanel"]'
       );
-      if (tablist) utils.tabbedInterface(tablist, panels);
+      if (tablist) tabbedInterface(tablist, panels);
     }, 50);
   }, [filterIsOpen]);
 

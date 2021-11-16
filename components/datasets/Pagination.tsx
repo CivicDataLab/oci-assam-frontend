@@ -27,7 +27,6 @@ const Pagination: React.FC<{ total: number; newPage: any }> = ({
 
     setPage(pageNo);
   }, [router.query.from, router.query.size]);
-  console.log(maxPage);
 
   function fetchNewResults(val: any, type: string) {
     newPage({

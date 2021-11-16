@@ -3,20 +3,21 @@ import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
-import utils from 'utils/index';
+import { ckanToDataPackage } from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
 import DList from 'components/_shared/DList';
 import Image from 'next/image';
 import Modal from 'react-modal';
-
+import { resourceGetter } from 'utils/resourceParser';
 Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
   loading: boolean;
+  csv: any;
 };
 
-const Tender: React.FC<Props> = ({ data, loading }) => {
+const Tender: React.FC<Props> = ({ data, loading, csv }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function handleButtonClick() {
@@ -24,12 +25,14 @@ const Tender: React.FC<Props> = ({ data, loading }) => {
   }
 
   if (loading) return <div>Loading</div>;
-  const dataPackage = utils.ckanToDataPackage(data.dataset.result);
+  const dataPackage = ckanToDataPackage(data.dataset.result);
 
   const headerData = {
     title: dataPackage.title || dataPackage.name,
     content: dataPackage.organization.title,
-    date: new Date(dataPackage.metadata_created).toLocaleDateString('en-US'),
+    date: `${dataPackage.meta.date || ''} . ${
+      dataPackage.meta.fiscal_year || ''
+    }`,
     previousPage: 'Contracts Data',
     previousLink: '/datasets',
   };
@@ -37,15 +40,15 @@ const Tender: React.FC<Props> = ({ data, loading }) => {
   const basicContent = [
     {
       title: 'Open contracting ID',
-      desc: 'ocds-kjhdrl-2020_HPIPH_36980_2',
+      desc: csv.tender.ocid || '',
     },
     {
       title: 'Tender ID',
-      desc: '2020_HPIPH_36980_2',
+      desc: csv.tender['tender/id'],
     },
     {
       title: 'Tender Title',
-      desc: 'Tender enquiry form for rate contract for supply of ayurvedi and homeopathic medicine',
+      desc: csv.tender['tender/title'],
     },
     {
       title: 'Tender description',
@@ -53,11 +56,11 @@ const Tender: React.FC<Props> = ({ data, loading }) => {
     },
     {
       title: 'Organisation name',
-      desc: 'Health and Family Welfare Department',
+      desc: dataPackage.organization.title,
     },
     {
       title: 'Tender amount',
-      desc: '₹11,74,92,775',
+      desc: `₹${csv.tender['tender/participationFees/0/value/amount']}`,
     },
   ];
 
@@ -397,11 +400,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     variables,
   });
 
+  const csv = await resourceGetter(data.dataset.result.resources, 'CSV');
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data,
       loading,
+      csv,
     },
   };
 };

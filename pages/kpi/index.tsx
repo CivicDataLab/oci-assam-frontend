@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
-import utils from 'utils';
+import { convertToCkanSearchQuery, getFilters } from 'utils/index';
 import Head from 'next/head';
 import Search from 'components/datasets/Search';
 import Total from 'components/datasets/Total';
@@ -137,8 +137,8 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = context.query || {};
-  const variables = utils.convertToCkanSearchQuery(query);
-  const facets = await utils.getFilters(list, variables);
+  const variables = convertToCkanSearchQuery(query);
+  const facets = await getFilters(list, variables);
 
   const apolloClient = initializeApollo();
 

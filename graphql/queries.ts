@@ -80,6 +80,11 @@ export const SEARCH_QUERY = gql`
           title
           notes
           tags
+          data_type
+          fiscal_year
+          tender_date
+          tender_value
+          type
           organization {
             name
             title
@@ -178,6 +183,11 @@ export const GET_DATASET_QUERY = gql`
         url
         metadata_created
         metadata_modified
+        data_type
+        fiscal_year
+        tender_date
+        tender_value
+        type
         resources {
           name
           title
@@ -185,6 +195,7 @@ export const GET_DATASET_QUERY = gql`
           created
           url
           last_modified
+          res_type
         }
         organization {
           name

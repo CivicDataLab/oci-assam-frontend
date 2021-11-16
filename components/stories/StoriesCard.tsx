@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import utils from 'utils';
+import { getMediumBanner } from 'utils/index';
 import { truncate } from 'lodash';
 
 // return post time in required format
@@ -52,7 +52,7 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
     <article className="stories-card">
       <Link href={data.link}>
         <a>
-          <img src={utils.getMediumBanner(data['content:encoded'])} alt="" />
+          <img src={getMediumBanner(data['content:encoded'])} alt="" />
         </a>
       </Link>
 

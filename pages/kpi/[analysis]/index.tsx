@@ -5,7 +5,7 @@ import { initializeApollo } from 'lib/apolloClient';
 // import { useQuery } from '@apollo/react-hooks';
 import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
-import utils from 'utils/index';
+import { tabbedInterface, ckanToDataPackage, getFilters } from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
 // import DList from 'components/_shared/DList';
 import Image from 'next/image';
@@ -52,27 +52,17 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
     setModalIsOpen(!modalIsOpen);
   }
 
-  // useEffect(() => {
-  //   console.log(router);
-
-  //   if (filters)
-  //     router.push({
-  //       pathname: router.pathname,
-  //       query: { fq: filters },
-  //     });
-  // }, [filters]);
-
   function handleRouteChange(val: any) {
     setFilters(val.value);
   }
   useEffect(() => {
     const tablist = document.querySelector('.viz__tabs');
     const panels = document.querySelectorAll('.viz figure');
-    utils.tabbedInterface(tablist, panels);
+    tabbedInterface(tablist, panels);
   }, []);
 
   if (loading) return <div>Loading</div>;
-  const dataPackage = utils.ckanToDataPackage(data.dataset.result);
+  const dataPackage = ckanToDataPackage(data.dataset.result);
 
   const headerData = {
     title: dataPackage.title || dataPackage.name,
@@ -306,7 +296,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const variables = {
     id: context.query.analysis,
   };
-  const facets = await utils.getFilters(list, variables);
+  const facets = await getFilters(list, variables);
 
   const apolloClient = initializeApollo();
 
