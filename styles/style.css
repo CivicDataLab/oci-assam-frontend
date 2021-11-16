@@ -968,6 +968,40 @@ button {
   align-items: center;
   margin-right: 0.5rem;
 }
+.data-alter__filter {
+  display: grid;
+  grid-template-columns: -webkit-max-content 1fr;
+  grid-template-columns: max-content 1fr;
+  margin-top: 0.5rem;
+}
+.data-alter__filter ul {
+  width: 200px;
+  margin-right: 1.25rem;
+}
+.data-alter__filter ul li {
+  margin-top: 0.5rem;
+}
+.data-alter__filter ul li:first-of-type {
+  margin-top: 1rem;
+}
+.data-alter__filter ul a {
+  width: 100%;
+  padding: 9px 8px;
+  display: block;
+  text-decoration: none;
+  border-radius: 4px;
+  background-color: #f1eef1;
+  line-height: 137%;
+}
+.data-alter__filter ul a[aria-selected=true] {
+  background-color: white;
+  font-weight: 500;
+}
+@media screen and (max-width: 479px) {
+  .data-alter__filter ul {
+    width: 144px;
+  }
+}
 
 .sort {
   display: flex;
@@ -1752,10 +1786,17 @@ button {
 }
 
 .ReactModal__Body--open {
-  overflow: hidden;
+  position: static;
+  overflow-y: scroll;
+}
+
+.ReactModal__Html--open {
+  overflow-y: hidden;
+}
+
+.ReactModalPortal {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  z-index: 1000;
 }
 
 .dialog {
@@ -1797,7 +1838,7 @@ button {
 .dialog__body {
   padding: 2rem;
   padding-top: 0;
-  max-height: 80vh;
+  max-height: 50vh;
   overflow-y: auto;
 }
 .dialog__body label {
@@ -1805,6 +1846,12 @@ button {
   margin-top: 1.5rem;
   align-items: center;
   font-weight: 500;
+}
+@media screen and (max-width: 719px) {
+  .dialog__body {
+    padding: 1rem;
+    height: 50vh;
+  }
 }
 .dialog__format {
   margin-top: 2rem;

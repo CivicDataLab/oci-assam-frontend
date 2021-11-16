@@ -147,6 +147,7 @@ const Tender: React.FC<Props> = ({ data, loading }) => {
                 describedby: 'dialog-para',
               }}
               preventScroll={true}
+              htmlOpenClassName="ReactModal__Html--open"
             >
               <section className="dialog__header">
                 <div>

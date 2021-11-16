@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
+import utils from 'utils/index';
 
 Modal.setAppElement('#__next');
 
@@ -27,7 +28,7 @@ const sort = [
   },
 ];
 
-const obj = {};
+const objMobile = {};
 const DataAlter = ({ data, newData, fq }) => {
   const router = useRouter();
   const [sortIsOpen, setSortIsOpen] = useState(false);
@@ -35,6 +36,16 @@ const DataAlter = ({ data, newData, fq }) => {
   const [currentSort, setCurrentSort] = useState(
     router.query.sort ? router.query.sort : 'metadata_modified:desc'
   );
+
+  useEffect(() => {
+    setTimeout(() => {
+      const tablist = document.getElementById('filterSelector');
+      const panels = document.querySelectorAll(
+        '.dialog__body [role="tabpanel"]'
+      );
+      if (tablist) utils.tabbedInterface(tablist, panels);
+    }, 50);
+  }, [filterIsOpen]);
 
   function handleSortClick() {
     setSortIsOpen(!sortIsOpen);
@@ -54,7 +65,7 @@ const DataAlter = ({ data, newData, fq }) => {
       // Create filter object
       if (data)
         Object.keys(data).forEach((val) => {
-          obj[val] = [];
+          objMobile[val] = [];
         });
 
       // if filters found, add check them
@@ -65,7 +76,7 @@ const DataAlter = ({ data, newData, fq }) => {
         splitFilters.forEach((query: any) => {
           const id = query.split(':')[0];
           const value = query.split(':')[1];
-          obj[id].push(value);
+          objMobile[id].push(value);
           if (document.getElementById(value))
             document
               .getElementById(value)
@@ -145,6 +156,7 @@ const DataAlter = ({ data, newData, fq }) => {
           labelledby: 'dialog-head',
         }}
         preventScroll={true}
+        htmlOpenClassName="ReactModal__Html--open"
       >
         <div className="dialog__header">
           <h1 id="dialog-head">Sort Datasets</h1>
@@ -188,6 +200,7 @@ const DataAlter = ({ data, newData, fq }) => {
           labelledby: 'dialog-head',
         }}
         preventScroll={true}
+        htmlOpenClassName="ReactModal__Html--open"
       >
         <div className="dialog__header">
           <h1 id="dialog-head">Add Filters</h1>
@@ -205,23 +218,48 @@ const DataAlter = ({ data, newData, fq }) => {
           // onChange={(e) => handleSortChange(e)}
         >
           <legend className="sr-only">Add Filters</legend>
-          {data &&
-            Object.keys(data).map((filter: any, index: number) => {
-              return (
-                data[filter].items &&
-                data[filter].items.map((item: any) => (
-                  <label key={`sort-${index}`} htmlFor={item.name}>
-                    <input
-                      type="checkbox"
-                      value={item.name}
-                      name="sort-group"
-                      id={item.name}
-                    />
-                    {item.display_name}
-                  </label>
-                ))
-              );
-            })}
+          {data && (
+            <div className="data-alter__filter">
+              <ul id="filterSelector" role="tablist">
+                {Object.keys(data).map((filter: any, index: number) => (
+                  <li role="presentation" key={`filterTitle-${index}`}>
+                    <a
+                      role="tab"
+                      tabIndex={-1}
+                      href={`#${data[filter].title}`}
+                      data-id={data[filter].title}
+                      id={`filterTab${index}`}
+                    >
+                      {data[filter].title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              {Object.keys(data).map((filter: any, index: number) => (
+                <div
+                  key={`filter-${index}`}
+                  id={data[filter].title}
+                  role="tabpanel"
+                  tabIndex={-1}
+                  aria-labelledby={`filterTab${index}`}
+                  // hidden
+                >
+                  {data[filter].items &&
+                    data[filter].items.map((item: any, index: number) => (
+                      <label key={`filterItem-${index}`} htmlFor={item.name}>
+                        <input
+                          type="checkbox"
+                          value={item.name}
+                          name="sort-group"
+                          id={item.name}
+                        />
+                        {item.display_name}
+                      </label>
+                    ))}
+                </div>
+              ))}
+            </div>
+          )}
         </fieldset>
       </Modal>
     </>

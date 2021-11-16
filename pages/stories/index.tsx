@@ -56,6 +56,7 @@ const Stories = ({ data }) => {
                       describedby: 'dialog-para',
                     }}
                     preventScroll={true}
+                    htmlOpenClassName="ReactModal__Html--open"
                   >
                     <section className="dialog__header dialog__header--small">
                       <div>

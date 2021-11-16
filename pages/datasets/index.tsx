@@ -63,7 +63,8 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
     }
   }
 
-  function handleButtonClick() {
+  function handleButtonClick(e) {
+    e.preventDefault();
     setModalIsOpen(!modalIsOpen);
   }
 
@@ -123,6 +124,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                     }}
                     closeTimeoutMS={200}
                     preventScroll={true}
+                    htmlOpenClassName="ReactModal__Html--open"
                   >
                     <section className="dialog__header">
                       <div>

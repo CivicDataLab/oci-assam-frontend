@@ -58,4 +58,42 @@
     align-items: center;
     margin-right: 0.5rem;
   }
+
+  &__filter {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    margin-top: 0.5rem;
+
+    ul {
+      width: 200px;
+      margin-right: 1.25rem;
+
+      li {
+        margin-top: 0.5rem;
+
+        &:first-of-type {
+          margin-top: 1rem;
+        }
+      }
+
+      a {
+        width: 100%;
+        padding: 9px 8px;
+        display: block;
+        text-decoration: none;
+        border-radius: 4px;
+        background-color: $grey-6;
+        line-height: 137%;
+
+        &[aria-selected='true'] {
+          background-color: $bg-lightest;
+          font-weight: 500;
+        }
+      }
+
+      @include media.narrowerThan('seed') {
+        width: 144px;
+      }
+    }
+  }
 }

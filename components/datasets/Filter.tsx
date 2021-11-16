@@ -64,8 +64,6 @@ const Filter = ({ data, newFilters, fq }) => {
       obj[type].push(value);
     }
 
-    console.log(obj);
-
     const final = [];
     let filter: string;
     Object.keys(obj).forEach((val) => {
@@ -75,7 +73,6 @@ const Filter = ({ data, newFilters, fq }) => {
         filter = final.join(' AND ');
       }
     });
-    console.log(filter);
 
     newFilters({
       query: 'fq',

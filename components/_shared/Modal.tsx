@@ -1,5 +1,3 @@
-import 'wicg-inert';
-
 const Modal = () => {
   function createDialog() {
     return `

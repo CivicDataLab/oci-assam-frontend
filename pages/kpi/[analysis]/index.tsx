@@ -121,6 +121,7 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
               }}
               closeTimeoutMS={200}
               preventScroll={true}
+              htmlOpenClassName="ReactModal__Html--open"
             >
               <section className="dialog__header">
                 <div>
