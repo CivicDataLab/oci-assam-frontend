@@ -24,7 +24,7 @@
 
 .button-primary {
   @include button;
-  background: $bg-darkest;
+  background-color: $bg-darkest;
   color: $bg-lightest;
   border: 1px solid $bg-darkest;
 
@@ -38,6 +38,29 @@
 
   border: 1px solid $bg-dark;
   color: $bg-darkest;
+  background-color: $bg-lightest;
+
+  &:hover {
+    background-color: darken($bg-lightest, 10);
+  }
+}
+
+.button-primary-blue {
+  @include button;
+  background-color: $color-sapphire;
+  color: $bg-lightest;
+  border: 1px solid $color-sapphire;
+
+  &:hover {
+    background-color: lighten($color-sapphire, 5);
+  }
+}
+
+.button-secondary-blue {
+  @include button;
+
+  border: 1px solid $color-sapphire;
+  color: $color-sapphire;
   background-color: $bg-lightest;
 
   &:hover {

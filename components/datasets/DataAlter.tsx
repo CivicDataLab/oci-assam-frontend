@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
-import utils from 'utils/index';
+import { tabbedInterface } from 'utils/index';
 
 Modal.setAppElement('#__next');
 
@@ -28,8 +28,18 @@ const sort = [
   },
 ];
 
+type Props = {
+  data: any;
+  newData: boolean;
+  fq: any;
+};
+
 const objMobile = {};
-const DataAlter = ({ data, newData, fq }) => {
+const DataAlter: React.FC<{ data?: any; newData?: any; fq?: any }> = ({
+  data,
+  newData,
+  fq,
+}) => {
   const router = useRouter();
   const [sortIsOpen, setSortIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
@@ -43,20 +53,20 @@ const DataAlter = ({ data, newData, fq }) => {
       const panels = document.querySelectorAll(
         '.dialog__body [role="tabpanel"]'
       );
-      if (tablist) utils.tabbedInterface(tablist, panels);
+      if (tablist) tabbedInterface(tablist, panels);
     }, 50);
   }, [filterIsOpen]);
 
-  function handleSortClick() {
-    setSortIsOpen(!sortIsOpen);
-  }
-  function handleFilterClick() {
-    setFilterIsOpen(!filterIsOpen);
-  }
-
-  React.useEffect(() => {
-    // set current sort as checked, timer because modal creation is creating issues
+  useEffect(() => {
     setTimeout(() => {
+      if (document.querySelector('#modalSort')) {
+        document
+          .querySelector('#modalSort')
+          .addEventListener('change', (e: any) => {
+            setCurrentSort(e.target.value);
+          });
+      }
+
       const selectedSort = document.getElementById(
         currentSort as string
       ) as HTMLInputElement;
@@ -84,16 +94,29 @@ const DataAlter = ({ data, newData, fq }) => {
         });
       }
     }, 50);
-  }, [currentSort, sortIsOpen]);
+    return () => {
+      if (document.querySelector('#modalSort'))
+        document
+          .querySelector('#modalSort')
+          .addEventListener('change', (e: any) => {
+            setCurrentSort(e.target.value);
+          });
+    };
+  }, [sortIsOpen]);
 
-  function handleSortChange(e: any) {
-    const val = e.target.value;
-    setCurrentSort(e.target.value);
+  function handleSortClick() {
+    setSortIsOpen(!sortIsOpen);
+  }
+  function handleFilterClick() {
+    setFilterIsOpen(!filterIsOpen);
+  }
+
+  function handleSortChange() {
     handleSortClick();
 
     newData({
       query: 'sort',
-      value: val,
+      value: currentSort,
     });
   }
   return (
@@ -146,6 +169,7 @@ const DataAlter = ({ data, newData, fq }) => {
         </div>
       </div>
 
+      {/* Sort Modal */}
       <Modal
         isOpen={sortIsOpen}
         onRequestClose={handleSortClick}
@@ -160,18 +184,11 @@ const DataAlter = ({ data, newData, fq }) => {
       >
         <div className="dialog__header">
           <h1 id="dialog-head">Sort Datasets</h1>
-          <button
-            type="button"
-            className="dialog__close"
-            aria-label="Close navigation"
-            onClick={handleSortClick}
-          >
-            &#x78;
-          </button>
         </div>
         <fieldset
           className="dialog__body"
-          onChange={(e) => handleSortChange(e)}
+          // onChange={(e) => handleSortChange(e)}
+          id="modalSort"
         >
           <legend className="sr-only">Sort Results</legend>
           {sort.map((elm, index) => {
@@ -188,8 +205,25 @@ const DataAlter = ({ data, newData, fq }) => {
             );
           })}
         </fieldset>
+        <div className="data-alter__footer">
+          <button
+            type="button"
+            onClick={handleSortClick}
+            className="button-secondary-blue"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            onClick={handleSortChange}
+            className="button-primary-blue"
+          >
+            Apply
+          </button>
+        </div>
       </Modal>
 
+      {/* Filter Modal */}
       <Modal
         isOpen={filterIsOpen}
         onRequestClose={handleFilterClick}
@@ -242,7 +276,6 @@ const DataAlter = ({ data, newData, fq }) => {
                   role="tabpanel"
                   tabIndex={-1}
                   aria-labelledby={`filterTab${index}`}
-                  // hidden
                 >
                   {data[filter].items &&
                     data[filter].items.map((item: any, index: number) => (
@@ -261,6 +294,22 @@ const DataAlter = ({ data, newData, fq }) => {
             </div>
           )}
         </fieldset>
+        <div className="data-alter__footer">
+          <button
+            type="button"
+            onClick={handleFilterClick}
+            className="button-secondary-blue"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            onClick={handleFilterClick}
+            className="button-primary-blue"
+          >
+            Apply
+          </button>
+        </div>
       </Modal>
     </>
   );

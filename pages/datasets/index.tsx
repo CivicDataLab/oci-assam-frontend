@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
-import utils from 'utils';
+import { getFilters, convertToCkanSearchQuery } from 'utils/index';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Search from 'components/datasets/Search';
@@ -35,6 +35,8 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
   const [filters, setFilters] = useState(fq);
   const [pages, setPages] = useState(from);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const { results, count } = data.search.result;
 
   useEffect(() => {
     router.push({
@@ -90,7 +92,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
               <h2 className="heading-w-line">Browse Contracts</h2>
               <Search newSearch={handleRouteChange} />
               <div className="datasets__total">
-                <Total text="contracts" total={data.search.result.count} />
+                <Total text="contracts" total={count} />
                 <div className="datasets__sort">
                   <Sort newSort={handleRouteChange} />
                   <button
@@ -227,11 +229,8 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 newData={handleRouteChange}
                 fq={filters}
               />
-              <List data={data} loading={loading} />
-              <Pagination
-                total={data.search.result.count}
-                newPage={handleRouteChange}
-              />
+              <List data={results} loading={loading} />
+              <Pagination total={count} newPage={handleRouteChange} />
             </div>
           )}
         </div>
@@ -242,8 +241,8 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = context.query || {};
-  const variables = utils.convertToCkanSearchQuery(query);
-  const facets = await utils.getFilters(list, variables);
+  const variables = convertToCkanSearchQuery(query);
+  const facets = await getFilters(list, variables);
 
   const apolloClient = initializeApollo();
 

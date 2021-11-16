@@ -96,4 +96,15 @@
       }
     }
   }
+  &__footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin-top: 1rem;
+
+    button {
+      width: 49%;
+    }
+  }
 }

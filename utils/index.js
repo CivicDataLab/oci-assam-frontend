@@ -2,20 +2,31 @@
 // const bytes = require('bytes');
 // const slugify = require('slugify');
 // const config = require('../next.config.js');
+// const Papa = require('papaparse');
+// import fs from 'fs';
 
-module.exports.getMediumBanner = (postContent) => {
+export function getMediumBanner(postContent) {
   const srcIndex = postContent.indexOf('src=');
   const srcStart = srcIndex + 5;
   const srcEnd = postContent.substring(srcStart).indexOf('"') + srcStart;
   const src = postContent.substring(srcStart, srcEnd);
   return src;
-};
+}
+
+// export function parseCSV(url) {
+//   Papa.parse(fs.createReadStream(url), {
+//     // download: true,
+//     complete: function (results) {
+//       return results;
+//     },
+//   });
+// }
 
 /*
 Takes single field descriptor from datastore data dictionary and coverts into
 tableschema field descriptor.
 */
-module.exports.dataStoreDataDictionaryToTableSchema = (dataDictionary) => {
+export function dataStoreDataDictionaryToTableSchema(dataDictionary) {
   const internalDataStoreFields = ['_id', '_full_text', '_count'];
   if (internalDataStoreFields.includes(dataDictionary.id)) {
     return null;
@@ -55,9 +66,9 @@ module.exports.dataStoreDataDictionaryToTableSchema = (dataDictionary) => {
     });
   }
   return field;
-};
+}
 
-module.exports.convertToStandardCollection = (descriptor) => {
+export function convertToStandardCollection(descriptor) {
   const standard = {
     name: '',
     title: '',
@@ -75,23 +86,23 @@ module.exports.convertToStandardCollection = (descriptor) => {
   standard.groups = descriptor.groups || [];
 
   return standard;
-};
+}
 
-module.exports.getFilters = async (list, variable) => {
+export async function getFilters(list, variable) {
   try {
     const queryVars = `fq=${variable.fq ? variable.fq : ''}&q=${
       variable.q ? variable.q : ''
     }`;
     const fetchData = await fetch(
-      `https://openbudgetsindia.org/api/action/package_search?facet.field=[${list}]&facet.limit=5&${queryVars}`
+      `http://13.126.46.107/api/3/action/package_search?facet.field=[${list}]&facet.limit=6&${queryVars}`
     ).then((res) => res.json());
     return fetchData.result.search_facets;
   } catch (error) {
     throw new Error(error);
   }
-};
+}
 
-module.exports.convertToCkanSearchQuery = (query) => {
+export function convertToCkanSearchQuery(query) {
   const ckanQuery = {
     q: '',
     fq: '',
@@ -161,9 +172,9 @@ module.exports.convertToCkanSearchQuery = (query) => {
   );
 
   return ckanQuery;
-};
+}
 
-module.exports.ckanToDataPackage = function (descriptor) {
+export function ckanToDataPackage(descriptor) {
   // Make a copy
   const datapackage = JSON.parse(JSON.stringify(descriptor));
 
@@ -241,8 +252,23 @@ module.exports.ckanToDataPackage = function (descriptor) {
     delete datapackage.tags;
   }
 
-  // Parse extras
-  // TODO
+  const meta = {};
+  // Parse meta
+  if (datapackage.tender_date) {
+    meta.date = datapackage.tender_date;
+    delete datapackage.tender_date;
+  }
+  if (datapackage.fiscal_year) {
+    meta.fiscal_year = datapackage.fiscal_year;
+    delete datapackage.fiscal_year;
+  }
+  if (Object.keys(meta).length > 0) {
+    datapackage.meta = meta;
+  }
+  // if (datapackage.tender_date) {
+  //   meta.date = datapackage.tender_date;
+  //   delete datapackage.tender_date;
+  // }
 
   // Resources
   datapackage.resources = datapackage.resources.map((resource) => {
@@ -272,9 +298,9 @@ module.exports.ckanToDataPackage = function (descriptor) {
   });
 
   return datapackage;
-};
+}
 
-module.exports.tabbedInterface = function (tablist, panels) {
+export function tabbedInterface(tablist, panels) {
   // Get relevant elements and collections
   const tabs = tablist.querySelectorAll('a');
 
@@ -353,7 +379,7 @@ module.exports.tabbedInterface = function (tablist, panels) {
   tabs[0].removeAttribute('tabindex');
   tabs[0].setAttribute('aria-selected', 'true');
   panels[0].hidden = false;
-};
+}
 
 /*
   At the moment, we're considering only following examples of CKAN view:

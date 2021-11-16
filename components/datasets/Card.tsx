@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { truncate } from 'lodash';
 
 const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
   const router = useRouter();
@@ -21,19 +22,27 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
         <section>
           <h3 className="card__heading">{datapackage.organization.title}</h3>
           <small className="card__date">
-            21st September 2016 . 2016 - 2017
+            {`${datapackage.tender_date} . ${datapackage.fiscal_year}`}
           </small>
           <div className="card__content">
             <section className="card__id">
-              <h4>2016_HFWD_922_1</h4>
+              <h4>
+                {truncate(datapackage.name, {
+                  length: 40,
+                })}
+              </h4>
               <small>Tender ID</small>
             </section>
             <section className="card__value">
-              <h4>₹11,74,92,775</h4>
+              <h4>₹{datapackage.tender_value}</h4>
               <small>Tender value</small>
             </section>
             <section className="card__name">
-              <h4>{datapackage.title}</h4>
+              <h4>
+                {truncate(datapackage.title, {
+                  length: 80,
+                })}
+              </h4>
               <small>Tender name</small>
             </section>
           </div>
