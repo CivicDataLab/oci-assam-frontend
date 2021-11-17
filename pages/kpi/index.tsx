@@ -101,7 +101,12 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 <Total text="results" total={data.search.result.count} />
               </div>
 
-              <DataAlter />
+              <DataAlter
+                data={facets}
+                newData={handleRouteChange}
+                fq={filters}
+                sortShow={false}
+              />
               <ul className="list kpi__list">
                 {result.map((datapackage: any, index: number) => (
                   <li key={`list-${index}`} className="kpi__item">
