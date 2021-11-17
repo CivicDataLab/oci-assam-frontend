@@ -13,15 +13,6 @@ export function getMediumBanner(postContent) {
   return src;
 }
 
-// export function parseCSV(url) {
-//   Papa.parse(fs.createReadStream(url), {
-//     // download: true,
-//     complete: function (results) {
-//       return results;
-//     },
-//   });
-// }
-
 /*
 Takes single field descriptor from datastore data dictionary and coverts into
 tableschema field descriptor.

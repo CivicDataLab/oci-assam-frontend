@@ -28,12 +28,6 @@ const sort = [
   },
 ];
 
-type Props = {
-  data: any;
-  newData: boolean;
-  fq: any;
-};
-
 const objMobile = {};
 const DataAlter: React.FC<{ data?: any; newData?: any; fq?: any }> = ({
   data,
@@ -46,6 +40,9 @@ const DataAlter: React.FC<{ data?: any; newData?: any; fq?: any }> = ({
   const [currentSort, setCurrentSort] = useState(
     router.query.sort ? router.query.sort : 'metadata_modified:desc'
   );
+  const [selectedSort, setSelectedSort] = useState(
+    router.query.sort ? router.query.sort : 'metadata_modified:desc'
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,23 +51,6 @@ const DataAlter: React.FC<{ data?: any; newData?: any; fq?: any }> = ({
         '.dialog__body [role="tabpanel"]'
       );
       if (tablist) tabbedInterface(tablist, panels);
-    }, 50);
-  }, [filterIsOpen]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (document.querySelector('#modalSort')) {
-        document
-          .querySelector('#modalSort')
-          .addEventListener('change', (e: any) => {
-            setCurrentSort(e.target.value);
-          });
-      }
-
-      const selectedSort = document.getElementById(
-        currentSort as string
-      ) as HTMLInputElement;
-      if (selectedSort) selectedSort.checked = true;
 
       // Create filter object
       if (data)
@@ -94,30 +74,56 @@ const DataAlter: React.FC<{ data?: any; newData?: any; fq?: any }> = ({
         });
       }
     }, 50);
+  }, [filterIsOpen]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (document.querySelector('#modalSort')) {
+        document
+          .querySelector('#modalSort')
+          .addEventListener('change', (e: any) => {
+            setSelectedSort(e.target.value);
+          });
+      }
+
+      const selectedSort = document.getElementById(
+        currentSort as string
+      ) as HTMLInputElement;
+      if (selectedSort) selectedSort.checked = true;
+    }, 50);
     return () => {
       if (document.querySelector('#modalSort'))
         document
           .querySelector('#modalSort')
           .addEventListener('change', (e: any) => {
-            setCurrentSort(e.target.value);
+            setSelectedSort(e.target.value);
           });
     };
   }, [sortIsOpen]);
 
-  function handleSortClick() {
-    setSortIsOpen(!sortIsOpen);
-  }
-  function handleFilterClick() {
-    setFilterIsOpen(!filterIsOpen);
-  }
-
-  function handleSortChange() {
-    handleSortClick();
-
+  useEffect(() => {
     newData({
       query: 'sort',
       value: currentSort,
     });
+  }, [currentSort]);
+
+  function handleFilterClick() {
+    setFilterIsOpen(!filterIsOpen);
+  }
+
+  function handleSortClick() {
+    setSortIsOpen(!sortIsOpen);
+  }
+
+  function handleSortChange() {
+    setCurrentSort(selectedSort);
+    handleSortClick();
+  }
+
+  function cancelSortChange() {
+    setSelectedSort(currentSort);
+    handleSortClick();
   }
   return (
     <>
@@ -185,11 +191,7 @@ const DataAlter: React.FC<{ data?: any; newData?: any; fq?: any }> = ({
         <div className="dialog__header">
           <h1 id="dialog-head">Sort Datasets</h1>
         </div>
-        <fieldset
-          className="dialog__body"
-          // onChange={(e) => handleSortChange(e)}
-          id="modalSort"
-        >
+        <fieldset className="dialog__body" id="modalSort">
           <legend className="sr-only">Sort Results</legend>
           {sort.map((elm, index) => {
             return (
@@ -208,7 +210,7 @@ const DataAlter: React.FC<{ data?: any; newData?: any; fq?: any }> = ({
         <div className="data-alter__footer">
           <button
             type="button"
-            onClick={handleSortClick}
+            onClick={cancelSortChange}
             className="button-secondary-blue"
           >
             Close
