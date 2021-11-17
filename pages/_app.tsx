@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { useApollo } from '../lib/apolloClient';
 import Layout from 'components/layout/layout';
-import { DEFAULT_THEME } from '../themes';
-import { applyTheme } from '../themes/utils';
 import I18nProvider from 'next-translate/I18nProvider';
 import Router, { useRouter } from 'next/router';
 import '../styles/style.css';
@@ -32,7 +30,6 @@ type Props = {
 
 const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
-  const [theme] = useState(DEFAULT_THEME); // setTheme
   const router = useRouter();
 
   useEffect(() => {
@@ -80,15 +77,6 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
       Router.events.off('routeChangeComplete', handleRouteChange);
     };
   });
-
-  useEffect(() => {
-    /**
-     * We can switch theme.
-     * e.g. setTheme('primary');
-     * */
-
-    applyTheme(theme);
-  }, [theme]);
 
   return (
     <Layout>

@@ -1,33 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Modal from 'react-modal';
+Modal.setAppElement('#__next');
 
 const Nav: React.FC = () => {
   const router = useRouter();
+  const [navIsOpen, setNavIsOpen] = useState(false);
 
   // opening / closing mobile navbar
   function mobileNavHandler() {
-    if (document.querySelector('.m-navbar--active')) {
-      document
-        .querySelector('.m-navbar--active')
-        .classList.remove('m-navbar--active');
-      document
-        .querySelector('.navbar-backdrop--active')
-        .classList.remove('navbar-backdrop--active');
-
-      document
-        .querySelector('.m-header__button')
-        .setAttribute('aria-expanded', 'false');
-    } else {
-      document
-        .querySelector('.m-header__button')
-        .setAttribute('aria-expanded', 'true');
-      document
-        .querySelector('.navbar-backdrop')
-        .classList.add('navbar-backdrop--active');
-      document.querySelector('.m-navbar').classList.add('m-navbar--active');
-    }
-    document.querySelector('body').classList.toggle('scroll-stop');
+    setNavIsOpen(!navIsOpen);
   }
 
   // open / close sub-menu
@@ -66,7 +50,7 @@ const Nav: React.FC = () => {
 
   return (
     <>
-      <div className="navbar-backdrop" />
+      {/* <div className="navbar-backdrop" /> */}
       <header className="header" role="banner">
         <div className="container">
           <div className="header__brand">
@@ -205,78 +189,91 @@ const Nav: React.FC = () => {
         </div>
       </header>
 
-      <nav className="m-navbar">
-        <div className="m-navbar__header">
-          <h2>Menus</h2>
-          <button
-            type="button"
-            aria-label="Close navigation"
-            onClick={mobileNavHandler}
-          >
-            &#x78;
-          </button>
-        </div>
+      <Modal
+        isOpen={navIsOpen}
+        onRequestClose={mobileNavHandler}
+        className="dialog dialog--menu"
+        overlayClassName="dialog__backdrop"
+        closeTimeoutMS={200}
+        aria={{
+          labelledby: 'mobileMenu',
+        }}
+        preventScroll={true}
+        htmlOpenClassName="ReactModal__Html--open"
+      >
+        <nav className="m-navbar">
+          <div className="m-navbar__header">
+            <h2 id="mobileMenu">Menus</h2>
+            <button
+              type="button"
+              aria-label="Close navigation"
+              onClick={mobileNavHandler}
+            >
+              &#x78;
+            </button>
+          </div>
 
-        <ul className="m-navbar__container">
-          <li className="navbar__links">
-            <Link href="/datasets">
-              <a
-                className={`navbar__item ${
-                  router.pathname.includes('/datasets')
-                    ? 'navbar__item--active'
-                    : ''
-                }`}
-              >
-                Contracts Data
-              </a>
-            </Link>
-          </li>
-          <li className="navbar__links">
-            <Link href="/kpi">
-              <a
-                className={`navbar__item ${
-                  router.pathname.includes('/kpi')
-                    ? 'navbar__item--active'
-                    : ''
-                }`}
-              >
-                Data Analysis
-              </a>
-            </Link>
-          </li>
-          <li className="navbar__links">
-            <Link href="/stories">
-              <a
-                className={`navbar__item ${
-                  router.pathname.includes('/stories')
-                    ? 'navbar__item--active'
-                    : ''
-                }`}
-              >
-                Data Stories
-              </a>
-            </Link>
-          </li>
-          <li className="navbar__links">
-            <Link href="/">
-              <a className="navbar__item">Forum</a>
-            </Link>
-          </li>
-          <li className="navbar__links">
-            <Link href="/about">
-              <a
-                className={`navbar__item ${
-                  router.pathname.includes('/about')
-                    ? 'navbar__item--active'
-                    : ''
-                }`}
-              >
-                About Us
-              </a>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+          <ul className="m-navbar__container">
+            <li className="navbar__links">
+              <Link href="/datasets">
+                <a
+                  className={`navbar__item ${
+                    router.pathname.includes('/datasets')
+                      ? 'navbar__item--active'
+                      : ''
+                  }`}
+                >
+                  Contracts Data
+                </a>
+              </Link>
+            </li>
+            <li className="navbar__links">
+              <Link href="/kpi">
+                <a
+                  className={`navbar__item ${
+                    router.pathname.includes('/kpi')
+                      ? 'navbar__item--active'
+                      : ''
+                  }`}
+                >
+                  Data Analysis
+                </a>
+              </Link>
+            </li>
+            <li className="navbar__links">
+              <Link href="/stories">
+                <a
+                  className={`navbar__item ${
+                    router.pathname.includes('/stories')
+                      ? 'navbar__item--active'
+                      : ''
+                  }`}
+                >
+                  Data Stories
+                </a>
+              </Link>
+            </li>
+            <li className="navbar__links">
+              <Link href="/">
+                <a className="navbar__item">Forum</a>
+              </Link>
+            </li>
+            <li className="navbar__links">
+              <Link href="/about">
+                <a
+                  className={`navbar__item ${
+                    router.pathname.includes('/about')
+                      ? 'navbar__item--active'
+                      : ''
+                  }`}
+                >
+                  About Us
+                </a>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </Modal>
     </>
   );
 };
