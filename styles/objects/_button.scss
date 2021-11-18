@@ -1,4 +1,4 @@
-@use '../settings/variables' as *;
+@use '../settings/theme' as *;
 @use '../tools/mixins/media' as media;
 
 @mixin button {
@@ -22,48 +22,48 @@
   }
 }
 
-.button-primary {
+.btn-primary {
   @include button;
-  background-color: $bg-darkest;
-  color: $bg-lightest;
-  border: 1px solid $bg-darkest;
+  background-color: $btn-primary-bg;
+  color: $btn-primary-text;
+  border: 1px solid $btn-primary-bg;
 
   &:hover {
-    background-color: lighten($bg-darkest, 5);
+    background-color: lighten($btn-primary-bg, 5);
   }
 }
 
-.button-secondary {
+.btn-primary-invert {
   @include button;
 
-  border: 1px solid $bg-dark;
-  color: $bg-darkest;
-  background-color: $bg-lightest;
+  border: 1px solid $btn-primary-bg;
+  color: $btn-primary-bg;
+  background-color: $btn-primary-text;
 
   &:hover {
-    background-color: darken($bg-lightest, 10);
+    background-color: darken($btn-primary-text, 10);
   }
 }
 
-.button-primary-blue {
+.btn-secondary {
   @include button;
-  background-color: $color-sapphire;
-  color: $bg-lightest;
-  border: 1px solid $color-sapphire;
+  background-color: $btn-secondary-bg;
+  color: $btn-secondary-text;
+  border: 1px solid $btn-secondary-bg;
 
   &:hover {
-    background-color: lighten($color-sapphire, 5);
+    background-color: lighten($btn-secondary-bg, 5);
   }
 }
 
-.button-secondary-blue {
+.btn-secondary-invert {
   @include button;
 
-  border: 1px solid $color-sapphire;
-  color: $color-sapphire;
-  background-color: $bg-lightest;
+  border: 1px solid $btn-secondary-bg;
+  color: $btn-secondary-bg;
+  background-color: $btn-secondary-text;
 
   &:hover {
-    background-color: darken($bg-lightest, 10);
+    background-color: darken($btn-secondary-text, 10);
   }
 }

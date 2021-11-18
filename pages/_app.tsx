@@ -33,9 +33,7 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      // always remove the scroll stopper
-      document.querySelector('body').classList.remove('scroll-stop');
+    const handleRouteComplete = () => {
       // change focus to top
       if (document.querySelector('#top-of-site-pixel-anchor')) {
         (
@@ -56,25 +54,18 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
         );
         currentActive.setAttribute('aria-expanded', 'false');
       }
-
-      if (document.querySelector('.m-navbar--active')) {
-        document
-          .querySelector('.m-navbar--active')
-          .classList.remove('m-navbar--active');
-        document
-          .querySelector('.navbar-backdrop--active')
-          .classList.remove('navbar-backdrop--active');
-
-        document
-          .querySelector('.m-header__button')
-          .setAttribute('aria-expanded', 'false');
-      }
     };
 
-    Router.events.on('routeChangeComplete', handleRouteChange);
+    // const handleRouteStart = () => {
+    //   if (document.querySelector('.ReactModal__Body--open')) {
+
+    //   }
+    // };
+
+    Router.events.on('routeChangeComplete', handleRouteComplete);
 
     return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange);
+      Router.events.off('routeChangeComplete', handleRouteComplete);
     };
   });
 

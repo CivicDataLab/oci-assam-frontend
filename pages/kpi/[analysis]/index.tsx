@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { initializeApollo } from 'lib/apolloClient';
-// import { useQuery } from '@apollo/react-hooks';
 import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
 import { tabbedInterface, ckanToDataPackage, getFilters } from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
-// import DList from 'components/_shared/DList';
 import Image from 'next/image';
 import Filter from 'components/datasets/Filter';
 import Modal from 'react-modal';
@@ -83,7 +81,7 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
         <div className="page-wrap container">
           <section className="analysis__heading">
             <h3 className="heading-w-line">KPI Analysis</h3>
-            <button className="button-primary" onClick={handleButtonClick}>
+            <button className="btn-primary" onClick={handleButtonClick}>
               <svg
                 width="10"
                 height="12"
@@ -199,7 +197,7 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
                 </div>
               </section>
               <button
-                className="button-primary dialog__submit"
+                className="btn-primary dialog__submit"
                 id="modalSubmit"
                 onClick={handleButtonClick}
               >

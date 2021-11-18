@@ -97,7 +97,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                   <Sort newSort={handleRouteChange} />
                   <button
                     id="modalTrigger"
-                    className="button-primary"
+                    className="btn-primary"
                     onClick={handleButtonClick}
                   >
                     <svg
@@ -214,7 +214,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                       </div>
                     </section>
                     <button
-                      className="button-primary dialog__submit"
+                      className="btn-primary dialog__submit"
                       id="modalSubmit"
                       onClick={handleButtonClick}
                     >

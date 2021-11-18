@@ -4,9 +4,9 @@
 @forward 'search';
 @forward 'footer';
 @forward 'modal';
-
-.heading-3 {
-  font-weight: 500;
-  font-size: 1.5rem;
-  line-height: 92%;
-}
+@forward 'pagination';
+@forward 'sort';
+@forward 'filters';
+@forward 'dropdown';
+@forward 'data-alter';
+@forward 'dlist';

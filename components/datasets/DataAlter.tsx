@@ -35,6 +35,8 @@ const DataAlter: React.FC<{
   fq?: any;
   sortShow?: boolean;
 }> = ({ data, newData, fq, sortShow }) => {
+  const displaySort = sortShow == false ? false : true;
+
   const router = useRouter();
   const [sortIsOpen, setSortIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
@@ -202,7 +204,7 @@ const DataAlter: React.FC<{
             </div>
             Add Filters
           </button>
-          {sortShow && (
+          {displaySort && (
             <button type="button" onClick={handleSortClick}>
               <div className="data-alter__svg">
                 <svg
@@ -225,7 +227,7 @@ const DataAlter: React.FC<{
       </div>
 
       {/* Sort Modal */}
-      {sortShow && (
+      {displaySort && (
         <Modal
           isOpen={sortIsOpen}
           onRequestClose={handleSortClick}
@@ -261,14 +263,14 @@ const DataAlter: React.FC<{
             <button
               type="button"
               onClick={cancelSortChange}
-              className="button-secondary-blue"
+              className="btn-secondary-invert"
             >
               Close
             </button>
             <button
               type="button"
               onClick={applySortChange}
-              className="button-primary-blue"
+              className="btn-secondary"
             >
               Apply
             </button>
@@ -300,10 +302,7 @@ const DataAlter: React.FC<{
             &#x78;
           </button>
         </div>
-        <fieldset
-          className="dialog__body"
-          // onChange={(e) => handleSortChange(e)}
-        >
+        <fieldset className="dialog__body">
           <legend className="sr-only">Add Filters</legend>
           {data && (
             <div className="data-alter__filter">
@@ -355,14 +354,14 @@ const DataAlter: React.FC<{
           <button
             type="button"
             onClick={handleFilterClick}
-            className="button-secondary-blue"
+            className="btn-secondary-invert"
           >
             Close
           </button>
           <button
             type="button"
             onClick={applyFilterChange}
-            className="button-primary-blue"
+            className="btn-secondary"
           >
             Apply
           </button>

@@ -127,7 +127,6 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                   </li>
                 ))}
               </ul>
-              {/* <List data={data} loading={loading} /> */}
               <Pagination
                 total={data.search.result.count}
                 newPage={handleRouteChange}

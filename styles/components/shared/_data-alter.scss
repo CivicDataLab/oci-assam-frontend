@@ -38,8 +38,8 @@
       font-size: 0.8rem;
       line-height: 1.8;
 
-      &:first-child {
-        margin-right: 12px;
+      &:last-child {
+        margin-left: 12px;
       }
 
       @include media.narrowerThan('seed') {

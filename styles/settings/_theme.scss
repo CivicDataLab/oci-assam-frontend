@@ -1,4 +1,20 @@
 @use './variables' as *;
 
+// header
 $bg-header: $bg-dark;
+$text-header: $text-dark-high;
+
+// footer
 $bg-footer: $bg-dark;
+$text-footer: $text-dark-high;
+
+// button
+$btn-primary-bg: $bg-darkest;
+$btn-primary-text: $text-dark-high;
+
+$btn-secondary-bg: $color-sapphire;
+$btn-secondary-text: $bg-lightest;
+
+// selection
+$selection-bg: lighten($bg-darkest, 60);
+$selection-text: $bg-darkest;

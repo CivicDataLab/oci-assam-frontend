@@ -53,6 +53,7 @@
   &__links {
     display: flex;
     align-content: center;
+    flex-wrap: wrap;
   }
 
   &__item {
@@ -70,7 +71,6 @@
 
       @include narrowerThan('plant') {
         box-shadow: inset 3px 0 0 0 $bg-lightest;
-
       }
     }
   }
@@ -159,6 +159,8 @@
 
   &__button {
     margin-right: 1rem;
+    width: 44px;
+    height: 44px;
   }
 
   &__link {
@@ -221,6 +223,7 @@
 
     &[aria-expanded='true'] {
       background-color: $bg-darkest;
+      
 
       &::after {
         transform: rotate(-135deg);
@@ -228,11 +231,13 @@
 
       & + ul {
         background-color: $bg-darkest;
+        padding-bottom: 1rem;
       }
     }
   }
 
   &__nested {
+    width: 100%;
     a {
       padding: 1rem 1.5rem;
       display: block;
@@ -245,17 +250,4 @@
   @include narrowerThan('seed') {
     min-width: 248px;
   }
-
-  // &--active {
-  //   transform: translateX(0%);
-  // }
 }
-
-// .navbar-backdrop {
-//   display: none;
-//   @include backdrop;
-
-//   &--active {
-//     display: block;
-//   }
-// }

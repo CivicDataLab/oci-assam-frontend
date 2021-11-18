@@ -1,8 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
-// import Recent from '../components/home/Recent';
-// import Search from 'components/datasets/Search';
 import HomeSearch from 'components/home/HomeSearch';
 import Carousel from 'components/home/Carousel';
 import { SEARCH_QUERY } from '../graphql/queries';
@@ -36,7 +34,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
                 The data that we have here is contributed by the finance
                 department, the government of Assam.
               </p>
-              <a href="/" className="button-secondary">
+              <a href="/" className="btn-primary-invert">
                 Call to action
               </a>
             </section>
@@ -54,7 +52,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
               Data analysis feature helps you view, analyze and use the
               procurement data of Assam
             </p>
-            <a className="button-primary" href="/analysis">
+            <a className="btn-primary" href="/analysis">
               View Data Analysis
             </a>
           </section>
@@ -65,7 +63,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
               See stories and post done using this dataset. You can also
               contribute your own story
             </p>
-            <a className="button-primary" href="/stories">
+            <a className="btn-primary" href="/stories">
               View Data Stories
             </a>
           </section>

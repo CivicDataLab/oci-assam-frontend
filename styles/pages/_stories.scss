@@ -1,4 +1,4 @@
-@use '../../tools/mixins/media' as media;
+@use '../tools/mixins/media' as media;
 
 .stories {
   .container {
@@ -10,7 +10,7 @@
   }
 
   @include media.narrowerThan('seed') {
-    .button-primary {
+    .btn-primary {
       margin-top: 1rem;
     }
   }

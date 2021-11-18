@@ -7,22 +7,9 @@ const Search: React.FC<{ text?: string; newSearch: any }> = ({
 }) => {
   const router = useRouter();
   const [q, setQ] = useState(router.query.q);
-  // const [sort, setSort] = useState(router.query.sort);
 
   const handleChange = (event) => {
     setQ(event.target.value);
-    // switch (event.target.name) {
-    //   case 'q':
-    //     setQ(event.target.value);
-    //     break;
-    //   case 'sort':
-    //     setSort(event.target.value);
-    //     router.push({
-    //       pathname: '/datasets',
-    //       query: { q, sort: event.target.value },
-    //     });
-    //     break;
-    // }
   };
 
   function handleClear() {
@@ -63,7 +50,7 @@ const Search: React.FC<{ text?: string; newSearch: any }> = ({
         </button>
         <button
           onClick={handleSubmit}
-          className="search__submit button-primary"
+          className="search__submit btn-primary"
           type="submit"
           title="Submit search"
         >

@@ -1,10 +1,4 @@
-// const { URL } = require('url');
-// const bytes = require('bytes');
-// const slugify = require('slugify');
-// const config = require('../next.config.js');
-// const Papa = require('papaparse');
-// import fs from 'fs';
-
+// fetch medium post banner URL
 export function getMediumBanner(postContent) {
   const srcIndex = postContent.indexOf('src=');
   const srcStart = srcIndex + 5;
@@ -291,6 +285,7 @@ export function ckanToDataPackage(descriptor) {
   return datapackage;
 }
 
+// function to create tabbed interface
 export function tabbedInterface(tablist, panels) {
   // Get relevant elements and collections
   const tabs = tablist.querySelectorAll('a');
@@ -370,6 +365,11 @@ export function tabbedInterface(tablist, panels) {
   tabs[0].removeAttribute('tabindex');
   tabs[0].setAttribute('aria-selected', 'true');
   panels[0].hidden = false;
+}
+
+let isNavOpen = false;
+export function mobileNavHandler() {
+  return !isNavOpen;
 }
 
 /*

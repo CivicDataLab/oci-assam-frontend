@@ -156,7 +156,7 @@ const DList = ({ content }) => {
                   </a>
                 </dd>
                 <dd className="dlist__desc">
-                  <a className="button-primary" href={value.desc[4]}>
+                  <a className="btn-primary" href={value.desc[4]}>
                     <svg
                       width="10"
                       height="12"
