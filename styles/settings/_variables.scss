@@ -14,19 +14,13 @@ $color-warning: hsl(36, 75%, 49%);
 $color-success: hsl(135, 47%, 37%);
 $color-info: hsl(220, 60%, 43%);
 
-$color-flamingo: hsl(346, 94%, 67%);
 $color-sapphire-0: hsl(225, 100%, 96%);
 $color-sapphire: hsl(224, 42%, 49%);
 $color-blue: hsl(238, 90%, 33%);
 $color-violet: hsl(256, 50%, 51%);
 $color-gold: hsl(47, 100%, 32%);
 $color-pink: hsl(338, 53%, 39%);
-$color-violet-3: hsl(287, 29%, 45%);
 $color-carrot: hsl(0, 74%, 73%);
-$color-honey: hsl(30, 95%, 71%);
-$color-honey-3: hsl(30, 50%, 52%);
-$color-amazon: hsl(155, 38%, 57%);
-$color-amazon-3: hsl(154, 34%, 40%);
 
 $text-dark-high: hsl(0, 33%, 99%);
 $text-dark-medium: hsla(0, 0%, 100%, 0.72);
@@ -38,40 +32,13 @@ $text-light-medium: hsla(0, 0%, 0%, 0.6);
 $text-light-light: hsla(0, 0%, 0%, 0.32);
 $text-light-disabled: hsla(0, 0%, 0%, 0.08);
 
-$grey-1: hsl(0, 0%, 4%);
-$grey-2: hsl(0, 0%, 33%);
-$grey-3: hsl(0, 0%, 68%);
-$grey-4: hsl(300, 10%, 94%);
-$grey-5: hsl(0, 33%, 99%);
-$grey-6: hsl(300, 10%, 94%);
-
-$gradient-basic: linear-gradient(
-  180deg,
-  hsla(0, 0%, 0%, 0) 0%,
-  hsl(0, 0%, 0%) 100%
-);
-$gradient-pink: linear-gradient(
-  162.85deg,
-  hsl(346, 94%, 67%) 0%,
-  hsl(287, 43%, 19%) 99.48%
-);
-$gradient-sapphire: linear-gradient(
-  162.85deg,
-  hsl(224, 42%, 49%) 0%,
-  hsl(287, 43%, 19%) 99.48%
-);
+$grey-1: #0a0a0a;
+$grey-2: #545454;
+$grey-3: #adadad;
+$grey-4: #f1eef1;
+$grey-5: #fdfcfc;
+$grey-6: #f1eef1;
 
 $box-shadow-1: 0px 1px 4px rgba(0, 0, 0, 0.14);
-$box-shadow-2: 4px 6px 8px rgba(0, 0, 0, 0.14);
 $box-shadow-inset: inset 0px 0px 4px rgba(0, 0, 0, 0.08);
 $drop-shadow: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
-
-@mixin backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 990;
-}

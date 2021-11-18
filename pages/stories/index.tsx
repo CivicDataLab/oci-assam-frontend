@@ -40,7 +40,7 @@ const Stories = ({ data }) => {
                   <h3 className="heading-w-line">Stories from our team</h3>
                   <button
                     type="button"
-                    className="button-primary"
+                    className="btn-primary"
                     onClick={handleButtonClick}
                   >
                     Submit Article for Review
@@ -88,7 +88,7 @@ const Stories = ({ data }) => {
                       />
                     </section>
                     <button
-                      className="button-primary dialog__submit"
+                      className="btn-primary dialog__submit"
                       id="modalSubmit"
                       onClick={handleButtonClick}
                     >

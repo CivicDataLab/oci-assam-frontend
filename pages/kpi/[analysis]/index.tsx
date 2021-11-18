@@ -81,7 +81,7 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
         <div className="page-wrap container">
           <section className="analysis__heading">
             <h3 className="heading-w-line">KPI Analysis</h3>
-            <button className="button-primary" onClick={handleButtonClick}>
+            <button className="btn-primary" onClick={handleButtonClick}>
               <svg
                 width="10"
                 height="12"
@@ -197,7 +197,7 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
                 </div>
               </section>
               <button
-                className="button-primary dialog__submit"
+                className="btn-primary dialog__submit"
                 id="modalSubmit"
                 onClick={handleButtonClick}
               >

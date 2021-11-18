@@ -10,7 +10,7 @@
   }
 
   @include media.narrowerThan('seed') {
-    .button-primary {
+    .btn-primary {
       margin-top: 1rem;
     }
   }

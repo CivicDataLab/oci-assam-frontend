@@ -261,14 +261,14 @@ const DataAlter: React.FC<{
             <button
               type="button"
               onClick={cancelSortChange}
-              className="button-secondary-blue"
+              className="btn-secondary-invert"
             >
               Close
             </button>
             <button
               type="button"
               onClick={applySortChange}
-              className="button-primary-blue"
+              className="btn-secondary"
             >
               Apply
             </button>
@@ -352,14 +352,14 @@ const DataAlter: React.FC<{
           <button
             type="button"
             onClick={handleFilterClick}
-            className="button-secondary-blue"
+            className="btn-secondary-invert"
           >
             Close
           </button>
           <button
             type="button"
             onClick={applyFilterChange}
-            className="button-primary-blue"
+            className="btn-secondary"
           >
             Apply
           </button>

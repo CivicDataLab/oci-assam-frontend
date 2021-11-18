@@ -50,7 +50,7 @@ const Search: React.FC<{ text?: string; newSearch: any }> = ({
         </button>
         <button
           onClick={handleSubmit}
-          className="search__submit button-primary"
+          className="search__submit btn-primary"
           type="submit"
           title="Submit search"
         >

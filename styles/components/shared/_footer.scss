@@ -1,10 +1,10 @@
-@use '../../settings/variables' as *;
+@use '../../settings/theme' as *;
 @use '../../tools/mixins/narrowerThan' as *;
 
 .footer {
   margin-top: 5rem;
-  background-color: $bg-dark;
-  color: $text-dark-high;
+  background-color: $bg-footer;
+  color: $text-footer;
 
   .container {
     display: flex;
@@ -40,8 +40,8 @@
   }
 
   &__pages {
-    border-left: 1px solid $bg-lightest;
-    border-right: 1px solid $bg-lightest;
+    border-left: 1px solid $text-footer;
+    border-right: 1px solid $text-footer;
     padding-left: 3rem;
 
     h2 {

@@ -128,7 +128,7 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
           <section className="tender__heading">
             <h3 className="heading-w-line">Contract Details</h3>
 
-            <button className="button-primary" onClick={handleButtonClick}>
+            <button className="btn-primary" onClick={handleButtonClick}>
               <svg
                 width="10"
                 height="12"
@@ -240,7 +240,7 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
                 </div>
               </section>
               <button
-                className="button-primary dialog__submit"
+                className="btn-primary dialog__submit"
                 id="modalSubmit"
                 onClick={handleButtonClick}
               >

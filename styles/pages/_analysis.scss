@@ -10,7 +10,7 @@
     @include media.narrowerThan('seed') {
       grid-template-columns: 1fr;
 
-      .button-primary {
+      .btn-primary {
         margin-top: 1rem;
       }
     }

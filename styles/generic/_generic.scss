@@ -1,5 +1,5 @@
 @use '../tools/mixins/media' as media;
-@use '../settings/variables' as *;
+@use '../settings/theme' as *;
 
 * {
   box-sizing: border-box;
@@ -13,8 +13,8 @@
 }
 
 ::selection {
-  color: $bg-darkest;
-  background-color: lighten($bg-darkest, 60);
+  color: $selection-text;
+  background-color: $selection-bg;
 }
 
 :root {
@@ -25,7 +25,7 @@
   --base-animation-duration: 1ms;
   /* A commonly reused shadow */
   --shadow-fat: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
-  background-color: #fff; /* the background that you can see when you pull on one of the sides of the website */
+  background-color: #fff;
 
   @include media.widerThan(plant) {
     --shadow-fat: 0 2px 5px 0 rgba(0, 0, 0, 0.06),
@@ -38,10 +38,6 @@
   :root {
     --base-animation-duration: 350ms;
   }
-}
-
-.scroll-stop {
-  overflow: hidden;
 }
 
 .container {

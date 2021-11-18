@@ -50,7 +50,6 @@ const Nav: React.FC = () => {
 
   return (
     <>
-      {/* <div className="navbar-backdrop" /> */}
       <header className="header" role="banner">
         <div className="container">
           <div className="header__brand">
