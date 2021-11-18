@@ -367,6 +367,11 @@ export function tabbedInterface(tablist, panels) {
   panels[0].hidden = false;
 }
 
+let isNavOpen = false;
+export function mobileNavHandler() {
+  return !isNavOpen;
+}
+
 /*
   At the moment, we're considering only following examples of CKAN view:
   1. recline_view => Data Explorer with Table view, Chart Builder, Map Builder

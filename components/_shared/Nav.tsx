@@ -5,6 +5,40 @@ import { useRouter } from 'next/router';
 import Modal from 'react-modal';
 Modal.setAppElement('#__next');
 
+const navList = [
+  {
+    link: '/datasets',
+    name: 'Contracts Data',
+  },
+  {
+    link: '/kpi',
+    name: 'Data Analysis',
+  },
+  {
+    link: '/stories',
+    name: 'Data Stories',
+  },
+  {
+    link: '#forum',
+    name: 'Forum',
+    hasSubMenu: true,
+    subMenu: [
+      {
+        link: '/',
+        name: 'Forum A',
+      },
+      {
+        link: '/',
+        name: 'Forum B',
+      },
+    ],
+  },
+  {
+    link: '/about',
+    name: 'About Us',
+  },
+];
+
 const Nav: React.FC = () => {
   const router = useRouter();
   const [navIsOpen, setNavIsOpen] = useState(false);
@@ -77,63 +111,47 @@ const Nav: React.FC = () => {
           <nav className="navbar">
             <h2 className="sr-only">Navigation menu</h2>
             <ul className="navbar__container">
-              <li className="navbar__links">
-                <Link href="/datasets">
-                  <a
-                    className={`navbar__item ${
-                      router.pathname.includes('/datasets')
-                        ? 'navbar__item--active'
-                        : ''
-                    }`}
-                  >
-                    Contracts Data
-                  </a>
-                </Link>
-              </li>
-              <li className="navbar__links">
-                <Link href="/kpi">
-                  <a
-                    className={`navbar__item ${
-                      router.pathname.includes('/kpi')
-                        ? 'navbar__item--active'
-                        : ''
-                    }`}
-                  >
-                    Data Analysis
-                  </a>
-                </Link>
-              </li>
-              <li className="navbar__links">
-                <Link href="/stories">
-                  <a
-                    className={`navbar__item ${
-                      router.pathname.includes('/stories')
-                        ? 'navbar__item--active'
-                        : ''
-                    }`}
-                  >
-                    Data Stories
-                  </a>
-                </Link>
-              </li>
-              <li className="navbar__links">
-                <Link href="/">
-                  <a className="navbar__item">Forum</a>
-                </Link>
-              </li>
-              <li className="navbar__links">
-                <Link href="/about">
-                  <a
-                    className={`navbar__item ${
-                      router.pathname.includes('/about')
-                        ? 'navbar__item--active'
-                        : ''
-                    }`}
-                  >
-                    About Us
-                  </a>
-                </Link>
-              </li>
+              {navList.map((navItem, index) => (
+                <li key={`navItemMobile-${index}`} className="navbar__links">
+                  {navItem.hasSubMenu ? (
+                    <>
+                      <button
+                        className="navbar__item"
+                        type="button"
+                        aria-controls="submenu__resources"
+                        aria-expanded="false"
+                        aria-label={`Show ${navItem.name} menu`}
+                        data-text-for-show={`Show ${navItem.name} menu`}
+                        data-text-for-hide={`Hide ${navItem.name} menu`}
+                        onClick={navButtonHandler}
+                      >
+                        {navItem.name}
+                      </button>
+                      <ul className="m-navbar__nested" hidden>
+                        {navItem.subMenu.map((subMenuItem, index) => (
+                          <li key={`submenuItem-${index}`}>
+                            <a href={subMenuItem.link}>
+                              {subMenuItem.name} <span>&#x279D;</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <Link href={navItem.link}>
+                      <a
+                        className={`navbar__item ${
+                          router.pathname.includes(navItem.link)
+                            ? 'navbar__item--active'
+                            : ''
+                        }`}
+                      >
+                        {navItem.name}
+                      </a>
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
@@ -213,63 +231,52 @@ const Nav: React.FC = () => {
           </div>
 
           <ul className="m-navbar__container">
-            <li className="navbar__links">
-              <Link href="/datasets">
-                <a
-                  className={`navbar__item ${
-                    router.pathname.includes('/datasets')
-                      ? 'navbar__item--active'
-                      : ''
-                  }`}
-                >
-                  Contracts Data
-                </a>
-              </Link>
-            </li>
-            <li className="navbar__links">
-              <Link href="/kpi">
-                <a
-                  className={`navbar__item ${
-                    router.pathname.includes('/kpi')
-                      ? 'navbar__item--active'
-                      : ''
-                  }`}
-                >
-                  Data Analysis
-                </a>
-              </Link>
-            </li>
-            <li className="navbar__links">
-              <Link href="/stories">
-                <a
-                  className={`navbar__item ${
-                    router.pathname.includes('/stories')
-                      ? 'navbar__item--active'
-                      : ''
-                  }`}
-                >
-                  Data Stories
-                </a>
-              </Link>
-            </li>
-            <li className="navbar__links">
-              <Link href="/">
-                <a className="navbar__item">Forum</a>
-              </Link>
-            </li>
-            <li className="navbar__links">
-              <Link href="/about">
-                <a
-                  className={`navbar__item ${
-                    router.pathname.includes('/about')
-                      ? 'navbar__item--active'
-                      : ''
-                  }`}
-                >
-                  About Us
-                </a>
-              </Link>
-            </li>
+            {navList.map((navItem, index) => (
+              <li key={`navItemMobile-${index}`} className="navbar__links">
+                {navItem.hasSubMenu ? (
+                  <>
+                    <button
+                      className="navbar__item"
+                      type="button"
+                      aria-controls="submenu__resources"
+                      aria-expanded="false"
+                      aria-label={`Show ${navItem.name} menu`}
+                      data-text-for-show={`Show ${navItem.name} menu`}
+                      data-text-for-hide={`Hide ${navItem.name} menu`}
+                      onClick={navButtonHandler}
+                    >
+                      {navItem.name}
+                    </button>
+                    <ul className="m-navbar__nested" hidden>
+                      {navItem.subMenu.map((subMenuItem, index) => (
+                        <li key={`submenuItem-${index}`}>
+                          <a
+                            href={subMenuItem.link}
+                            onClick={mobileNavHandler}
+                          >
+                            {subMenuItem.name} <span>&#x279D;</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <Link href={navItem.link}>
+                    <a
+                      href={navItem.link}
+                      onClick={mobileNavHandler}
+                      className={`navbar__item ${
+                        router.pathname.includes(navItem.link)
+                          ? 'navbar__item--active'
+                          : ''
+                      }`}
+                    >
+                      {navItem.name}
+                    </a>
+                  </Link>
+                )}
+              </li>
+            ))}
           </ul>
         </nav>
       </Modal>

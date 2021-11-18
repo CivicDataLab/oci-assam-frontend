@@ -35,6 +35,8 @@ const DataAlter: React.FC<{
   fq?: any;
   sortShow?: boolean;
 }> = ({ data, newData, fq, sortShow }) => {
+  const displaySort = sortShow == false ? false : true;
+
   const router = useRouter();
   const [sortIsOpen, setSortIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
@@ -202,7 +204,7 @@ const DataAlter: React.FC<{
             </div>
             Add Filters
           </button>
-          {sortShow && (
+          {displaySort && (
             <button type="button" onClick={handleSortClick}>
               <div className="data-alter__svg">
                 <svg
@@ -225,7 +227,7 @@ const DataAlter: React.FC<{
       </div>
 
       {/* Sort Modal */}
-      {sortShow && (
+      {displaySort && (
         <Modal
           isOpen={sortIsOpen}
           onRequestClose={handleSortClick}
