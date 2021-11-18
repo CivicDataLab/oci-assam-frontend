@@ -30,9 +30,11 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
   const headerData = {
     title: dataPackage.title || dataPackage.name,
     content: dataPackage.organization.title,
-    date: `${dataPackage.meta.date || ''} . ${
-      dataPackage.meta.fiscal_year || ''
-    }`,
+    date: dataPackage.meta
+      ? `${dataPackage.meta.date || ''} . ${
+          dataPackage.meta.fiscal_year || ''
+        }`
+      : '',
     previousPage: 'Contracts Data',
     previousLink: '/datasets',
   };
@@ -40,15 +42,15 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
   const basicContent = [
     {
       title: 'Open contracting ID',
-      desc: csv.tender.ocid || '',
+      desc: csv.tender ? csv.tender.ocid : '',
     },
     {
       title: 'Tender ID',
-      desc: csv.tender['tender/id'],
+      desc: csv.tender ? csv.tender['tender/id'] : '',
     },
     {
       title: 'Tender Title',
-      desc: csv.tender['tender/title'],
+      desc: csv.tender ? csv.tender['tender/title'] : '',
     },
     {
       title: 'Tender description',
@@ -60,7 +62,9 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
     },
     {
       title: 'Tender amount',
-      desc: `₹${csv.tender['tender/participationFees/0/value/amount']}`,
+      desc: `₹${
+        csv.tender ? csv.tender['tender/participationFees/0/value/amount'] : ''
+      }`,
     },
   ];
 

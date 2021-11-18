@@ -30,7 +30,6 @@
     "setupTests.js",
     "jest.config.ts",
     "config/jest/cssTransform.js",
-    "components/_shared/ChartBuilder.js",
     "custom.d.ts"
   ]
 }

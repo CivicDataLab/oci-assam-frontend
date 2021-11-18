@@ -1,8 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { initializeApollo } from '../lib/apolloClient';
-// import Recent from '../components/home/Recent';
-// import Search from 'components/datasets/Search';
 import HomeSearch from 'components/home/HomeSearch';
 import Carousel from 'components/home/Carousel';
 import { SEARCH_QUERY } from '../graphql/queries';

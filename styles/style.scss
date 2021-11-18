@@ -1,13 +1,9 @@
-@use 'generic/reset';
-@use 'generic/generic';
-@use 'generic/normalise';
+@use 'generic';
 
 @use 'elements/elements';
+
+@use 'pages';
 
 @use 'objects';
 
 @use 'components';
-
-@use 'utilities';
-
-@use 'tools' as tools;

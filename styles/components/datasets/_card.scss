@@ -9,22 +9,16 @@
     background-color: $bg-lightest;
     border-radius: 6px;
     transition: transform 200ms ease;
-    // transform: translateX(3px);
     display: flex;
 
     > figure {
       margin-right: 1rem;
     }
-
-    // &:hover {
-    //   transform: translateX(6px);
-    // }
   }
 
   &__image {
     width: 60px;
     width: 60px;
-    // width: 100%;
   }
 
   &__heading {

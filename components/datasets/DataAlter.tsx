@@ -300,10 +300,7 @@ const DataAlter: React.FC<{
             &#x78;
           </button>
         </div>
-        <fieldset
-          className="dialog__body"
-          // onChange={(e) => handleSortChange(e)}
-        >
+        <fieldset className="dialog__body">
           <legend className="sr-only">Add Filters</legend>
           {data && (
             <div className="data-alter__filter">

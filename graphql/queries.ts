@@ -96,34 +96,6 @@ export const SEARCH_QUERY = gql`
   }
 `;
 
-// export const SEARCH_QUERY = gql`
-//   query search(
-//     $q: String
-//     $sort: String
-//     $rows: Int
-//     $start: Int
-//     $facetField: [String]
-//     $facetLimit: Int
-//     $facetMinCount: Int
-//   ) {
-//     search(q: $q, sort: $sort, rows: $rows, start: $start, facet.field: $facetField, facet.limit: $facetLimit, facet.mincount: $facetMinCount)
-//       @rest(type: "Search", path: "package_search?{args}") {
-//       result {
-//         count
-//         results {
-//           name
-//           title
-//           organization {
-//             name
-//             title
-//             description
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
-
 export const GET_TOTAL_COUNT_QUERY = gql`
   query search($q: String, $sort: String) {
     search(q: $q, sort: $sort)

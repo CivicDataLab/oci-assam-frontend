@@ -70,7 +70,6 @@
 
       @include narrowerThan('plant') {
         box-shadow: inset 3px 0 0 0 $bg-lightest;
-
       }
     }
   }
@@ -245,17 +244,4 @@
   @include narrowerThan('seed') {
     min-width: 248px;
   }
-
-  // &--active {
-  //   transform: translateX(0%);
-  // }
 }
-
-// .navbar-backdrop {
-//   display: none;
-//   @include backdrop;
-
-//   &--active {
-//     display: block;
-//   }
-// }

@@ -63,7 +63,6 @@
     section {
       max-width: 512px;
       width: 40%;
-      // margin-bottom: 2rem;
 
       @include media.narrowerThan('seedling') {
         width: 100%;
