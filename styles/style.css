@@ -943,29 +943,29 @@ button {
 .navbar__nested {
   display: block;
   position: absolute;
-  background: #ed8787;
   top: 120%;
   width: 11rem;
-  border-radius: 4px;
   font-size: 0.8rem;
 }
 .navbar__nested li {
   position: relative;
+  background-color: #0899A0;
+  border-radius: 4px;
+  transition: background-color 200ms ease-in;
 }
 .navbar__nested li a {
   text-decoration: underline;
   padding: 0.7rem 1rem 0.7rem 1rem;
+  display: block;
+  border-radius: 4px;
 }
 .navbar__nested li a span {
   text-decoration: none;
   position: absolute;
   right: 1rem;
 }
-.navbar__nested li:hover {
-  background-color: #f4b4b4;
-}
-.navbar__nested li:hover a {
-  background-color: inherit;
+.navbar__nested li:hover, .navbar__nested li:focus-within {
+  background-color: #0ac7d1;
 }
 .navbar__nested::before {
   content: "";
@@ -973,7 +973,7 @@ button {
   position: absolute;
   border-left: 14px solid transparent;
   border-right: 14px solid transparent;
-  border-bottom: 17px solid #ed8787;
+  border-bottom: 17px solid #0899A0;
   top: -10px;
   left: 10%;
 }

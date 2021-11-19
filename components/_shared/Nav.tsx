@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
@@ -127,12 +127,14 @@ const Nav: React.FC = () => {
                       >
                         {navItem.name}
                       </button>
-                      <ul className="m-navbar__nested" hidden>
+                      <ul className="navbar__nested" hidden>
                         {navItem.subMenu.map((subMenuItem, index) => (
                           <li key={`submenuItem-${index}`}>
-                            <a href={subMenuItem.link}>
-                              {subMenuItem.name} <span>&#x279D;</span>
-                            </a>
+                            <Link href={subMenuItem.link}>
+                              <a>
+                                {subMenuItem.name} <span>&#x279D;</span>
+                              </a>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -250,12 +252,14 @@ const Nav: React.FC = () => {
                     <ul className="m-navbar__nested" hidden>
                       {navItem.subMenu.map((subMenuItem, index) => (
                         <li key={`submenuItem-${index}`}>
-                          <a
-                            href={subMenuItem.link}
-                            onClick={mobileNavHandler}
-                          >
-                            {subMenuItem.name} <span>&#x279D;</span>
-                          </a>
+                          <Link href={subMenuItem.link}>
+                            <a
+                              href={subMenuItem.link}
+                              onClick={mobileNavHandler}
+                            >
+                              {subMenuItem.name} <span>&#x279D;</span>
+                            </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>

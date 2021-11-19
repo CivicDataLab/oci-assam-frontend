@@ -4,6 +4,7 @@ import { useApollo } from '../lib/apolloClient';
 import Layout from 'components/layout/layout';
 import I18nProvider from 'next-translate/I18nProvider';
 import Router, { useRouter } from 'next/router';
+import NextNprogress from 'nextjs-progressbar';
 import '../styles/style.css';
 
 interface I8nObject {
@@ -42,6 +43,9 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
           ) as HTMLInputElement
         ).focus();
       }
+    };
+
+    const handleRouteStart = () => {
       if (
         document.querySelector('.m-navbar__links > [aria-expanded="true"]') ||
         document.querySelector('.navbar__links > [aria-expanded="true"]')
@@ -56,16 +60,12 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
       }
     };
 
-    // const handleRouteStart = () => {
-    //   if (document.querySelector('.ReactModal__Body--open')) {
-
-    //   }
-    // };
-
     Router.events.on('routeChangeComplete', handleRouteComplete);
+    Router.events.on('routeChangeStart', handleRouteStart);
 
     return () => {
       Router.events.off('routeChangeComplete', handleRouteComplete);
+      Router.events.on('routeChangeStart', handleRouteStart);
     };
   });
 
@@ -73,6 +73,13 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
     <Layout>
       <I18nProvider lang={router.locale} namespaces={pageProps._ns}>
         <ApolloProvider client={apolloClient}>
+          <NextNprogress
+            color="#0899A0"
+            startPosition={0.3}
+            stopDelayMs={100}
+            height={3}
+            options={{ easing: 'ease', speed: 300, showSpinner: false }}
+          />
           <Component {...pageProps} />
         </ApolloProvider>
       </I18nProvider>
