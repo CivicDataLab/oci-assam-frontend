@@ -1,4 +1,5 @@
 @use '../../settings/variables' as *;
+@use '../../settings/theme' as *;
 @use '../../tools/mixins/narrowerThan' as *;
 
 .header {
@@ -82,18 +83,21 @@
   &__nested {
     display: block;
     position: absolute;
-    background: $color-carrot;
     top: 120%;
     width: 11rem;
-    border-radius: 4px;
     font-size: 0.8rem;
 
     li {
       position: relative;
+      background-color: $bg-submenu;
+      border-radius: 4px;
+      transition: background-color 200ms ease-in;
 
       a {
         text-decoration: underline;
         padding: 0.7rem 1rem 0.7rem 1rem;
+        display: block;
+        border-radius: 4px;
 
         span {
           text-decoration: none;
@@ -102,12 +106,8 @@
         }
       }
 
-      &:hover {
-        background-color: lighten($color-carrot, 10);
-
-        a {
-          background-color: inherit;
-        }
+      &:hover, &:focus-within {
+        background-color: lighten($bg-submenu, 10);
       }
     }
 
@@ -117,7 +117,7 @@
       position: absolute;
       border-left: 14px solid transparent;
       border-right: 14px solid transparent;
-      border-bottom: 17px solid $color-carrot;
+      border-bottom: 17px solid $bg-submenu;
       top: -10px;
       left: 10%;
     }
@@ -223,7 +223,6 @@
 
     &[aria-expanded='true'] {
       background-color: $bg-darkest;
-      
 
       &::after {
         transform: rotate(-135deg);
