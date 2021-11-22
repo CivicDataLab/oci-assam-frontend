@@ -1,49 +1,57 @@
-# ckan-nextjs
+<h1 align="center">Public Procurement Explorer - Assam</h1>
+<p align="center">In collaboration between <a href="https://civicdatalab.in/">CivicDataLab</a> and <a href="https://www.open-contracting.org/implement/lift/">Open Contracting Partnership</a></p>
+<br/>
+<p align="center">
+<img alt="" src="https://github.com/CivicDataLab/oci-assam-frontend/raw/main/public/assets/images/CDLxOCP.png"/>
+<br/>
+<br/>
+<a href="https://github.com/CivicDataLab/oci-assam-frontend/blob/main/LICENSE">
+<img alt="MIT License" src="https://img.shields.io/apm/l/atomic-design-ui.svg?"/>
+</a>
+</p>
+<p align="center">A data-driven tool to enable public officials in the state of Asaam to make smarter, data-informed decisions about public spending</p>
 
-`ckan-nextjs` assumes a "decoupled" approach where the frontend is a separate service from the backend and interacts with backend(s) via an API.
-
-[ckan]: https://ckan.org/
-[next.js]: https://nextjs.com/
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Guide](#guide)
+  - [Styling 🎨](#styling-)
+  - [Backend](#backend)
+  - [Pages](#pages)
+  - [Data fetching](#data-fetching)
+    - [i18n configuration](#i18n-configuration)
+    - [Pre-fetch data in the server-side](#pre-fetch-data-in-the-server-side)
+    - [Access data from a component](#access-data-from-a-component)
+- [Developers](#developers)
+  - [Boot the local instance](#boot-the-local-instance)
+  - [Tests](#tests)
+  - [Architecture](#architecture)
+- [Contributing](#contributing)
+- [Credits](#credits)
 
 ## Features
 
 - 🗺️ Unified sites: present data and content in one seamless site, pulling datasets from a DMS (e.g. CKAN) and content from a CMS (e.g. wordpress) with a common internal API.
-- 👩‍💻 Developer friendly: built with familiar frontend tech Javascript, React etc.
-- 🎨 Easy to theme and customize: installable themes, use standard CSS and React+CSS tooling. Add new routes quickly.
+- ♿ Accessible: The platform is screen-reader friendly.
+- 👩‍💻 Developer friendly: built with NextJS, SASS, GraphQL to make the developer experience a treat.
+- 🚀 ITCSS & BEM: Combination of BEM methodology and ITCSS architecture to better organize the styling and make it scalable.
+- 📋 Typescript: Developed usign typescript to improve development experience by catching errors and providing fixes.
 - 🧱 Extensible: quickly extend and develop/import your own React components
-- 📝 Well documented: full set of documentation plus the documentation of NextJS and Apollo.
-
-### For developers
-
-- 🏗 Build with modern, familiar frontend tech such as Javascript and React.
-- 🚀 NextJS framework: so everything in NextJS for free React, SSR, static site generation, huge number of examples and integrations etc.
-  - SSR => unlimited number of pages, SEO etc whilst still using React.
-  - Static Site Generation (SSG) (good for small sites) => ultra-simple deployment, great performance and lighthouse scores etc
-- 📋 Typescript support
+- 📝 Well documented: full set of documentation plus the documentation of NextJS and Apollo
 
 ## Getting Started
 
-### Setup
-
-Install a recent version of Node. You'll need Node 10.13 or later.
-
-This project uses `yarn` as the package manager. Install it by running:
-
-`npm install -g yarn`
+Install a recent version of Node. Node 16 is recommended.
 
 ## Guide
 
 ### Styling 🎨
 
-We use Tailwind as a CSS framework. Take a look at `/styles/index.css` to see what we're importing from Tailwind bundle. You can also configure Tailwind using `tailwind.config.js` file.
+We use SASS preprocessor to manage styling. All of it can be found at `/styles` directory where it's managed by using ITCSS architecture to make it scalable. For naming, we use BEM methodology.
 
-Have a look at Next.js support of CSS and ways of writing CSS:
-
-https://nextjs.org/docs/basic-features/built-in-css-support
 
 ### Backend
 
-So far the app is running with mocked data behind. You can connect CMS and DMS backends easily via environment variables:
+You can connect CMS and DMS backends easily via environment variables:
 
 ```console
 $ export DMS=http://ckan:5000
@@ -55,29 +63,22 @@ $ export CMS=http://myblog.wordpress.com
 > - Activities
 > - Auth
 > - Groups
-> - Facets
 
-### Routes
-
-These are the default routes set up in the "starter" app.
+### Pages
 
 - Home `/`
-- Datasets `/datasets`
-- Dataset `/datasets/dataset`
-- Resource `/@org/dataset/r/resource`
-- Organization `/@org`
-- Collection (aka group in CKAN) (?) - suggest to merge into org
-- Static pages, eg, `/about` etc. from CMS or can do it without external CMS, e.g., in Next.js
-
-### New Routes
-
-TODO
+- Dataset lisitng `/datasets`
+- Tender `/datasets/[tender]`
+- KPI listing `/kpi`
+- KPI Analysis `/kpi/[analysis]`
+- Stories `/stories`
+- About `/about`
 
 ### Data fetching
 
 We use Apollo client which allows us to query data with GraphQL. We have setup CKAN API for the demo (it uses demo.ckan.org as DMS):
 
-Note that we don't have Apollo Server but we connect CKAN API using [`apollo-link-rest`](https://www.apollographql.com/docs/link/links/rest/) module. You can see how it works in [lib/apolloClient.ts](https://github.com/civicdatalab/opubfront-haq/blob/main/lib/apolloClient.ts) and then have a look at [pages/\_app.tsx](https://github.com/civicdatalab/opubfront-haq/blob/main/pages/_app.tsx).
+Note that we don't have Apollo Server but we connect CKAN API using [`apollo-link-rest`](https://www.apollographql.com/docs/link/links/rest/) module. You can see how it works in [lib/apolloClient.ts](https://github.com/civicdatalab/opubfront-haq/blob/main/lib/apolloClient.ts) and then have a look at [pages/_app.tsx](https://github.com/civicdatalab/opubfront-haq/blob/main/pages/_app.tsx).
 
 For development/debugging purposes, we suggest installing the Chrome extension - https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm.
 
@@ -233,10 +234,6 @@ export default function Org({ variables }) {
 }
 ```
 
-#### Add a new data source
-
-TODO
-
 ## Developers
 
 ### Boot the local instance
@@ -244,13 +241,13 @@ TODO
 Install the dependencies:
 
 ```bash
-yarn # or npm i
+npm i
 ```
 
 Boot the demo frontend:
 
 ```console
-$ yarn dev # or npm run dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the home page 🎉
@@ -262,24 +259,33 @@ You can start editing the page by modifying `/pages/index.tsx`. The page auto-up
 We use Jest for running tests:
 
 ```bash
-yarn test # or npm run test
+npm run test
 
 # turn on watching
-yarn test --watch
+npm run test --watch
 ```
 
 We use Cypress tests as well
 
 ```
-yarn run e2e
+npm run e2e
 ```
 
 ### Architecture
 
 - Language: Javascript
-- Framework: NextJS - https://nextjs.org/
-- Data layer API: GraphQL using Apollo. So controllers access data using GraphQL “gatsby like”
+- Framework: [Next.js](https://nextjs.com/)
+- Styling: [SASS](https://sass-lang.com/) with [BEM](http://getbem.com/) and ITCSS
+- Data layer API: GraphQL using Apollo.
+
+## Contributing
+
+For any new feature or bug reports, please request it in [issues](https://github.com/CivicDataLab/oci-assam-frontend/issues).
+
+See [CONTRIBUTING.md](https://github.com/CivicDataLab/oci-assam-frontend/blob/main/CONTRIBUTING.md) for ways to get started.
+
+Please adhere to [Code of Conduct](https://github.com/CivicDataLab/oci-assam-frontend/blob/main/CODE_OF_CONDUCT.md).
 
 ## Credits
 
-This is based on a [PortalJS](https://github.com/datopian/portal.js) example by [Datopian](https://www.datopian.com/).
+This is based on a [PortalJS](https://github.com/datopian/portal.js).

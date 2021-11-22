@@ -79,7 +79,7 @@ export async function getFilters(list, variable) {
       variable.q ? variable.q : ''
     }`;
     const fetchData = await fetch(
-      `http://13.126.46.107/api/3/action/package_search?facet.field=[${list}]&facet.limit=6&${queryVars}`
+      `https://openbudgetsindia.org/api/3/action/package_search?facet.field=[${list}]&facet.limit=6&${queryVars}`
     ).then((res) => res.json());
     return fetchData.result.search_facets;
   } catch (error) {
@@ -250,10 +250,6 @@ export function ckanToDataPackage(descriptor) {
   if (Object.keys(meta).length > 0) {
     datapackage.meta = meta;
   }
-  // if (datapackage.tender_date) {
-  //   meta.date = datapackage.tender_date;
-  //   delete datapackage.tender_date;
-  // }
 
   // Resources
   datapackage.resources = datapackage.resources.map((resource) => {
@@ -365,11 +361,6 @@ export function tabbedInterface(tablist, panels) {
   tabs[0].removeAttribute('tabindex');
   tabs[0].setAttribute('aria-selected', 'true');
   panels[0].hidden = false;
-}
-
-let isNavOpen = false;
-export function mobileNavHandler() {
-  return !isNavOpen;
 }
 
 /*
