@@ -1914,7 +1914,7 @@ button {
 }
 .dlist__multiple div {
   display: grid;
-  grid-template-columns: 200px repeat(4, 1fr);
+  grid-template-columns: 250px repeat(4, 1fr);
   justify-content: space-between;
   width: 100%;
 }
@@ -2328,17 +2328,23 @@ button {
   -o-object-fit: contain;
      object-fit: contain;
 }
+.tender__item {
+  margin-top: 3rem;
+}
+.tender__item dt {
+  max-width: 25rem;
+}
+.tender__docs {
+  margin-top: 3rem;
+}
+.tender__docs dt {
+  max-width: 15rem;
+}
 .tender__basic {
-  display: flex;
   margin-top: 1.5rem;
 }
 .tender__basic dt {
   max-width: 12rem;
-}
-@media screen and (max-width: 979px) {
-  .tender__basic {
-    flex-direction: column;
-  }
 }
 .tender__map {
   display: grid;
@@ -2356,12 +2362,6 @@ button {
   .tender__map:last-child {
     margin-left: 0;
   }
-}
-.tender__item {
-  margin-top: 3rem;
-}
-.tender__item dt {
-  max-width: 25rem;
 }
 .tender .heading-3 svg {
   margin-bottom: -3px;

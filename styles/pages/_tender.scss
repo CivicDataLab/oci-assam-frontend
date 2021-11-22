@@ -67,17 +67,32 @@
     }
   }
 
+  &__item {
+    margin-top: 3rem;
+
+    dt {
+      max-width: 25rem;
+    }
+  }
+
+  &__docs {
+    margin-top: 3rem;
+
+    dt {
+      max-width: 15rem;
+    }
+  }
+
   &__basic {
-    display: flex;
     margin-top: 1.5rem;
 
     dt {
       max-width: 12rem;
     }
 
-    @include media.narrowerThan('sprout') {
-      flex-direction: column;
-    }
+    // @include media.narrowerThan('sprout') {
+    //   flex-direction: column;
+    // }
   }
 
   &__map {
@@ -95,14 +110,6 @@
       &:last-child {
         margin-left: 0;
       }
-    }
-  }
-
-  &__item {
-    margin-top: 3rem;
-
-    dt {
-      max-width: 25rem;
     }
   }
 

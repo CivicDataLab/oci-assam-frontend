@@ -1,40 +1,38 @@
 import React, { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from 'lib/apolloClient';
-import { GET_DATASET_QUERY } from 'graphql/queries';
+// import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
-import { ckanToDataPackage } from 'utils/index';
+import { fetchAPI, getDate } from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
 import DList from 'components/_shared/DList';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Modal from 'react-modal';
-import { resourceGetter } from 'utils/resourceParser';
+// import { resourceGetter } from 'utils/resourceParser';
 Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
-  loading: boolean;
-  csv: any;
+  documents: any;
 };
 
-const Tender: React.FC<Props> = ({ data, loading, csv }) => {
+const Tender: React.FC<Props> = ({ data, documents }) => {
+  console.log(documents);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function handleButtonClick() {
     setModalIsOpen(!modalIsOpen);
   }
 
-  if (loading) return <div>Loading</div>;
-  const dataPackage = ckanToDataPackage(data.dataset.result);
+  const dataPackage = data.result;
 
   const headerData = {
-    title: dataPackage.title || dataPackage.name,
+    title: dataPackage.tender_title || dataPackage.name,
     content: dataPackage.organization.title,
-    date: dataPackage.meta
-      ? `${dataPackage.meta.date || ''} . ${
-          dataPackage.meta.fiscal_year || ''
-        }`
-      : '',
+    date: `${getDate(dataPackage.tender_bidOpening_date) || ''} . ${
+      dataPackage.fiscal_year || ''
+    }`,
     previousPage: 'Contracts Data',
     previousLink: '/datasets',
   };
@@ -42,19 +40,19 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
   const basicContent = [
     {
       title: 'Open contracting ID',
-      desc: csv.tender ? csv.tender.ocid : '',
+      desc: dataPackage.ocid || '',
     },
     {
       title: 'Tender ID',
-      desc: csv.tender ? csv.tender['tender/id'] : '',
+      desc: dataPackage.tender_id || '',
     },
     {
       title: 'Tender Title',
-      desc: csv.tender ? csv.tender['tender/title'] : '',
+      desc: dataPackage.tender_title || '',
     },
     {
       title: 'Tender description',
-      desc: 'Aug. and Extension of LWSS Khel Moh Bariara phase 1st 2nd 3rd in Tehsil Nurpur Distt. Kangra SH Providing and installation of centrifugal pumping machinery with allied accessories and laying jointing testing of G.I. pipe 125mm dia in Rising main for',
+      desc: dataPackage.tender_title || '',
     },
     {
       title: 'Organisation name',
@@ -63,56 +61,117 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
     {
       title: 'Tender amount',
       desc: `₹${
-        csv.tender ? csv.tender['tender/participationFees/0/value/amount'] : ''
+        dataPackage.tender_participationfees_0_value_amount.replace(
+          /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
+          ','
+        ) || ''
       }`,
+    },
+    {
+      title: 'External Reference',
+      desc: dataPackage.tender_externalreference || '',
     },
   ];
 
   const dateContent = [
     {
-      title: 'Participation fees amount',
-      desc: '250',
+      title: 'Published Date',
+      desc: getDate(dataPackage.tender_datepublished) || '',
     },
     {
-      title: 'Participation fees payment address locality',
-      desc: 'Nahan',
+      title: 'PreBid Meeting Date',
+      desc: getDate(dataPackage.prebid_meeting_date) || '',
     },
     {
-      title: 'Date published',
-      desc: '2020-05-06',
+      title: 'Tender Period Duration In Days',
+      desc: dataPackage.tender_tenderperiod_durationindays || '',
     },
     {
-      title: 'Award period Start Date',
-      desc: '2020-05-19',
+      title: 'Stage/Status Updated On',
+      desc: getDate(dataPackage.stage_status_updated_on) || '',
     },
     {
-      title: 'Document availability start date',
-      desc: '2020-05-06',
+      title: 'Bid Opening Date',
+      desc: getDate(dataPackage.tender_bidOpening_date) || '',
     },
     {
-      title: 'Document availability end date',
-      desc: '2020-05-19',
+      title: 'Price Bid Opening Date',
+      desc: getDate(dataPackage.price_bid_opening_date) || '',
+    },
+    {
+      title: 'No of Days b/w Tech and Finance opening',
+      desc: getDate(dataPackage.no_of_days_b_w_tech_and_finance_opening) || '',
+    },
+    {
+      title:
+        'Cycle Time bet. E-Publishing date and opening of price bid (in days)',
+      desc:
+        getDate(
+          dataPackage.cycle_time_bet_e_publishing_date_and_opening_of_price_bid_in_days
+        ) || '',
     },
   ];
 
-  const documents = [
+  const details = [
     {
-      title: 'Tender Notice',
-      desc: ['Tendernotice1.Pdf', '1,388 kb', 'pdf', '#view', '#download'],
-      tooltip: 'true',
+      title: 'Tender Detail',
+      desc: dataPackage.tender_title,
     },
     {
-      title: 'Bill of qualtiy',
-      desc: ['BOQ78274_32737. xls', '129 kb', 'xls', '#view', '#download'],
+      title: 'Tender Category',
+      desc: dataPackage.tender_mainprocurementcategory,
     },
     {
-      title: 'Additional documents',
-      desc: ['GSo0328jd.pdf', '421 kb', 'pdf', '#view', '#download'],
-      tooltip: 'true',
+      title: 'Tender Type',
+      desc: dataPackage.tender_procurementmethod,
     },
     {
-      title: 'Download all tender related documents in Zip file',
-      desc: ['', '1,445 kb', 'zip', '', '#download'],
+      title: 'Form of Contract',
+      desc: dataPackage.tender_contracttype,
+    },
+    {
+      title: 'Product Category',
+      desc: dataPackage.product_category,
+    },
+    {
+      title: 'No of Covers',
+      desc: dataPackage.no_of_covers,
+    },
+    {
+      title: 'Two Stage Tender (Y/N)',
+      desc: dataPackage.tender_allowtwostagetender,
+    },
+    {
+      title: 'Independent External Monitor',
+      desc: dataPackage.independent_external_monitor,
+    },
+    {
+      title: 'Preferential Bidding Allowed',
+      desc: dataPackage.tender_allowpreferentialbidder,
+    },
+    {
+      title: 'No. of Preferential Bids Received',
+      desc: dataPackage.no_of_preferential_bids_received,
+    },
+    {
+      title: 'Payment Mode',
+      desc: dataPackage.payment_mode,
+    },
+    {
+      title: 'Tender Status',
+      desc: dataPackage.tender_status,
+    },
+    {
+      title: 'Tender Stage',
+      desc: dataPackage.tender_stage,
+    },
+    {
+      title: 'No of Bids Received',
+      desc: dataPackage.tender_numberoftenderers,
+    },
+    {
+      title: 'GeMARPTS ID',
+      desc: dataPackage.gemarpts_id,
     },
   ];
 
@@ -268,7 +327,7 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
               </h3>
               <DList content={basicContent} />
             </div>
-            <div className="tender__map">
+            {/* <div className="tender__map">
               <h3 className="heading-3">
                 <svg
                   width="26"
@@ -308,27 +367,29 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
                   layout="responsive"
                 />
               </figure>
-            </div>
+            </div> */}
           </section>
 
-          <section className="tender__item">
-            <h3 className="heading-3">
-              <svg
-                width="21"
-                height="24"
-                viewBox="0 0 16 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4.5 8.49477H4V9.49477H4.5V8.49477ZM11.5 9.49477H12V8.49477H11.5V9.49477ZM4.5 11.9286H4V12.9286H4.5V11.9286ZM11.5 12.9286H12V11.9286H11.5V12.9286ZM4.5 5.06843H4V6.06843H4.5V5.06843ZM11.5 6.06843H12V5.06843H11.5V6.06843ZM15 4.42857H15.5V4.21844L15.3499 4.07139L15 4.42857ZM11.5 1L11.8499 0.642821L11.7041 0.5H11.5V1ZM4.5 9.49477H11.5V8.49477H4.5V9.49477ZM4.5 12.9286H11.5V11.9286H4.5V12.9286ZM4.5 6.06843H11.5V5.06843H4.5V6.06843ZM13.8333 16.5H2.16667V17.5H13.8333V16.5ZM1.5 15.8571V2.14286H0.5V15.8571H1.5ZM14.5 4.42857V15.8571H15.5V4.42857H14.5ZM2.16667 1.5H11.5V0.5H2.16667V1.5ZM11.1501 1.35718L14.6501 4.78575L15.3499 4.07139L11.8499 0.642821L11.1501 1.35718ZM2.16667 16.5C1.78871 16.5 1.5 16.2025 1.5 15.8571H0.5C0.5 16.7741 1.25596 17.5 2.16667 17.5V16.5ZM13.8333 17.5C14.744 17.5 15.5 16.7741 15.5 15.8571H14.5C14.5 16.2025 14.2113 16.5 13.8333 16.5V17.5ZM1.5 2.14286C1.5 1.79749 1.78871 1.5 2.16667 1.5V0.5C1.25596 0.5 0.5 1.22586 0.5 2.14286H1.5Z"
-                  fill="#333333"
-                />
-              </svg>
-              Documents
-            </h3>
-            <DList content={documents} />
-          </section>
+          {documents.length > 0 && (
+            <section className="tender__docs">
+              <h3 className="heading-3">
+                <svg
+                  width="21"
+                  height="24"
+                  viewBox="0 0 16 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.5 8.49477H4V9.49477H4.5V8.49477ZM11.5 9.49477H12V8.49477H11.5V9.49477ZM4.5 11.9286H4V12.9286H4.5V11.9286ZM11.5 12.9286H12V11.9286H11.5V12.9286ZM4.5 5.06843H4V6.06843H4.5V5.06843ZM11.5 6.06843H12V5.06843H11.5V6.06843ZM15 4.42857H15.5V4.21844L15.3499 4.07139L15 4.42857ZM11.5 1L11.8499 0.642821L11.7041 0.5H11.5V1ZM4.5 9.49477H11.5V8.49477H4.5V9.49477ZM4.5 12.9286H11.5V11.9286H4.5V12.9286ZM4.5 6.06843H11.5V5.06843H4.5V6.06843ZM13.8333 16.5H2.16667V17.5H13.8333V16.5ZM1.5 15.8571V2.14286H0.5V15.8571H1.5ZM14.5 4.42857V15.8571H15.5V4.42857H14.5ZM2.16667 1.5H11.5V0.5H2.16667V1.5ZM11.1501 1.35718L14.6501 4.78575L15.3499 4.07139L11.8499 0.642821L11.1501 1.35718ZM2.16667 16.5C1.78871 16.5 1.5 16.2025 1.5 15.8571H0.5C0.5 16.7741 1.25596 17.5 2.16667 17.5V16.5ZM13.8333 17.5C14.744 17.5 15.5 16.7741 15.5 15.8571H14.5C14.5 16.2025 14.2113 16.5 13.8333 16.5V17.5ZM1.5 2.14286C1.5 1.79749 1.78871 1.5 2.16667 1.5V0.5C1.25596 0.5 0.5 1.22586 0.5 2.14286H1.5Z"
+                    fill="#333333"
+                  />
+                </svg>
+                Documents
+              </h3>
+              <DList content={documents} />
+            </section>
+          )}
 
           <section className="tender__item">
             <h3 className="heading-3">
@@ -366,10 +427,10 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
               </svg>
               Tender detail 1
             </h3>
-            <DList content={basicContent} />
+            <DList content={details} />
           </section>
 
-          <section className="tender__item">
+          {/* <section className="tender__item">
             <h3 className="heading-3">
               <svg
                 width="28"
@@ -386,7 +447,7 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
               Tender detail 2
             </h3>
             <DList content={basicContent} />
-          </section>
+          </section> */}
         </div>
       </main>
     </>
@@ -395,23 +456,36 @@ const Tender: React.FC<Props> = ({ data, loading, csv }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const apolloClient = initializeApollo();
-  const variables = {
-    id: context.query.tender,
-  };
 
-  const { data, loading } = await apolloClient.query({
-    query: GET_DATASET_QUERY,
-    variables,
-  });
+  const data = await fetchAPI(context.query.tender);
+  const documents = [];
+  if (data.result.resources) {
+    data.result.resources.forEach((resource: any) => {
+      if (resource.res_type == 'docs') {
+        const fileNameArray = resource.url.split('/');
+        const fileName = fileNameArray[fileNameArray.length - 1];
+        documents.push({
+          title: resource.name,
+          desc: [
+            fileName || '',
+            `${(resource.size / 1024).toFixed(2)} KB` || '',
+            resource.format || '',
+            resource.url || '',
+            resource.url || '',
+          ],
+        });
+      }
+    });
+  }
 
-  const csv = await resourceGetter(data.dataset.result.resources, 'CSV');
+  // const csv = await resourceGetter(data.dataset.result.resources, 'CSV');
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data,
-      loading,
-      csv,
+      ids: context.query.tender,
+      documents,
     },
   };
 };

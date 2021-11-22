@@ -83,7 +83,7 @@ const Nav: React.FC = () => {
   }
 
   return (
-    <>
+    <div>
       <header className="header" role="banner">
         <div className="container">
           <div className="header__brand">
@@ -284,7 +284,7 @@ const Nav: React.FC = () => {
           </ul>
         </nav>
       </Modal>
-    </>
+    </div>
   );
 };
 

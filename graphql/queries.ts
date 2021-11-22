@@ -81,10 +81,14 @@ export const SEARCH_QUERY = gql`
           notes
           tags
           data_type
+          tender_bidOpening_date
           fiscal_year
           tender_date
           tender_value
+          tender_id
+          tender_title
           type
+          tender_participationfees_0_value_amount
           organization {
             name
             title

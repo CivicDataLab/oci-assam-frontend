@@ -41,9 +41,12 @@ const Filter = ({ data, newFilters, fq }) => {
   }, []);
 
   function formatFilterName(name: string) {
-    if (name == 'res_format') {
-      return 'format';
-    } else return name;
+    if (name == 'fiscal_year') {
+      return 'fiscal year';
+    } else if (name == 'organization') return 'buyer name';
+    else if (name == 'tender_mainprocurementcategory') return 'type';
+    else if (name == 'tender_status') return 'status';
+    else return name;
   }
 
   function handleFilterChange(e: any) {
