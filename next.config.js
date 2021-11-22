@@ -15,7 +15,7 @@ module.exports = (phase, { defaultConfig }) => {
       defaultLocale: 'en',
     },
     publicRuntimeConfig: {
-      DMS: dms ? dms.replace(/\/?$/, '') : 'https://openbudgetsindia.org/',
+      DMS: dms ? dms.replace(/\/?$/, '') : 'http://13.126.46.107/',
       CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
     },
   };

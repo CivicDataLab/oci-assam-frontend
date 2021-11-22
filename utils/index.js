@@ -7,6 +7,45 @@ export function getMediumBanner(postContent) {
   return src;
 }
 
+// return post time in required format
+export function getDate(time) {
+  // ordinal suffix for date
+  const getOrdinal = function (d) {
+    let type;
+    if (d > 3 && d < 21) type = 'th';
+    switch (d % 10) {
+      case 1:
+        type = 'st';
+        break;
+      case 2:
+        type = 'nd';
+        break;
+      case 3:
+        type = 'rd';
+        break;
+      default:
+        type = 'th';
+        break;
+    }
+    return `${d}${type}`;
+  };
+
+  const dt = new Date(time);
+  if (dt instanceof Date && !isNaN(dt.valueOf())) {
+    const date = getOrdinal(dt.getDate());
+    const month = dt.toLocaleString('default', { month: 'short' });
+    return `${date} ${month}, ${dt.getFullYear()}`;
+  } else return time;
+}
+
+export async function fetchAPI(path) {
+  const response = await fetch(
+    `http://13.126.46.107/api/3/action/package_show?id=${path}`
+  );
+  const data = await response.json();
+  return data;
+}
+
 /*
 Takes single field descriptor from datastore data dictionary and coverts into
 tableschema field descriptor.
@@ -79,7 +118,7 @@ export async function getFilters(list, variable) {
       variable.q ? variable.q : ''
     }`;
     const fetchData = await fetch(
-      `https://openbudgetsindia.org/api/3/action/package_search?facet.field=[${list}]&facet.limit=6&${queryVars}`
+      `http://13.126.46.107/api/3/action/package_search?facet.field=[${list}]&facet.limit=6&${queryVars}`
     ).then((res) => res.json());
     return fetchData.result.search_facets;
   } catch (error) {

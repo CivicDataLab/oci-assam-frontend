@@ -1,3 +1,5 @@
+import { truncate } from 'lodash';
+
 const icons = {
   pdf: (
     <svg
@@ -147,9 +149,15 @@ const DList = ({ content }) => {
             </dt>
             {typeof value.desc != 'string' ? (
               <div className="tender__documents">
-                <dd className="dlist__desc">{value.desc[0]}</dd>
+                <dd className="dlist__desc">
+                  {truncate(value.desc[0], {
+                    length: 30,
+                  })}
+                </dd>
                 <dd className="dlist__desc">{value.desc[1]}</dd>
-                <dd className="dlist__desc">{icons[value.desc[2]]}</dd>
+                <dd className="dlist__desc">
+                  {icons[value.desc[2].toLowerCase()] || icons.zip}
+                </dd>
                 <dd className="dlist__desc">
                   <a className="dlist__view" href={value.desc[3]}>
                     {index == value.length - 1 ? '' : 'View file'}
