@@ -1,7 +1,6 @@
 import Card from './Card';
 
-const List: React.FC<{ data: any; loading: any }> = ({ data, loading }) => {
-  if (loading) return <div>Loading</div>;
+const List: React.FC<{ data: any }> = ({ data }) => {
   return (
     <ul className="list">
       {data.map((pkg: any, index: number) => (

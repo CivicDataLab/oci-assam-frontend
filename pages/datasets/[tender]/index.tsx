@@ -17,7 +17,6 @@ type Props = {
 };
 
 const Tender: React.FC<Props> = ({ data, documents }) => {
-  console.log(documents);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 

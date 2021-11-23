@@ -9,13 +9,14 @@ import MegaHeader from 'components/_shared/MegaHeader';
 import Image from 'next/image';
 import Filter from 'components/datasets/Filter';
 import Modal from 'react-modal';
-
+import { resourceGetter } from 'utils/resourceParser';
 Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
   loading: boolean;
   facets: any;
+  csv: any;
 };
 
 const news = [
@@ -303,12 +304,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     variables,
   });
 
+  const csv = await resourceGetter(data.dataset.result.resources, 'CSV');
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data,
       loading,
       facets,
+      csv,
     },
   };
 };

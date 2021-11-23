@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
-import { initializeApollo } from 'lib/apolloClient';
-import { getFilters, convertToCkanSearchQuery } from 'utils/index';
+// import { initializeApollo } from 'lib/apolloClient';
+import {
+  getFilters,
+  convertToCkanSearchQuery,
+  fetchDatasets,
+} from 'utils/index';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Search from 'components/datasets/Search';
 import Total from 'components/datasets/Total';
 import List from 'components/datasets/List';
 import DataAlter from 'components/datasets/DataAlter';
-import { SEARCH_QUERY } from 'graphql/queries';
+// import { SEARCH_QUERY } from 'graphql/queries';
 import Pagination from 'components/datasets/Pagination';
 import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
@@ -20,14 +24,12 @@ Modal.setAppElement('#__next');
 type Props = {
   data: any;
   facets: any;
-  loading: boolean;
 };
 
 const list =
   '"fiscal_year", "organization", "tender_mainprocurementcategory", "tender_status"';
 
-const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
-  if (loading) return <div>Loading</div>;
+const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
   const { q, sort, size, fq, from } = router.query;
   const [search, setSearch] = useState(q);
@@ -37,7 +39,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
   const [pages, setPages] = useState(from);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const { results, count } = data.search.result;
+  const { results, count } = data.result;
 
   useEffect(() => {
     router.push({
@@ -230,7 +232,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 newData={handleRouteChange}
                 fq={filters}
               />
-              <List data={results} loading={loading} />
+              <List data={results} />
               <Pagination total={count} newPage={handleRouteChange} />
             </div>
           )}
@@ -245,18 +247,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const variables = convertToCkanSearchQuery(query);
   const facets = await getFilters(list, variables);
 
-  const apolloClient = initializeApollo();
-
-  const { data, loading } = await apolloClient.query({
-    query: SEARCH_QUERY,
-    variables,
-  });
-
+  const data = await fetchDatasets('tender_dataset');
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
       data,
-      loading,
       facets,
     },
   };
