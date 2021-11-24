@@ -98,7 +98,6 @@ export function kpiTransformer(mainData, indicatorsData) {
       final_res.push(temp_array);
     }
   }
-  console.log('final_res', final_res);
 
   return final_res;
 }

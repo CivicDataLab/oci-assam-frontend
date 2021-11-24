@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as echarts from 'echarts/core';
 import { BarChart } from 'echarts/charts';
 import { SVGRenderer } from 'echarts/renderers';
@@ -13,29 +13,6 @@ import ReactEChartsCore from 'echarts-for-react/lib/core';
 
 //  To import all the things at once
 // import ReactEcharts from 'echarts-for-react';
-
-const SetSeries = [];
-
-function seriesMaker(theme, dataset, stack) {
-  let stackTrue = '';
-  if (stack == 'True') {
-    stackTrue = 'x';
-  }
-
-  for (
-    let columnLenght = 1;
-    columnLenght <= dataset[0].length - 1;
-    columnLenght++
-  ) {
-    SetSeries.push({
-      type: 'bar',
-      barMaxWidht: 16,
-      itemStyle: { color: theme[columnLenght] },
-      stack: stackTrue,
-    });
-  }
-  return SetSeries;
-}
 
 interface BarChartProps {
   xAxisLabel: string;
@@ -52,7 +29,33 @@ const BarChartViz: React.FC<BarChartProps> = ({
   dataset,
   stack,
 }) => {
-  const series = seriesMaker(theme, dataset, stack);
+  const [series, setSeries] = useState([]);
+
+  useEffect(() => {
+    const SetSeries = [];
+
+    let stackTrue = '';
+    if (stack == 'True') {
+      stackTrue = 'x';
+    }
+
+    for (
+      let columnLenght = 1;
+      columnLenght <= dataset[0].length - 1;
+      columnLenght++
+    ) {
+      SetSeries.push({
+        type: 'bar',
+        barMaxWidht: 16,
+        itemStyle: { color: theme[columnLenght] },
+        stack: stackTrue,
+      });
+    }
+
+    setSeries(SetSeries);
+  }, [dataset]);
+
+  // const series = seriesMaker(theme, dataset, stack);
   const options = {
     legend: {},
     tooltip: {},

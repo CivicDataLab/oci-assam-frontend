@@ -89,13 +89,15 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
     setIndicatorsList(vizFilters);
   }, []);
 
-  function handleNewVizData(val: any) {
-    SetIndicators(val);
-  }
-
   useEffect(() => {
     SetFilteredData(kpiTransformer(csv.analytics, indicators));
-  }, [indicators]);
+  }, []);
+
+  function handleNewVizData(val: any) {
+    SetFilteredData(kpiTransformer(csv.analytics, val));
+
+    SetIndicators(val);
+  }
 
   if (loading) return <div>Loading</div>;
   const dataPackage = ckanToDataPackage(data.dataset.result);
