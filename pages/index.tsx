@@ -52,7 +52,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
               Data analysis feature helps you view, analyze and use the
               procurement data of Assam
             </p>
-            <a className="btn-primary" href="/analysis">
+            <a className="btn-primary" href="/kpi">
               View Data Analysis
             </a>
           </section>

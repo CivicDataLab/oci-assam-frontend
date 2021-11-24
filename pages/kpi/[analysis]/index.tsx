@@ -268,7 +268,7 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
                       Bar
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a href="#lineChart">
                       <svg
                         width="17"
@@ -280,7 +280,7 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
                       </svg>
                       Line
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
                 {/* <div className="viz__tags">
                   <span>Goods</span>
@@ -302,17 +302,18 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
                     theme={['#4965B2', '#ED8686', '#69BC99']}
                     dataset={filteredData}
                     stack="True"
+                    key={Math.random()}
                   />
                 )}
               </figure>
-              <figure className="viz__line" id="lineChart">
+              {/* <figure className="viz__line" id="lineChart">
                 <Image
                   src="/assets/images/line-chart.jpg"
                   width={834}
                   height={477}
                   layout="responsive"
                 />
-              </figure>
+              </figure> */}
             </div>
           </section>
 

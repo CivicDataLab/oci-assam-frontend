@@ -30,9 +30,11 @@ const BarChartViz: React.FC<BarChartProps> = ({
   stack,
 }) => {
   const [series, setSeries] = useState([]);
+  const [option, setOption] = useState({});
 
+  // settting series
   useEffect(() => {
-    const SetSeries = [];
+    const vizSeries = [];
 
     let stackTrue = '';
     if (stack == 'True') {
@@ -40,45 +42,51 @@ const BarChartViz: React.FC<BarChartProps> = ({
     }
 
     for (
-      let columnLenght = 1;
-      columnLenght <= dataset[0].length - 1;
-      columnLenght++
+      let columnLength = 1;
+      columnLength <= dataset[0].length - 1;
+      columnLength++
     ) {
-      SetSeries.push({
+      vizSeries.push({
         type: 'bar',
         barMaxWidht: 16,
-        itemStyle: { color: theme[columnLenght] },
+        itemStyle: { color: theme[columnLength] },
         stack: stackTrue,
+        animation: false,
       });
     }
 
-    setSeries(SetSeries);
+    setSeries(vizSeries);
   }, [dataset]);
 
-  // const series = seriesMaker(theme, dataset, stack);
-  const options = {
-    legend: {},
-    tooltip: {},
-    dataset: { source: dataset },
-    grid: {},
-    xAxis: {
-      type: 'category',
-      name: xAxisLabel,
-      axisLine: {
-        symbol: ['none', 'arrow'],
+  // setting option
+  useEffect(() => {
+    const vizOptions = {
+      legend: {},
+      tooltip: {},
+      dataset: { source: dataset },
+      grid: {},
+      xAxis: {
+        type: 'category',
+        name: xAxisLabel,
+        axisLine: {
+          symbol: ['none', 'arrow'],
+        },
+        axisTick: {
+          show: false,
+        },
       },
-      axisTick: {
-        show: false,
+      yAxis: {
+        type: 'value',
+        name: yAxisLabel,
+        axisLine: { onZero: false, show: true, symbol: ['none', 'arrow'] },
+        nameRotate: 90,
       },
-    },
-    yAxis: {
-      type: 'value',
-      name: yAxisLabel,
-      axisLine: { onZero: false, show: true, symbol: ['none', 'arrow'] },
-      nameRotate: 90,
-    },
-    series: series,
-  };
+      series: series,
+    };
+
+    setOption(vizOptions);
+  }, [series]);
+
   echarts.use([
     BarChart,
     SVGRenderer,
@@ -89,7 +97,7 @@ const BarChartViz: React.FC<BarChartProps> = ({
     TooltipComponent,
   ]);
 
-  return <ReactEChartsCore echarts={echarts} option={options} />;
+  return <ReactEChartsCore echarts={echarts} option={option} />;
 
   // return <ReactEcharts option={options} echarts={echarts} />;
 };
