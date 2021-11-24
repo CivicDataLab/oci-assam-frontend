@@ -5,7 +5,7 @@ async function parseResources(resource: any) {
   const obj = {};
   for (const file of resource) {
     const csvFile = await fetch(file.url).then((res) => res.text());
-    const parsedFile = Papa.parse(csvFile);
+    const parsedFile = Papa.parse(csvFile, { header: true });
     obj[file.res_type] = parsedFile.data;
   }
   return obj;
