@@ -101,7 +101,7 @@ const Nav: React.FC = () => {
                     fill="#0899A0"
                   />
                 </svg>
-                <h1>Public Procurement Explorer</h1>
+                <h1>Public Procurement</h1>
               </a>
             </Link>
             <span className="header__divider" />
