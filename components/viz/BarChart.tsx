@@ -51,7 +51,7 @@ const BarChartViz: React.FC<BarChartProps> = ({
         barMaxWidht: 16,
         itemStyle: { color: theme[columnLength] },
         stack: stackTrue,
-        animation: false,
+        // animation: false,
       });
     }
 
@@ -97,7 +97,14 @@ const BarChartViz: React.FC<BarChartProps> = ({
     TooltipComponent,
   ]);
 
-  return <ReactEChartsCore echarts={echarts} option={option} />;
+  return (
+    <ReactEChartsCore
+      echarts={echarts}
+      option={option}
+      notMerge={true}
+      lazyUpdate={true}
+    />
+  );
 
   // return <ReactEcharts option={options} echarts={echarts} />;
 };

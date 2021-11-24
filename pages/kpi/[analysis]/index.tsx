@@ -302,7 +302,6 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
                     theme={['#4965B2', '#ED8686', '#69BC99']}
                     dataset={filteredData}
                     stack="True"
-                    key={Math.random()}
                   />
                 )}
               </figure>
