@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
 import { initializeApollo } from 'lib/apolloClient';
 import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
 import { tabbedInterface, ckanToDataPackage, getFilters } from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Image from 'next/image';
-import Filter from 'components/datasets/Filter';
+import Indicator from 'components/analytics/Indicator';
 import Modal from 'react-modal';
+import { resourceGetter } from 'utils/resourceParser';
+import BarChartViz from 'components/viz/BarChart';
+// import vizData from 'data/tempDataBarChart';
+import { kpiTransformer } from 'transformers/kpiTransformer';
 
 Modal.setAppElement('#__next');
 
@@ -16,6 +19,7 @@ type Props = {
   data: any;
   loading: boolean;
   facets: any;
+  csv: any;
 };
 
 const news = [
@@ -37,27 +41,63 @@ const news = [
   },
 ];
 
-const list = '"organization", "groups", "res_format", "tags"';
+const list =
+  '"fiscal_year", "buyer_name", "tender/mainProcurementCategory", "tender/stage"';
 
-const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
-  const router = useRouter();
+const vizFilters = {};
 
-  const { fq } = router.query;
-  const [filters, setFilters] = useState(fq);
+const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
+  const [indicatorsList, setIndicatorsList] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [indicators, SetIndicators] = useState({});
+  const [filteredData, SetFilteredData] = useState([]);
 
   function handleButtonClick() {
     setModalIsOpen(!modalIsOpen);
   }
 
-  function handleRouteChange(val: any) {
-    setFilters(val.value);
-  }
   useEffect(() => {
     const tablist = document.querySelector('.viz__tabs');
     const panels = document.querySelectorAll('.viz figure');
     tabbedInterface(tablist, panels);
+
+    Object.keys(csv.analytics[0]).forEach((val) => {
+      if (val == 'tender/procurementMethod' || val == 'tender_count') return;
+      vizFilters[val] = [];
+    });
+
+    // dont worry about it
+    const buyerName = [];
+    const fiscalYear = [];
+    const category = [];
+    const tenderStage = [];
+
+    for (const element of csv.analytics) {
+      element.buyer_name && buyerName.push(element.buyer_name);
+      element.fiscal_year && fiscalYear.push(element.fiscal_year);
+      element['tender/mainProcurementCategory'] &&
+        category.push(element['tender/mainProcurementCategory']);
+      element['tender/stage'] && tenderStage.push(element['tender/stage']);
+    }
+
+    vizFilters['buyer_name'] = Array.from(new Set(buyerName)).slice(0, 5);
+    vizFilters['fiscal_year'] = Array.from(new Set(fiscalYear)).slice(0, 5);
+    vizFilters['tender/mainProcurementCategory'] = Array.from(
+      new Set(category)
+    ).slice(0, 5);
+    vizFilters['tender/stage'] = Array.from(new Set(tenderStage)).slice(0, 5);
+    setIndicatorsList(vizFilters);
   }, []);
+
+  useEffect(() => {
+    SetFilteredData(kpiTransformer(csv.analytics, indicators));
+  }, []);
+
+  function handleNewVizData(val: any) {
+    SetFilteredData(kpiTransformer(csv.analytics, val));
+
+    SetIndicators(val);
+  }
 
   if (loading) return <div>Loading</div>;
   const dataPackage = ckanToDataPackage(data.dataset.result);
@@ -207,11 +247,7 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
           </section>
 
           <section className="analysis__content">
-            <Filter
-              data={facets}
-              newFilters={handleRouteChange}
-              fq={filters}
-            />
+            <Indicator data={indicatorsList} newIndicator={handleNewVizData} />
             <div className="viz">
               <div className="viz__header">
                 <ul className="viz__tabs">
@@ -232,7 +268,7 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
                       Bar
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a href="#lineChart">
                       <svg
                         width="17"
@@ -244,30 +280,40 @@ const Analysis: React.FC<Props> = ({ data, loading, facets }) => {
                       </svg>
                       Line
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
-                <div className="viz__tags">
+                {/* <div className="viz__tags">
                   <span>Goods</span>
                   <span>Services</span>
                   <span>Work</span>
-                </div>
+                </div> */}
               </div>
               <figure className="viz__bar" id="barGraph">
-                <Image
+                {/* <Image
                   src="/assets/images/bar-graph.jpg"
                   width={834}
                   height={477}
                   layout="responsive"
-                />
+                /> */}
+                {filteredData.length > 0 && (
+                  <BarChartViz
+                    yAxisLabel="Sale"
+                    xAxisLabel="Products"
+                    theme={['#4965B2', '#ED8686', '#69BC99']}
+                    dataset={filteredData}
+                    stack="True"
+                    key={Math.random()}
+                  />
+                )}
               </figure>
-              <figure className="viz__line" id="lineChart">
+              {/* <figure className="viz__line" id="lineChart">
                 <Image
                   src="/assets/images/line-chart.jpg"
                   width={834}
                   height={477}
                   layout="responsive"
                 />
-              </figure>
+              </figure> */}
             </div>
           </section>
 
@@ -303,12 +349,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     variables,
   });
 
+  const csv = await resourceGetter(data.dataset.result.resources, 'CSV');
+
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       data,
       loading,
       facets,
+      csv,
     },
   };
 };

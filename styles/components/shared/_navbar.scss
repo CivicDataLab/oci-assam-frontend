@@ -42,7 +42,7 @@
     height: 2rem;
   }
 
-  @include narrowerThan('plant') {
+  @include narrowerThan('sprout') {
     display: none;
     padding-top: 0;
   }
@@ -70,7 +70,7 @@
       box-shadow: inset 0 -2px 0 0 $bg-lightest;
       font-weight: 500;
 
-      @include narrowerThan('plant') {
+      @include narrowerThan('sprout') {
         box-shadow: inset 3px 0 0 0 $bg-lightest;
       }
     }
@@ -147,7 +147,7 @@
   display: none;
   min-height: 4rem;
 
-  @include narrowerThan('plant') {
+  @include narrowerThan('sprout') {
     display: block;
     align-items: center;
   }

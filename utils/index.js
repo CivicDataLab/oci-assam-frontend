@@ -38,6 +38,14 @@ export function getDate(time) {
   } else return time;
 }
 
+export async function fetchDatasets(id) {
+  const response = await fetch(
+    `http://13.126.46.107/api/3/action/package_search?fq=type:${id}`
+  );
+  const data = await response.json();
+  return data;
+}
+
 export async function fetchAPI(path) {
   const response = await fetch(
     `http://13.126.46.107/api/3/action/package_show?id=${path}`

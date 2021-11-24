@@ -18,21 +18,21 @@ const navList = [
     link: '/stories',
     name: 'Data Stories',
   },
-  {
-    link: '#forum',
-    name: 'Forum',
-    hasSubMenu: true,
-    subMenu: [
-      {
-        link: '/',
-        name: 'Forum A',
-      },
-      {
-        link: '/',
-        name: 'Forum B',
-      },
-    ],
-  },
+  // {
+  //   link: '#forum',
+  //   name: 'Forum',
+  //   hasSubMenu: true,
+  //   subMenu: [
+  //     {
+  //       link: '/',
+  //       name: 'Forum A',
+  //     },
+  //     {
+  //       link: '/',
+  //       name: 'Forum B',
+  //     },
+  //   ],
+  // },
   {
     link: '/about',
     name: 'About Us',
@@ -101,7 +101,7 @@ const Nav: React.FC = () => {
                     fill="#0899A0"
                   />
                 </svg>
-                <h1>Public Procurement Explorer</h1>
+                <h1>Public Procurement</h1>
               </a>
             </Link>
             <span className="header__divider" />
@@ -111,7 +111,7 @@ const Nav: React.FC = () => {
           <nav className="navbar">
             <h2 className="sr-only">Navigation menu</h2>
             <ul className="navbar__container">
-              {navList.map((navItem, index) => (
+              {navList.map((navItem: any, index: number) => (
                 <li key={`navItemMobile-${index}`} className="navbar__links">
                   {navItem.hasSubMenu ? (
                     <>
@@ -128,15 +128,17 @@ const Nav: React.FC = () => {
                         {navItem.name}
                       </button>
                       <ul className="navbar__nested" hidden>
-                        {navItem.subMenu.map((subMenuItem, index) => (
-                          <li key={`submenuItem-${index}`}>
-                            <Link href={subMenuItem.link}>
-                              <a>
-                                {subMenuItem.name} <span>&#x279D;</span>
-                              </a>
-                            </Link>
-                          </li>
-                        ))}
+                        {navItem.subMenu.map(
+                          (subMenuItem: any, index: number) => (
+                            <li key={`submenuItem-${index}`}>
+                              <Link href={subMenuItem.link}>
+                                <a>
+                                  {subMenuItem.name} <span>&#x279D;</span>
+                                </a>
+                              </Link>
+                            </li>
+                          )
+                        )}
                       </ul>
                     </>
                   ) : (
@@ -233,7 +235,7 @@ const Nav: React.FC = () => {
           </div>
 
           <ul className="m-navbar__container">
-            {navList.map((navItem, index) => (
+            {navList.map((navItem: any, index: number) => (
               <li key={`navItemMobile-${index}`} className="navbar__links">
                 {navItem.hasSubMenu ? (
                   <>
@@ -250,18 +252,20 @@ const Nav: React.FC = () => {
                       {navItem.name}
                     </button>
                     <ul className="m-navbar__nested" hidden>
-                      {navItem.subMenu.map((subMenuItem, index) => (
-                        <li key={`submenuItem-${index}`}>
-                          <Link href={subMenuItem.link}>
-                            <a
-                              href={subMenuItem.link}
-                              onClick={mobileNavHandler}
-                            >
-                              {subMenuItem.name} <span>&#x279D;</span>
-                            </a>
-                          </Link>
-                        </li>
-                      ))}
+                      {navItem.subMenu.map(
+                        (subMenuItem: any, index: number) => (
+                          <li key={`submenuItem-${index}`}>
+                            <Link href={subMenuItem.link}>
+                              <a
+                                href={subMenuItem.link}
+                                onClick={mobileNavHandler}
+                              >
+                                {subMenuItem.name} <span>&#x279D;</span>
+                              </a>
+                            </Link>
+                          </li>
+                        )
+                      )}
                     </ul>
                   </>
                 ) : (

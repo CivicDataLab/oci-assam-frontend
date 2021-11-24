@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
-import { initializeApollo } from 'lib/apolloClient';
-import { convertToCkanSearchQuery, getFilters } from 'utils/index';
+// import { initializeApollo } from 'lib/apolloClient';
+import {
+  convertToCkanSearchQuery,
+  getFilters,
+  fetchDatasets,
+} from 'utils/index';
 import Head from 'next/head';
 import Search from 'components/datasets/Search';
 import Total from 'components/datasets/Total';
 import DataAlter from 'components/datasets/DataAlter';
-import { SEARCH_QUERY } from 'graphql/queries';
+// import { SEARCH_QUERY } from 'graphql/queries';
 import Pagination from 'components/datasets/Pagination';
 import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
@@ -17,14 +21,13 @@ import { useRouter } from 'next/router';
 type Props = {
   data: any;
   facets: any;
-  loading: boolean;
 };
 
-const list = '"organization", "groups", "res_format", "tags"';
+const list = '"tags"';
 
-const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
+const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
-  const result = data.search.result.results;
+  const { results, count } = data.result;
   const { q, size, fq, from } = router.query;
   const [search, setSearch] = useState(q);
   const [items, setItems] = useState(size);
@@ -54,8 +57,6 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
         break;
     }
   }
-
-  if (loading) return <div>Loading</div>;
 
   const headerData = {
     title: 'Data Analysis',
@@ -98,7 +99,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
               </p>
               <Search text="Search KPIs" newSearch={handleRouteChange} />
               <div className="datasets__total">
-                <Total text="results" total={data.search.result.count} />
+                <Total text="results" total={count} />
               </div>
 
               <DataAlter
@@ -108,7 +109,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                 sortShow={false}
               />
               <ul className="list kpi__list">
-                {result.map((datapackage: any, index: number) => (
+                {results.map((datapackage: any, index: number) => (
                   <li key={`list-${index}`} className="kpi__item">
                     <Link href={`${router.pathname}/${datapackage.name}`}>
                       <a className="kpi__link">
@@ -127,10 +128,7 @@ const Datasets: React.FC<Props> = ({ data, facets, loading }) => {
                   </li>
                 ))}
               </ul>
-              <Pagination
-                total={data.search.result.count}
-                newPage={handleRouteChange}
-              />
+              <Pagination total={count} newPage={handleRouteChange} />
             </div>
           )}
         </div>
@@ -144,18 +142,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const variables = convertToCkanSearchQuery(query);
   const facets = await getFilters(list, variables);
 
-  const apolloClient = initializeApollo();
-
-  const { data, loading } = await apolloClient.query({
-    query: SEARCH_QUERY,
-    variables,
-  });
+  const data = await fetchDatasets('kpi_dataset');
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
       data,
-      loading,
       facets,
     },
   };

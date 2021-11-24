@@ -1,22 +1,13 @@
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+const withTM = require('next-transpile-modules')(['echarts', 'zrender']);
+// const withTM = require('next-transpile-modules')(['d3-fetch']);
 
-module.exports = (phase, { defaultConfig }) => {
-  const dms = process.env.DMS;
-  const cms = process.env.CMS;
-  if (phase === PHASE_DEVELOPMENT_SERVER) {
-    if (dms) {
-      console.log('\nYou are running the app in dev mode');
-    }
-  }
-  return {
-    ...defaultConfig,
-    i18n: {
-      locales: ['en', 'fr', 'nl-NL', 'te'],
-      defaultLocale: 'en',
-    },
-    publicRuntimeConfig: {
-      DMS: dms ? dms.replace(/\/?$/, '') : 'http://13.126.46.107/',
-      CMS: cms ? cms.replace(/\/?$/, '') : 'oddk.home.blog',
-    },
-  };
-};
+module.exports = withTM({
+  i18n: {
+    locales: ['en', 'fr', 'nl-NL', 'te'],
+    defaultLocale: 'en',
+  },
+  publicRuntimeConfig: {
+    DMS: 'http://13.126.46.107/',
+    CMS: 'https://oddk.home.blog',
+  },
+});

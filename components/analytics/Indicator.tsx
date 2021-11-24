@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-const obj = {};
+const indicatorObj = {};
 
-const Filter = ({ data, newFilters, fq }) => {
+const Indicator = ({ data, newIndicator }) => {
   function headingCollapsable() {
     const headings = document.querySelectorAll('.filters__heading');
 
@@ -22,37 +22,20 @@ const Filter = ({ data, newFilters, fq }) => {
     headingCollapsable();
 
     Object.keys(data).forEach((val) => {
-      obj[val] = [];
+      indicatorObj[val] = [];
     });
-
-    // if filter query available on page load, add class to relevant buttons
-    if (fq) {
-      const removeEscape = fq.replaceAll(/"/g, '');
-      const splitFilters = removeEscape.split(' AND ');
-
-      splitFilters.forEach((query: any) => {
-        const id = query.split(':')[0];
-        const value = query.split(':')[1];
-        obj[id].push(value);
-        if (document.getElementById(value))
-          document.getElementById(value).setAttribute('aria-pressed', 'true');
-      });
-    }
-  }, []);
+  }, [data]);
 
   function formatFilterName(name: string) {
     if (name == 'fiscal_year') {
       return 'fiscal year';
-    } else if (name == 'organization' || name == 'buyer_name')
-      return 'buyer name';
-    else if (name == 'tender_mainprocurementcategory') return 'type';
+    } else if (name == 'buyer_name') return 'buyer name';
     else if (name == 'tender/mainProcurementCategory') return 'category';
     else if (name == 'tender/stage') return 'tender stage';
-    else if (name == 'tender_status') return 'status';
     else return name;
   }
 
-  function handleFilterChange(e: any) {
+  function handleIndicatorChange(e: any) {
     const selectedFilter = e.target as HTMLInputElement;
     const type = selectedFilter.dataset.type;
     const value = selectedFilter.id;
@@ -63,27 +46,15 @@ const Filter = ({ data, newFilters, fq }) => {
       pressed == 'false' ? 'true' : 'false'
     );
 
-    const index = obj[type].indexOf(value);
+    const index = indicatorObj[type].indexOf(value);
     if (index > -1) {
-      obj[type].splice(index, 1);
+      indicatorObj[type].splice(index, 1);
     } else {
-      obj[type].push(value);
+      indicatorObj[type].push(value);
     }
+    // console.log(indicatorObj);
 
-    const final = [];
-    let filter: string;
-    Object.keys(obj).forEach((val) => {
-      if (obj[val].length > 0) {
-        obj[val].forEach((item: string) => final.push(`${val}:"${item}"`));
-
-        filter = final.join(' AND ');
-      }
-    });
-
-    newFilters({
-      query: 'fq',
-      value: filter,
-    });
+    newIndicator(indicatorObj);
   }
 
   return (
@@ -91,27 +62,27 @@ const Filter = ({ data, newFilters, fq }) => {
       <h3 className="heading3-w-line">Filters</h3>
       {Object.keys(data).map((filter: any, index: number) => (
         <React.Fragment key={`filters-${index}`}>
-          <h4 className="filters__heading" key={`filter-${index}`}>
+          <h4 className="filters__heading" key={`indicator-${index}`}>
             <button aria-expanded="false">
-              {formatFilterName(data[filter].title)}
+              {formatFilterName(filter)}
               <svg aria-hidden="true" focusable="false" viewBox="0 0 144 72">
                 <path d="M72 72C72 71.98 0 0 0 0h144L72 72" />
               </svg>
             </button>
           </h4>
           <div hidden>
-            {data[filter].items &&
-              data[filter].items.map((item: any) => (
+            {data[filter] &&
+              data[filter].map((item: any) => (
                 <button
                   className="filters__button"
-                  key={item.name}
-                  data-type={data[filter].title}
-                  id={item.name}
-                  onClick={handleFilterChange}
+                  key={item}
+                  data-type={filter}
+                  id={item}
+                  onClick={handleIndicatorChange}
                   type="button"
                   aria-pressed="false"
                 >
-                  {`${item.display_name} (${item.count})`}
+                  {`${item}`}
                 </button>
               ))}
           </div>
@@ -121,4 +92,4 @@ const Filter = ({ data, newFilters, fq }) => {
   );
 };
 
-export default Filter;
+export default Indicator;
