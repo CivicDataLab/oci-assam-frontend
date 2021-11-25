@@ -18,18 +18,21 @@ import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Sort from 'components/_shared/Sort';
 import Modal from 'react-modal';
+import { concat } from 'lodash';
 
 Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
   facets: any;
+  variables: any;
+  varString: any;
 };
 
 const list =
   '"fiscal_year", "organization", "tender_mainprocurementcategory", "tender_status"';
 
-const Datasets: React.FC<Props> = ({ data, facets }) => {
+const Datasets: React.FC<Props> = ({ data, facets, varString }) => {
   const router = useRouter();
   const { q, sort, size, fq, from } = router.query;
   const [search, setSearch] = useState(q);
@@ -40,6 +43,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const { results, count } = data.result;
+  console.log(varString);
 
   useEffect(() => {
     router.push({
@@ -68,7 +72,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
     }
   }
 
-  function handleButtonClick(e) {
+  function handleButtonClick(e: any) {
     e.preventDefault();
     setModalIsOpen(!modalIsOpen);
   }
@@ -245,9 +249,9 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = context.query || {};
   const variables = convertToCkanSearchQuery(query);
-  const facets = await getFilters(list, variables);
+  const facets = await getFilters(list, variables, 'tender_dataset');
 
-  const data = await fetchDatasets('tender_dataset');
+  const data = await fetchDatasets('tender_dataset', variables);
   return {
     props: {
       data,

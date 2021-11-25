@@ -39,10 +39,11 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
             <section className="card__value">
               <h4>
                 ₹
-                {datapackage.tender_participationfees_0_value_amount.replace(
-                  /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
-                  ','
-                )}
+                {datapackage.tender_participationfees_0_value_amount &&
+                  datapackage.tender_participationfees_0_value_amount.replace(
+                    /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
+                    ','
+                  )}
               </h4>
               <small>Tender value</small>
             </section>
