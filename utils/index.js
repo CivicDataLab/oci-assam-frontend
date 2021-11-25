@@ -38,20 +38,54 @@ export function getDate(time) {
   } else return time;
 }
 
-export async function fetchDatasets(id) {
+// fetch list of datasets. Required: type - type of dataset; variables - from url parameters.
+export async function fetchDatasets(type, variables) {
+  function changeKeyName(key) {
+    if (key == 'size') return 'rows';
+    else if (key == 'from') return 'start';
+    else return key;
+  }
+
+  variables.fq
+    ? (variables.fq = variables.fq.concat(` AND type:${type}`))
+    : (variables.fq = `type:${type}`);
+
+  // creating a string of parameter from object of variables for CKAN API use
+  const varArray = Object.keys(variables).map((key) => {
+    return `${changeKeyName(key)}=${variables[key]}`;
+  });
+  const varString =
+    varArray.length > 0 ? varArray.join('&') : `fq=type:${type}`;
   const response = await fetch(
-    `http://13.126.46.107/api/3/action/package_search?fq=type:${id}`
+    `http://13.126.46.107/api/3/action/package_search?${varString}`
   );
   const data = await response.json();
   return data;
 }
 
+// fetch particular dataset
 export async function fetchAPI(path) {
   const response = await fetch(
     `http://13.126.46.107/api/3/action/package_show?id=${path}`
   );
   const data = await response.json();
   return data;
+}
+
+export async function getFilters(list, variable, page) {
+  try {
+    // if filters and searc found in url, also use those
+    const queryVars = `fq=${
+      variable.fq ? `${variable.fq} AND type:${page}` : `type:${page}`
+    }&q=${variable.q ? variable.q : ''}`;
+
+    const fetchData = await fetch(
+      `http://13.126.46.107/api/3/action/package_search?facet.field=[${list}]&facet.limit=6&${queryVars}`
+    ).then((res) => res.json());
+    return fetchData.result.search_facets;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 /*
@@ -120,20 +154,6 @@ export function convertToStandardCollection(descriptor) {
   return standard;
 }
 
-export async function getFilters(list, variable) {
-  try {
-    const queryVars = `fq=${variable.fq ? variable.fq : ''}&q=${
-      variable.q ? variable.q : ''
-    }`;
-    const fetchData = await fetch(
-      `http://13.126.46.107/api/3/action/package_search?facet.field=[${list}]&facet.limit=6&${queryVars}`
-    ).then((res) => res.json());
-    return fetchData.result.search_facets;
-  } catch (error) {
-    throw new Error(error);
-  }
-}
-
 export function convertToCkanSearchQuery(query) {
   const ckanQuery = {
     q: '',
@@ -141,14 +161,8 @@ export function convertToCkanSearchQuery(query) {
     rows: '',
     start: '',
     sort: '',
-    'facet.field': [
-      'organization',
-      'groups',
-      'tags',
-      'res_format',
-      'license_id',
-    ],
-    'facet.limit': 5,
+    'facet.field': '',
+    'facet.limit': '',
     'facet.mincount': 0,
   };
   // Split by space but ignore spaces within double quotes:
