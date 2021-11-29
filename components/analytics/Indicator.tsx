@@ -52,8 +52,6 @@ const Indicator = ({ data, newIndicator }) => {
     } else {
       indicatorObj[type].push(value);
     }
-    // console.log(indicatorObj);
-
     newIndicator(indicatorObj);
   }
 
@@ -72,17 +70,17 @@ const Indicator = ({ data, newIndicator }) => {
           </h4>
           <div hidden>
             {data[filter] &&
-              data[filter].map((item: any) => (
+              data[filter].items.map((item: any) => (
                 <button
                   className="filters__button"
-                  key={item}
-                  data-type={filter}
-                  id={item}
+                  key={item.display_name}
+                  data-type={data[filter].title}
+                  id={item.display_name}
                   onClick={handleIndicatorChange}
                   type="button"
                   aria-pressed="false"
                 >
-                  {`${item}`}
+                  {`${item.display_name}`}
                 </button>
               ))}
           </div>

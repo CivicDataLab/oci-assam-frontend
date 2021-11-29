@@ -5,6 +5,15 @@ import { tabbedInterface } from 'utils/index';
 
 Modal.setAppElement('#__next');
 
+function formatFilterName(name: string) {
+  if (name == 'fiscal_year') {
+    return 'fiscal year';
+  } else if (name == 'buyer_name') return 'buyer name';
+  else if (name == 'tender/mainProcurementCategory') return 'category';
+  else if (name == 'tender/stage') return 'tender stage';
+  else return name;
+}
+
 const sort = [
   {
     id: 'metadata_modified:desc',
@@ -34,7 +43,9 @@ const DataAlter: React.FC<{
   newData?: any;
   fq?: any;
   sortShow?: boolean;
-}> = ({ data, newData, fq, sortShow }) => {
+  newIndicator?: any;
+  indicators?: any;
+}> = ({ data, newData, fq, sortShow, newIndicator, indicators }) => {
   const displaySort = sortShow == false ? false : true;
 
   const router = useRouter();
@@ -47,8 +58,16 @@ const DataAlter: React.FC<{
     router.query.sort ? router.query.sort : 'metadata_modified:desc'
   );
 
+  function checkInput(selected) {
+    const filterElement = document.getElementById(
+      `${selected}-m`
+    ) as HTMLInputElement;
+    if (filterElement) filterElement.checked = true;
+  }
+
   useEffect(() => {
     setTimeout(() => {
+      // create tabbed interface
       const tablist = document.getElementById('filterSelector');
       const panels = document.querySelectorAll(
         '.dialog__body [role="tabpanel"]'
@@ -61,7 +80,7 @@ const DataAlter: React.FC<{
           objMobile[val] = [];
         });
 
-      // if filters found, add check them
+      // check previous selected filters
       if (fq) {
         const removeEscape = fq.replaceAll(/"/g, '');
         const splitFilters = removeEscape.split(' AND ');
@@ -70,10 +89,20 @@ const DataAlter: React.FC<{
           const id = query.split(':')[0];
           const value = query.split(':')[1];
           objMobile[id].push(value);
-          const filterElement = document.getElementById(
-            `${value}-m`
-          ) as HTMLInputElement;
-          if (filterElement) filterElement.checked = true;
+          checkInput(value);
+        });
+      }
+
+      // check previous selected indicators
+      if (Object.keys(indicators).length > 0) {
+        Object.keys(indicators).forEach((elm) => {
+          const id = elm;
+          const value: any[] = indicators[elm];
+
+          value.forEach((selected) => {
+            objMobile[id].push(selected);
+            checkInput(selected);
+          });
         });
       }
     }, 50);
@@ -140,24 +169,31 @@ const DataAlter: React.FC<{
         objMobile[type].push(value);
       }
     });
+    // if it's indicator change, then return the object
+    if (newIndicator) {
+      newIndicator(objMobile);
+    }
+    // else create string and query URL
+    else {
+      // create the filter string for CKAN API
+      const final = [];
+      let filter: string;
+      Object.keys(objMobile).forEach((val) => {
+        if (objMobile[val].length > 0) {
+          objMobile[val].forEach((item: string) =>
+            final.push(`${val}:"${item}"`)
+          );
 
-    // create the filter string for CKAN API
-    const final = [];
-    let filter: string;
-    Object.keys(objMobile).forEach((val) => {
-      if (objMobile[val].length > 0) {
-        objMobile[val].forEach((item: string) =>
-          final.push(`${val}:"${item}"`)
-        );
+          filter = final.join(' AND ');
+        }
+      });
 
-        filter = final.join(' AND ');
-      }
-    });
+      newData({
+        query: 'fq',
+        value: filter,
+      });
+    }
 
-    newData({
-      query: 'fq',
-      value: filter,
-    });
     handleFilterClick();
   }
 
@@ -316,7 +352,7 @@ const DataAlter: React.FC<{
                       data-id={data[filter].title}
                       id={`filterTab${index}`}
                     >
-                      {data[filter].title}
+                      {formatFilterName(data[filter].title)}
                     </a>
                   </li>
                 ))}
