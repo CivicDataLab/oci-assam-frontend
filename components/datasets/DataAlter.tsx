@@ -9,8 +9,13 @@ function formatFilterName(name: string) {
   if (name == 'fiscal_year') {
     return 'fiscal year';
   } else if (name == 'buyer_name') return 'buyer name';
-  else if (name == 'tender/mainProcurementCategory') return 'category';
+  else if (
+    name == 'tender/mainProcurementCategory' ||
+    name == 'tender_mainprocurementcategory'
+  )
+    return 'category';
   else if (name == 'tender/stage') return 'tender stage';
+  else if (name == 'tender_status') return 'status';
   else return name;
 }
 
@@ -94,7 +99,7 @@ const DataAlter: React.FC<{
       }
 
       // check previous selected indicators
-      if (Object.keys(indicators).length > 0) {
+      if (indicators && Object.keys(indicators).length > 0) {
         Object.keys(indicators).forEach((elm) => {
           const id = elm;
           const value: any[] = indicators[elm];
@@ -329,14 +334,14 @@ const DataAlter: React.FC<{
       >
         <div className="dialog__header">
           <h1 id="dialog-head">Add Filters</h1>
-          <button
+          {/* <button
             type="button"
             className="dialog__close"
             aria-label="Close navigation"
             onClick={handleFilterClick}
           >
             &#x78;
-          </button>
+          </button> */}
         </div>
         <fieldset className="dialog__body">
           <legend className="sr-only">Add Filters</legend>

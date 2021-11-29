@@ -23,13 +23,12 @@ type Props = {
   data: any;
   facets: any;
   variables: any;
-  varString: any;
 };
 
 const list =
   '"fiscal_year", "organization", "tender_mainprocurementcategory", "tender_status"';
 
-const Datasets: React.FC<Props> = ({ data, facets, varString }) => {
+const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
   const { q, sort, size, fq, from } = router.query;
   const [search, setSearch] = useState(q);
@@ -40,8 +39,6 @@ const Datasets: React.FC<Props> = ({ data, facets, varString }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const { results, count } = data.result;
-  console.log(varString);
-
   useEffect(() => {
     router.push({
       pathname: router.pathname,
@@ -232,6 +229,7 @@ const Datasets: React.FC<Props> = ({ data, facets, varString }) => {
                 data={facets}
                 newData={handleRouteChange}
                 fq={filters}
+                sortShow={true}
               />
               <List data={results} />
               <Pagination total={count} newPage={handleRouteChange} />
