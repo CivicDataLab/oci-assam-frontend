@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
-// import { initializeApollo } from 'lib/apolloClient';
 import {
   getFilters,
   convertToCkanSearchQuery,
@@ -12,13 +11,11 @@ import Search from 'components/datasets/Search';
 import Total from 'components/datasets/Total';
 import List from 'components/datasets/List';
 import DataAlter from 'components/datasets/DataAlter';
-// import { SEARCH_QUERY } from 'graphql/queries';
 import Pagination from 'components/datasets/Pagination';
 import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Sort from 'components/_shared/Sort';
 import Modal from 'react-modal';
-import { concat } from 'lodash';
 
 Modal.setAppElement('#__next');
 

@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import { initializeApollo } from 'lib/apolloClient';
-import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
-import { tabbedInterface, ckanToDataPackage, getFilters } from 'utils/index';
+import {
+  tabbedInterface,
+  ckanToDataPackage,
+  getFilters,
+  fetchAPI,
+} from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
-import Image from 'next/image';
 import Indicator from 'components/analytics/Indicator';
 import Modal from 'react-modal';
 import { resourceGetter } from 'utils/resourceParser';
 import BarChartViz from 'components/viz/BarChart';
-// import vizData from 'data/tempDataBarChart';
 import { kpiTransformer } from 'transformers/kpiTransformer';
 
 Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
-  loading: boolean;
   facets: any;
   csv: any;
 };
@@ -46,7 +46,7 @@ const list =
 
 const vizFilters = {};
 
-const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
+const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [indicatorsList, setIndicatorsList] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [indicators, SetIndicators] = useState({});
@@ -66,12 +66,13 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
       vizFilters[val] = [];
     });
 
-    // dont worry about it
+    // creating different array for each filter
     const buyerName = [];
     const fiscalYear = [];
     const category = [];
     const tenderStage = [];
 
+    // filling filter indicators
     for (const element of csv.analytics) {
       element.buyer_name && buyerName.push(element.buyer_name);
       element.fiscal_year && fiscalYear.push(element.fiscal_year);
@@ -80,12 +81,15 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
       element['tender/stage'] && tenderStage.push(element['tender/stage']);
     }
 
+    // getting unique value and slicing
     vizFilters['buyer_name'] = Array.from(new Set(buyerName)).slice(0, 5);
     vizFilters['fiscal_year'] = Array.from(new Set(fiscalYear)).slice(0, 5);
     vizFilters['tender/mainProcurementCategory'] = Array.from(
       new Set(category)
     ).slice(0, 5);
     vizFilters['tender/stage'] = Array.from(new Set(tenderStage)).slice(0, 5);
+
+    // setting indicators state
     setIndicatorsList(vizFilters);
   }, []);
 
@@ -99,8 +103,7 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
     SetIndicators(val);
   }
 
-  if (loading) return <div>Loading</div>;
-  const dataPackage = ckanToDataPackage(data.dataset.result);
+  const dataPackage = ckanToDataPackage(data.result);
 
   const headerData = {
     title: dataPackage.title || dataPackage.name,
@@ -341,20 +344,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
   const facets = await getFilters(list, variables);
 
-  const apolloClient = initializeApollo();
+  const data = await fetchAPI(context.query.analysis);
 
-  const { data, loading } = await apolloClient.query({
-    query: GET_DATASET_QUERY,
-    variables,
-  });
-
-  const csv = await resourceGetter(data.dataset.result.resources, 'CSV');
+  const csv = await resourceGetter(data.result.resources, 'CSV');
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
       data,
-      loading,
       facets,
       csv,
     },

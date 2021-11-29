@@ -1,9 +1,7 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { initializeApollo } from '../lib/apolloClient';
 import HomeSearch from 'components/home/HomeSearch';
 import Carousel from 'components/home/Carousel';
-import { SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
 
