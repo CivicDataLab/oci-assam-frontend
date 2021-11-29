@@ -118,7 +118,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                   <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={handleButtonClick}
-                    className="dialog"
+                    className="dialog dialog--download"
                     overlayClassName="dialog__backdrop"
                     contentLabel="Download Tenders"
                     aria={{

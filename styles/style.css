@@ -1366,6 +1366,9 @@ button {
   background-color: #f1eef1;
   border-radius: 6px 6px 0px 0px;
   padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .dialog__header h1 {
   margin: 0;
@@ -1390,7 +1393,7 @@ button {
 }
 @media screen and (max-width: 719px) {
   .dialog__body {
-    height: 50vh;
+    height: 40vh;
   }
 }
 .dialog__format {
@@ -1409,10 +1412,16 @@ button {
   justify-self: center;
   margin-top: 1rem;
 }
+.dialog__clear {
+  min-height: 44px;
+  font-size: 1rem;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  text-transform: capitalize;
+  color: #4864b1;
+  font-weight: 500;
+}
 .dialog__close {
-  position: absolute;
-  top: 0;
-  right: 0;
   width: 44px;
   height: 44px;
   font-size: 1.5rem;
@@ -1485,8 +1494,19 @@ button {
   }
 }
 @media screen and (max-width: 979px) {
+  .dialog--download .dialog__header {
+    padding: 1.5rem 2rem;
+  }
+  .dialog--download .dialog__body {
+    padding: 0 2rem 2rem;
+  }
+}
+@media screen and (max-width: 979px) {
   .dialog__header {
     padding: 1.5rem 1rem;
+  }
+  .dialog__header--filter {
+    padding: 1rem;
   }
 }
 @media screen and (max-width: 979px) {

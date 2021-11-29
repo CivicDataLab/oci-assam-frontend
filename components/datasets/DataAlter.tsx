@@ -153,6 +153,25 @@ const DataAlter: React.FC<{
     setFilterIsOpen(!filterIsOpen);
   }
 
+  function handleFilterClear() {
+    // reset object
+    if (data)
+      Object.keys(data).forEach((val) => {
+        objMobile[val] = [];
+      });
+
+    const selectedFilters = document.querySelectorAll(
+      '.data-alter__filter input:checked'
+    );
+
+    selectedFilters.forEach((filter: HTMLInputElement) => {
+      const filterElement = document.getElementById(
+        `${filter.id}`
+      ) as HTMLInputElement;
+      if (filterElement) filterElement.checked = false;
+    });
+  }
+
   function applyFilterChange() {
     // select checked inputs
     const selectedFilters = document.querySelectorAll(
@@ -332,16 +351,16 @@ const DataAlter: React.FC<{
         preventScroll={true}
         htmlOpenClassName="ReactModal__Html--open"
       >
-        <div className="dialog__header">
+        <div className="dialog__header dialog__header--filter">
           <h1 id="dialog-head">Add Filters</h1>
-          {/* <button
+          <button
             type="button"
-            className="dialog__close"
+            className="dialog__clear"
             aria-label="Close navigation"
-            onClick={handleFilterClick}
+            onClick={handleFilterClear}
           >
-            &#x78;
-          </button> */}
+            clear all
+          </button>
         </div>
         <fieldset className="dialog__body">
           <legend className="sr-only">Add Filters</legend>

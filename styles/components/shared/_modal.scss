@@ -43,6 +43,9 @@
     background-color: $grey-6;
     border-radius: 6px 6px 0px 0px;
     padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h1 {
       margin: 0;
@@ -69,7 +72,7 @@
     }
 
     @include media.narrowerThan('seedling') {
-      height: 50vh;
+      height: 40vh;
     }
   }
 
@@ -93,10 +96,16 @@
     margin-top: 1rem;
   }
 
+  &__clear {
+    min-height: 44px;
+    font-size: 1rem;
+    text-decoration-line: underline;
+    text-transform: capitalize;
+    color: $color-sapphire;
+    font-weight: 500;
+  }
+
   &__close {
-    position: absolute;
-    top: 0;
-    right: 0;
     width: 44px;
     height: 44px;
     font-size: 1.5rem;
@@ -172,8 +181,21 @@
       }
     }
 
+    &--download {
+      .dialog__header {
+        padding: 1.5rem 2rem;
+      }
+      .dialog__body {
+        padding: 0 2rem 2rem;
+      }
+    }
+
     &__header {
       padding: 1.5rem 1rem;
+
+      &--filter {
+        padding: 1rem;
+      }
     }
 
     &__body {
