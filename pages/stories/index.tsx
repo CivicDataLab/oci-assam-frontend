@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { initializeApollo } from 'lib/apolloClient';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Parser from 'rss-parser';
 import StoriesCard from 'components/stories/StoriesCard';
@@ -119,11 +118,9 @@ const Stories = ({ data }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await parser.parseURL('https://medium.com/feed/civicdatalab');
-  const apolloClient = initializeApollo();
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
       data,
     },
   };

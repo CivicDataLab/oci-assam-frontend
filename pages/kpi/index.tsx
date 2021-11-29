@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
-// import { initializeApollo } from 'lib/apolloClient';
 import {
   convertToCkanSearchQuery,
   getFilters,
@@ -10,7 +9,6 @@ import Head from 'next/head';
 import Search from 'components/datasets/Search';
 import Total from 'components/datasets/Total';
 import DataAlter from 'components/datasets/DataAlter';
-// import { SEARCH_QUERY } from 'graphql/queries';
 import Pagination from 'components/datasets/Pagination';
 import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';

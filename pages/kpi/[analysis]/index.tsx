@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import { initializeApollo } from 'lib/apolloClient';
-import { GET_DATASET_QUERY } from 'graphql/queries';
 import Head from 'next/head';
-import { tabbedInterface, ckanToDataPackage, getFilters } from 'utils/index';
+import { tabbedInterface, ckanToDataPackage, fetchAPI } from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
-import Image from 'next/image';
 import Indicator from 'components/analytics/Indicator';
 import Modal from 'react-modal';
 import { resourceGetter } from 'utils/resourceParser';
 import BarChartViz from 'components/viz/BarChart';
-// import vizData from 'data/tempDataBarChart';
 import { kpiTransformer } from 'transformers/kpiTransformer';
+import DataAlter from 'components/datasets/DataAlter';
+import { cloneDeep } from 'lodash';
 
 Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
-  loading: boolean;
   facets: any;
   csv: any;
 };
@@ -41,66 +38,105 @@ const news = [
   },
 ];
 
-const list =
-  '"fiscal_year", "buyer_name", "tender/mainProcurementCategory", "tender/stage"';
-
 const vizFilters = {};
 
-const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
+const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [indicatorsList, setIndicatorsList] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [indicators, SetIndicators] = useState({});
   const [filteredData, SetFilteredData] = useState([]);
+
+  const vizToggle = [
+    {
+      name: 'Bar',
+      id: '#barGraph',
+      icon: (
+        <svg
+          width="15"
+          height="16"
+          viewBox="0 0 15 16"
+          xmlns="http://www.w3.org/2000/svg"
+          className="svg-stroke"
+        >
+          <path
+            d="M0 14.5H15M5.5 12V6M9.5 12V3M13.5 12V0M1.5 9V12"
+            strokeWidth="1.5"
+          />
+        </svg>
+      ),
+    },
+  ];
+
+  const vizItems = [
+    {
+      id: 'barGraph',
+      graph: (
+        <BarChartViz
+          yAxisLabel="Sale"
+          xAxisLabel="Products"
+          theme={['#4965B2', '#ED8686', '#69BC99']}
+          dataset={filteredData}
+          stack="True"
+        />
+      ),
+    },
+  ];
 
   function handleButtonClick() {
     setModalIsOpen(!modalIsOpen);
   }
 
   useEffect(() => {
+    // ceating tabbed interface for viz selector
     const tablist = document.querySelector('.viz__tabs');
     const panels = document.querySelectorAll('.viz figure');
     tabbedInterface(tablist, panels);
 
+    const indicatorList = [];
+    // populating required indicators
     Object.keys(csv.analytics[0]).forEach((val) => {
       if (val == 'tender/procurementMethod' || val == 'tender_count') return;
+      indicatorList.push({ id: val, list: [] });
       vizFilters[val] = [];
     });
 
-    // dont worry about it
-    const buyerName = [];
-    const fiscalYear = [];
-    const category = [];
-    const tenderStage = [];
-
+    // filling indicators
     for (const element of csv.analytics) {
-      element.buyer_name && buyerName.push(element.buyer_name);
-      element.fiscal_year && fiscalYear.push(element.fiscal_year);
-      element['tender/mainProcurementCategory'] &&
-        category.push(element['tender/mainProcurementCategory']);
-      element['tender/stage'] && tenderStage.push(element['tender/stage']);
+      indicatorList.forEach((indicator) => {
+        element[indicator.id] &&
+          indicator.list.push({
+            name: element[indicator.id],
+            display_name: element[indicator.id],
+          });
+      });
     }
 
-    vizFilters['buyer_name'] = Array.from(new Set(buyerName)).slice(0, 5);
-    vizFilters['fiscal_year'] = Array.from(new Set(fiscalYear)).slice(0, 5);
-    vizFilters['tender/mainProcurementCategory'] = Array.from(
-      new Set(category)
-    ).slice(0, 5);
-    vizFilters['tender/stage'] = Array.from(new Set(tenderStage)).slice(0, 5);
+    // getting unique value and formatting into object similar to 'search_facets' from CKAN
+    indicatorList.forEach((indicator) => {
+      vizFilters[indicator.id] = {
+        items: indicator.list
+          .filter(
+            (elm: { name: any }, index: any, array: any[]) =>
+              array.findIndex((t) => t.name === elm.name) === index
+          )
+          .slice(0, 5),
+        title: indicator.id,
+      };
+    });
+
+    // setting indicators state
     setIndicatorsList(vizFilters);
   }, []);
 
   useEffect(() => {
     SetFilteredData(kpiTransformer(csv.analytics, indicators));
-  }, []);
+  }, [indicators]);
 
   function handleNewVizData(val: any) {
-    SetFilteredData(kpiTransformer(csv.analytics, val));
-
-    SetIndicators(val);
+    SetIndicators(cloneDeep(val));
   }
 
-  if (loading) return <div>Loading</div>;
-  const dataPackage = ckanToDataPackage(data.dataset.result);
+  const dataPackage = ckanToDataPackage(data.result);
 
   const headerData = {
     title: dataPackage.title || dataPackage.name,
@@ -246,73 +282,41 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
             </Modal>
           </section>
 
+          <DataAlter
+            data={indicatorsList}
+            newData={handleNewVizData}
+            sortShow={false}
+            newIndicator={handleNewVizData}
+            indicators={indicators}
+          />
+
           <section className="analysis__content">
             <Indicator data={indicatorsList} newIndicator={handleNewVizData} />
             <div className="viz">
               <div className="viz__header">
+                {/* viz selector toggle */}
                 <ul className="viz__tabs">
-                  <li>
-                    <a href="#barGraph">
-                      <svg
-                        width="15"
-                        height="16"
-                        viewBox="0 0 15 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="svg-stroke"
-                      >
-                        <path
-                          d="M0 14.5H15M5.5 12V6M9.5 12V3M13.5 12V0M1.5 9V12"
-                          strokeWidth="1.5"
-                        />
-                      </svg>
-                      Bar
-                    </a>
-                  </li>
-                  {/* <li>
-                    <a href="#lineChart">
-                      <svg
-                        width="17"
-                        height="16"
-                        viewBox="0 0 17 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M1.5 14.5H0.75V15.25H1.5V14.5ZM7.5 5.5L8.1 5.05C7.95396 4.85528 7.7225 4.74354 7.47919 4.75029C7.23588 4.75704 7.01098 4.88145 6.87596 5.08397L7.5 5.5ZM10.5 9.5L9.9 9.95C10.0435 10.1413 10.2696 10.2527 10.5087 10.2499C10.7478 10.2472 10.9713 10.1305 11.1103 9.93593L10.5 9.5ZM0.75 0V14.5H2.25V0H0.75ZM1.5 15.25H16V13.75H1.5V15.25ZM4.12404 11.916L8.12404 5.91603L6.87596 5.08397L2.87596 11.084L4.12404 11.916ZM6.9 5.95L9.9 9.95L11.1 9.05L8.1 5.05L6.9 5.95ZM11.1103 9.93593L16.1103 2.93593L14.8897 2.06407L9.8897 9.06407L11.1103 9.93593Z" />
-                      </svg>
-                      Line
-                    </a>
-                  </li> */}
+                  {vizToggle.map((item, index) => (
+                    <li key={`toggleItem-${index}`}>
+                      <a href={item.id}>
+                        {item.icon}
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
-                {/* <div className="viz__tags">
-                  <span>Goods</span>
-                  <span>Services</span>
-                  <span>Work</span>
-                </div> */}
               </div>
-              <figure className="viz__bar" id="barGraph">
-                {/* <Image
-                  src="/assets/images/bar-graph.jpg"
-                  width={834}
-                  height={477}
-                  layout="responsive"
-                /> */}
-                {filteredData.length > 0 && (
-                  <BarChartViz
-                    yAxisLabel="Sale"
-                    xAxisLabel="Products"
-                    theme={['#4965B2', '#ED8686', '#69BC99']}
-                    dataset={filteredData}
-                    stack="True"
-                  />
-                )}
-              </figure>
-              {/* <figure className="viz__line" id="lineChart">
-                <Image
-                  src="/assets/images/line-chart.jpg"
-                  width={834}
-                  height={477}
-                  layout="responsive"
-                />
-              </figure> */}
+
+              {/* viz graphs */}
+              {vizItems.map((item, index) => (
+                <figure
+                  key={`vizIyem-${index}`}
+                  className="viz__bar"
+                  id={item.id}
+                >
+                  {filteredData.length > 0 && item.graph}
+                </figure>
+              ))}
             </div>
           </section>
 
@@ -336,26 +340,13 @@ const Analysis: React.FC<Props> = ({ data, loading, csv }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const variables = {
-    id: context.query.analysis,
-  };
-  const facets = await getFilters(list, variables);
+  const data = await fetchAPI(context.query.analysis);
 
-  const apolloClient = initializeApollo();
-
-  const { data, loading } = await apolloClient.query({
-    query: GET_DATASET_QUERY,
-    variables,
-  });
-
-  const csv = await resourceGetter(data.dataset.result.resources, 'CSV');
+  const csv = await resourceGetter(data.result.resources, 'CSV');
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
       data,
-      loading,
-      facets,
       csv,
     },
   };

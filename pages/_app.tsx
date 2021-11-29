@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { useApollo } from '../lib/apolloClient';
 import Layout from 'components/layout/layout';
 import I18nProvider from 'next-translate/I18nProvider';
 import Router, { useRouter } from 'next/router';
@@ -30,7 +28,6 @@ type Props = {
 };
 
 const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
-  const apolloClient = useApollo(pageProps.initialApolloState);
   const router = useRouter();
 
   useEffect(() => {
@@ -72,16 +69,14 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
   return (
     <Layout>
       <I18nProvider lang={router.locale} namespaces={pageProps._ns}>
-        <ApolloProvider client={apolloClient}>
-          <NextNprogress
-            color="#0899A0"
-            startPosition={0.3}
-            stopDelayMs={100}
-            height={3}
-            options={{ easing: 'ease', speed: 300, showSpinner: false }}
-          />
-          <Component {...pageProps} />
-        </ApolloProvider>
+        <NextNprogress
+          color="#0899A0"
+          startPosition={0.3}
+          stopDelayMs={100}
+          height={3}
+          options={{ easing: 'ease', speed: 300, showSpinner: false }}
+        />
+        <Component {...pageProps} />
       </I18nProvider>
     </Layout>
   );
