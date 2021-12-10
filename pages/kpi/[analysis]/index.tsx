@@ -7,7 +7,7 @@ import Indicator from 'components/analytics/Indicator';
 import Modal from 'react-modal';
 import { resourceGetter } from 'utils/resourceParser';
 import BarChartViz from 'components/viz/BarChart';
-import { kpiTransformer } from 'transformers/kpiTransformer';
+import { kpiSelector } from 'transformers/kpiTransformer';
 import DataAlter from 'components/datasets/DataAlter';
 import { cloneDeep } from 'lodash';
 
@@ -46,6 +46,36 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [indicators, SetIndicators] = useState({});
   const [filteredData, SetFilteredData] = useState([]);
 
+  function selectGraph(val) {
+    const barList = [
+      'proportion-of-procurement-method-types',
+      'average-tendering-period',
+      'proportion-of-bids',
+    ];
+    const bubbleList = ['awardee-details'];
+    if (barList.includes(val)) {
+      return (
+        <BarChartViz
+          yAxisLabel="Sale"
+          xAxisLabel="Products"
+          theme={['#4965B2', '#ED8686', '#69BC99']}
+          dataset={filteredData}
+          stack="True"
+        />
+      );
+    } else if (bubbleList.includes(val)) {
+      return (
+        <BarChartViz
+          yAxisLabel="Sale"
+          xAxisLabel="Products"
+          theme={['#4965B2', '#ED8686', '#69BC99']}
+          dataset={filteredData}
+          stack="True"
+        />
+      );
+    }
+  }
+
   const vizToggle = [
     {
       name: 'Bar',
@@ -70,15 +100,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   const vizItems = [
     {
       id: 'barGraph',
-      graph: (
-        <BarChartViz
-          yAxisLabel="Sale"
-          xAxisLabel="Products"
-          theme={['#4965B2', '#ED8686', '#69BC99']}
-          dataset={filteredData}
-          stack="True"
-        />
-      ),
+      graph: selectGraph(data.result.name),
     },
   ];
 
@@ -94,11 +116,13 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
 
     const indicatorList = [];
     // populating required indicators
-    Object.keys(csv.analytics[0]).forEach((val) => {
-      if (val == 'tender/procurementMethod' || val == 'tender_count') return;
+    const keys = Object.keys(csv.analytics[0]);
+    for (let i = 0; i < 4; i++) {
+      const val = keys[i];
+
       indicatorList.push({ id: val, list: [] });
       vizFilters[val] = [];
-    });
+    }
 
     // filling indicators
     for (const element of csv.analytics) {
@@ -129,7 +153,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   }, []);
 
   useEffect(() => {
-    SetFilteredData(kpiTransformer(csv.analytics, indicators));
+    SetFilteredData(kpiSelector(csv.analytics, indicators, data.result.name));
   }, [indicators]);
 
   function handleNewVizData(val: any) {
