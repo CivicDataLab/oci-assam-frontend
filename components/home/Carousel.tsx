@@ -1,47 +1,41 @@
 import React, { useEffect, useState } from 'react';
 
-const tempData = [
-  {
-    text: 'The Assam Public Procurement Rules, which were approved by the cabinet in September 2020 have now been brought into force with effect from 1st September 2021.',
-    link: '/',
-    image: '/assets/icons/assam.png',
-  },
-  {
-    text: 'The Assam Public Procurement Rules 2, which were approved by the cabinet in September 2020 have now been brought into force with effect from 1st September 2021.',
-    link: '/',
-    image: '/assets/icons/assam.png',
-  },
-  {
-    text: 'The Assam Public Procurement Rules 3, which were approved by the cabinet in September 2020 have now been brought into force with effect from 1st September 2021.',
-    link: '/',
-    image: '/assets/icons/assam.png',
-  },
-];
-
 const Carousel = ({ data }) => {
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
-    if (!document.querySelector('.carousel__item--current'))
-      document
-        .querySelector('#carousel-0')
-        .classList.add('carousel__item--current');
+    if (data.length > 0) {
+      if (!document.querySelector('.carousel__item--current'))
+        document
+          .querySelector('#carousel-0')
+          .classList.add('carousel__item--current');
 
-    if (!document.querySelector('.carousel__nav [aria-pressed="true"]'))
-      document
-        .querySelector('.carousel__nav button')
-        .setAttribute('aria-pressed', 'true');
+      if (!document.querySelector('.carousel__nav [aria-pressed="true"]'))
+        document
+          .querySelector('.carousel__nav button')
+          .setAttribute('aria-pressed', 'true');
+    }
   }, []);
 
   useEffect(() => {
-    // changing position of carousel nav
-    const navButton = document.querySelector(`[data-number="${position}"]`);
-    if (navButton.getAttribute('aria-pressed') == 'false') {
-      document
-        .querySelector('.carousel__nav [aria-pressed="true"]')
-        .setAttribute('aria-pressed', 'false');
-      navButton.setAttribute('aria-pressed', 'true');
+    if (data.length > 0) {
+      // changing position of carousel nav
+      const navButton = document.querySelector(`[data-number="${position}"]`);
+      if (navButton.getAttribute('aria-pressed') == 'false') {
+        document
+          .querySelector('.carousel__nav [aria-pressed="true"]')
+          .setAttribute('aria-pressed', 'false');
+        navButton.setAttribute('aria-pressed', 'true');
 
+        document
+          .querySelector(`.carousel__item--current`)
+          .classList.remove('carousel__item--current');
+        document
+          .querySelector(`#carousel-${position}`)
+          .classList.add('carousel__item--current');
+      }
+
+      // changing the slide
       document
         .querySelector(`.carousel__item--current`)
         .classList.remove('carousel__item--current');
@@ -49,14 +43,6 @@ const Carousel = ({ data }) => {
         .querySelector(`#carousel-${position}`)
         .classList.add('carousel__item--current');
     }
-
-    // changing the slide
-    document
-      .querySelector(`.carousel__item--current`)
-      .classList.remove('carousel__item--current');
-    document
-      .querySelector(`#carousel-${position}`)
-      .classList.add('carousel__item--current');
   }, [position]);
 
   function updateCarousel(n: number) {
@@ -70,6 +56,8 @@ const Carousel = ({ data }) => {
     const newSlide = navButton.getAttribute('data-number');
     setPosition(parseInt(newSlide));
   }
+
+  if (data.length < 1) return <></>;
 
   return (
     <section className="carousel">
@@ -96,45 +84,26 @@ const Carousel = ({ data }) => {
           </svg>
         </button>
         <ul className="carousel__content" aria-live="polite">
-          {data
-            ? data.map((item, index) => {
-                return (
-                  <li
-                    key={`carousel-${index}`}
-                    id={`carousel-${index}`}
-                    className="carousel__item"
-                  >
-                    <article>
-                      <h2>Did you Know?</h2>
-                      <p>{item.content}</p>
-                      {item.link && <a href={item.link}>Click to know more</a>}
-                    </article>
-                    {item.image && (
-                      <figure>
-                        <img src={item.image} alt="" />
-                      </figure>
-                    )}
-                  </li>
-                );
-              })
-            : tempData.map((item, index) => {
-                return (
-                  <li
-                    key={`carousel-${index}`}
-                    id={`carousel-${index}`}
-                    className="carousel__item"
-                  >
-                    <article>
-                      <h2>Did you Know?</h2>
-                      <p>{item.text}</p>
-                      <a href={item.link}>Click to know more</a>
-                    </article>
-                    <figure>
-                      <img src={item.image} alt="" />
-                    </figure>
-                  </li>
-                );
-              })}
+          {data.map((item, index) => {
+            return (
+              <li
+                key={`carousel-${index}`}
+                id={`carousel-${index}`}
+                className="carousel__item"
+              >
+                <article>
+                  <h2>Did you Know?</h2>
+                  <p>{item.content}</p>
+                  {item.link && <a href={item.link}>Click to know more</a>}
+                </article>
+                {item.image && (
+                  <figure>
+                    <img src={item.image} alt="" />
+                  </figure>
+                )}
+              </li>
+            );
+          })}
         </ul>
         <button
           className="carousel__next"
