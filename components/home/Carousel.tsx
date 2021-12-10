@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const data = [
+const tempData = [
   {
     text: 'The Assam Public Procurement Rules, which were approved by the cabinet in September 2020 have now been brought into force with effect from 1st September 2021.',
     link: '/',
@@ -18,7 +18,7 @@ const data = [
   },
 ];
 
-const Carousel = () => {
+const Carousel = ({ data }) => {
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
@@ -96,24 +96,45 @@ const Carousel = () => {
           </svg>
         </button>
         <ul className="carousel__content" aria-live="polite">
-          {data.map((item, index) => {
-            return (
-              <li
-                key={`carousel-${index}`}
-                id={`carousel-${index}`}
-                className="carousel__item"
-              >
-                <article>
-                  <h2>Did you Know?</h2>
-                  <p>{item.text}</p>
-                  <a href={item.link}>Click to know more</a>
-                </article>
-                <figure>
-                  <img src={item.image} alt="" />
-                </figure>
-              </li>
-            );
-          })}
+          {data
+            ? data.map((item, index) => {
+                return (
+                  <li
+                    key={`carousel-${index}`}
+                    id={`carousel-${index}`}
+                    className="carousel__item"
+                  >
+                    <article>
+                      <h2>Did you Know?</h2>
+                      <p>{item.content}</p>
+                      {item.link && <a href={item.link}>Click to know more</a>}
+                    </article>
+                    {item.image && (
+                      <figure>
+                        <img src={item.image} alt="" />
+                      </figure>
+                    )}
+                  </li>
+                );
+              })
+            : tempData.map((item, index) => {
+                return (
+                  <li
+                    key={`carousel-${index}`}
+                    id={`carousel-${index}`}
+                    className="carousel__item"
+                  >
+                    <article>
+                      <h2>Did you Know?</h2>
+                      <p>{item.text}</p>
+                      <a href={item.link}>Click to know more</a>
+                    </article>
+                    <figure>
+                      <img src={item.image} alt="" />
+                    </figure>
+                  </li>
+                );
+              })}
         </ul>
         <button
           className="carousel__next"

@@ -17,11 +17,11 @@ const HomeSearch = () => {
       <div className="home-search__icons">
         <div className="home-search__category">
           <img src="/assets/icons/covid.svg" alt="" />
-          <h3>Covid related tenders</h3>
+          <h3>Covid Related Tenders</h3>
         </div>
         <div className="home-search__category">
           <img src="/assets/icons/health.svg" alt="" />
-          <h3>Health related tenders</h3>
+          <h3>Health Related Tenders</h3>
         </div>
         <div className="home-search__category">
           <img src="/assets/icons/water.svg" alt="" />
@@ -29,7 +29,7 @@ const HomeSearch = () => {
         </div>
         <div className="home-search__category">
           <img src="/assets/icons/food.svg" alt="" />
-          <h3>Food management and relief</h3>
+          <h3>Flood Management and Relief</h3>
         </div>
       </div>
       <a href="/datasets" className="btn-primary home-search__button">
