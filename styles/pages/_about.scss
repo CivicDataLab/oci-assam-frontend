@@ -6,10 +6,10 @@
     flex-wrap: wrap;
     margin-top: 2rem;
     justify-content: space-between;
+    align-items: stretch;
 
     li {
       width: 48%;
-      height: 100%;
 
       @include media.narrowerThan('sprout') {
         width: 100%;
@@ -17,6 +17,12 @@
         &:first-child {
           margin-bottom: 1rem;
         }
+      }
+
+      > div {
+        display: grid;
+        height: 100%;
+        grid-template-rows: max-content 1fr max-content;
       }
     }
   }
@@ -36,7 +42,7 @@
         width: 3rem;
         display: inline-block;
         height: 3px;
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
     }
 

@@ -51,9 +51,17 @@
   }
 
   &__body {
-    line-height: 137%;
     padding: 1.25rem 0;
     border-bottom: 1px solid $grey-4;
+
+    p {
+      line-height: 137%;
+      margin-bottom: 0.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &__footer {

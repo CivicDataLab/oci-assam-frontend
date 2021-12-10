@@ -23,6 +23,8 @@ type Props = {
 
 const list = '"tags"';
 
+const carosuelData = [];
+
 const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
   const { results, count } = data.result;
@@ -70,7 +72,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
       </Head>
       <main className="datasets kpi">
         <MegaHeader data={headerData} />
-        <Carousel />
+        <Carousel data={carosuelData} />
 
         <div className="datasets__wrapper container">
           <Filter data={facets} newFilters={handleRouteChange} fq={filters} />
