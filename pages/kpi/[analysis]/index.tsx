@@ -7,6 +7,7 @@ import Indicator from 'components/analytics/Indicator';
 import Modal from 'react-modal';
 import { resourceGetter } from 'utils/resourceParser';
 import BarChartViz from 'components/viz/BarChart';
+import BubbleChart from 'components/viz/BubbleChart';
 import { kpiSelector } from 'transformers/kpiTransformer';
 import DataAlter from 'components/datasets/DataAlter';
 import { cloneDeep } from 'lodash';
@@ -51,26 +52,56 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
       'proportion-of-procurement-method-types',
       'average-tendering-period',
       'proportion-of-bids',
+      'proportion-of-saving',
     ];
     const bubbleList = ['awardee-details'];
-    if (barList.includes(val)) {
+    if (val == 'proportion-of-procurement-method-types') {
       return (
         <BarChartViz
-          yAxisLabel="Sale"
-          xAxisLabel="Products"
+          yAxisLabel="Percent"
+          xAxisLabel="Category"
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="True"
         />
       );
-    } else if (bubbleList.includes(val)) {
+    } else if (val == 'average-tendering-period') {
       return (
         <BarChartViz
-          yAxisLabel="Sale"
-          xAxisLabel="Products"
+          yAxisLabel="Days"
+          xAxisLabel="Fiscal Year"
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
-          stack="True"
+          stack="False"
+        />
+      );
+    } else if (val == 'proportion-of-bids') {
+      return (
+        <BarChartViz
+          yAxisLabel="Tender Count"
+          xAxisLabel="Fiscal Year"
+          theme={['#4965B2', '#ED8686', '#69BC99']}
+          dataset={filteredData}
+          stack="False"
+        />
+      );
+    } else if (val == 'proportion-of-saving') {
+      return (
+        <BarChartViz
+          yAxisLabel="Percent"
+          xAxisLabel="Fiscal Year"
+          theme={['#4965B2', '#ED8686', '#69BC99']}
+          dataset={filteredData}
+          stack="False"
+        />
+      );
+    } else if (val == 'awardee-info') {
+      return (
+        <BubbleChart
+          bubbleData1={filteredData}
+          color={['#4965B2', '#ED8686']}
+          xAxisLabel="Num of Contracts"
+          yAxisLabel="Avg. Comp"
         />
       );
     }
