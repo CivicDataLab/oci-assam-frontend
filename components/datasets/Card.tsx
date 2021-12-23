@@ -23,7 +23,7 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
         <section>
           <h3 className="card__heading">{datapackage.organization.title}</h3>
           <small className="card__date">
-            {`${getDate(datapackage.tender_bidOpening_date)} . ${
+            {`${getDate(datapackage.tender_bid_opening_date)} . ${
               datapackage.fiscal_year
             }`}
           </small>
@@ -39,8 +39,8 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
             <section className="card__value">
               <h4>
                 ₹
-                {datapackage.tender_participationfees_0_value_amount &&
-                  datapackage.tender_participationfees_0_value_amount.replace(
+                {datapackage.tender_value_amount &&
+                  datapackage.tender_value_amount.replace(
                     /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
                     ','
                   )}

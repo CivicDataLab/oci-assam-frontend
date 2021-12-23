@@ -69,6 +69,8 @@ const icons = {
 };
 
 const DList = ({ content }) => {
+  console.log(content);
+
   function hideToggle(liveRegion: any, toggletip: any) {
     liveRegion.innerHTML = '';
     toggletip.setAttribute('aria-pressed', 'false');
@@ -116,7 +118,11 @@ const DList = ({ content }) => {
         return (
           <div
             key={index}
-            className={typeof value.desc != 'string' ? 'dlist__multiple' : ''}
+            className={
+              value.desc && typeof value.desc != 'string'
+                ? 'dlist__multiple'
+                : ''
+            }
           >
             <dt className="dlist__title">
               <span>{value.title}</span>
@@ -147,14 +153,16 @@ const DList = ({ content }) => {
                 </span>
               )}
             </dt>
-            {typeof value.desc != 'string' ? (
+            {value.desc && typeof value.desc != 'string' ? (
               <div className="tender__documents">
                 <dd className="dlist__desc">
-                  {truncate(value.desc[0], {
-                    length: 30,
-                  })}
+                  {value.desc[0]
+                    ? truncate(value.desc[0], {
+                        length: 30,
+                      })
+                    : ''}
                 </dd>
-                <dd className="dlist__desc">{value.desc[1]}</dd>
+                <dd className="dlist__desc">{value.desc[1] || ''}</dd>
                 <dd className="dlist__desc">
                   {icons[value.desc[2].toLowerCase()] || icons.zip}
                 </dd>

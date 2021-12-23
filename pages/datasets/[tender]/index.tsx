@@ -24,8 +24,8 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
   const headerData = {
     title: dataPackage.tender_title || dataPackage.name,
     content: dataPackage.organization.title,
-    date: `${getDate(dataPackage.tender_bidOpening_date) || ''} . ${
-      dataPackage.fiscal_year || ''
+    date: `${getDate(dataPackage.tender_bidOpening_date) || '--'} . ${
+      dataPackage.fiscal_year || '--'
     }`,
     previousPage: 'Contracts Data',
     previousLink: '/datasets',
@@ -34,19 +34,19 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
   const basicContent = [
     {
       title: 'Open contracting ID',
-      desc: dataPackage.ocid || '',
+      desc: dataPackage.ocid || '--',
     },
     {
       title: 'Tender ID',
-      desc: dataPackage.tender_id || '',
+      desc: dataPackage.tender_id || '--',
     },
     {
       title: 'Tender Title',
-      desc: dataPackage.tender_title || '',
+      desc: dataPackage.tender_title || '--',
     },
     {
       title: 'Tender description',
-      desc: dataPackage.tender_title || '',
+      desc: dataPackage.tender_title || '--',
     },
     {
       title: 'Organisation name',
@@ -55,117 +55,85 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
     {
       title: 'Tender amount',
       desc: `₹${
-        dataPackage.tender_participationfees_0_value_amount.replace(
+        dataPackage.tender_value_amount.replace(
           /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
           ','
-        ) || ''
+        ) || '--'
       }`,
     },
     {
       title: 'External Reference',
-      desc: dataPackage.tender_externalreference || '',
+      desc: dataPackage.tender_externalreference || '--',
     },
   ];
 
   const dateContent = [
     {
       title: 'Published Date',
-      desc: getDate(dataPackage.tender_datepublished) || '',
-    },
-    {
-      title: 'PreBid Meeting Date',
-      desc: getDate(dataPackage.prebid_meeting_date) || '',
+      desc: getDate(dataPackage.tender_datepublished) || '--',
     },
     {
       title: 'Tender Period Duration In Days',
-      desc: dataPackage.tender_tenderperiod_durationindays || '',
-    },
-    {
-      title: 'Stage/Status Updated On',
-      desc: getDate(dataPackage.stage_status_updated_on) || '',
+      desc: dataPackage.tender_tenderperiod_durationindays || '--',
     },
     {
       title: 'Bid Opening Date',
-      desc: getDate(dataPackage.tender_bidOpening_date) || '',
+      desc: getDate(dataPackage.tender_bid_opening_date) || '--',
     },
     {
-      title: 'Price Bid Opening Date',
-      desc: getDate(dataPackage.price_bid_opening_date) || '',
-    },
-    {
-      title: 'No of Days b/w Tech and Finance opening',
-      desc: getDate(dataPackage.no_of_days_b_w_tech_and_finance_opening) || '',
-    },
-    {
-      title:
-        'Cycle Time bet. E-Publishing date and opening of price bid (in days)',
-      desc:
-        getDate(
-          dataPackage.cycle_time_bet_e_publishing_date_and_opening_of_price_bid_in_days
-        ) || '',
+      title: 'Tender Milestones',
+      desc: getDate(dataPackage.tender_milestones_duedate) || '--',
     },
   ];
 
   const details = [
     {
       title: 'Tender Detail',
-      desc: dataPackage.tender_title,
+      desc: dataPackage.tender_title || '--',
     },
     {
       title: 'Tender Category',
-      desc: dataPackage.tender_mainprocurementcategory,
+      desc: dataPackage.tender_mainprocurementcategory || '--',
     },
     {
       title: 'Tender Type',
-      desc: dataPackage.tender_procurementmethod,
+      desc: dataPackage.tender_procurementmethod || '--',
     },
     {
       title: 'Form of Contract',
-      desc: dataPackage.tender_contracttype,
+      desc: dataPackage.tender_contracttype || '--',
     },
     {
       title: 'Product Category',
-      desc: dataPackage.product_category,
-    },
-    {
-      title: 'No of Covers',
-      desc: dataPackage.no_of_covers,
+      desc: dataPackage.tenderclassification_description || '--',
     },
     {
       title: 'Two Stage Tender (Y/N)',
-      desc: dataPackage.tender_allowtwostagetender,
-    },
-    {
-      title: 'Independent External Monitor',
-      desc: dataPackage.independent_external_monitor,
+      desc: dataPackage.tender_allowtwostagetender || '--',
     },
     {
       title: 'Preferential Bidding Allowed',
-      desc: dataPackage.tender_allowpreferentialbidder,
-    },
-    {
-      title: 'No. of Preferential Bids Received',
-      desc: dataPackage.no_of_preferential_bids_received,
+      desc: dataPackage.tender_allowpreferentialbidder || '--',
     },
     {
       title: 'Payment Mode',
-      desc: dataPackage.payment_mode,
+      desc: dataPackage.payment_mode || '--',
     },
     {
       title: 'Tender Status',
-      desc: dataPackage.tender_status,
+      desc: dataPackage.tender_status || '--',
     },
     {
       title: 'Tender Stage',
-      desc: dataPackage.tender_stage,
+      desc: dataPackage.tender_stage || '--',
     },
     {
       title: 'No of Bids Received',
-      desc: dataPackage.tender_numberoftenderers,
+      desc: dataPackage.tender_numberoftenderers || '--',
     },
     {
-      title: 'GeMARPTS ID',
-      desc: dataPackage.gemarpts_id,
+      title: 'Tender Documents ID',
+      desc: dataPackage.tender_documents_id || '--',
     },
   ];
 
@@ -446,11 +414,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         documents.push({
           title: resource.name,
           desc: [
-            fileName || '',
-            `${(resource.size / 1024).toFixed(2)} KB` || '',
-            resource.format || '',
-            resource.url || '',
-            resource.url || '',
+            fileName || '--',
+            `${(resource.size / 1024).toFixed(2)} KB` || '--',
+            resource.format || '--',
+            resource.url || '--',
+            resource.url || '--',
           ],
         });
       }
