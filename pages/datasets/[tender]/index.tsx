@@ -24,7 +24,7 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
   const headerData = {
     title: dataPackage.tender_title || dataPackage.name,
     content: dataPackage.organization.title,
-    date: `${getDate(dataPackage.tender_bidOpening_date) || '--'} . ${
+    date: `${getDate(dataPackage.tender_bid_opening_date) || '--'} . ${
       dataPackage.fiscal_year || '--'
     }`,
     previousPage: 'Contracts Data',
