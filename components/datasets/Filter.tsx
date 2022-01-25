@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 const obj = {};
 
 const Filter = ({ data, newFilters, fq }) => {
+  console.log('fq', fq);
+
   function headingCollapsable() {
     const headings = document.querySelectorAll('.filters__heading');
 
@@ -79,6 +81,8 @@ const Filter = ({ data, newFilters, fq }) => {
         filter = final.join(' AND ');
       }
     });
+
+    console.log('filter', filter);
 
     newFilters({
       query: 'fq',

@@ -34,7 +34,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const [search, setSearch] = useState(q);
   const [sorts, setSorts] = useState(sort);
   const [items, setItems] = useState(size);
-  const [filters, setFilters] = useState(fq);
+  const [datsetsFilters, setDatasetsFilters] = useState(fq);
   const [pages, setPages] = useState(from);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -42,11 +42,17 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   useEffect(() => {
     router.push({
       pathname: router.pathname,
-      query: { fq: filters, q: search, sort: sorts, size: items, from: pages },
+      query: {
+        fq: datsetsFilters,
+        q: search,
+        sort: sorts,
+        size: items,
+        from: pages,
+      },
     });
-  }, [filters, search, sorts, pages, items]);
+  }, [datsetsFilters, search, sorts, pages, items]);
 
-  function handleRouteChange(val: any) {
+  function handleDatasetsChange(val: any) {
     switch (val.query) {
       case 'q':
         setSearch(val.value);
@@ -58,7 +64,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
         setItems(val.value);
         break;
       case 'fq':
-        setFilters(val.value);
+        setDatasetsFilters(val.value);
         break;
       case 'from':
         setPages(val.value);
@@ -87,15 +93,19 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
         <MegaHeader data={headerData} />
 
         <div className="datasets__wrapper container">
-          <Filter data={facets} newFilters={handleRouteChange} fq={filters} />
+          <Filter
+            data={facets}
+            newFilters={handleDatasetsChange}
+            fq={datsetsFilters}
+          />
           {data && (
             <div className="datasets__right">
               <h2 className="heading-w-line">Browse Contracts</h2>
-              <Search newSearch={handleRouteChange} />
+              <Search newSearch={handleDatasetsChange} />
               <div className="datasets__total">
                 <Total text="contracts" total={count} />
                 <div className="datasets__sort">
-                  <Sort newSort={handleRouteChange} />
+                  <Sort newSort={handleDatasetsChange} />
                   <button
                     id="modalTrigger"
                     className="btn-primary"
@@ -182,7 +192,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                             CSV File
                           </label>
 
-                          <label htmlFor="downloadFormat1">
+                          <label htmlFor="downloadFormat2">
                             <input
                               type="radio"
                               id="downloadFormat2"
@@ -192,7 +202,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                             XLS File
                           </label>
 
-                          <label htmlFor="downloadFormat1">
+                          <label htmlFor="downloadFormat3">
                             <input
                               type="radio"
                               id="downloadFormat3"
@@ -202,7 +212,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                             PDF File
                           </label>
 
-                          <label htmlFor="downloadFormat1">
+                          <label htmlFor="downloadFormat4">
                             <input
                               type="radio"
                               id="downloadFormat4"
@@ -227,12 +237,12 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
 
               <DataAlter
                 data={facets}
-                newData={handleRouteChange}
-                fq={filters}
+                newData={handleDatasetsChange}
+                fq={datsetsFilters}
                 sortShow={true}
               />
               <List data={results} />
-              <Pagination total={count} newPage={handleRouteChange} />
+              <Pagination total={count} newPage={handleDatasetsChange} />
             </div>
           )}
         </div>

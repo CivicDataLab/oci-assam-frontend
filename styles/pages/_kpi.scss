@@ -123,22 +123,22 @@
       align-items: center;
       margin-top: 0.5rem;
 
-      &[data-id='coverage'] {
+      &[data-id='tag-0'] {
         color: $color-violet;
         background-color: $bg-violet-light;
       }
 
-      &[data-id='value'] {
+      &[data-id='tag-1'] {
         color: $color-blue;
         background-color: $bg-blue-light;
       }
 
-      &[data-id='market'] {
+      &[data-id='tag-2'] {
         color: $color-gold;
         background-color: $bg-gold-light;
       }
 
-      &[data-id='competetion'] {
+      &[data-id='tag-3'] {
         color: $color-pink;
         background-color: $bg-pink-light;
       }

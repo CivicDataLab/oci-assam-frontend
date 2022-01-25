@@ -131,28 +131,25 @@ const Nav: React.FC = () => {
                         {navItem.subMenu.map(
                           (subMenuItem: any, index: number) => (
                             <li key={`submenuItem-${index}`}>
-                              <Link href={subMenuItem.link}>
-                                <a>
-                                  {subMenuItem.name} <span>&#x279D;</span>
-                                </a>
-                              </Link>
+                              <a href={subMenuItem.link}>
+                                {subMenuItem.name} <span>&#x279D;</span>
+                              </a>
                             </li>
                           )
                         )}
                       </ul>
                     </>
                   ) : (
-                    <Link href={navItem.link}>
-                      <a
-                        className={`navbar__item ${
-                          router.pathname.includes(navItem.link)
-                            ? 'navbar__item--active'
-                            : ''
-                        }`}
-                      >
-                        {navItem.name}
-                      </a>
-                    </Link>
+                    <a
+                      href={navItem.link}
+                      className={`navbar__item ${
+                        router.pathname.includes(navItem.link)
+                          ? 'navbar__item--active'
+                          : ''
+                      }`}
+                    >
+                      {navItem.name}
+                    </a>
                   )}
                 </li>
               ))}
@@ -255,33 +252,29 @@ const Nav: React.FC = () => {
                       {navItem.subMenu.map(
                         (subMenuItem: any, index: number) => (
                           <li key={`submenuItem-${index}`}>
-                            <Link href={subMenuItem.link}>
-                              <a
-                                href={subMenuItem.link}
-                                onClick={mobileNavHandler}
-                              >
-                                {subMenuItem.name} <span>&#x279D;</span>
-                              </a>
-                            </Link>
+                            <a
+                              href={subMenuItem.link}
+                              onClick={mobileNavHandler}
+                            >
+                              {subMenuItem.name} <span>&#x279D;</span>
+                            </a>
                           </li>
                         )
                       )}
                     </ul>
                   </>
                 ) : (
-                  <Link href={navItem.link}>
-                    <a
-                      href={navItem.link}
-                      onClick={mobileNavHandler}
-                      className={`navbar__item ${
-                        router.pathname.includes(navItem.link)
-                          ? 'navbar__item--active'
-                          : ''
-                      }`}
-                    >
-                      {navItem.name}
-                    </a>
-                  </Link>
+                  <a
+                    href={navItem.link}
+                    onClick={mobileNavHandler}
+                    className={`navbar__item ${
+                      router.pathname.includes(navItem.link)
+                        ? 'navbar__item--active'
+                        : ''
+                    }`}
+                  >
+                    {navItem.name}
+                  </a>
                 )}
               </li>
             ))}

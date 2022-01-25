@@ -231,7 +231,7 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
                       CSV File
                     </label>
 
-                    <label htmlFor="downloadFormat1">
+                    <label htmlFor="downloadFormat2">
                       <input
                         type="radio"
                         id="downloadFormat2"
@@ -241,7 +241,7 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
                       XLS File
                     </label>
 
-                    <label htmlFor="downloadFormat1">
+                    <label htmlFor="downloadFormat3">
                       <input
                         type="radio"
                         id="downloadFormat3"
@@ -251,7 +251,7 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
                       PDF File
                     </label>
 
-                    <label htmlFor="downloadFormat1">
+                    <label htmlFor="downloadFormat4">
                       <input
                         type="radio"
                         id="downloadFormat4"

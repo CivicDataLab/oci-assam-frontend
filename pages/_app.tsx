@@ -32,6 +32,7 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
 
   useEffect(() => {
     const handleRouteComplete = () => {
+      console.log('router.query', router.query);
       // change focus to top
       if (document.querySelector('#top-of-site-pixel-anchor')) {
         (

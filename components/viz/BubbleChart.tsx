@@ -57,9 +57,7 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
   yAxisLabel,
   color,
 }) => {
-  console.log(bubbleData1);
   const series = seriesMaker(bubbleData1, color);
-  console.log(series);
   const options = {
     legend: {
       data: setLegendData,
@@ -99,6 +97,13 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
     LegendComponent,
     TooltipComponent,
   ]);
-  return <ReactEChartsCore echarts={echarts} option={options} notMerge={true} lazyUpdate={true}/>;
+  return (
+    <ReactEChartsCore
+      echarts={echarts}
+      option={options}
+      notMerge={true}
+      lazyUpdate={true}
+    />
+  );
 };
 export default BubbleChart;

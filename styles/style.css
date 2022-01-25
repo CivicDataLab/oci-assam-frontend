@@ -2511,19 +2511,19 @@ button {
   align-items: center;
   margin-top: 0.5rem;
 }
-.kpi__tags li[data-id=coverage] {
+.kpi__tags li[data-id=tag-0] {
   color: #6544c1;
   background-color: #e9e4f6;
 }
-.kpi__tags li[data-id=value] {
+.kpi__tags li[data-id=tag-1] {
   color: #080da0;
   background-color: #dde9f8;
 }
-.kpi__tags li[data-id=market] {
+.kpi__tags li[data-id=tag-2] {
   color: #a38000;
   background-color: #f2f2f2;
 }
-.kpi__tags li[data-id=competetion] {
+.kpi__tags li[data-id=tag-3] {
   color: #982f55;
   background-color: #f0e0e6;
 }

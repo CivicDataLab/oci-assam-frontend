@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-const indicatorObj = {};
 
 const Indicator = ({ data, newIndicator }) => {
   function headingCollapsable() {
@@ -17,7 +16,7 @@ const Indicator = ({ data, newIndicator }) => {
       };
     });
   }
-
+  const indicatorObj = {};
   useEffect(() => {
     headingCollapsable();
 
