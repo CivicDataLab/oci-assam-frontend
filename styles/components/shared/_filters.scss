@@ -54,6 +54,16 @@
     }
   }
 
+  &__content {
+    max-height: 20rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+  }
+
   &__button {
     background-color: $bg-lightest;
     display: block;
@@ -74,7 +84,7 @@
     }
   }
 
-  [aria-pressed="true"] {
+  [aria-pressed='true'] {
     background-color: darken($color-sapphire-0, 10);
 
     &:hover {

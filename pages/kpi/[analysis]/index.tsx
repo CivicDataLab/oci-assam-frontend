@@ -142,7 +142,6 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
     const tablist = document.querySelector('.viz__tabs');
     const panels = document.querySelectorAll('.viz figure');
     tabbedInterface(tablist, panels);
-    console.log(csv);
 
     const indicatorList = [];
     const vizFilters = {};
@@ -179,8 +178,6 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
         title: indicator.id,
       };
     });
-    console.log('vizFilters', vizFilters);
-
     // setting indicators state
     setIndicatorsList(vizFilters);
   }, []);

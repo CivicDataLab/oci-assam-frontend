@@ -1717,6 +1717,14 @@ button {
 .filters__heading [aria-expanded] path {
   fill: currentColor;
 }
+.filters__content {
+  max-height: 20rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.filters__content::-webkit-scrollbar {
+  width: 5px;
+}
 .filters__button {
   background-color: white;
   display: block;

@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 const obj = {};
 
 const Filter = ({ data, newFilters, fq }) => {
-  console.log('fq', fq);
-
   function headingCollapsable() {
     const headings = document.querySelectorAll('.filters__heading');
 
@@ -13,6 +11,16 @@ const Filter = ({ data, newFilters, fq }) => {
 
       btn.onclick = () => {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+        const selectedBtn = document.querySelector(
+          '.filters__heading [aria-expanded = "true"]'
+        );
+        if (selectedBtn && !expanded) {
+          selectedBtn.setAttribute('aria-expanded', 'false');
+          (
+            selectedBtn.parentElement.nextElementSibling as HTMLElement
+          ).hidden = true;
+        }
 
         btn.setAttribute('aria-expanded', !expanded);
         target.hidden = expanded;
@@ -34,10 +42,19 @@ const Filter = ({ data, newFilters, fq }) => {
 
       splitFilters.forEach((query: any) => {
         const id = query.split(':')[0];
-        const value = query.split(':')[1];
-        obj[id].push(value);
-        if (document.getElementById(value))
-          document.getElementById(value).setAttribute('aria-pressed', 'true');
+
+        let value = query.split(':')[1];
+        value = value.slice(1, value.length - 1);
+        const valueArr = value.split(' OR ');
+
+        valueArr.forEach((element) => {
+          obj[id].push(element);
+
+          if (document.getElementById(element))
+            document
+              .getElementById(element)
+              .setAttribute('aria-pressed', 'true');
+        });
       });
     }
   }, []);
@@ -65,6 +82,8 @@ const Filter = ({ data, newFilters, fq }) => {
       pressed == 'false' ? 'true' : 'false'
     );
 
+    console.log(obj);
+
     const index = obj[type].indexOf(value);
     if (index > -1) {
       obj[type].splice(index, 1);
@@ -73,20 +92,30 @@ const Filter = ({ data, newFilters, fq }) => {
     }
 
     const final = [];
-    let filter: string;
     Object.keys(obj).forEach((val) => {
       if (obj[val].length > 0) {
-        obj[val].forEach((item: string) => final.push(`${val}:"${item}"`));
+        let filter = '';
 
-        filter = final.join(' AND ');
+        filter = filter.concat(`${val}:(`);
+        const valArray = [];
+
+        obj[val].forEach((item: string) => {
+          valArray.push(`"${item}"`);
+        });
+
+        const valString = valArray.join(' OR ');
+        filter = filter.concat(valString + ')');
+        final.push(filter);
       }
     });
 
-    console.log('filter', filter);
+    const finalFilter = final.join(' AND ');
+
+    console.log(finalFilter);
 
     newFilters({
       query: 'fq',
-      value: filter,
+      value: finalFilter,
     });
   }
 
@@ -103,7 +132,7 @@ const Filter = ({ data, newFilters, fq }) => {
               </svg>
             </button>
           </h4>
-          <div hidden>
+          <div className="filters__content" hidden>
             {data[filter].items &&
               data[filter].items.map((item: any) => (
                 <button
