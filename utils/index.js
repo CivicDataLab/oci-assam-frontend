@@ -75,12 +75,12 @@ export async function fetchAPI(path) {
 export async function getFilters(list, variable, page) {
   try {
     // if filters and searc found in url, also use those
-    const queryVars = `fq=${
-      variable.fq ? `${variable.fq} AND type:${page}` : `type:${page}`
-    }&q=${variable.q ? variable.q : ''}`;
+    const queryVars = `fq=${variable.fq ? `type:${page}` : `type:${page}`}&q=${
+      variable.q ? variable.q : ''
+    }`;
 
     const fetchData = await fetch(
-      `http://13.126.46.107/api/3/action/package_search?facet.field=[${list}]&facet.limit=6&${queryVars}`
+      `http://13.126.46.107/api/3/action/package_search?facet.field=[${list}]&${queryVars}`
     ).then((res) => res.json());
     return fetchData.result.search_facets;
   } catch (error) {

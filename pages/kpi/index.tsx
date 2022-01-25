@@ -117,10 +117,15 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                           <h3 className="kpi__heading">{datapackage.title}</h3>
                           <p className="kpi__desc">{datapackage.notes}</p>
                           <ul className="kpi__tags">
-                            <li data-id="coverage">Coverage</li>
-                            <li data-id="value">Value for money</li>
-                            <li data-id="market">Market participation</li>
-                            <li data-id="competetion">Competetion</li>
+                            {datapackage.tags.length > 0 &&
+                              datapackage.tags.map((tag, index) => (
+                                <li
+                                  key={tag.display_name}
+                                  data-id={`tag-${index}`}
+                                >
+                                  {tag.display_name}
+                                </li>
+                              ))}
                           </ul>
                         </section>
                       </a>

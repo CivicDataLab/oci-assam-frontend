@@ -8,7 +8,7 @@ const Sort: React.FC<{ newSort: any }> = ({ newSort }) => {
   useEffect(() => {
     const currentSort = router.query.sort
       ? router.query.sort
-      : 'metadata_modified:desc';
+      : 'tender_datepublished:asc';
 
     setSort(currentSort as string);
   }, [router.query.sort]);
@@ -33,11 +33,10 @@ const Sort: React.FC<{ newSort: any }> = ({ newSort }) => {
         onChange={handleChange}
         value={sort}
       >
+        <option value="tender_bid_opening_date:asc">Date</option>
+        <option value="tender_value_amount:asc">Tender Value</option>
+        <option value="buyer_name:asc">Departments</option>
         <option value="score:desc">Relevance</option>
-        <option value="title_string:asc">Name Ascending</option>
-        <option value="title_string:desc">Name Descending</option>
-        <option value="metadata_modified:desc">Last Modified</option>
-        <option value="views_recent:desc">Popular</option>
       </select>
     </div>
   );

@@ -39,8 +39,6 @@ const news = [
   },
 ];
 
-const vizFilters = {};
-
 const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [indicatorsList, setIndicatorsList] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -48,13 +46,13 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [filteredData, SetFilteredData] = useState([]);
 
   function selectGraph(val) {
-    const barList = [
-      'proportion-of-procurement-method-types',
-      'average-tendering-period',
-      'proportion-of-bids',
-      'proportion-of-saving',
-    ];
-    const bubbleList = ['awardee-details'];
+    // const barList = [
+    //   'proportion-of-procurement-method-types',
+    //   'average-tendering-period',
+    //   'proportion-of-bids',
+    //   'proportion-of-saving',
+    // ];
+    // const bubbleList = ['awardee-details'];
     if (val == 'proportion-of-procurement-method-types') {
       return (
         <BarChartViz
@@ -146,6 +144,8 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
     tabbedInterface(tablist, panels);
 
     const indicatorList = [];
+    const vizFilters = {};
+
     // populating required indicators
     const keys = Object.keys(csv.analytics[0]);
     for (let i = 0; i < 4; i++) {
@@ -178,7 +178,6 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
         title: indicator.id,
       };
     });
-
     // setting indicators state
     setIndicatorsList(vizFilters);
   }, []);
@@ -295,7 +294,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
                       CSV File
                     </label>
 
-                    <label htmlFor="downloadFormat1">
+                    <label htmlFor="downloadFormat2">
                       <input
                         type="radio"
                         id="downloadFormat2"
@@ -305,7 +304,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
                       XLS File
                     </label>
 
-                    <label htmlFor="downloadFormat1">
+                    <label htmlFor="downloadFormat3">
                       <input
                         type="radio"
                         id="downloadFormat3"
@@ -315,7 +314,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
                       PDF File
                     </label>
 
-                    <label htmlFor="downloadFormat1">
+                    <label htmlFor="downloadFormat4">
                       <input
                         type="radio"
                         id="downloadFormat4"

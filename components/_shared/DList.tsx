@@ -69,8 +69,6 @@ const icons = {
 };
 
 const DList = ({ content }) => {
-  console.log(content);
-
   function hideToggle(liveRegion: any, toggletip: any) {
     liveRegion.innerHTML = '';
     toggletip.setAttribute('aria-pressed', 'false');

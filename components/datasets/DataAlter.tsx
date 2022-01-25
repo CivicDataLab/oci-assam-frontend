@@ -21,24 +21,20 @@ function formatFilterName(name: string) {
 
 const sort = [
   {
-    id: 'metadata_modified:desc',
-    name: 'Last Modified',
+    id: 'tender_datepublished:asc',
+    name: 'Date',
+  },
+  {
+    id: 'tender_value_amount:asc',
+    name: 'Tender Value',
+  },
+  {
+    id: 'organization.title:desc',
+    name: 'Departments',
   },
   {
     id: 'score:desc',
     name: 'Relevance',
-  },
-  {
-    id: 'title_string:asc',
-    name: 'Name Ascending',
-  },
-  {
-    id: 'title_string:desc',
-    name: 'Name Descending',
-  },
-  {
-    id: 'views_recent:desc',
-    name: 'Popular',
   },
 ];
 
@@ -57,10 +53,10 @@ const DataAlter: React.FC<{
   const [sortIsOpen, setSortIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [currentSort, setCurrentSort] = useState(
-    router.query.sort ? router.query.sort : 'metadata_modified:desc'
+    router.query.sort ? router.query.sort : 'tender_datepublished:asc'
   );
   const [selectedSort, setSelectedSort] = useState(
-    router.query.sort ? router.query.sort : 'metadata_modified:desc'
+    router.query.sort ? router.query.sort : 'tender_datepublished:asc'
   );
 
   function checkInput(selected) {
