@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+const indicatorObj = {};
 
 const Indicator = ({ data, newIndicator }) => {
   function headingCollapsable() {
