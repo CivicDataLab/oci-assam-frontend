@@ -16,6 +16,8 @@ interface BubbleChartProps1 {
   color: any;
   xAxisLabel: string;
   yAxisLabel: string;
+  Title: string;
+  subTitle: string;
 }
 
 let SetSeries = [];
@@ -31,7 +33,7 @@ function seriesMaker(dataset, color) {
       type: 'scatter',
       name: dataset[i][0][4],
       symbolSize: function (data) {
-        return Math.sqrt(data[2]) / 100;
+        return Math.sqrt(data[2]) / 300;
       },
       emphasis: {
         focus: 'series',
@@ -56,11 +58,18 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
   xAxisLabel,
   yAxisLabel,
   color,
+  Title,
+  subTitle,
 }) => {
   const series = seriesMaker(bubbleData1, color);
   const options = {
     legend: {
       data: setLegendData,
+      top: "15%",
+    },
+    grid: {
+      show: false,
+      top: "30%",
     },
     xAxis: {
       name: xAxisLabel,
@@ -73,6 +82,8 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
         },
       },
       scale: true,
+      nameLocation: "middle",
+      nameGap: 30,
     },
     yAxis: {
       name: yAxisLabel,
@@ -85,7 +96,14 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
         },
       },
       scale: false,
+      nameLocation: "middle",
+      nameGap: 50,
     },
+    title: {
+      text: Title,
+      left: "center",
+      subtext: subTitle,
+     },
     series: series,
   };
   echarts.use([
@@ -103,6 +121,9 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
       option={options}
       notMerge={true}
       lazyUpdate={true}
+      style={{
+        height: "400px",
+      }}
     />
   );
 };

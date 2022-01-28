@@ -61,16 +61,20 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="True"
+          Title="Title"
+          subTitle="Subtitle"
         />
       );
     } else if (val == 'average-tendering-period') {
       return (
         <BarChartViz
-          yAxisLabel="Days"
+          yAxisLabel="No of days"
           xAxisLabel="Fiscal Year"
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="False"
+          Title="Average Tender Duration"
+          subTitle="Subtitle"
         />
       );
     } else if (val == 'proportion-of-bids') {
@@ -81,6 +85,8 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="False"
+          Title="Proportion of number of bids per tender"
+          subTitle="Subtitle"
         />
       );
     } else if (val == 'proportion-of-saving') {
@@ -91,6 +97,8 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="False"
+          Title="Title"
+          subTitle="Subtitle"
         />
       );
     } else if (val == 'awardee-info') {
@@ -100,6 +108,8 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           color={['#4965B2', '#ED8686']}
           xAxisLabel="Num of Contracts"
           yAxisLabel="Avg. Comp"
+          Title="Title"
+          subTitle="Subtitle"
         />
       );
     }
