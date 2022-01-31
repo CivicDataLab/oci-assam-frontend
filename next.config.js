@@ -7,7 +7,7 @@ module.exports = withTM({
     defaultLocale: 'en',
   },
   publicRuntimeConfig: {
-    DMS: 'http://13.126.46.107/',
+    DMS: 'http://15.206.122.72/',
     CMS: 'https://oddk.home.blog',
   },
 });

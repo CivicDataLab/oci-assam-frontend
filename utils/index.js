@@ -57,7 +57,7 @@ export async function fetchDatasets(type, variables) {
   const varString =
     varArray.length > 0 ? varArray.join('&') : `fq=type:${type}`;
   const response = await fetch(
-    `http://13.126.46.107/api/3/action/package_search?${varString}`
+    `http://15.206.122.72/api/3/action/package_search?${varString}`
   );
   const data = await response.json();
   return data;
@@ -66,7 +66,7 @@ export async function fetchDatasets(type, variables) {
 // fetch particular dataset
 export async function fetchAPI(path) {
   const response = await fetch(
-    `http://13.126.46.107/api/3/action/package_show?id=${path}`
+    `http://15.206.122.72/api/3/action/package_show?id=${path}`
   );
   const data = await response.json();
   return data;
@@ -80,7 +80,7 @@ export async function getFilters(list, variable, page) {
     }`;
 
     const fetchData = await fetch(
-      `http://13.126.46.107/api/3/action/package_search?facet.field=[${list}]&${queryVars}`
+      `http://15.206.122.72/api/3/action/package_search?facet.field=[${list}]&${queryVars}`
     ).then((res) => res.json());
     return fetchData.result.search_facets;
   } catch (error) {
