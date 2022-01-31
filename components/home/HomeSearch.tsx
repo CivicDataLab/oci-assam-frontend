@@ -12,7 +12,7 @@ const HomeSearch = () => {
   }
   return (
     <section className="home-search container">
-      <h2 className="heading-w-line">Search tender data of Assam</h2>
+      <h2 className="heading-w-line">Search from Tender Data of Assam</h2>
       <Search newSearch={handleRouteChange} />
       <div className="home-search__icons">
         <div className="home-search__category">

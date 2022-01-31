@@ -35,14 +35,14 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
             <section>
               <h2>{t(`common:title`)}</h2>
               <p>
-                It is a tool where both government and citizens can not only
+                It is a tool where both Government and Citizens can not only
                 explore the State’s Public Procurements data but also analyse
                 and see how such datasets can be used for the betterment of
-                government processes.
+                Government processes.
                 <br />
                 <br />
-                The data that we have here is contributed by the finance
-                department, the government of Assam.
+                The data that we have here is contributed by the Finance
+                Department, the Government of Assam.
               </p>
             </section>
           </div>
