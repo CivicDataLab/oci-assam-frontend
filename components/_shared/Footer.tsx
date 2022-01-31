@@ -38,11 +38,11 @@ const Footer = () => {
                   <a>Data Stories</a>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/datasets">
                   <a>Forum</a>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/datasets">
                   <a>About Us</a>
@@ -130,10 +130,10 @@ const Footer = () => {
               </div>
             </div>
 
-            <p>
+            {/* <p>
               Be a part of community discussion by clicking{' '}
               <a href="/">here</a>
-            </p>
+            </p> */}
           </section>
         </div>
       </footer>
