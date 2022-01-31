@@ -410,9 +410,9 @@ button {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  background-color: #045305;
+  background-color: #076775;
   color: #fdfcfc;
-  border: 1px solid #045305;
+  border: 1px solid #5EA8A9;
 }
 @media screen and (max-width: 979px) {
   .btn-primary {
@@ -423,7 +423,7 @@ button {
   margin-right: 1rem;
 }
 .btn-primary:hover {
-  background-color: #056b07;
+  background-color: #5EA8A9;
 }
 
 .btn-primary-invert {
@@ -439,9 +439,9 @@ button {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  border: 1px solid #045305;
+  border: 1px solid #076775;
   color: #045305;
-  background-color: #fdfcfc;
+  background-color: #5EA8A9;
 }
 @media screen and (max-width: 979px) {
   .btn-primary-invert {
@@ -527,7 +527,7 @@ button {
 .label-green {
   line-height: 140%;
   font-weight: 500;
-  color: #045305;
+  color: #076775;
 }
 
 .heading-w-line {
@@ -870,7 +870,7 @@ button {
 }
 
 .header {
-  background-color: #2c592c;
+  background-color: #076775;
   color: #fdfcfc;
   padding-top: 1.25rem;
 }
@@ -911,7 +911,10 @@ button {
     padding-top: 0;
   }
 }
-
+.brand_logo{
+  width: 200px;
+  height: auto;
+}
 .navbar {
   position: relative;
 }
@@ -926,7 +929,7 @@ button {
   display: flex;
 }
 .navbar__item:hover {
-  background-color: #3d7b3d;
+  background-color: #5EA8A9;
 }
 .navbar__item--active {
   box-shadow: inset 0 -2px 0 0 white;
@@ -1021,7 +1024,7 @@ button {
 }
 
 .m-navbar {
-  background: #2c592c;
+  background: #5EA8A9;
   color: #fdfcfc;
 }
 .m-navbar a {
@@ -1031,7 +1034,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #045305;
+  background-color: #076775;
   height: 4rem;
   padding-left: 1.5rem;
 }
@@ -1090,7 +1093,7 @@ button {
 }
 
 .mega-header {
-  background-color: #2c592c;
+  background-color: #076775;
   color: #fdfcfc;
 }
 .mega-header .container {
@@ -1226,7 +1229,7 @@ button {
 
 .footer {
   margin-top: 5rem;
-  background-color: #2c592c;
+  background-color: #076775;
   color: #fdfcfc;
 }
 .footer .container {
@@ -1635,7 +1638,7 @@ button {
 }
 .pagination__next {
   margin-left: 0.5rem;
-  background-color: #045305;
+  background-color: #076775;
 }
 .pagination__next:active {
   transform: scale(0.9);
@@ -1702,8 +1705,8 @@ button {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border: 1px solid #045305;
-  color: #045305;
+  border: 1px solid #076775;
+  color: #076775;
   border-radius: 4px;
 }
 .filters__heading svg {
@@ -2169,7 +2172,7 @@ button {
   line-height: 137%;
   padding-top: 0.8rem;
   display: block;
-  color: #045305;
+  color: #076775;
   text-decoration: none;
 }
 
@@ -2196,7 +2199,7 @@ button {
 }
 
 .home__header {
-  background-color: #2c592c;
+  background-color: #076775;
   color: #fdfcfc;
   position: relative;
   overflow: hidden;
