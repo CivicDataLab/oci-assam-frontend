@@ -17,7 +17,7 @@ const Indicator = ({ data, newIndicator }) => {
       };
     });
   }
-  const indicatorObj = {};
+
   useEffect(() => {
     headingCollapsable();
 
