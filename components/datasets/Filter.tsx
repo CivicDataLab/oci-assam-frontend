@@ -81,9 +81,6 @@ const Filter = ({ data, newFilters, fq }) => {
       'aria-pressed',
       pressed == 'false' ? 'true' : 'false'
     );
-
-    console.log(obj);
-
     const index = obj[type].indexOf(value);
     if (index > -1) {
       obj[type].splice(index, 1);
@@ -110,9 +107,6 @@ const Filter = ({ data, newFilters, fq }) => {
     });
 
     const finalFilter = final.join(' AND ');
-
-    console.log(finalFilter);
-
     newFilters({
       query: 'fq',
       value: finalFilter,
