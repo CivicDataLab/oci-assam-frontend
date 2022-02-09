@@ -21,7 +21,7 @@ function formatFilterName(name: string) {
 
 const sort = [
   {
-    id: 'tender_datepublished:asc',
+    id: 'tender_bid_opening_date:asc',
     name: 'Date',
   },
   {
@@ -53,10 +53,10 @@ const DataAlter: React.FC<{
   const [sortIsOpen, setSortIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [currentSort, setCurrentSort] = useState(
-    router.query.sort ? router.query.sort : 'tender_datepublished:asc'
+    router.query.sort ? router.query.sort : 'tender_bid_opening_date:asc'
   );
   const [selectedSort, setSelectedSort] = useState(
-    router.query.sort ? router.query.sort : 'tender_datepublished:asc'
+    router.query.sort ? router.query.sort : 'tender_bid_opening_date:asc'
   );
 
   function checkInput(selected) {

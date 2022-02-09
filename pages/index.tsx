@@ -4,16 +4,25 @@ import HomeSearch from 'components/home/HomeSearch';
 import Carousel from 'components/home/Carousel';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
 
 const carosuelData = [
   {
     content:
-      '“Public procurement” or what is more commonly known as the government tenders, is the process of buying of goods, services, and works by the government. It is a crucial strategic function for public services delivery, good governance, and to support growth of the economy and contributes to a large part of government spending',
+      '“Public procurement” or what is more commonly known as the government tenders, is the process of buying of goods, services, and works by the government. It is a crucial strategic function for public services delivery, good governance, and to support growth of the economy and contributes to a large part of government spending.',
   },
   {
     link: 'https://finance.assam.gov.in/sites/default/files/swf_utility_folder/departments/agriculture_com_oid_2/portlet/level_1/files/the_assam_public_procurement_rules_2020_-_ocr_friendly.pdf',
     content:
       'The Assam Public Procurement Rules, which were approved by the cabinet in September 2020 have now been brought into force with effect from 1st September 2021.',
+  },
+  {
+    content:
+      'Assam has a robust institutional mechanism for implementing procurement reforms with a State Procurement Facilitation Cell (SPFC) headed by Commissioner, Finance, a dedicated e-procurement support cell and a procurement shared services team.',
+  },
+  {
+    content:
+      'The Assam Government fixed a mandatory e-procurement threshold of Rs.20 Lakh in 2016 which was increased to Rs.50 Lakh in the year 2018 and brought down again to Rs.25 Lakh with certain exceptions in 2021.',
   },
 ];
 
@@ -30,7 +39,12 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
         <div className="home__header">
           <div className="container">
             <figure>
-              <img src="/assets/icons/home-india.svg" alt="" />
+              <Image
+                src="/assets/images/india_map.png"
+                alt=""
+                width={630}
+                height={836}
+              />
             </figure>
             <section>
               <h2>{t(`common:title`)}</h2>

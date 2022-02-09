@@ -94,7 +94,7 @@
       line-height: 14px;
       padding: 7px 12px;
       background-color: $bg-lighter;
-      border: 1px solid $bg-dark;
+      border: 1px solid $bg-darkest;
       border-radius: 4px;
       bottom: 150%;
       left: -20%;
@@ -105,7 +105,7 @@
       &::before {
         border-left: 0.8em solid transparent;
         border-right: 0.8em solid transparent;
-        border-top: 0.8em solid $bg-dark;
+        border-top: 0.8em solid $bg-darkest;
         bottom: -0.8em;
         content: ' ';
         height: 0;

@@ -79,7 +79,7 @@ const Carousel = ({ data }) => {
               fillRule="evenodd"
               clipRule="evenodd"
               d="M13.7158 2.8L11.121 0L0.000213623 12L11.121 24L13.7158 21.2L5.1899 12L13.7158 2.8Z"
-              fill="#075E54"
+              fill="#076775"
             />
           </svg>
         </button>
@@ -122,7 +122,7 @@ const Carousel = ({ data }) => {
               fillRule="evenodd"
               clipRule="evenodd"
               d="M13.7158 2.8L11.121 0L0.000213623 12L11.121 24L13.7158 21.2L5.1899 12L13.7158 2.8Z"
-              fill="#075E54"
+              fill="#076775"
             />
           </svg>
         </button>
@@ -135,7 +135,7 @@ const Carousel = ({ data }) => {
                   onClick={handleCarouselNav}
                   data-number={index}
                 >
-                  <span className="sr-only">News:</span> {index + 1}
+                  <span className="sr-only">Slide:</span> {index + 1}
                 </button>
               </li>
             );

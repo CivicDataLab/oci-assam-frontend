@@ -28,7 +28,7 @@ const HomeSearch = () => {
           <h3>Water and Sanitation</h3>
         </div>
         <div className="home-search__category">
-          <img src="/assets/icons/food.svg" alt="" />
+          <img src="/assets/icons/flood.svg" alt="" />
           <h3>Flood Management and Relief</h3>
         </div>
       </div>

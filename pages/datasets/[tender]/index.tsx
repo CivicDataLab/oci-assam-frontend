@@ -70,7 +70,7 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
   const dateContent = [
     {
       title: 'Published Date',
-      desc: getDate(dataPackage.tender_datepublished) || '--',
+      desc: getDate(dataPackage.tender_bid_opening_date) || '--',
     },
     {
       title: 'Tender Period Duration In Days',

@@ -85,13 +85,13 @@ button {
 }
 
 ::-moz-selection {
-  color: #045305;
-  background-color: #8ffa91;
+  color: #076775;
+  background-color: #b4f1fa;
 }
 
 ::selection {
-  color: #045305;
-  background-color: #8ffa91;
+  color: #076775;
+  background-color: #b4f1fa;
 }
 
 :root {
@@ -130,17 +130,17 @@ button {
 }
 @media screen and (min-width: 980px) {
   .container {
-    width: 900px;
+    width: 960px;
   }
 }
 @media screen and (min-width: 1200px) {
   .container {
-    width: 1100px;
+    width: 1180px;
   }
 }
 @media screen and (min-width: 1350px) {
   .container {
-    width: 1246px;
+    width: 1216px;
   }
 }
 
@@ -353,7 +353,7 @@ template {
 
 body {
   --site-border: 0.5em;
-  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   transition: background-color var(--base-animation-duration) var(--base-easing);
   background-color: #f2f2f2;
   color: rgba(0, 0, 0, 0.87);
@@ -412,7 +412,7 @@ button {
   width: max-content;
   background-color: #076775;
   color: #fdfcfc;
-  border: 1px solid #5EA8A9;
+  border: 1px solid #076775;
 }
 @media screen and (max-width: 979px) {
   .btn-primary {
@@ -423,7 +423,7 @@ button {
   margin-right: 1rem;
 }
 .btn-primary:hover {
-  background-color: #5EA8A9;
+  background-color: #087c8d;
 }
 
 .btn-primary-invert {
@@ -440,8 +440,8 @@ button {
   width: -moz-max-content;
   width: max-content;
   border: 1px solid #076775;
-  color: #045305;
-  background-color: #5EA8A9;
+  color: #076775;
+  background-color: #fdfcfc;
 }
 @media screen and (max-width: 979px) {
   .btn-primary-invert {
@@ -634,17 +634,13 @@ button {
 }
 .carousel .container {
   display: flex;
-  align-items: center;
   position: relative;
+  min-height: 15rem;
 }
 .carousel__content {
   display: flex;
-}
-.carousel__content figure {
-  padding: 16px 53px;
-}
-.carousel__content figure img {
-  width: 100%;
+  width: 80%;
+  margin-inline: auto;
 }
 @media screen and (max-width: 719px) {
   .carousel__content figure {
@@ -678,7 +674,7 @@ button {
   width: -moz-max-content;
   width: max-content;
   font-weight: 500;
-  color: #045305;
+  color: #076775;
   text-decoration: none;
   line-height: 156%;
 }
@@ -688,12 +684,15 @@ button {
 .carousel__prev, .carousel__next {
   min-width: 44px;
   height: 44px;
+  position: absolute;
+  top: 8rem;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
 }
 .carousel__prev {
-  margin-right: 3rem;
+  left: 1rem;
 }
 .carousel__next {
-  margin-left: 3rem;
+  right: 1rem;
 }
 .carousel__next svg {
   transform: rotate(180deg);
@@ -714,6 +713,7 @@ button {
   margin: 0;
   list-style: none;
   text-align: center;
+  display: flex;
 }
 .carousel__nav li {
   position: relative;
@@ -723,6 +723,7 @@ button {
   margin: 0 5px;
   padding: 0;
   cursor: pointer;
+  width: 100%;
 }
 .carousel__nav button {
   font-size: 0;
@@ -742,16 +743,16 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 12px;
+  height: 12px;
   content: " ";
   text-align: center;
   color: #f2f2f2;
-  border: 1px solid #045305;
+  border: 1px solid #076775;
   border-radius: 50%;
 }
 .carousel__nav button[aria-pressed=true]::before {
-  background-color: #045305;
+  background-color: #076775;
 }
 .carousel__nav button:focus-visible::before {
   outline-width: 5px;
@@ -762,11 +763,9 @@ button {
   .carousel figure {
     display: none;
   }
-  .carousel__prev {
-    margin-right: 2rem;
-  }
-  .carousel__next {
-    margin-left: 2rem;
+  .carousel__prev, .carousel__next {
+    min-width: inherit;
+    height: inherit;
   }
 }
 
@@ -805,7 +804,7 @@ button {
 }
 .card__image {
   width: 60px;
-  width: 60px;
+  height: 60px;
 }
 .card__heading {
   font-size: 1rem;
@@ -877,6 +876,11 @@ button {
 .header a {
   text-decoration: none;
 }
+.header__logo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
 .header .container {
   display: flex;
   justify-content: space-between;
@@ -911,10 +915,7 @@ button {
     padding-top: 0;
   }
 }
-.brand_logo{
-  width: 200px;
-  height: auto;
-}
+
 .navbar {
   position: relative;
 }
@@ -929,7 +930,7 @@ button {
   display: flex;
 }
 .navbar__item:hover {
-  background-color: #5EA8A9;
+  background-color: #0a91a5;
 }
 .navbar__item--active {
   box-shadow: inset 0 -2px 0 0 white;
@@ -952,7 +953,7 @@ button {
 }
 .navbar__nested li {
   position: relative;
-  background-color: #0899A0;
+  background-color: #0899a0;
   border-radius: 4px;
   transition: background-color 200ms ease-in;
 }
@@ -976,7 +977,7 @@ button {
   position: absolute;
   border-left: 14px solid transparent;
   border-right: 14px solid transparent;
-  border-bottom: 17px solid #0899A0;
+  border-bottom: 17px solid #0899a0;
   top: -10px;
   left: 10%;
 }
@@ -1006,13 +1007,11 @@ button {
   }
 }
 .m-header .container {
-  padding: 1rem;
+  padding-top: 1rem;
   justify-content: flex-start;
 }
 .m-header__button {
   margin-right: 1rem;
-  width: 44px;
-  height: 44px;
 }
 .m-header__link {
   justify-self: flex-end;
@@ -1024,7 +1023,7 @@ button {
 }
 
 .m-navbar {
-  background: #5EA8A9;
+  background: #076775;
   color: #fdfcfc;
 }
 .m-navbar a {
@@ -1034,7 +1033,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #076775;
+  background-color: #06525d;
   height: 4rem;
   padding-left: 1.5rem;
 }
@@ -1067,13 +1066,13 @@ button {
   transition: transform 300ms ease;
 }
 .m-navbar .navbar__item[aria-expanded=true] {
-  background-color: #045305;
+  background-color: #076775;
 }
 .m-navbar .navbar__item[aria-expanded=true]::after {
   transform: rotate(-135deg);
 }
 .m-navbar .navbar__item[aria-expanded=true] + ul {
-  background-color: #045305;
+  background-color: #076775;
   padding-bottom: 1rem;
 }
 .m-navbar__nested {
@@ -1179,7 +1178,6 @@ button {
 .search {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   border-radius: 12px;
   position: relative;
   flex-grow: 1;
@@ -1204,26 +1202,28 @@ button {
   }
 }
 .search__clear {
-  padding: 13.1px;
-  color: #f1eef1;
+  padding: 12px 13.1px;
+  color: #076775;
+}
+.search__form {
+  width: 100%;
+  position: relative;
 }
 .search__input {
-  border: 1px solid #2c592c;
+  border: 1px solid #076775;
   border-radius: 4px;
   box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.08);
-  padding: 0.5rem 0 0.5rem 2.5rem;
+  padding-left: 2.5rem;
   background-color: white;
   transition: background-color 150ms ease;
   width: 100%;
+  height: 100%;
   line-height: 130%;
   background-image: url("data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 15 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.5 14.5L10.5 10.5M6.5 12.5C3.18629 12.5 0.5 9.81371 0.5 6.5C0.5 3.18629 3.18629 0.5 6.5 0.5C9.81371 0.5 12.5 3.18629 12.5 6.5C12.5 9.81371 9.81371 12.5 6.5 12.5Z' stroke='%23075E54'/%3E%3C/svg%3E%0A");
   background-position: left 1rem top 50%, 0 0;
   background-repeat: no-repeat, repeat;
 }
-.search__input:not([value=""]) {
-  background-color: white;
-}
-.search__input:not([value=""]) + .form__buttons {
+.search__input:not([value=""]) + .search__clear {
   display: block;
 }
 
@@ -1445,7 +1445,7 @@ button {
 .dialog__url input {
   margin-top: 6px;
   border-radius: 6px;
-  border: 1px solid #045305;
+  border: 1px solid #076775;
   width: 100%;
   font-weight: 300;
   font-size: 14px;
@@ -1528,7 +1528,7 @@ button {
 .dialog--small .dialog__body input {
   margin-top: 6px;
   border-radius: 6px;
-  border: 1px solid #045305;
+  border: 1px solid #076775;
   width: 100%;
   font-weight: 300;
   font-size: 14px;
@@ -1625,12 +1625,12 @@ button {
   }
 }
 .pagination__back {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.078);
   margin-left: 1rem;
 }
 .pagination__back:active {
   transform: scale(0.9);
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.078);
 }
 .pagination__back svg {
   transform: rotate(180deg);
@@ -1642,7 +1642,7 @@ button {
 }
 .pagination__next:active {
   transform: scale(0.9);
-  background-color: #022202;
+  background-color: #043d45;
 }
 .pagination__next svg {
   fill: white;
@@ -1661,8 +1661,8 @@ button {
 .sort__select {
   background-position: right 10% top 55%, 0 0;
   font-size: 0.9rem;
-  border: 1px solid #2c592c;
-  color: #2c592c;
+  border: 1px solid #076775;
+  color: #076775;
 }
 @media screen and (max-width: 979px) {
   .sort {
@@ -1728,6 +1728,15 @@ button {
 .filters__content::-webkit-scrollbar {
   width: 5px;
 }
+.filters__content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.filters__content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.filters__content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 .filters__button {
   background-color: white;
   display: block;
@@ -1744,6 +1753,11 @@ button {
 }
 .filters__button:last-child {
   border-radius: 0px 0px 4px 4px;
+}
+.filters__search {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1cdd1;
 }
 .filters [aria-pressed=true] {
   background-color: #b8c9ff;
@@ -2002,7 +2016,7 @@ button {
   line-height: 14px;
   padding: 7px 12px;
   background-color: #f7fdf9;
-  border: 1px solid #2c592c;
+  border: 1px solid #076775;
   border-radius: 4px;
   bottom: 150%;
   left: -20%;
@@ -2013,7 +2027,7 @@ button {
 .dlist__toggletip [role=status]::before {
   border-left: 0.8em solid transparent;
   border-right: 0.8em solid transparent;
-  border-top: 0.8em solid #2c592c;
+  border-top: 0.8em solid #076775;
   bottom: -0.8em;
   content: " ";
   height: 0;
@@ -2043,7 +2057,7 @@ button {
   font-size: 14px;
   font-weight: 500;
   line-height: 157%;
-  color: #045305;
+  color: #076775;
 }
 .dlist__view:hover {
   text-decoration: underline;
@@ -2608,14 +2622,14 @@ button {
   stroke: #0a0a0a;
 }
 .analysis .viz__tabs a[aria-selected=true] {
-  color: #045305;
-  border-bottom: 2px solid #045305;
+  color: #076775;
+  border-bottom: 2px solid #076775;
 }
 .analysis .viz__tabs a[aria-selected=true] svg {
-  fill: #045305;
+  fill: #076775;
 }
 .analysis .viz__tabs a[aria-selected=true] svg.svg-stroke {
-  stroke: #045305;
+  stroke: #076775;
 }
 .analysis .viz figure {
   margin: 2rem;

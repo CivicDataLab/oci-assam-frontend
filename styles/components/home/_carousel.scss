@@ -8,20 +8,16 @@
 
   .container {
     display: flex;
-    align-items: center;
     position: relative;
+    min-height: 15rem;
   }
 
   &__content {
     display: flex;
+    width: 80%;
+    margin-inline: auto;
 
     figure {
-      padding: 16px 53px;
-
-      img {
-        width: 100%;
-      }
-
       @include media.narrowerThan('seedling') {
         display: none;
       }
@@ -71,14 +67,17 @@
   &__next {
     min-width: 44px;
     height: 44px;
+    position: absolute;
+    top: 8rem;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
   }
 
   &__prev {
-    margin-right: 3rem;
+    left: 1rem;
   }
 
   &__next {
-    margin-left: 3rem;
+    right: 1rem;
     svg {
       transform: rotate(180deg);
     }
@@ -102,6 +101,7 @@
     margin: 0;
     list-style: none;
     text-align: center;
+    display: flex;
 
     li {
       position: relative;
@@ -111,6 +111,7 @@
       margin: 0 5px;
       padding: 0;
       cursor: pointer;
+      width: 100%;
     }
 
     button {
@@ -131,8 +132,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 0.5rem;
-        height: 0.5rem;
+        width: 12px;
+        height: 12px;
         content: ' ';
         text-align: center;
         color: $bg-light;
@@ -160,12 +161,10 @@
     figure {
       display: none;
     }
-    &__prev {
-      margin-right: 2rem;
-    }
-
+    &__prev,
     &__next {
-      margin-left: 2rem;
+      min-width: inherit;
+      height: inherit;
     }
   }
 }
