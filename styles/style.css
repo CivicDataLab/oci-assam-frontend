@@ -1728,6 +1728,15 @@ button {
 .filters__content::-webkit-scrollbar {
   width: 5px;
 }
+.filters__content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.filters__content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.filters__content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 .filters__button {
   background-color: white;
   display: block;
@@ -1744,6 +1753,11 @@ button {
 }
 .filters__button:last-child {
   border-radius: 0px 0px 4px 4px;
+}
+.filters__search {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1cdd1;
 }
 .filters [aria-pressed=true] {
   background-color: #b8c9ff;
