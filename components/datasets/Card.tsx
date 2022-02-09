@@ -14,9 +14,10 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
         <figure>
           <Image
             className="card__image"
-            src="/assets/icons/ellipse.png"
-            width={60}
+            src="/assets/images/assam.jpg"
+            width={47}
             height={60}
+            layout="fixed"
           />
         </figure>
 

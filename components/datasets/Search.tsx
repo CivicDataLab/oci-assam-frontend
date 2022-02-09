@@ -16,6 +16,7 @@ const Search: React.FC<{ text?: string; newSearch: any }> = ({
     const input = document.querySelector('.search__input') as HTMLInputElement;
     input.value = '';
     input.focus();
+    setQ('');
   }
 
   const handleSubmit = (event) => {
@@ -29,16 +30,15 @@ const Search: React.FC<{ text?: string; newSearch: any }> = ({
 
   return (
     <form onSubmit={handleSubmit} className="search">
-      <input
-        type="search"
-        name="q"
-        value={q}
-        onChange={handleChange}
-        placeholder={text ? text : 'Try COVID, Hospital, Construction'}
-        aria-label="Search"
-        className="search__input"
-      />
-      <div className="search__buttons">
+      <div className="search__form">
+        <input
+          name="q"
+          value={q}
+          onChange={handleChange}
+          placeholder={text ? text : 'Try COVID, Hospital, Construction'}
+          aria-label="Search"
+          className="search__input"
+        />
         <button
           className="search__clear"
           type="button"
@@ -48,16 +48,17 @@ const Search: React.FC<{ text?: string; newSearch: any }> = ({
           <span className="sr-only">Clear search field</span>
           &#x2715;
         </button>
-        <button
-          onClick={handleSubmit}
-          className="search__submit btn-primary"
-          type="submit"
-          title="Submit search"
-        >
-          Submit
-          <span className="sr-only">search</span>
-        </button>
       </div>
+
+      <button
+        onClick={handleSubmit}
+        className="search__submit btn-primary"
+        type="submit"
+        title="Submit search"
+      >
+        Submit
+        <span className="sr-only">search</span>
+      </button>
     </form>
   );
 };
