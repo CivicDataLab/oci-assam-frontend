@@ -11,6 +11,12 @@
     text-decoration: none;
   }
 
+  &__logo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
   .container {
     display: flex;
     justify-content: space-between;
@@ -106,7 +112,8 @@
         }
       }
 
-      &:hover, &:focus-within {
+      &:hover,
+      &:focus-within {
         background-color: lighten($bg-submenu, 10);
       }
     }
@@ -153,14 +160,12 @@
   }
 
   .container {
-    padding: 1rem;
+    padding-top: 1rem;
     justify-content: flex-start;
   }
 
   &__button {
     margin-right: 1rem;
-    width: 44px;
-    height: 44px;
   }
 
   &__link {
@@ -184,7 +189,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $bg-darkest;
+    background-color: darken($bg-darkest, 5);
     height: 4rem;
     padding-left: 1.5rem;
 

@@ -89,12 +89,14 @@ const Nav: React.FC = () => {
           <div className="header__brand">
             <Link href="/">
               <a>
-                <img className="brand_logo" src="/assets/images/oci_logo.png" alt="oci logo"></img>
-                {/* <h1>Public Procurement</h1> */}
+                <img
+                  className="header__logo"
+                  src="/assets/images/oci-assam-light.png"
+                  alt="oci logo"
+                  height={206}
+                ></img>
               </a>
             </Link>
-            {/* <span className="header__divider" />
-            <h2>Assam</h2> */}
           </div>
 
           <nav className="navbar">
@@ -173,25 +175,14 @@ const Nav: React.FC = () => {
           <div className="header__brand">
             <Link href="/">
               <a>
-                <h1>OCI - Assam</h1>
+                <img
+                  className="header__logo"
+                  src="/assets/images/oci-assam-light.png"
+                  alt="oci logo"
+                  height={206}
+                ></img>
               </a>
             </Link>
-            <span className="header__divider" />
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M7.77159 5.33331C6.42507 5.33331 5.3335 6.42489 5.3335 7.77141V20.7746C5.3335 22.1211 6.42507 23.2127 7.77159 23.2127H24.2287C25.5753 23.2127 26.6668 22.1211 26.6668 20.7746V7.77141C26.6668 6.42489 25.5753 5.33331 24.2287 5.33331H7.77159ZM17.1379 11.2959C17.1379 11.1973 17.0645 11.1063 16.9456 11.0577C16.8267 11.0092 16.6808 11.0105 16.5637 11.0612L12.8611 12.6631H11.4491C10.8214 12.6631 10.3113 13.0298 10.3113 13.4838V15.6717C10.3113 16.1257 10.8214 16.4924 11.4491 16.4924H12.8611L16.5637 18.0944C16.6808 18.1451 16.8267 18.1464 16.9456 18.0978C17.0645 18.0492 17.1379 17.9582 17.1379 17.8596V11.2959ZM20.9305 11.5695V17.5903H21.6891V11.5695H20.9305ZM19.4135 16.4956V12.6642H20.172V16.4956H19.4135ZM17.8965 13.7589V15.4009H18.655V13.7589H17.8965ZM21.6891 26.6666H10.3113V25.2444H21.6891V26.6666Z"
-                fill="white"
-                fillOpacity="0.7"
-              />
-            </svg>
           </div>
         </div>
       </header>

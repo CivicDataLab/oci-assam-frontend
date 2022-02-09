@@ -85,13 +85,13 @@ button {
 }
 
 ::-moz-selection {
-  color: #045305;
-  background-color: #8ffa91;
+  color: #076775;
+  background-color: #b4f1fa;
 }
 
 ::selection {
-  color: #045305;
-  background-color: #8ffa91;
+  color: #076775;
+  background-color: #b4f1fa;
 }
 
 :root {
@@ -130,17 +130,17 @@ button {
 }
 @media screen and (min-width: 980px) {
   .container {
-    width: 900px;
+    width: 960px;
   }
 }
 @media screen and (min-width: 1200px) {
   .container {
-    width: 1100px;
+    width: 1180px;
   }
 }
 @media screen and (min-width: 1350px) {
   .container {
-    width: 1246px;
+    width: 1216px;
   }
 }
 
@@ -412,7 +412,7 @@ button {
   width: max-content;
   background-color: #076775;
   color: #fdfcfc;
-  border: 1px solid #5EA8A9;
+  border: 1px solid #076775;
 }
 @media screen and (max-width: 979px) {
   .btn-primary {
@@ -423,7 +423,7 @@ button {
   margin-right: 1rem;
 }
 .btn-primary:hover {
-  background-color: #5EA8A9;
+  background-color: #087c8d;
 }
 
 .btn-primary-invert {
@@ -440,8 +440,8 @@ button {
   width: -moz-max-content;
   width: max-content;
   border: 1px solid #076775;
-  color: #045305;
-  background-color: #5EA8A9;
+  color: #076775;
+  background-color: #fdfcfc;
 }
 @media screen and (max-width: 979px) {
   .btn-primary-invert {
@@ -678,7 +678,7 @@ button {
   width: -moz-max-content;
   width: max-content;
   font-weight: 500;
-  color: #045305;
+  color: #076775;
   text-decoration: none;
   line-height: 156%;
 }
@@ -747,11 +747,11 @@ button {
   content: " ";
   text-align: center;
   color: #f2f2f2;
-  border: 1px solid #045305;
+  border: 1px solid #076775;
   border-radius: 50%;
 }
 .carousel__nav button[aria-pressed=true]::before {
-  background-color: #045305;
+  background-color: #076775;
 }
 .carousel__nav button:focus-visible::before {
   outline-width: 5px;
@@ -877,6 +877,11 @@ button {
 .header a {
   text-decoration: none;
 }
+.header__logo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
 .header .container {
   display: flex;
   justify-content: space-between;
@@ -911,10 +916,7 @@ button {
     padding-top: 0;
   }
 }
-.brand_logo{
-  width: 200px;
-  height: auto;
-}
+
 .navbar {
   position: relative;
 }
@@ -929,7 +931,7 @@ button {
   display: flex;
 }
 .navbar__item:hover {
-  background-color: #5EA8A9;
+  background-color: #0a91a5;
 }
 .navbar__item--active {
   box-shadow: inset 0 -2px 0 0 white;
@@ -1006,13 +1008,11 @@ button {
   }
 }
 .m-header .container {
-  padding: 1rem;
+  padding-top: 1rem;
   justify-content: flex-start;
 }
 .m-header__button {
   margin-right: 1rem;
-  width: 44px;
-  height: 44px;
 }
 .m-header__link {
   justify-self: flex-end;
@@ -1024,7 +1024,7 @@ button {
 }
 
 .m-navbar {
-  background: #5EA8A9;
+  background: #076775;
   color: #fdfcfc;
 }
 .m-navbar a {
@@ -1034,7 +1034,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #076775;
+  background-color: #06525d;
   height: 4rem;
   padding-left: 1.5rem;
 }
@@ -1067,13 +1067,13 @@ button {
   transition: transform 300ms ease;
 }
 .m-navbar .navbar__item[aria-expanded=true] {
-  background-color: #045305;
+  background-color: #076775;
 }
 .m-navbar .navbar__item[aria-expanded=true]::after {
   transform: rotate(-135deg);
 }
 .m-navbar .navbar__item[aria-expanded=true] + ul {
-  background-color: #045305;
+  background-color: #076775;
   padding-bottom: 1rem;
 }
 .m-navbar__nested {
@@ -1208,7 +1208,7 @@ button {
   color: #f1eef1;
 }
 .search__input {
-  border: 1px solid #2c592c;
+  border: 1px solid #076775;
   border-radius: 4px;
   box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.08);
   padding: 0.5rem 0 0.5rem 2.5rem;
@@ -1445,7 +1445,7 @@ button {
 .dialog__url input {
   margin-top: 6px;
   border-radius: 6px;
-  border: 1px solid #045305;
+  border: 1px solid #076775;
   width: 100%;
   font-weight: 300;
   font-size: 14px;
@@ -1528,7 +1528,7 @@ button {
 .dialog--small .dialog__body input {
   margin-top: 6px;
   border-radius: 6px;
-  border: 1px solid #045305;
+  border: 1px solid #076775;
   width: 100%;
   font-weight: 300;
   font-size: 14px;
@@ -1625,12 +1625,12 @@ button {
   }
 }
 .pagination__back {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.078);
   margin-left: 1rem;
 }
 .pagination__back:active {
   transform: scale(0.9);
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.078);
 }
 .pagination__back svg {
   transform: rotate(180deg);
@@ -1642,7 +1642,7 @@ button {
 }
 .pagination__next:active {
   transform: scale(0.9);
-  background-color: #022202;
+  background-color: #043d45;
 }
 .pagination__next svg {
   fill: white;
@@ -1661,8 +1661,8 @@ button {
 .sort__select {
   background-position: right 10% top 55%, 0 0;
   font-size: 0.9rem;
-  border: 1px solid #2c592c;
-  color: #2c592c;
+  border: 1px solid #076775;
+  color: #076775;
 }
 @media screen and (max-width: 979px) {
   .sort {
@@ -2002,7 +2002,7 @@ button {
   line-height: 14px;
   padding: 7px 12px;
   background-color: #f7fdf9;
-  border: 1px solid #2c592c;
+  border: 1px solid #076775;
   border-radius: 4px;
   bottom: 150%;
   left: -20%;
@@ -2013,7 +2013,7 @@ button {
 .dlist__toggletip [role=status]::before {
   border-left: 0.8em solid transparent;
   border-right: 0.8em solid transparent;
-  border-top: 0.8em solid #2c592c;
+  border-top: 0.8em solid #076775;
   bottom: -0.8em;
   content: " ";
   height: 0;
@@ -2043,7 +2043,7 @@ button {
   font-size: 14px;
   font-weight: 500;
   line-height: 157%;
-  color: #045305;
+  color: #076775;
 }
 .dlist__view:hover {
   text-decoration: underline;
@@ -2608,14 +2608,14 @@ button {
   stroke: #0a0a0a;
 }
 .analysis .viz__tabs a[aria-selected=true] {
-  color: #045305;
-  border-bottom: 2px solid #045305;
+  color: #076775;
+  border-bottom: 2px solid #076775;
 }
 .analysis .viz__tabs a[aria-selected=true] svg {
-  fill: #045305;
+  fill: #076775;
 }
 .analysis .viz__tabs a[aria-selected=true] svg.svg-stroke {
-  stroke: #045305;
+  stroke: #076775;
 }
 .analysis .viz figure {
   margin: 2rem;
