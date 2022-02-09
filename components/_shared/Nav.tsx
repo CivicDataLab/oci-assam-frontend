@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
+import Image from 'next/image';
 Modal.setAppElement('#__next');
 
 const navList = [
@@ -175,12 +176,13 @@ const Nav: React.FC = () => {
           <div className="header__brand">
             <Link href="/">
               <a>
-                <img
+                <Image
                   className="header__logo"
                   src="/assets/images/oci-assam-light.png"
                   alt="oci logo"
-                  height={206}
-                ></img>
+                  width={400}
+                  height={56}
+                ></Image>
               </a>
             </Link>
           </div>

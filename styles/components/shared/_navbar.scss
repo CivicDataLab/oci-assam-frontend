@@ -3,7 +3,7 @@
 @use '../../tools/mixins/narrowerThan' as *;
 
 .header {
-  background-color: $bg-dark;
+  background-color: $bg-darkest;
   color: $text-dark-high;
   padding-top: 1.25rem;
 
@@ -69,7 +69,7 @@
     display: flex;
 
     &:hover {
-      background-color: lighten($bg-dark, 10);
+      background-color: lighten($bg-darkest, 10);
     }
 
     &--active {
@@ -178,7 +178,7 @@
 }
 
 .m-navbar {
-  background: $bg-dark;
+  background: $bg-darkest;
   color: $text-dark-high;
 
   a {

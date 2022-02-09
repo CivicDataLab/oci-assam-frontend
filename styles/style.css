@@ -353,7 +353,7 @@ template {
 
 body {
   --site-border: 0.5em;
-  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   transition: background-color var(--base-animation-duration) var(--base-easing);
   background-color: #f2f2f2;
   color: rgba(0, 0, 0, 0.87);
@@ -634,17 +634,13 @@ button {
 }
 .carousel .container {
   display: flex;
-  align-items: center;
   position: relative;
+  min-height: 15rem;
 }
 .carousel__content {
   display: flex;
-}
-.carousel__content figure {
-  padding: 16px 53px;
-}
-.carousel__content figure img {
-  width: 100%;
+  width: 80%;
+  margin-inline: auto;
 }
 @media screen and (max-width: 719px) {
   .carousel__content figure {
@@ -688,12 +684,15 @@ button {
 .carousel__prev, .carousel__next {
   min-width: 44px;
   height: 44px;
+  position: absolute;
+  top: 8rem;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
 }
 .carousel__prev {
-  margin-right: 3rem;
+  left: 1rem;
 }
 .carousel__next {
-  margin-left: 3rem;
+  right: 1rem;
 }
 .carousel__next svg {
   transform: rotate(180deg);
@@ -714,6 +713,7 @@ button {
   margin: 0;
   list-style: none;
   text-align: center;
+  display: flex;
 }
 .carousel__nav li {
   position: relative;
@@ -723,6 +723,7 @@ button {
   margin: 0 5px;
   padding: 0;
   cursor: pointer;
+  width: 100%;
 }
 .carousel__nav button {
   font-size: 0;
@@ -742,8 +743,8 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 12px;
+  height: 12px;
   content: " ";
   text-align: center;
   color: #f2f2f2;
@@ -762,11 +763,9 @@ button {
   .carousel figure {
     display: none;
   }
-  .carousel__prev {
-    margin-right: 2rem;
-  }
-  .carousel__next {
-    margin-left: 2rem;
+  .carousel__prev, .carousel__next {
+    min-width: inherit;
+    height: inherit;
   }
 }
 
@@ -954,7 +953,7 @@ button {
 }
 .navbar__nested li {
   position: relative;
-  background-color: #0899A0;
+  background-color: #0899a0;
   border-radius: 4px;
   transition: background-color 200ms ease-in;
 }
@@ -978,7 +977,7 @@ button {
   position: absolute;
   border-left: 14px solid transparent;
   border-right: 14px solid transparent;
-  border-bottom: 17px solid #0899A0;
+  border-bottom: 17px solid #0899a0;
   top: -10px;
   left: 10%;
 }
