@@ -3,6 +3,8 @@ import Head from 'next/head';
 import MegaHeader from 'components/_shared/MegaHeader';
 import PartnerCard from 'components/about/PartnerCard';
 import TeamCard from 'components/about/TeamCard';
+import cdlLogo from '/public/assets/images/cdl.png';
+import ocpLogo from '/public/assets/images/ocp.png';
 
 const headerData = {
   title: 'The Team',
@@ -12,7 +14,7 @@ const headerData = {
 const partners = [
   {
     name: 'CivicDataLab',
-    img: '/assets/images/cdl.png',
+    img: cdlLogo,
     desc: [
       'We are a research lab working at the intersection of data, tech, design and social science to strengthen the course of civic engagements in India.',
       'We work to harness the potential of open knowledge movements and better enable citizens to engage in matters of public reform.',
@@ -27,7 +29,7 @@ const partners = [
   },
   {
     name: 'Open Contracting Partnership',
-    img: '/assets/images/ocp.png',
+    img: ocpLogo,
     desc: [
       'The Open Contracting Partnership is an independent non-profit public charity 501(c)(3) working in over 50 countries.',
       'We are a silo-busting collaboration across governments, businesses, civil society, and technologists to open up and transform government contracting worldwide. Bringing open data and open government together, we make sure public money is spent openly, fairly and effectively on public contracts, the single biggest item of spending by most governments. They are a government’s number one corruption risk and they are vital to make sure citizens get the services that they deserve.',
@@ -160,7 +162,7 @@ const About = () => {
               {team.map((item, key) => {
                 return (
                   <li key={`team-${key}`}>
-                    <TeamCard card={item} num={key} />
+                    <TeamCard card={item} />
                   </li>
                 );
               })}

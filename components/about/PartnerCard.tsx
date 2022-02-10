@@ -11,6 +11,7 @@ const PartnerCard = ({ card }) => {
             className={card.class && card.class}
             width={108}
             height={108}
+            placeholder="blur"
           />
         </a>
         <section>

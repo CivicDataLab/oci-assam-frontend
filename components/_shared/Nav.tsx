@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
 import Image from 'next/image';
+import ociLogo from '/public/assets/images/oci-assam-light.png';
 Modal.setAppElement('#__next');
 
 const navList = [
@@ -90,12 +91,14 @@ const Nav: React.FC = () => {
           <div className="header__brand">
             <Link href="/">
               <a>
-                <img
+                <Image
                   className="header__logo"
-                  src="/assets/images/oci-assam-light.png"
+                  src={ociLogo}
                   alt="oci logo"
-                  height={206}
-                ></img>
+                  height={56}
+                  width={400}
+                  placeholder="blur"
+                />
               </a>
             </Link>
           </div>
@@ -178,11 +181,12 @@ const Nav: React.FC = () => {
               <a>
                 <Image
                   className="header__logo"
-                  src="/assets/images/oci-assam-light.png"
+                  src={ociLogo}
                   alt="oci logo"
                   width={400}
                   height={56}
-                ></Image>
+                  placeholder="blur"
+                />
               </a>
             </Link>
           </div>

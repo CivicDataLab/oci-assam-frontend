@@ -1,11 +1,9 @@
 import Image from 'next/image';
 
-const TeamCard = ({ card, num }) => {
-  const dimension = num + 204;
-
+const TeamCard = ({ card }) => {
   return (
     <div className="team__card">
-      {card.image ? (
+      {
         <figure>
           <Image
             className="team__image"
@@ -15,15 +13,7 @@ const TeamCard = ({ card, num }) => {
             height="208"
           />
         </figure>
-      ) : (
-        <Image
-          src={`https://placekitten.com/${dimension}/${dimension}`}
-          alt={card.name}
-          width="208"
-          height="208"
-          className="team__image"
-        />
-      )}
+      }
       <h4>{card.name}</h4>
       <small>{card.title}</small>
       <small>{card.org}</small>

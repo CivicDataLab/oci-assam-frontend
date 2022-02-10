@@ -2,6 +2,7 @@ import Head from 'next/head';
 import HomeSearch from 'components/home/HomeSearch';
 import Carousel from 'components/home/Carousel';
 import Image from 'next/image';
+import indiaMap from '/public/assets/images/india_map.png';
 
 const carosuelData = [
   {
@@ -35,10 +36,11 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
           <div className="container">
             <figure>
               <Image
-                src="/assets/images/india_map.png"
+                src={indiaMap}
                 alt=""
                 width={630}
                 height={836}
+                placeholder="blur"
               />
             </figure>
             <section>

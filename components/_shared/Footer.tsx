@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import ocpLogo from '/public/assets/images/ocp-full.png';
+import cdlLogo from '/public/assets/images/cdl.png';
 
 const Footer = () => {
   return (
@@ -8,16 +10,18 @@ const Footer = () => {
         <div className="container">
           <div className="footer__logo">
             <Image
-              src="/assets/images/cdl.png"
+              src={cdlLogo}
               width={165}
               height={165}
               alt="civicdatalab logo"
+              placeholder="blur"
             />
             <Image
-              src="/assets/images/ocp-full.png"
+              src={ocpLogo}
               width={193}
               height={66}
               alt="open contracting logo"
+              placeholder="blur"
             />
           </div>
           <section className="footer__pages">
