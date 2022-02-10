@@ -1,0 +1,14 @@
+@use "../../settings/variables" as *;
+
+.selected-filters {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  li {
+    background-color: $bg-darkest;
+    color: $text-dark-high;
+    padding: 0.5rem 1rem;
+    border-radius: 18px;
+  }
+}
