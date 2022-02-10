@@ -1,5 +1,6 @@
 @use '../../settings/variables' as *;
 @use '../../tools/mixins/media' as media;
+@use '../../tools/mixins/hover' as hover;
 
 .list {
   padding-bottom: 1.5rem;
@@ -14,5 +15,8 @@
     background-color: $bg-lightest;
     position: relative;
     z-index: 10;
+
+    @include hover.cardHover;
+
   }
 }
