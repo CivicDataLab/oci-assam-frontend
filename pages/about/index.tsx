@@ -112,7 +112,7 @@ const team = [
   },
   {
     name: 'Upasana Hembram',
-    title: 'Partner',
+    title: 'Tech Policy Fellow',
     org: 'CivicDataLab',
     image: '/assets/images/contributors/upasana.jpg',
     linkedin: 'https://www.linkedin.com/in/upasana-hembram/',
@@ -120,7 +120,7 @@ const team = [
   },
   {
     name: 'Preethi Govindarajan',
-    title: 'Partner',
+    title: 'Researcher',
     org: 'CivicDataLab',
     image: '/assets/images/contributors/preethi.jpg',
     github: 'https://github.com/preethical',

@@ -23,7 +23,6 @@
     - [Access data from a component](#access-data-from-a-component)
 - [Developers](#developers)
   - [Boot the local instance](#boot-the-local-instance)
-  - [Tests](#tests)
   - [Architecture](#architecture)
 - [Contributing](#contributing)
 - [Credits](#credits)
@@ -254,29 +253,11 @@ Open [http://localhost:3000](http://localhost:3000) to see the home page 🎉
 
 You can start editing the page by modifying `/pages/index.tsx`. The page auto-updates as you edit the file.
 
-### Tests
-
-We use Jest for running tests:
-
-```bash
-npm run test
-
-# turn on watching
-npm run test --watch
-```
-
-We use Cypress tests as well
-
-```
-npm run e2e
-```
-
 ### Architecture
 
 - Language: Javascript
 - Framework: [Next.js](https://nextjs.com/)
 - Styling: [SASS](https://sass-lang.com/) with [BEM](http://getbem.com/) and ITCSS
-- Data layer API: GraphQL using Apollo.
 
 ## Contributing
 

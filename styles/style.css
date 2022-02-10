@@ -782,6 +782,10 @@ button {
   background-color: white;
   position: relative;
   z-index: 10;
+  transition: box-shadow 250ms ease;
+}
+.list__item:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
 .total-datasets {
@@ -796,7 +800,6 @@ button {
   display: block;
   background-color: white;
   border-radius: 6px;
-  transition: transform 200ms ease;
   display: flex;
 }
 .card__link > figure {

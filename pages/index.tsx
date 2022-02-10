@@ -3,6 +3,7 @@ import HomeSearch from 'components/home/HomeSearch';
 import Carousel from 'components/home/Carousel';
 import Image from 'next/image';
 import indiaMap from '/public/assets/images/india_map.png';
+import Link from 'next/link';
 
 const carosuelData = [
   {
@@ -24,7 +25,7 @@ const carosuelData = [
   },
 ];
 
-const Home: React.FC<{ locale: any; locales: any }> = () => {
+const Home = () => {
   return (
     <>
       <Head>
@@ -70,9 +71,9 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
               Data analysis feature helps view, analyze and use the procurement
               data of Assam
             </p>
-            <a className="btn-primary" href="/kpi">
-              View Data Analysis
-            </a>
+            <Link href="/kpi">
+              <a className="btn-primary">View Data Analysis</a>
+            </Link>
           </section>
           <section>
             <h2 className="heading-w-line">Data Stories</h2>
@@ -81,9 +82,9 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
               Here you can see various use cases of this dataset and even share
               your own case study
             </p>
-            <a className="btn-primary" href="/stories">
-              View Data Stories
-            </a>
+            <Link href="/stories">
+              <a className="btn-primary">View Data Stories</a>
+            </Link>
           </section>
         </div>
       </main>
