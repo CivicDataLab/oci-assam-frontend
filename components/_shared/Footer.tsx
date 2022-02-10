@@ -14,7 +14,7 @@ const Footer = () => {
               alt="civicdatalab logo"
             />
             <Image
-              src="/assets/images/ocp.png"
+              src="/assets/images/ocp-full.png"
               width={193}
               height={66}
               alt="open contracting logo"
