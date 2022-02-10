@@ -23,7 +23,20 @@ type Props = {
 
 const list = '"tags"';
 
-const carosuelData = [];
+const carosuelData = [
+  {
+    content:
+      'NHM topped the goods procurements during the period of 2016 - 2020. It received a total of 1372 bids through the e-procurement portal and awarded contracts amounting to Rs.1626.44 Crore.',
+  },
+  {
+    content:
+      'A total of 68 procuring entities received less than 2 bids on an average against a total of 3836 tenders floated by them during 2016 - 2020.',
+  },
+  {
+    content:
+      'Out of a total of 30,294 tenders, information pertaining to Award of Contracts was published for 8295 tenders during 2016- 2020.',
+  },
+];
 
 const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
@@ -61,81 +74,85 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const headerData = {
     title: 'Data Analysis',
     content:
-      'This page shows the public procurement data of the last 5 financial years for the contracts over INR 50 lakh value. One could download the total compiled data or explore specific tender groups using various filters like financial year, tendering organization, tender status, tender types, etc.',
+      'This page shows analysis of the procurement data using some Key Performing Indices. You can analyse the data using different filters and download the visuals.',
   };
 
   return (
     <>
       <Head>
-        <title>OCI - Assam | Datasets</title>
+        <title>OCI - Assam | KPIs</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="datasets kpi">
+      <main className="kpi">
         <MegaHeader data={headerData} />
         <Carousel data={carosuelData} />
 
-        <div className="datasets__wrapper container">
-          <Filter data={facets} newFilters={handleRouteChange} fq={filters} />
-          <section className="kpi__summary">
-            <h3 className="heading3-w-line">Filtered summary</h3>
-
-            <strong>31.4kCr</strong>
-            <p>Total number of tenders published</p>
-
-            <strong>103kr</strong>
-            <p>Total number of bids received</p>
-
-            <strong>₹ 31.4kCr</strong>
-            <p>Total value of tenders awarded</p>
+        <div className="container">
+          <section className="kpi__heading">
+            <h2 className="heading-w-line">
+              Browse Key Performance Indicators
+            </h2>
+            <p className="kpi__explain">
+              Here is a list of common indicators for an initial analysis of
+              the public procurement data, providing key information on
+              different aspects of the contracting process. The main indicators
+              proposed describe the level of competition and the internal
+              efficiency of the processes, and signal potential risks and areas
+              of improvement.
+            </p>
           </section>
-          {data && (
-            <div className="datasets__right">
-              <h2 className="heading-w-line">
-                Browse Key Performance Indicators
-              </h2>
-              <p className="kpi__explain">
-                This Text should explain what a KPI is and inform the user that
-                they can click on the cards below and analyse them.
-              </p>
-              <Search text="Search KPIs" newSearch={handleRouteChange} />
-              <div className="datasets__total">
-                <Total text="results" total={count} />
-              </div>
+          <div className="kpi__wrapper">
+            <Filter
+              data={facets}
+              newFilters={handleRouteChange}
+              fq={filters}
+            />
+            {data && (
+              <div>
+                <Search text="Search KPIs" newSearch={handleRouteChange} />
+                <div className="datasets__total">
+                  <Total text="results" total={count} />
+                </div>
 
-              <DataAlter
-                data={facets}
-                newData={handleRouteChange}
-                fq={filters}
-                sortShow={false}
-              />
-              <ul className="list kpi__list">
-                {results.map((datapackage: any, index: number) => (
-                  <li key={`list-${index}`} className="kpi__item">
-                    <Link href={`${router.pathname}/${datapackage.name}`}>
-                      <a className="kpi__link">
-                        <section>
-                          <h3 className="kpi__heading">{datapackage.title}</h3>
-                          <p className="kpi__desc">{datapackage.notes}</p>
-                          <ul className="kpi__tags">
-                            {datapackage.tags.length > 0 &&
-                              datapackage.tags.map((tag, index) => (
-                                <li
-                                  key={tag.display_name}
-                                  data-id={`tag-${index}`}
-                                >
-                                  {tag.display_name}
-                                </li>
-                              ))}
-                          </ul>
-                        </section>
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <Pagination total={count} newPage={handleRouteChange} />
-            </div>
-          )}
+                <DataAlter
+                  data={facets}
+                  newData={handleRouteChange}
+                  fq={filters}
+                  sortShow={false}
+                />
+                <ul className="list kpi__list">
+                  {results.map((datapackage: any, index: number) => (
+                    <li key={`list-${index}`} className="kpi-item">
+                      <Link href={`${router.pathname}/${datapackage.name}`}>
+                        <a className="kpi-item__link">
+                          <section>
+                            <h3 className="kpi-item__heading">
+                              {datapackage.title}
+                            </h3>
+                            <p className="kpi-item__desc">
+                              {datapackage.notes}
+                            </p>
+                            <ul className="kpi-item__tags">
+                              {datapackage.tags.length > 0 &&
+                                datapackage.tags.map((tag, index) => (
+                                  <li
+                                    key={tag.display_name}
+                                    data-id={`tag-${index}`}
+                                  >
+                                    {tag.display_name}
+                                  </li>
+                                ))}
+                            </ul>
+                          </section>
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Pagination total={count} newPage={handleRouteChange} />
+              </div>
+            )}
+          </div>
         </div>
       </main>
     </>

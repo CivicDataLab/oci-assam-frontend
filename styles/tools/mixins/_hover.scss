@@ -1,0 +1,10 @@
+@use '../../settings/variables' as *;
+
+@mixin cardHover {
+  transition: box-shadow 250ms ease, transform 250ms ease;
+
+  &:hover {
+    box-shadow: $box-shadow-hover;
+    transform: translateY(-5px);
+  }
+}

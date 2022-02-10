@@ -1,9 +1,27 @@
 @use '../settings/variables' as *;
 @use '../tools/mixins/media' as media;
+@use '../tools/mixins/hover' as hover;
 
 .kpi {
   .carousel {
     margin-top: 0;
+  }
+
+  &__heading {
+    margin-top: 2.5rem;
+    font-weight: 500;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 312px 1fr;
+    grid-template-rows: max-content 1fr;
+    margin-top: 2.5rem;
+    gap: 2rem;
+
+    @include media.narrowerThan('sprout') {
+      display: block;
+    }
   }
 
   &__summary {
@@ -38,37 +56,31 @@
 
   &__explain {
     margin-top: 14px;
+    font-weight: normal;
+    line-height: 1.5;
   }
 
   .heading-w-line {
     max-width: 470px;
   }
 
-  .search {
-    margin-top: 2.5rem;
-  }
-
   &__list {
-    margin-top: 0.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    margin-top: 20px;
 
-    @include media.narrowerThan('seedling') {
-      justify-content: center;
+    @supports (width: min(250px, 100%)) {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: 20px;
     }
   }
 
-  &__item {
-    margin-top: 1rem;
-    width: 32%;
-    max-width: 400px;
+  &-item {
     background-color: $bg-lightest;
-    padding: 1.25rem 1rem;
-    height: 286px;
+    min-height: 286px;
     box-shadow: $box-shadow-1;
     border-radius: 6px;
     border-radius: 1px solid $bg-lighter;
+    @include hover.cardHover;
 
     @include media.narrowerThan('tree') {
       width: 48%;
@@ -76,71 +88,74 @@
     @include media.narrowerThan('seedling') {
       width: 100%;
     }
-  }
 
-  &__link {
-    text-decoration: none;
-
-    section {
-      display: grid;
+    &__link {
+      text-decoration: none;
+      padding: 1.25rem 1rem;
+      display: block;
       height: 100%;
-      grid-template-rows: repeat(2, max-content) 1fr;
+
+      section {
+        display: grid;
+        height: 100%;
+        grid-template-rows: repeat(2, max-content) 1fr;
+      }
     }
-  }
 
-  &__heading,
-  &__desc {
-    line-height: 156%;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-  }
+    &__heading,
+    &__desc {
+      line-height: 156%;
+      overflow: hidden;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+    }
 
-  &__heading {
-    font-weight: 500;
-  }
+    &__heading {
+      font-weight: 500;
+    }
 
-  &__desc {
-    color: $grey-2;
-    margin-top: 0.5rem;
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-self: flex-end;
-
-    li {
-      width: 49%;
-      height: 24px;
-      font-size: 10px;
-      border-radius: 18px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &__desc {
+      color: $grey-2;
       margin-top: 0.5rem;
+    }
 
-      &[data-id='tag-0'] {
-        color: $color-violet;
-        background-color: $bg-violet-light;
-      }
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-self: flex-end;
 
-      &[data-id='tag-1'] {
-        color: $color-blue;
-        background-color: $bg-blue-light;
-      }
+      li {
+        width: 49%;
+        height: 24px;
+        font-size: 10px;
+        border-radius: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0.5rem;
 
-      &[data-id='tag-2'] {
-        color: $color-gold;
-        background-color: $bg-gold-light;
-      }
+        &[data-id='tag-0'] {
+          color: $color-violet;
+          background-color: $bg-violet-light;
+        }
 
-      &[data-id='tag-3'] {
-        color: $color-pink;
-        background-color: $bg-pink-light;
+        &[data-id='tag-1'] {
+          color: $color-blue;
+          background-color: $bg-blue-light;
+        }
+
+        &[data-id='tag-2'] {
+          color: $color-gold;
+          background-color: $bg-gold-light;
+        }
+
+        &[data-id='tag-3'] {
+          color: $color-pink;
+          background-color: $bg-pink-light;
+        }
       }
     }
   }
