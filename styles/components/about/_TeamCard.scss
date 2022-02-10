@@ -6,11 +6,6 @@
     text-align: center;
     margin-top: 5rem;
 
-    img {
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
     h4 {
       margin-top: 1rem;
     }
@@ -21,6 +16,11 @@
       margin-top: 6px;
       display: block;
     }
+  }
+
+  &__image {
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   &__social {
