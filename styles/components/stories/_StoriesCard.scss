@@ -1,5 +1,6 @@
 @use '../../settings/variables' as *;
 @use '../../tools/mixins/media' as media;
+@use '../../tools/mixins/hover' as hover;
 
 .stories-card {
   background-color: $bg-lightest;
@@ -12,6 +13,9 @@
   display: flex;
   justify-content: space-between;
   position: relative;
+
+  @include hover.cardHover;
+
 
   a {
     margin-right: 2rem;

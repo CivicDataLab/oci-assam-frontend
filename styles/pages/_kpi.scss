@@ -67,11 +67,9 @@
   &__list {
     margin-top: 20px;
 
-    @supports (width: min(250px, 100%)) {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-      gap: 20px;
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 20px;
   }
 
   &-item {

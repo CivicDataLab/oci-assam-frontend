@@ -12,6 +12,16 @@ const Indicator = ({ data, newIndicator }) => {
       btn.onclick = () => {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
 
+        const selectedBtn = document.querySelector(
+          '.filters__heading [aria-expanded = "true"]'
+        );
+        if (selectedBtn && !expanded) {
+          selectedBtn.setAttribute('aria-expanded', 'false');
+          (
+            selectedBtn.parentElement.nextElementSibling as HTMLElement
+          ).hidden = true;
+        }
+
         btn.setAttribute('aria-expanded', !expanded);
         target.hidden = expanded;
       };

@@ -20,10 +20,16 @@
     display: grid;
     grid-template-columns: 312px 1fr;
     margin-top: 1.5rem;
+    gap: 2rem;
 
     @include media.narrowerThan('sprout') {
       grid-template-columns: 1fr;
     }
+  }
+
+  .filters {
+    height: 100%;
+    max-height: 700px;
   }
 
   .viz {
@@ -31,6 +37,7 @@
     border: 1px solid $bg-lighter;
     border-radius: 6px;
     box-shadow: $box-shadow-1;
+    height: clamp(400px, 700px, 700px);
 
     &__header {
       display: flex;
@@ -91,7 +98,7 @@
     }
 
     figure {
-      margin: 2rem;
+      margin: 1rem 2rem;;
     }
   }
 

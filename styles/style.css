@@ -2085,6 +2085,10 @@ button {
   display: flex;
   justify-content: space-between;
   position: relative;
+  transition: box-shadow 250ms ease;
+}
+.stories-card:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 .stories-card a {
   margin-right: 2rem;
@@ -2494,13 +2498,9 @@ button {
 }
 .kpi__list {
   margin-top: 20px;
-}
-@supports (width: min(250px, 100%)) {
-  .kpi__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-    gap: 20px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 20px;
 }
 .kpi-item {
   background-color: white;
@@ -2508,11 +2508,10 @@ button {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   border-radius: 6px;
   border-radius: 1px solid #f7fdf9;
-  transition: box-shadow 250ms ease, transform 250ms ease;
+  transition: box-shadow 250ms ease;
 }
 .kpi-item:hover {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-  transform: translateY(-5px);
 }
 @media screen and (max-width: 1349px) {
   .kpi-item {
@@ -2601,17 +2600,23 @@ button {
   display: grid;
   grid-template-columns: 312px 1fr;
   margin-top: 1.5rem;
+  gap: 2rem;
 }
 @media screen and (max-width: 979px) {
   .analysis__content {
     grid-template-columns: 1fr;
   }
 }
+.analysis .filters {
+  height: 100%;
+  max-height: 700px;
+}
 .analysis .viz {
   background-color: white;
   border: 1px solid #f7fdf9;
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
+  height: clamp(400px, 700px, 700px);
 }
 .analysis .viz__header {
   display: flex;
@@ -2663,7 +2668,7 @@ button {
   stroke: #076775;
 }
 .analysis .viz figure {
-  margin: 2rem;
+  margin: 1rem 2rem;
 }
 .analysis__news {
   margin-top: 2rem;
@@ -2720,13 +2725,12 @@ button {
   margin-top: 2.5rem;
 }
 .stories__team .stories__wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 20px;
 }
 .stories__team .stories-card {
   padding: 0;
-  width: 32%;
   flex-direction: column;
   justify-content: flex-start;
 }
