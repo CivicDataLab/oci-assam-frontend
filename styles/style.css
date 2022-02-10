@@ -80,7 +80,7 @@ button {
 
 :focus-visible {
   outline-width: 3px;
-  outline-color: #78aeda;
+  outline-color: #db901f;
   outline-style: solid;
 }
 
@@ -756,7 +756,7 @@ button {
 }
 .carousel__nav button:focus-visible::before {
   outline-width: 5px;
-  outline-color: #78aeda;
+  outline-color: #db901f;
   outline-style: solid;
 }
 @media screen and (max-width: 719px) {
@@ -1806,7 +1806,7 @@ button {
 /* Focus style */
 .select-comp:focus {
   border-color: #aaa;
-  box-shadow: 0 0 1px 3px #3b99fc;
+  box-shadow: 0 0 1px 3px #db901f;
   outline: none;
 }
 
@@ -2061,6 +2061,18 @@ button {
 }
 .dlist__view:hover {
   text-decoration: underline;
+}
+
+.selected-filters {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.selected-filters li {
+  background-color: #076775;
+  color: #fdfcfc;
+  padding: 0.5rem 1rem;
+  border-radius: 18px;
 }
 
 .stories-card {

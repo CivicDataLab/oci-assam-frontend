@@ -49,15 +49,16 @@ const Filter = ({ data, newFilters, fq }) => {
         let value = query.split(':')[1];
         value = value.slice(1, value.length - 1);
         const valueArr = value.split(' OR ');
+        setTimeout(() => {
+          valueArr.forEach((element) => {
+            dataObj[id].push(element);
 
-        valueArr.forEach((element) => {
-          dataObj[id].push(element);
-
-          if (document.getElementById(element))
-            document
-              .getElementById(element)
-              .setAttribute('aria-pressed', 'true');
-        });
+            if (document.getElementById(element))
+              document
+                .getElementById(element)
+                .setAttribute('aria-pressed', 'true');
+          });
+        }, 200);
       });
     }
     setFilterResult(filterSearch);
@@ -88,8 +89,6 @@ const Filter = ({ data, newFilters, fq }) => {
     const selectedFilter = e.target as HTMLInputElement;
     const type = selectedFilter.dataset.type;
     const value = selectedFilter.id;
-
-    console.log(dataObj);
 
     const pressed = selectedFilter.getAttribute('aria-pressed');
     selectedFilter.setAttribute(
