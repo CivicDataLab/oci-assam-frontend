@@ -1,9 +1,6 @@
-import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import HomeSearch from 'components/home/HomeSearch';
 import Carousel from 'components/home/Carousel';
-import { loadNamespaces } from './_app';
-import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 
 const carosuelData = [
@@ -27,12 +24,10 @@ const carosuelData = [
 ];
 
 const Home: React.FC<{ locale: any; locales: any }> = () => {
-  const { t } = useTranslation();
-
   return (
     <>
       <Head>
-        <title>{t(`common:title`)}</title>
+        <title>Assam Public Procurement Explorer</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="home">
@@ -47,7 +42,7 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
               />
             </figure>
             <section>
-              <h2>{t(`common:title`)}</h2>
+              <h2>Assam Public Procurement Explorer</h2>
               <p>
                 It is a tool where both Government and Citizens can not only
                 explore the State’s Public Procurements data but also analyse
@@ -92,19 +87,6 @@ const Home: React.FC<{ locale: any; locales: any }> = () => {
       </main>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  locales,
-}) => {
-  return {
-    props: {
-      _ns: await loadNamespaces(['common'], locale),
-      locale,
-      locales,
-    },
-  };
 };
 
 export default Home;
