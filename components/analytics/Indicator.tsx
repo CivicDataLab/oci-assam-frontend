@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 const indicatorObj = {};
+const indicatorSearch = {};
 
 const Indicator = ({ data, newIndicator }) => {
+  const [indicatorResult, setIndicatorResult] = useState({});
+
   function headingCollapsable() {
     const headings = document.querySelectorAll('.filters__heading');
 
@@ -33,8 +36,20 @@ const Indicator = ({ data, newIndicator }) => {
 
     Object.keys(data).forEach((val) => {
       indicatorObj[val] = [];
+      indicatorSearch[val] = data[val].items;
     });
+
+    setIndicatorResult({ ...indicatorSearch });
   }, [data]);
+
+  function handleIndicatorSearch(val: string, id: string) {
+    const searchFilter = data[id].items.filter((item: any) =>
+      JSON.stringify(item).toLowerCase().includes(val.toLowerCase())
+    );
+    indicatorSearch[id] = searchFilter;
+
+    setIndicatorResult({ ...indicatorSearch });
+  }
 
   function formatFilterName(name: string) {
     if (name == 'fiscal_year') {
@@ -79,8 +94,14 @@ const Indicator = ({ data, newIndicator }) => {
             </button>
           </h4>
           <div hidden>
-            {data[filter] &&
-              data[filter].items.map((item: any) => (
+            <input
+              type="text"
+              className="filters__search"
+              placeholder={`search ${formatFilterName(data[filter].title)}`}
+              onChange={(e) => handleIndicatorSearch(e.target.value, filter)}
+            />
+            {indicatorResult[filter] &&
+              indicatorResult[filter].map((item: any) => (
                 <button
                   className="filters__button"
                   key={item.display_name}
