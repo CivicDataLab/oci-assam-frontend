@@ -1,26 +1,8 @@
 import { useEffect } from 'react';
 import Layout from 'components/layout/layout';
-import I18nProvider from 'next-translate/I18nProvider';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import NextNprogress from 'nextjs-progressbar';
 import '../styles/style.css';
-
-interface I8nObject {
-  [property: string]: any;
-}
-
-export async function loadNamespaces(
-  namespaces: string[],
-  lang: string
-): Promise<I8nObject> {
-  const res = {};
-  for (const ns of namespaces) {
-    res[ns] = await import(`../locales/${lang}/${ns}.json`).then(
-      (m) => m.default
-    );
-  }
-  return res;
-}
 
 type Props = {
   Component: any;
@@ -28,8 +10,6 @@ type Props = {
 };
 
 const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
-  const router = useRouter();
-
   useEffect(() => {
     const handleRouteComplete = () => {
       // change focus to top
@@ -68,16 +48,14 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
 
   return (
     <Layout>
-      <I18nProvider lang={router.locale} namespaces={pageProps._ns}>
-        <NextNprogress
-          color="#0899A0"
-          startPosition={0.3}
-          stopDelayMs={100}
-          height={3}
-          options={{ easing: 'ease', speed: 300, showSpinner: false }}
-        />
-        <Component {...pageProps} />
-      </I18nProvider>
+      <NextNprogress
+        color="#0899A0"
+        startPosition={0.3}
+        stopDelayMs={100}
+        height={3}
+        options={{ easing: 'ease', speed: 300, showSpinner: false }}
+      />
+      <Component {...pageProps} />
     </Layout>
   );
 };
