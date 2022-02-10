@@ -6,20 +6,19 @@ import TeamCard from 'components/about/TeamCard';
 
 const headerData = {
   title: 'The Team',
-  content:
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+  content: 'Meet the team behind Open Contracting India initiative.',
 };
 
 const partners = [
   {
     name: 'CivicDataLab',
-    title: 'Technology Partner',
     img: '/assets/images/cdl.png',
     desc: [
       'We are a research lab working at the intersection of data, tech, design and social science to strengthen the course of civic engagements in India.',
       'We work to harness the potential of open knowledge movements and better enable citizens to engage in matters of public reform.',
       'We aim to grow data and tech literacy of governments, non-profits, think-tanks, media houses, universities, and more to enable data-driven decision making at scale.',
     ],
+    url: 'https://civicdatalab.in/',
     email: 'info@civicdatalab.in',
     github: '/',
     linkedin: '/',
@@ -28,12 +27,12 @@ const partners = [
   },
   {
     name: 'Open Contracting Partnership',
-    title: 'Platform Owner',
     img: '/assets/images/ocp.png',
     desc: [
       'The Open Contracting Partnership is an independent non-profit public charity 501(c)(3) working in over 50 countries.',
       'We are a silo-busting collaboration across governments, businesses, civil society, and technologists to open up and transform government contracting worldwide. Bringing open data and open government together, we make sure public money is spent openly, fairly and effectively on public contracts, the single biggest item of spending by most governments. They are a government’s number one corruption risk and they are vital to make sure citizens get the services that they deserve.',
     ],
+    url: 'https://www.open-contracting.org/',
     email: 'info@civicdatalab.in',
     github: '/',
     linkedin: '/',
@@ -46,23 +45,40 @@ const team = [
   {
     name: 'Gaurav Godhwani',
     title: 'Lead',
-    image: '/images/contributors/gaurav.jpg',
+    org: 'CivicDataLab',
+    image: '/assets/images/contributors/gaurav.jpg',
     github: 'https://github.com/gggodhwani',
     linkedin: 'https://www.linkedin.com/in/gggodhwani',
     twitter: 'https://twitter.com/gggodhwani',
   },
   {
-    name: 'Bernadine Fernz',
-    title: 'Head of Infrastructure',
+    name: 'Gavin Hayman',
+    title: 'Executive Director',
+    org: 'Open Contracting Partnership',
+    image: '/assets/images/contributors/gavin.avif',
+    twitter: 'https://twitter.com/gavinhayman_gw',
   },
   {
-    name: 'Rutwik Phatak',
-    title: 'Partner',
+    name: 'Bernadine Fernz',
+    title: 'Head of Infrastructure',
+    org: 'Open Contracting Partnership',
+    image: '/assets/images/contributors/bernadine.avif',
+    linkedin: 'https://www.linkedin.com/in/bernadine-fernz-5309a12/',
+    twitter: 'https://twitter.com/nadinefernz',
+  },
+  {
+    name: 'Nanda Sihombing',
+    title: 'Senior Program Manager for Asia',
+    org: 'Open Contracting Partnership',
+    image: '/assets/images/contributors/nanda.avif',
+    linkedin: 'https://www.linkedin.com/in/nandasihombing/',
+    twitter: 'https://twitter.com/sihombingnanda',
   },
   {
     name: 'Kabeer',
     title: 'Project Lead',
-    image: '/images/contributors/kabeer.jpg',
+    org: 'CivicDataLab',
+    image: '/assets/images/contributors/kabeer.jpg',
     github: 'https://github.com/Kabeer3',
     linkedin: 'https://www.linkedin.com/in/kabeer-arora-69827661/',
     twitter: 'https://twitter.com/kabeer3391',
@@ -70,7 +86,8 @@ const team = [
   {
     name: 'Shreya Agrawal',
     title: 'Data Engineer',
-    image: '/images/contributors/shreya.jpg',
+    org: 'CivicDataLab',
+    image: '/assets/images/contributors/shreya.jpg',
     github: 'https://github.com/shreyaagrawal0809',
     linkedin: 'https://github.com/shreyaagrawal0809',
     twitter: 'https://twitter.com/shreya_0809',
@@ -78,32 +95,35 @@ const team = [
   {
     name: 'Abhinav',
     title: 'Backend Engineer',
-    image: '/images/contributors/abhinav.jpg',
+    org: 'CivicDataLab',
+    image: '/assets/images/contributors/abhinav.jpg',
     github: 'https://github.com/Abhi2102',
   },
   {
     name: 'Shoaib Ahmed',
     title: 'Frontend Engineer',
-    image: '/images/contributors/shoaib.jpg',
+    org: 'CivicDataLab',
+    image: '/assets/images/contributors/shoaib.jpg',
     github: 'https://github.com/pixeledcode',
     linkedin: 'https://www.linkedin.com/in/pixeledcode',
     twitter: 'https://twitter.com/PixeledCode',
   },
   {
-    name: 'Preethi G',
+    name: 'Upasana Hembram',
     title: 'Partner',
+    org: 'CivicDataLab',
+    image: '/assets/images/contributors/upasana.jpg',
+    linkedin: 'https://www.linkedin.com/in/upasana-hembram/',
+    twitter: 'https://twitter.com/watzernehm',
   },
   {
-    name: 'Upasana',
+    name: 'Preethi Govindarajan',
     title: 'Partner',
-  },
-  {
-    name: 'Nanda',
-    title: 'Partner',
-  },
-  {
-    name: 'Gavin',
-    title: 'Partner',
+    org: 'CivicDataLab',
+    image: '/assets/images/contributors/preethi.jpg',
+    github: 'https://github.com/preethical',
+    linkedin: 'https://www.linkedin.com/in/preethi-g-95814b60/',
+    twitter: 'https://twitter.com/preethical',
   },
 ];
 

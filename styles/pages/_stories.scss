@@ -26,14 +26,13 @@
     margin-top: 2.5rem;
 
     .stories__wrapper {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: 20px;
     }
 
     .stories-card {
       padding: 0;
-      width: 32%;
       flex-direction: column;
       justify-content: flex-start;
 

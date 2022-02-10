@@ -1,20 +1,32 @@
+import Image from 'next/image';
+
 const TeamCard = ({ card, num }) => {
   const dimension = num + 204;
 
   return (
     <div className="team__card">
       {card.image ? (
-        <img src={card.image} alt="" width="208" height="208" />
+        <figure>
+          <Image
+            className="team__image"
+            src={card.image}
+            alt={card.name}
+            width="208"
+            height="208"
+          />
+        </figure>
       ) : (
-        <img
+        <Image
           src={`https://placekitten.com/${dimension}/${dimension}`}
-          alt=""
+          alt={card.name}
           width="208"
           height="208"
+          className="team__image"
         />
       )}
       <h4>{card.name}</h4>
       <small>{card.title}</small>
+      <small>{card.org}</small>
       <div className="team__social">
         {card.twitter && (
           <a href={card.twitter}>

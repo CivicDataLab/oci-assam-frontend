@@ -1673,7 +1673,6 @@ button {
 .filters {
   scrollbar-width: thin;
   background-color: white;
-  margin-right: 2rem;
   filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
   border: 1px solid #f1eef1;
   border-radius: 4px;
@@ -2086,6 +2085,10 @@ button {
   display: flex;
   justify-content: space-between;
   position: relative;
+  transition: box-shadow 250ms ease;
+}
+.stories-card:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 .stories-card a {
   margin-right: 2rem;
@@ -2153,6 +2156,10 @@ button {
   display: flex;
   align-items: center;
 }
+.partners__header a {
+  -webkit-text-decoration-color: transparent;
+          text-decoration-color: transparent;
+}
 .partners__header h4 {
   font-size: 1.5rem;
   font-weight: 500;
@@ -2164,18 +2171,11 @@ button {
   color: rgba(0, 0, 0, 0.32);
   font-weight: 500;
 }
-.partners__header img {
-  height: 108px;
-  width: 108px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  margin-right: 1.25rem;
-  border-radius: 4px;
-}
 .partners__header section {
   border-bottom: 1px solid #f1eef1;
   width: 100%;
   padding-bottom: 10px;
+  margin-left: 20px;
 }
 .partners__social {
   margin-top: 1rem;
@@ -2184,8 +2184,7 @@ button {
   background-color: #222;
 }
 .partners__body {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid #f1eef1;
+  padding-top: 20px;
 }
 .partners__body p {
   line-height: 137%;
@@ -2206,11 +2205,6 @@ button {
   text-align: center;
   margin-top: 5rem;
 }
-.team__card img {
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
 .team__card h4 {
   margin-top: 1rem;
 }
@@ -2219,6 +2213,11 @@ button {
   color: #545454;
   margin-top: 6px;
   display: block;
+}
+.team__image {
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .team__social {
   margin-top: 1rem;
@@ -2310,6 +2309,7 @@ button {
   grid-template-rows: -webkit-max-content 1fr;
   grid-template-rows: max-content 1fr;
   margin-top: 2.5rem;
+  gap: 2rem;
 }
 @media screen and (max-width: 979px) {
   .datasets__wrapper {
@@ -2437,6 +2437,23 @@ button {
 .kpi .carousel {
   margin-top: 0;
 }
+.kpi__heading {
+  margin-top: 2.5rem;
+  font-weight: 500;
+}
+.kpi__wrapper {
+  display: grid;
+  grid-template-columns: 312px 1fr;
+  grid-template-rows: -webkit-max-content 1fr;
+  grid-template-rows: max-content 1fr;
+  margin-top: 2.5rem;
+  gap: 2rem;
+}
+@media screen and (max-width: 979px) {
+  .kpi__wrapper {
+    display: block;
+  }
+}
 .kpi__summary {
   grid-column: 1/2;
   padding: 20px 14px;
@@ -2469,55 +2486,52 @@ button {
 }
 .kpi__explain {
   margin-top: 14px;
+  font-weight: normal;
+  line-height: 1.5;
 }
 .kpi .heading-w-line {
   max-width: 470px;
 }
-.kpi .search {
-  margin-top: 2.5rem;
-}
 .kpi__list {
-  margin-top: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 20px;
 }
-@media screen and (max-width: 719px) {
-  .kpi__list {
-    justify-content: center;
-  }
-}
-.kpi__item {
-  margin-top: 1rem;
-  width: 32%;
-  max-width: 400px;
+.kpi-item {
   background-color: white;
-  padding: 1.25rem 1rem;
-  height: 286px;
+  min-height: 286px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   border-radius: 6px;
   border-radius: 1px solid #f7fdf9;
+  transition: box-shadow 250ms ease;
+}
+.kpi-item:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 @media screen and (max-width: 1349px) {
-  .kpi__item {
+  .kpi-item {
     width: 48%;
   }
 }
 @media screen and (max-width: 719px) {
-  .kpi__item {
+  .kpi-item {
     width: 100%;
   }
 }
-.kpi__link {
+.kpi-item__link {
   text-decoration: none;
+  padding: 1.25rem 1rem;
+  display: block;
+  height: 100%;
 }
-.kpi__link section {
+.kpi-item__link section {
   display: grid;
   height: 100%;
   grid-template-rows: repeat(2, -webkit-max-content) 1fr;
   grid-template-rows: repeat(2, max-content) 1fr;
 }
-.kpi__heading, .kpi__desc {
+.kpi-item__heading, .kpi-item__desc {
   line-height: 156%;
   overflow: hidden;
   -webkit-line-clamp: 3;
@@ -2525,20 +2539,20 @@ button {
   -webkit-box-orient: vertical;
   display: -webkit-box;
 }
-.kpi__heading {
+.kpi-item__heading {
   font-weight: 500;
 }
-.kpi__desc {
+.kpi-item__desc {
   color: #545454;
   margin-top: 0.5rem;
 }
-.kpi__tags {
+.kpi-item__tags {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-self: flex-end;
 }
-.kpi__tags li {
+.kpi-item__tags li {
   width: 49%;
   height: 24px;
   font-size: 10px;
@@ -2548,19 +2562,19 @@ button {
   align-items: center;
   margin-top: 0.5rem;
 }
-.kpi__tags li[data-id=tag-0] {
+.kpi-item__tags li[data-id=tag-0] {
   color: #6544c1;
   background-color: #e9e4f6;
 }
-.kpi__tags li[data-id=tag-1] {
+.kpi-item__tags li[data-id=tag-1] {
   color: #080da0;
   background-color: #dde9f8;
 }
-.kpi__tags li[data-id=tag-2] {
+.kpi-item__tags li[data-id=tag-2] {
   color: #a38000;
   background-color: #f2f2f2;
 }
-.kpi__tags li[data-id=tag-3] {
+.kpi-item__tags li[data-id=tag-3] {
   color: #982f55;
   background-color: #f0e0e6;
 }
@@ -2582,17 +2596,23 @@ button {
   display: grid;
   grid-template-columns: 312px 1fr;
   margin-top: 1.5rem;
+  gap: 2rem;
 }
 @media screen and (max-width: 979px) {
   .analysis__content {
     grid-template-columns: 1fr;
   }
 }
+.analysis .filters {
+  height: 100%;
+  max-height: 700px;
+}
 .analysis .viz {
   background-color: white;
   border: 1px solid #f7fdf9;
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
+  height: clamp(400px, 700px, 700px);
 }
 .analysis .viz__header {
   display: flex;
@@ -2644,7 +2664,7 @@ button {
   stroke: #076775;
 }
 .analysis .viz figure {
-  margin: 2rem;
+  margin: 1rem 2rem;
 }
 .analysis__news {
   margin-top: 2rem;
@@ -2701,13 +2721,12 @@ button {
   margin-top: 2.5rem;
 }
 .stories__team .stories__wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 20px;
 }
 .stories__team .stories-card {
   padding: 0;
-  width: 32%;
   flex-direction: column;
   justify-content: flex-start;
 }

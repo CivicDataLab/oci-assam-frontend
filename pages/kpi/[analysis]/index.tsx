@@ -20,24 +20,24 @@ type Props = {
   csv: any;
 };
 
-const news = [
-  {
-    title: 'In Assam State',
-    desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
-  },
-  {
-    title: 'In Assam State',
-    desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
-  },
-  {
-    title: 'In Assam State',
-    desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
-  },
-  {
-    title: 'In Assam State',
-    desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
-  },
-];
+// const news = [
+//   {
+//     title: 'In Assam State',
+//     desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
+//   },
+//   {
+//     title: 'In Assam State',
+//     desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
+//   },
+//   {
+//     title: 'In Assam State',
+//     desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
+//   },
+//   {
+//     title: 'In Assam State',
+//     desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
+//   },
+// ];
 
 const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [indicatorsList, setIndicatorsList] = useState({});
@@ -204,8 +204,6 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
 
   const headerData = {
     title: dataPackage.title || dataPackage.name,
-    content: dataPackage.organization.title,
-    date: new Date(dataPackage.metadata_created).toLocaleDateString('en-US'),
     previousPage: 'Data Analysis',
     previousLink: '/kpi',
   };
@@ -383,7 +381,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
               ))}
             </div>
           </section>
-
+          {/* 
           <section className="analysis__news">
             <h3 className="heading-w-line">Did you know?</h3>
             <div>
@@ -396,7 +394,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
                 );
               })}
             </div>
-          </section>
+          </section> */}
         </div>
       </main>
     </>

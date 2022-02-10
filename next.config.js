@@ -11,3 +11,9 @@ module.exports = withTM({
     CMS: 'https://oddk.home.blog',
   },
 });
+
+module.exports = {
+  images: {
+    domains: ['placekitten.com'],
+  },
+};

@@ -57,15 +57,15 @@ const BarChartViz: React.FC<BarChartProps> = ({
         barMaxWidht: 16,
         itemStyle: { color: theme[columnLength] },
         stack: stackTrue,
-	label: {
-	      normal: {
-		show: true,
-		position: "top",
-		formatter: function (d) {
-		  return ""; //d.data;
-		},
-	      },
-	    },
+        label: {
+          normal: {
+            show: true,
+            position: 'top',
+            formatter: function (d) {
+              return ''; //d.data;
+            },
+          },
+        },
         // animation: false,
       });
     }
@@ -77,13 +77,13 @@ const BarChartViz: React.FC<BarChartProps> = ({
   useEffect(() => {
     const vizOptions = {
       legend: {
-       top: "17%",
+        top: '17%',
       },
       tooltip: {},
       dataset: { source: dataset },
       grid: {
-      show: false,
-      top: "30%",
+        show: false,
+        top: '30%',
       },
       xAxis: {
         type: 'category',
@@ -91,8 +91,8 @@ const BarChartViz: React.FC<BarChartProps> = ({
         axisLine: {
           symbol: ['none', 'arrow'],
         },
-      nameLocation: "middle",
-      nameGap: 30,
+        nameLocation: 'middle',
+        nameGap: 30,
         axisTick: {
           show: false,
         },
@@ -101,15 +101,15 @@ const BarChartViz: React.FC<BarChartProps> = ({
         type: 'value',
         name: yAxisLabel,
         axisLine: { onZero: false, show: true, symbol: ['none', 'arrow'] },
-        nameLocation: "middle",
+        nameLocation: 'middle',
         nameGap: 50,
         nameRotate: 90,
       },
-     title: {
-      text: Title,
-      left: "center",
-      subtext: subTitle,
-     },
+      title: {
+        text: Title,
+        left: 'center',
+        subtext: subTitle,
+      },
       series: series,
     };
 
@@ -133,7 +133,7 @@ const BarChartViz: React.FC<BarChartProps> = ({
       notMerge={true}
       lazyUpdate={true}
       style={{
-        height: "400px",
+        height: '550px',
       }}
     />
   );

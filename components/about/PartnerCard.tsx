@@ -1,11 +1,22 @@
+import Image from 'next/image';
+
 const PartnerCard = ({ card }) => {
   return (
     <div className="partners__card">
       <div className="partners__header">
-        <img src={card.img} alt="" className={card.class && card.class} />
+        <a href={card.url}>
+          <Image
+            src={card.img}
+            alt={`${card.name} logo`}
+            className={card.class && card.class}
+            width={108}
+            height={108}
+          />
+        </a>
         <section>
-          <h4>{card.name}</h4>
-          <small>{card.title}</small>
+          <a href={card.url}>
+            <h4>{card.name}</h4>
+          </a>
           <div className="partners__social">
             <a href={card.twitter}>
               <svg
@@ -83,9 +94,6 @@ const PartnerCard = ({ card }) => {
           <p key={`partner-content-${index}`}>{item}</p>
         ))}
       </div>
-      <a className="partners__footer" href={`mailto:${card.email}`}>
-        {card.email}
-      </a>
     </div>
   );
 };

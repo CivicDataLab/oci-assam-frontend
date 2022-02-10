@@ -1,5 +1,6 @@
 @use '../settings/variables' as *;
 @use '../tools/mixins/media' as media;
+@use '../tools/mixins/hover' as hover;
 
 .datasets {
   &__wrapper {
@@ -7,6 +8,7 @@
     grid-template-columns: 312px 1fr;
     grid-template-rows: max-content 1fr;
     margin-top: 2.5rem;
+    gap: 2rem;
 
     @include media.narrowerThan('sprout') {
       display: block;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import MegaHeader from 'components/_shared/MegaHeader';
@@ -11,15 +11,15 @@ Modal.setAppElement('#__next');
 const parser = new Parser();
 
 const Stories = ({ data }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function handleButtonClick() {
-    setModalIsOpen(!modalIsOpen);
-  }
+  // function handleButtonClick() {
+  //   setModalIsOpen(!modalIsOpen);
+  // }
   const headerData = {
     title: 'Data Stories',
     content:
-      'This page shows the public procurement data of the last 5 financial years for the contracts over INR 50 lakh value. One could download the total compiled data or explore specific tender groups using various filters like financial year, tendering organization, tender status, tender types, etc.',
+      'This page contains different researches, case studies, explainers and other public resources using  procurement data.',
   };
   return (
     <>
@@ -37,7 +37,7 @@ const Stories = ({ data }) => {
               <section className="stories__team">
                 <div className="stories__header">
                   <h3 className="heading-w-line">Stories from our team</h3>
-                  <button
+                  {/* <button
                     type="button"
                     className="btn-primary"
                     onClick={handleButtonClick}
@@ -93,7 +93,7 @@ const Stories = ({ data }) => {
                     >
                       Submit Article for Review
                     </button>
-                  </Modal>
+                  </Modal> */}
                 </div>
                 <div className="stories__wrapper">
                   {data.items.map((story, index) => {
@@ -117,7 +117,9 @@ const Stories = ({ data }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await parser.parseURL('https://medium.com/feed/civicdatalab');
+  const data = await parser.parseURL(
+    'https://medium.com/feed/civicdatalab/tagged/open-contracting'
+  );
 
   return {
     props: {
