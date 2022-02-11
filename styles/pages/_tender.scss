@@ -38,10 +38,6 @@
     margin: 0;
     align-self: flex-end;
 
-    svg {
-      margin-bottom: -2px;
-    }
-
     @include media.narrowerThan('seed') {
       margin-top: 1rem;
     }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as echarts from 'echarts/core';
 import { BarChart } from 'echarts/charts';
-import { SVGRenderer } from 'echarts/renderers';
+import { CanvasRenderer } from 'echarts/renderers';
 import {
   GridComponent,
   DatasetComponent,
@@ -36,8 +36,6 @@ const BarChartViz: React.FC<BarChartProps> = ({
   const [series, setSeries] = useState([]);
   const [option, setOption] = useState({});
 
-  console.log(dataset);
-
   // settting series
   useEffect(() => {
     const vizSeries = [];
@@ -61,7 +59,7 @@ const BarChartViz: React.FC<BarChartProps> = ({
           normal: {
             show: true,
             position: 'top',
-            formatter: function (d) {
+            formatter: function () {
               return ''; //d.data;
             },
           },
@@ -118,7 +116,7 @@ const BarChartViz: React.FC<BarChartProps> = ({
 
   echarts.use([
     BarChart,
-    SVGRenderer,
+    CanvasRenderer,
     GridComponent,
     TitleComponent,
     DatasetComponent,

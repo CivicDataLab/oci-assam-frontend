@@ -64,7 +64,7 @@ const Filter = ({ data, newFilters, fq }) => {
         }, 200);
       });
     }
-    setFilterResult(filterSearch);
+    setFilterResult({ ...filterSearch });
   }, []);
 
   function handleFilterSearch(val: string, id: string) {

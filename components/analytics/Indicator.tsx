@@ -97,7 +97,7 @@ const Indicator = ({ data, newIndicator }) => {
               </svg>
             </button>
           </h4>
-          <div hidden>
+          <div className="filters__content" hidden>
             <input
               type="text"
               className="filters__search"

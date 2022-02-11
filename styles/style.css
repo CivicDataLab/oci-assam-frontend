@@ -421,6 +421,7 @@ button {
 }
 .btn-primary svg {
   margin-right: 1rem;
+  margin-bottom: -2px;
 }
 .btn-primary:hover {
   background-color: #087c8d;
@@ -450,6 +451,7 @@ button {
 }
 .btn-primary-invert svg {
   margin-right: 1rem;
+  margin-bottom: -2px;
 }
 .btn-primary-invert:hover {
   background-color: #ecdada;
@@ -479,6 +481,7 @@ button {
 }
 .btn-secondary svg {
   margin-right: 1rem;
+  margin-bottom: -2px;
 }
 .btn-secondary:hover {
   background-color: #5873bb;
@@ -508,6 +511,7 @@ button {
 }
 .btn-secondary-invert svg {
   margin-right: 1rem;
+  margin-bottom: -2px;
 }
 .btn-secondary-invert:hover {
   background-color: #e6e6e6;
@@ -2364,9 +2368,6 @@ button {
 .datasets__sort button {
   margin-left: 1rem;
 }
-.datasets__sort button svg {
-  margin-bottom: -2px;
-}
 
 .tender .container {
   display: flex;
@@ -2396,9 +2397,6 @@ button {
 .tender .btn-primary {
   margin: 0;
   align-self: flex-end;
-}
-.tender .btn-primary svg {
-  margin-bottom: -2px;
 }
 @media screen and (max-width: 479px) {
   .tender .btn-primary {
