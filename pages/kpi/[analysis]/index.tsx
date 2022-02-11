@@ -46,13 +46,6 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [filteredData, SetFilteredData] = useState([]);
 
   function selectGraph(val) {
-    // const barList = [
-    //   'proportion-of-procurement-method-types',
-    //   'average-tendering-period',
-    //   'proportion-of-bids',
-    //   'proportion-of-saving',
-    // ];
-    // const bubbleList = ['awardee-details'];
     if (val == 'proportion-of-procurement-method-types') {
       return (
         <BarChartViz

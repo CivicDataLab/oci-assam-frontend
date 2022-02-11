@@ -65,11 +65,11 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
   const options = {
     legend: {
       data: setLegendData,
-      top: "15%",
+      top: '15%',
     },
     grid: {
       show: false,
-      top: "30%",
+      top: '30%',
     },
     xAxis: {
       name: xAxisLabel,
@@ -82,7 +82,7 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
         },
       },
       scale: true,
-      nameLocation: "middle",
+      nameLocation: 'middle',
       nameGap: 30,
     },
     yAxis: {
@@ -96,14 +96,14 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
         },
       },
       scale: false,
-      nameLocation: "middle",
+      nameLocation: 'middle',
       nameGap: 50,
     },
     title: {
       text: Title,
-      left: "center",
+      left: 'center',
       subtext: subTitle,
-     },
+    },
     series: series,
   };
   echarts.use([
@@ -122,7 +122,7 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
       notMerge={true}
       lazyUpdate={true}
       style={{
-        height: "400px",
+        height: '400px',
       }}
     />
   );
