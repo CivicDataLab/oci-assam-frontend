@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { truncate } from 'lodash';
-import { getDate } from 'utils/index';
+import { getDate, getOrgLogo } from 'utils/index';
 
 const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
   const router = useRouter();
@@ -12,13 +12,23 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
     <Link href={`${router.pathname}/${datapackage.name}`}>
       <a className="card__link">
         <figure>
-          <Image
-            className="card__image"
-            src="/assets/images/assam.jpg"
-            width={47}
-            height={60}
-            layout="fixed"
-          />
+          {datapackage.organization.image_url.length > 0 ? (
+            <Image
+              className="card__image"
+              src={getOrgLogo(datapackage.organization.image_url)}
+              width={60}
+              height={60}
+              layout="fixed"
+            />
+          ) : (
+            <Image
+              className="card__image"
+              src="/assets/images/assam.jpg"
+              width={60}
+              height={60}
+              layout="fixed"
+            />
+          )}
         </figure>
 
         <section>

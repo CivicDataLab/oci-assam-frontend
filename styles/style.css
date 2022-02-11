@@ -810,8 +810,8 @@ button {
   margin-right: 1rem;
 }
 .card__image {
-  width: 60px;
-  height: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .card__heading {
   font-size: 1rem;

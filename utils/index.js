@@ -88,6 +88,10 @@ export async function getFilters(list, variable, page) {
   }
 }
 
+export function getOrgLogo(url) {
+  return `http://15.206.122.72/uploads/group/${url}`;
+}
+
 /*
 Takes single field descriptor from datastore data dictionary and coverts into
 tableschema field descriptor.
