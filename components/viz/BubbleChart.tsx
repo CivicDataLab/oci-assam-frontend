@@ -26,6 +26,7 @@ let setLegendData = [];
 function seriesMaker(dataset, color) {
   SetSeries = [];
   setLegendData = [];
+  dataset[0].unshift([0, 0, 0, '0', 'ABCD']); //need to have a better way to make the axis start from zero
   for (let i = 0; i < dataset.length; i++) {
     setLegendData.push(dataset[i][0][4]);
     SetSeries.push({
