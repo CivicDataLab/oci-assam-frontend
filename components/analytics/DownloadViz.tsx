@@ -58,7 +58,6 @@ const DownloadViz = ({ viz, type, name }) => {
       excludeComponents: ['toolbox'],
       type: 'png',
     });
-    console.log(url);
     saveAs(url, fileName(type, name, 'png'))
 
     // watermark([url, '/assets/images/oci-assam-dark.png'])

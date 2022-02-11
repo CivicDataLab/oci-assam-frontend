@@ -74,6 +74,12 @@ const Filter = ({ data, newFilters, fq }) => {
     filterSearch[id] = searchFilter;
 
     setFilterResult({ ...filterSearch });
+    setTimeout(() => {
+      dataObj[id].forEach((item) => {
+        const activeBtn = document.getElementById(item);
+        activeBtn && activeBtn.setAttribute('aria-pressed', 'true');
+      });
+    }, 100);
   }
 
   function formatFilterName(name: string) {
@@ -95,11 +101,13 @@ const Filter = ({ data, newFilters, fq }) => {
 
     const filterButton = document.getElementById(value);
 
-    const pressed = filterButton.getAttribute('aria-pressed');
-    filterButton.setAttribute(
-      'aria-pressed',
-      pressed == 'false' ? 'true' : 'false'
-    );
+    if (filterButton) {
+      const pressed = filterButton.getAttribute('aria-pressed');
+      filterButton.setAttribute(
+        'aria-pressed',
+        pressed == 'false' ? 'true' : 'false'
+      );
+    }
     const index = dataObj[type].indexOf(value);
     if (index > -1) {
       dataObj[type].splice(index, 1);
