@@ -421,6 +421,7 @@ button {
 }
 .btn-primary svg {
   margin-right: 1rem;
+  margin-bottom: -2px;
 }
 .btn-primary:hover {
   background-color: #087c8d;
@@ -450,6 +451,7 @@ button {
 }
 .btn-primary-invert svg {
   margin-right: 1rem;
+  margin-bottom: -2px;
 }
 .btn-primary-invert:hover {
   background-color: #ecdada;
@@ -479,6 +481,7 @@ button {
 }
 .btn-secondary svg {
   margin-right: 1rem;
+  margin-bottom: -2px;
 }
 .btn-secondary:hover {
   background-color: #5873bb;
@@ -508,6 +511,7 @@ button {
 }
 .btn-secondary-invert svg {
   margin-right: 1rem;
+  margin-bottom: -2px;
 }
 .btn-secondary-invert:hover {
   background-color: #e6e6e6;
@@ -832,7 +836,7 @@ button {
 }
 .card__content small {
   font-size: 12px;
-  color: #0a0a0a;
+  color: #545454;
 }
 .card__id {
   margin-right: 3rem;
@@ -1726,6 +1730,8 @@ button {
   max-height: 20rem;
   overflow-y: auto;
   scrollbar-width: thin;
+  border: 1px solid #d1cdd1;
+  border-radius: 6px;
 }
 .filters__content::-webkit-scrollbar {
   width: 5px;
@@ -1745,7 +1751,7 @@ button {
   width: 100%;
   text-align: left;
   padding: 12px;
-  border: 1px solid #d1cdd1;
+  border-block: 1px solid #d1cdd1;
   border-top: none;
   cursor: pointer;
   transition: background-color 150ms ease;
@@ -1756,10 +1762,34 @@ button {
 .filters__button:last-child {
   border-radius: 0px 0px 4px 4px;
 }
+.filters__selected {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  gap: 8px;
+}
+.filters__selected button {
+  border-radius: 18px;
+  background-color: #076775;
+  color: #fdfcfc;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: left;
+  line-height: 20px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: capitalize;
+}
+.filters__selected button svg {
+  fill: #fefdfd;
+  pointer-events: none;
+}
 .filters__search {
   width: 100%;
   padding: 8px;
-  border: 1px solid #d1cdd1;
+  border-block: 1px solid #d1cdd1;
 }
 .filters [aria-pressed=true] {
   background-color: #b8c9ff;
@@ -2338,9 +2368,6 @@ button {
 .datasets__sort button {
   margin-left: 1rem;
 }
-.datasets__sort button svg {
-  margin-bottom: -2px;
-}
 
 .tender .container {
   display: flex;
@@ -2370,9 +2397,6 @@ button {
 .tender .btn-primary {
   margin: 0;
   align-self: flex-end;
-}
-.tender .btn-primary svg {
-  margin-bottom: -2px;
 }
 @media screen and (max-width: 479px) {
   .tender .btn-primary {

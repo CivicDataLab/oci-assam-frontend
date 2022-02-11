@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import Modal from 'react-modal';
+import { cloneDeep } from 'lodash';
+
 import { tabbedInterface, ckanToDataPackage, fetchAPI } from 'utils/index';
+import { resourceGetter } from 'utils/resourceParser';
+
 import MegaHeader from 'components/_shared/MegaHeader';
 import Indicator from 'components/analytics/Indicator';
-import Modal from 'react-modal';
-import { resourceGetter } from 'utils/resourceParser';
+import DataAlter from 'components/datasets/DataAlter';
+import DownloadViz from 'components/analytics/DownloadViz';
+
+import { kpiSelector } from 'transformers/kpiTransformer';
 import BarChartViz from 'components/viz/BarChart';
 import BubbleChart from 'components/viz/BubbleChart';
-import { kpiSelector } from 'transformers/kpiTransformer';
-import DataAlter from 'components/datasets/DataAlter';
-import { cloneDeep } from 'lodash';
 
 Modal.setAppElement('#__next');
 
@@ -44,15 +48,10 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [indicators, SetIndicators] = useState({});
   const [filteredData, SetFilteredData] = useState([]);
+  const [currentViz, setCurrentViz] = useState('#barGraph');
+  const [isTable, setIsTable] = useState(false);
 
   function selectGraph(val) {
-    // const barList = [
-    //   'proportion-of-procurement-method-types',
-    //   'average-tendering-period',
-    //   'proportion-of-bids',
-    //   'proportion-of-saving',
-    // ];
-    // const bubbleList = ['awardee-details'];
     if (val == 'proportion-of-procurement-method-types') {
       return (
         <BarChartViz
@@ -113,6 +112,12 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
         />
       );
     }
+  }
+
+  function changeViz(e) {
+    setCurrentViz(e.target.getAttribute('href'));
+    if (e.target.getAttribute('href') == '#tableView') setIsTable(true);
+    else setIsTable(false);
   }
 
   const vizToggle = [
@@ -219,7 +224,13 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
         <div className="page-wrap container">
           <section className="analysis__heading">
             <h3 className="heading-w-line">KPI Analysis</h3>
-            <button className="btn-primary" onClick={handleButtonClick}>
+            <DownloadViz
+              type={headerData.title}
+              name={headerData.title}
+              viz={currentViz}
+            />
+
+            {/* <button className="btn-primary" onClick={handleButtonClick}>
               <svg
                 width="10"
                 height="12"
@@ -233,7 +244,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
                 />
               </svg>
               Download
-            </button>
+            </button> */}
 
             <Modal
               isOpen={modalIsOpen}
@@ -360,7 +371,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
                 <ul className="viz__tabs">
                   {vizToggle.map((item, index) => (
                     <li key={`toggleItem-${index}`}>
-                      <a href={item.id}>
+                      <a href={item.id} onClick={(e) => changeViz(e)}>
                         {item.icon}
                         {item.name}
                       </a>

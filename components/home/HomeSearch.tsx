@@ -16,10 +16,6 @@ const HomeSearch = () => {
       <Search newSearch={handleRouteChange} />
       <div className="home-search__icons">
         <div className="home-search__category">
-          <img src="/assets/icons/covid.svg" alt="" />
-          <h3>Covid Related Tenders</h3>
-        </div>
-        <div className="home-search__category">
           <img src="/assets/icons/health.svg" alt="" />
           <h3>Health Related Tenders</h3>
         </div>

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Cross } from 'components/icons/shared';
+import { truncate } from 'lodash';
+
 const dataObj = {};
 const filterSearch = {};
 
@@ -61,7 +64,7 @@ const Filter = ({ data, newFilters, fq }) => {
         }, 200);
       });
     }
-    setFilterResult(filterSearch);
+    setFilterResult({ ...filterSearch });
   }, []);
 
   function handleFilterSearch(val: string, id: string) {
@@ -88,10 +91,12 @@ const Filter = ({ data, newFilters, fq }) => {
   function handleFilterChange(e: any) {
     const selectedFilter = e.target as HTMLInputElement;
     const type = selectedFilter.dataset.type;
-    const value = selectedFilter.id;
+    const value = selectedFilter.id || selectedFilter.dataset.id;
 
-    const pressed = selectedFilter.getAttribute('aria-pressed');
-    selectedFilter.setAttribute(
+    const filterButton = document.getElementById(value);
+
+    const pressed = filterButton.getAttribute('aria-pressed');
+    filterButton.setAttribute(
       'aria-pressed',
       pressed == 'false' ? 'true' : 'false'
     );
@@ -162,6 +167,21 @@ const Filter = ({ data, newFilters, fq }) => {
                 </button>
               ))}
           </div>
+          <ul className="filters__selected">
+            {dataObj[filter] &&
+              dataObj[filter].map((item: string) => (
+                <li key={item}>
+                  <button
+                    data-type={filter}
+                    data-id={item}
+                    onClick={handleFilterChange}
+                  >
+                    {truncate(item.replace(/_/g, ' '), { length: 30 })}{' '}
+                    <Cross />
+                  </button>
+                </li>
+              ))}
+          </ul>
         </React.Fragment>
       ))}
     </div>

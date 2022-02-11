@@ -1,3 +1,5 @@
+import { Cross } from 'components/icons/shared';
+import { truncate } from 'lodash';
 import React, { useEffect, useState } from 'react';
 const indicatorObj = {};
 const indicatorSearch = {};
@@ -63,10 +65,12 @@ const Indicator = ({ data, newIndicator }) => {
   function handleIndicatorChange(e: any) {
     const selectedFilter = e.target as HTMLInputElement;
     const type = selectedFilter.dataset.type;
-    const value = selectedFilter.id;
+    const value = selectedFilter.id || selectedFilter.dataset.id;
 
-    const pressed = selectedFilter.getAttribute('aria-pressed');
-    selectedFilter.setAttribute(
+    const indicatorButton = document.getElementById(value);
+
+    const pressed = indicatorButton.getAttribute('aria-pressed');
+    indicatorButton.setAttribute(
       'aria-pressed',
       pressed == 'false' ? 'true' : 'false'
     );
@@ -93,7 +97,7 @@ const Indicator = ({ data, newIndicator }) => {
               </svg>
             </button>
           </h4>
-          <div hidden>
+          <div className="filters__content" hidden>
             <input
               type="text"
               className="filters__search"
@@ -115,6 +119,21 @@ const Indicator = ({ data, newIndicator }) => {
                 </button>
               ))}
           </div>
+          <ul className="filters__selected">
+            {indicatorObj[filter] &&
+              indicatorObj[filter].map((item: string) => (
+                <li key={item}>
+                  <button
+                    data-type={filter}
+                    data-id={item}
+                    onClick={handleIndicatorChange}
+                  >
+                    {truncate(item.replace(/_/g, ' '), { length: 30 })}{' '}
+                    <Cross />
+                  </button>
+                </li>
+              ))}
+          </ul>
         </React.Fragment>
       ))}
     </div>
