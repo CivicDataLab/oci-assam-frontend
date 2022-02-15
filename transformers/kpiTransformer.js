@@ -420,7 +420,7 @@ function TopAwardees(mainData, indicatorsData) {
         data_perc[item]['avg_comp'],
         data_perc[item]['award_val'],
         item,
-        'ABCD',
+        'Tender Data',
       ];
       final_res.push(temp_array);
     }

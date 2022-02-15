@@ -51,6 +51,15 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [currentViz, setCurrentViz] = useState('#barGraph');
   const [isTable, setIsTable] = useState(false);
 
+  const dataPackage = ckanToDataPackage(data.result);
+
+  const headerData = {
+    title: dataPackage.title || dataPackage.name,
+    previousPage: 'Data Analysis',
+    previousLink: '/kpi',
+    description: dataPackage.description || '',
+  };
+
   function selectGraph(val) {
     if (val == 'proportion-of-procurement-method-types') {
       return (
@@ -60,8 +69,8 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="True"
-          Title="Title"
-          subTitle="Subtitle"
+          Title={headerData.title}
+          subTitle={headerData.description}
         />
       );
     } else if (val == 'average-tendering-period') {
@@ -72,8 +81,8 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="False"
-          Title="Average Tender Duration"
-          subTitle="Subtitle"
+          Title={headerData.title}
+          subTitle={headerData.description}
         />
       );
     } else if (val == 'proportion-of-bids') {
@@ -84,8 +93,8 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="False"
-          Title="Proportion of number of bids per tender"
-          subTitle="Subtitle"
+          Title={headerData.title}
+          subTitle={headerData.description}
         />
       );
     } else if (val == 'proportion-of-saving') {
@@ -96,8 +105,8 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
           stack="False"
-          Title="Title"
-          subTitle="Subtitle"
+          Title={headerData.title}
+          subTitle={headerData.description}
         />
       );
     } else if (val == 'awardee-info') {
@@ -106,9 +115,9 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           bubbleData1={filteredData}
           color={['#4965B2', '#ED8686']}
           xAxisLabel="Num of Contracts"
-          yAxisLabel="Avg. Comp"
-          Title="Title"
-          subTitle="Subtitle"
+          yAxisLabel="Avg. Competition"
+          Title={headerData.title}
+          subTitle={headerData.description}
         />
       );
     }
@@ -204,14 +213,6 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   function handleNewVizData(val: any) {
     SetIndicators(cloneDeep(val));
   }
-
-  const dataPackage = ckanToDataPackage(data.result);
-
-  const headerData = {
-    title: dataPackage.title || dataPackage.name,
-    previousPage: 'Data Analysis',
-    previousLink: '/kpi',
-  };
 
   return (
     <>
