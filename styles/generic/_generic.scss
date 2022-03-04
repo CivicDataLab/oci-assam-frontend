@@ -46,19 +46,9 @@
   margin-right: auto;
   margin-left: auto;
 
-  @include media.widerThan('seedling') {
-    width: 700px;
-  }
+  width: calc(100vw - 20px);
 
-  @include media.widerThan('sprout') {
-    width: 960px;
-  }
-
-  @include media.widerThan('plant') {
-    width: 1180px;
-  }
-
-  @include media.widerThan('tree') {
+  @media (min-width: 1350px) {
     width: 1216px;
   }
 }
