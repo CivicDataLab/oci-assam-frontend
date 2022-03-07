@@ -809,6 +809,7 @@ button {
   color: #545454;
   margin-bottom: 10px;
   display: block;
+  font-weight: 500;
 }
 .card__content {
   border-top: 2px solid #f1eef1;
@@ -818,7 +819,6 @@ button {
 }
 .card__content h4 {
   line-height: 140%;
-  font-weight: 500;
 }
 .card__content small {
   font-size: 12px;
@@ -2299,10 +2299,7 @@ button {
 }
 .home__page-links h2 {
   max-width: 260px;
-}
-.home__page-links img {
-  margin-top: 1rem;
-  width: 95%;
+  margin-bottom: 16px;
 }
 .home__page-links p {
   font-weight: 500;
@@ -2312,6 +2309,11 @@ button {
 }
 .home__page-links a {
   margin-top: 1rem;
+}
+.home__card-image {
+  background-color: white;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .datasets__wrapper {

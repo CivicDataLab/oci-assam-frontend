@@ -9,7 +9,6 @@ import Head from 'next/head';
 import Search from 'components/datasets/Search';
 import Total from 'components/datasets/Total';
 import DataAlter from 'components/datasets/DataAlter';
-import Pagination from 'components/datasets/Pagination';
 import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Carousel from 'components/home/Carousel';
@@ -120,7 +119,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                   fq={filters}
                   sortShow={false}
                 />
-                <ul className="list kpi__list">
+                <ul className="kpi__list">
                   {results.map((datapackage: any, index: number) => (
                     <li key={`list-${index}`} className="kpi-item">
                       <Link href={`${router.pathname}/${datapackage.name}`}>
@@ -149,7 +148,6 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                     </li>
                   ))}
                 </ul>
-                <Pagination total={count} newPage={handleRouteChange} />
               </div>
             )}
           </div>
