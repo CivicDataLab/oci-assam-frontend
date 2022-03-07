@@ -30,6 +30,7 @@
     color: $grey-2;
     margin-bottom: 10px;
     display: block;
+    font-weight: 500;
   }
 
   &__content {
@@ -40,7 +41,6 @@
 
     h4 {
       line-height: 140%;
-      font-weight: 500;
     }
 
     small {

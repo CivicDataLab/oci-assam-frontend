@@ -122,23 +122,9 @@ button {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  width: calc(100vw - 20px);
 }
-@media screen and (min-width: 720px) {
-  .container {
-    width: 700px;
-  }
-}
-@media screen and (min-width: 980px) {
-  .container {
-    width: 960px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .container {
-    width: 1180px;
-  }
-}
-@media screen and (min-width: 1350px) {
+@media (min-width: 1350px) {
   .container {
     width: 1216px;
   }
@@ -823,6 +809,7 @@ button {
   color: #545454;
   margin-bottom: 10px;
   display: block;
+  font-weight: 500;
 }
 .card__content {
   border-top: 2px solid #f1eef1;
@@ -832,7 +819,6 @@ button {
 }
 .card__content h4 {
   line-height: 140%;
-  font-weight: 500;
 }
 .card__content small {
   font-size: 12px;
@@ -1194,6 +1180,8 @@ button {
   right: 0;
   top: 0;
   display: none;
+  padding: 12px 13.1px;
+  color: #076775;
 }
 .search__clear button {
   cursor: pointer;
@@ -1207,10 +1195,6 @@ button {
   .search__submit {
     padding: 9px 24px;
   }
-}
-.search__clear {
-  padding: 12px 13.1px;
-  color: #076775;
 }
 .search__form {
   width: 100%;
@@ -1664,12 +1648,6 @@ button {
   font-size: 12px;
   line-height: 192%;
   color: #545454;
-}
-.sort__select {
-  background-position: right 10% top 55%, 0 0;
-  font-size: 0.9rem;
-  border: 1px solid #076775;
-  color: #076775;
 }
 @media screen and (max-width: 979px) {
   .sort {
@@ -2321,10 +2299,7 @@ button {
 }
 .home__page-links h2 {
   max-width: 260px;
-}
-.home__page-links img {
-  margin-top: 1rem;
-  width: 95%;
+  margin-bottom: 16px;
 }
 .home__page-links p {
   font-weight: 500;
@@ -2334,6 +2309,11 @@ button {
 }
 .home__page-links a {
   margin-top: 1rem;
+}
+.home__card-image {
+  background-color: white;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .datasets__wrapper {
@@ -2639,7 +2619,7 @@ button {
   border: 1px solid #f7fdf9;
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
-  height: clamp(400px, 700px, 700px);
+  height: 700px;
 }
 .analysis .viz__header {
   display: flex;

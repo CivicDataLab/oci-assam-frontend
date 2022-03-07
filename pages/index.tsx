@@ -47,14 +47,14 @@ const Home = () => {
             <section>
               <h2>Assam Public Procurement Explorer</h2>
               <p>
-                It is a tool where both Government and Citizens can not only
-                explore the State’s Public Procurements data but also analyse
-                and see how such datasets can be used for the betterment of
-                Government processes.
+                {
+                  "Public Procurements Demystified! A tool for exploring and analyzing Assam's public procurement data for improved citizen engagement and better decision making by government officials."
+                }
                 <br />
                 <br />
-                The data that we have here is contributed by the Finance
-                Department, the Government of Assam.
+                {
+                  "This dataset is contributed by the Assam Government's Finance Department."
+                }
               </p>
             </section>
           </div>
@@ -66,7 +66,13 @@ const Home = () => {
         <div className="home__page-links container">
           <section>
             <h2 className="heading-w-line">Data Analysis</h2>
-            <img src="/assets/icons/analysis.jpg" alt="" />
+            <Image
+              width={450}
+              height={450}
+              src="/assets/images/bar-chart.svg"
+              alt=""
+              className="home__card-image"
+            />
             <p>
               Data analysis feature helps view, analyze and use the procurement
               data of Assam
@@ -77,7 +83,12 @@ const Home = () => {
           </section>
           <section>
             <h2 className="heading-w-line">Data Stories</h2>
-            <img src="/assets/icons/stories.jpg" alt="" />
+            <Image
+              width={450}
+              height={450}
+              src="/assets/icons/stories.jpg"
+              alt=""
+            />
             <p>
               Here you can see various use cases of this dataset and even share
               your own case study

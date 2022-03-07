@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { truncate } from 'lodash';
+import { truncate, capitalize } from 'lodash';
 import { getDate, getOrgLogo } from 'utils/index';
 
 const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
@@ -60,7 +60,7 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
             </section>
             <section className="card__name">
               <h4>
-                {truncate(datapackage.tender_title, {
+                {truncate(capitalize(datapackage.tender_title), {
                   length: 80,
                 })}
               </h4>

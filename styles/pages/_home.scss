@@ -75,11 +75,7 @@
 
     h2 {
       max-width: 260px;
-    }
-
-    img {
-      margin-top: 1rem;
-      width: 95%;
+      margin-bottom: 16px;
     }
 
     p {
@@ -92,5 +88,10 @@
     a {
       margin-top: 1rem;
     }
+  }
+
+  &__card-image {
+    background-color: white;
+    object-fit: contain;
   }
 }
