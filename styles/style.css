@@ -2516,11 +2516,6 @@ button {
 .kpi-item:hover {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
-@media screen and (max-width: 1349px) {
-  .kpi-item {
-    width: 48%;
-  }
-}
 @media screen and (max-width: 719px) {
   .kpi-item {
     width: 100%;
@@ -2555,18 +2550,14 @@ button {
 }
 .kpi-item__tags {
   display: flex;
+  gap: 16px;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-self: flex-end;
 }
 .kpi-item__tags li {
-  width: 49%;
-  height: 24px;
+  padding: 8px 16px;
   font-size: 10px;
   border-radius: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 0.5rem;
 }
 .kpi-item__tags li[data-id=tag-0] {

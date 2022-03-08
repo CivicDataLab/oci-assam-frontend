@@ -80,9 +80,6 @@
     border-radius: 1px solid $bg-lighter;
     @include hover.cardHover;
 
-    @include media.narrowerThan('tree') {
-      width: 48%;
-    }
     @include media.narrowerThan('seedling') {
       width: 100%;
     }
@@ -121,18 +118,14 @@
 
     &__tags {
       display: flex;
+      gap: 16px;
       flex-wrap: wrap;
-      justify-content: space-between;
       align-self: flex-end;
 
       li {
-        width: 49%;
-        height: 24px;
+        padding: 8px 16px;
         font-size: 10px;
         border-radius: 18px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         margin-top: 0.5rem;
 
         &[data-id='tag-0'] {
