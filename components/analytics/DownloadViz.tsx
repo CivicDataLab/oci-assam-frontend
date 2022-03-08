@@ -2,7 +2,6 @@ import React from 'react';
 import { saveAs } from 'file-saver';
 import { Download } from 'components/icons/shared';
 import * as echarts from 'echarts/core';
-import watermark from 'file-saver';
 
 function fileName(type, name, format) {
   // If there is no type, eg: table, don;t add it to the name
@@ -58,7 +57,7 @@ const DownloadViz = ({ viz, type, name }) => {
       excludeComponents: ['toolbox'],
       type: 'png',
     });
-    saveAs(url, fileName(type, name, 'png'))
+    saveAs(url, fileName(type, name, 'png'));
 
     // watermark([url, '/assets/images/oci-assam-dark.png'])
     //   .image(watermark.image.lowerRight(0.5))

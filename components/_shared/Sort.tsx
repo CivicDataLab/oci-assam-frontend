@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 const Sort: React.FC<{ newSort: any }> = ({ newSort }) => {
   const router = useRouter();
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('tender_bid_opening_date:asc');
 
   useEffect(() => {
     const currentSort = router.query.sort

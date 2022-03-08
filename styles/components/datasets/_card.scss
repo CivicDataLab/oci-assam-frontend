@@ -9,14 +9,12 @@
     background-color: $bg-lightest;
     border-radius: 6px;
     display: flex;
-
-    > figure {
-      margin-right: 1rem;
-    }
+    gap: 16px;
   }
 
   &__image {
     object-fit: contain;
+    width: 60px;
   }
 
   &__heading {
@@ -37,6 +35,7 @@
     border-top: 2px solid $grey-6;
     padding-top: 1.25rem;
     display: flex;
+    gap: 24px;
     flex-wrap: wrap;
 
     h4 {
@@ -49,19 +48,13 @@
     }
   }
 
-  &__id {
-    margin-right: 3rem;
-  }
-
   &__name {
-    margin-top: 1.25rem;
     width: 100%;
   }
 
   @include media.narrowerThan('seed') {
     &__value {
       width: 100%;
-      margin-top: 1.25rem;
     }
   }
 

@@ -32,7 +32,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
   const { q, sort, size, fq, from } = router.query;
   const [search, setSearch] = useState(q);
-  const [sorts, setSorts] = useState(sort);
+  const [sorts, setSorts] = useState(sort || 'tender_bid_opening_date:asc');
   const [items, setItems] = useState(size);
   const [datsetsFilters, setDatasetsFilters] = useState(fq);
   const [pages, setPages] = useState(from);
