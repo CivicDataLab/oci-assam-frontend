@@ -95,8 +95,7 @@ const Nav: React.FC = () => {
                   className="header__logo"
                   src={ociLogo}
                   alt="oci logo"
-                  height={56}
-                  width={400}
+                  width={300}
                   placeholder="blur"
                 />
               </a>
@@ -183,8 +182,7 @@ const Nav: React.FC = () => {
                   className="header__logo"
                   src={ociLogo}
                   alt="oci logo"
-                  width={400}
-                  height={56}
+                  width={250}
                   placeholder="blur"
                 />
               </a>
