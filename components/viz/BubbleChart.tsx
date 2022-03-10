@@ -66,11 +66,11 @@ const BubbleChart: React.FC<BubbleChartProps1> = ({
   const options = {
     legend: {
       data: setLegendData,
-      top: '15%',
+      top: '20%',
     },
     grid: {
       show: false,
-      top: '30%',
+      top: '35%',
     },
     xAxis: {
       name: xAxisLabel,

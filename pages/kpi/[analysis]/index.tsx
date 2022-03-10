@@ -60,7 +60,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
     description: dataPackage.description || '',
   };
 
-  function selectGraph(val) {
+  function selectGraph(val, isStacked) {
     if (val == 'proportion-of-procurement-method-types') {
       return (
         <BarChartViz
@@ -68,7 +68,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           xAxisLabel="Category"
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
-          stack="True"
+          stack= {isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
         />
@@ -80,7 +80,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           xAxisLabel="Fiscal Year"
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
-          stack="False"
+          stack={isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
         />
@@ -92,7 +92,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           xAxisLabel="Fiscal Year"
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
-          stack="False"
+          stack={isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
         />
@@ -104,7 +104,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           xAxisLabel="Fiscal Year"
           theme={['#4965B2', '#ED8686', '#69BC99']}
           dataset={filteredData}
-          stack="False"
+          stack={isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
         />
@@ -129,10 +129,28 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
     else setIsTable(false);
   }
 
-  const vizToggle = [
+  const vizToggle = data.result.name == "awardee-info" ?
+   [
     {
-      name: 'Bar',
-      id: '#barGraph',
+      name: 'Bubble Chart',
+      id: '#bubbleGraph',
+      icon: (
+	<svg className="svg-icon" width="15" height="16" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M307.2 614.4m-136.533333 0a136.533333 136.533333 0 1 0 273.066666 0 136.533333 136.533333 0 1 0-273.066666 0Z"  /><path d="M631.466667 768m-85.333334 0a85.333333 85.333333 0 1 0 170.666667 0 85.333333 85.333333 0 1 0-170.666667 0Z"  /><path d="M648.533333 375.466667m-204.8 0a204.8 204.8 0 1 0 409.6 0 204.8 204.8 0 1 0-409.6 0Z"  /></svg>
+      ),
+    },
+   ]
+   :
+   [
+    {
+      name: 'Stacked Bar',
+      id: '#stackedbarGraph',
+      icon: (
+	<svg className="svg-icon" width="15" height="16" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M547.84 353.28h235.52v394.24h-235.52zM256 552.96h235.52v199.68H256z" fill="#9C9C9C" /><path d="M547.84 128h235.52v619.52h-235.52zM256 419.84h235.52v327.68H256z" fill="#E1F1F9" /><path d="M547.84 353.28h235.52v394.24h-235.52zM256 552.96h235.52v199.68H256z" fill="#0FA7DB" /><path d="M73.216 828.416h870.4v58.88h-870.4z" fill="#E1F1F9" /></svg>
+      ),
+    },
+    {
+      name: 'Group Bar',
+      id: '#groupbarGraph',
       icon: (
         <svg
           width="15"
@@ -150,10 +168,22 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
     },
   ];
 
-  const vizItems = [
+  const vizItems = data.result.name == "awardee-info" ?
+    [
     {
-      id: 'barGraph',
-      graph: selectGraph(data.result.name),
+      id: 'bubbleGraph',
+      graph: selectGraph(data.result.name, "True"),
+    },
+    ] 
+    :
+    [
+    {
+      id: 'stackedbarGraph',
+      graph: selectGraph(data.result.name, "True"),
+    },
+    {
+      id: 'groupbarGraph',
+      graph: selectGraph(data.result.name, "False"),
     },
   ];
 
