@@ -5,6 +5,7 @@ import { fetchAPI, getDate } from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
 import DList from 'components/_shared/DList';
 import Modal from 'react-modal';
+import { download_data } from 'utils/download_data';
 Modal.setAppElement('#__next');
 
 type Props = {
@@ -149,7 +150,7 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
           <section className="tender__heading">
             <h3 className="heading-w-line">Contract Details</h3>
 
-            <button className="btn-primary" onClick={handleButtonClick}>
+            <button className="btn-primary" onClick={(e) => download_data([dataPackage])}>
               <svg
                 width="10"
                 height="12"

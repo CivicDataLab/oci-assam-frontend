@@ -197,8 +197,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           .filter(
             (elm: { name: any }, index: any, array: any[]) =>
               array.findIndex((t) => t.name === elm.name) === index
-          )
-          .slice(0, 5),
+          ),
         title: indicator.id,
       };
     });

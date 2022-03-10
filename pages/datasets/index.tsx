@@ -16,6 +16,7 @@ import Filter from 'components/datasets/Filter';
 import MegaHeader from 'components/_shared/MegaHeader';
 import Sort from 'components/_shared/Sort';
 import Modal from 'react-modal';
+import { download_data } from 'utils/download_data';
 
 Modal.setAppElement('#__next');
 
@@ -109,7 +110,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                   <button
                     id="modalTrigger"
                     className="btn-primary"
-                    onClick={handleButtonClick}
+                    onClick={(e) => download_data(results)}
                   >
                     <svg
                       width="10"
