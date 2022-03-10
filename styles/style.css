@@ -2626,6 +2626,7 @@ button {
 }
 .analysis .viz__tabs li {
   min-width: 0;
+  margin-right: 20px;
 }
 .analysis .viz__tabs li:first-of-type {
   margin-right: 1.25rem;
@@ -2854,3 +2855,57 @@ button {
     height: 120px;
   }
 }
+
+.table-container th {
+  font-weight: 700;
+  white-space: nowrap;
+  background-color: #eff2f2;
+}
+
+.table-container th button {
+  background-color: #cdd1d1;
+  border: 0;
+  padding: .125rem .5rem;
+  border-radius: .25rem;
+  font-weight: 700;
+  vertical-align: middle;
+  margin-left: 1rem;
+}
+
+.table-container th svg {
+  stroke: currentColor;
+  stroke-width: 20;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  width: .5rem;
+  height: 1.5em;
+}
+
+.analysis .viz figure {
+  margin: 0 2rem 2rem;
+  height: 600px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.table-container td, .table-container th {
+  padding: .75rem;
+  text-align: left;
+}
+
+.table-container caption {
+  margin-bottom: .5rem;
+  font-style: italic;
+  text-align: left;
+}
+
+.table-container table {
+  border-collapse: collapse;
+  background-color: #eff2f2;
+}
+
+.table-container {
+  max-width : 500px
+}
+
