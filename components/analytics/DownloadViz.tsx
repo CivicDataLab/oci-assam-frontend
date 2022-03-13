@@ -45,7 +45,7 @@ export function export_table_to_csv(filename: any) {
   download_csv(csv.join('\n'), filename);
 }
 
-const DownloadViz = ({ viz, type, name }) => {
+const DownloadViz = ({ viz, type, name, isTable }) => {
   function canva2img() {
     const myChart = echarts.getInstanceByDom(
       document.querySelector('.echarts-for-react')
@@ -71,7 +71,7 @@ const DownloadViz = ({ viz, type, name }) => {
 
   return (
     <button onClick={() => downloadSelector(viz)} className="btn-primary">
-      <Download /> {`Download ${viz == '#tableView' ? 'CSV' : 'Chart'}`}
+      <Download /> {`Download ${isTable ? 'CSV' : 'Chart'}`}
     </button>
   );
 };

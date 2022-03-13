@@ -150,7 +150,10 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
           <section className="tender__heading">
             <h3 className="heading-w-line">Contract Details</h3>
 
-            <button className="btn-primary" onClick={(e) => download_data([dataPackage])}>
+            <button
+              className="btn-primary"
+              onClick={() => download_data([dataPackage])}
+            >
               <svg
                 width="10"
                 height="12"

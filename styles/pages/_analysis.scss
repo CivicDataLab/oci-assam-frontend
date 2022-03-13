@@ -38,6 +38,13 @@
     border-radius: 6px;
     box-shadow: $box-shadow-1;
     height: clamp(400px, 700px, 700px);
+    width: 100%;
+    overflow-x: auto;
+
+    &__bar {
+      max-height: 590px;
+      overflow-y: auto;
+    }
 
     &__header {
       display: flex;
@@ -53,13 +60,11 @@
     &__tabs {
       display: flex;
       align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
 
       li {
         min-width: 0;
-
-        &:first-of-type {
-          margin-right: 1.25rem;
-        }
       }
 
       a {

@@ -1,0 +1,82 @@
+@use '../../settings/variables' as *;
+
+.table-container {
+  table {
+    border-collapse: collapse;
+    background-color: $grey-5;
+  }
+
+  th,
+  td {
+    // border: 2px solid #000;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  th {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  th {
+    background-color: $grey-5;
+  }
+
+  tr:first-of-type th:not(:last-child) {
+    border-right-color: #fff;
+  }
+
+  tr:first-child th:first-child,
+  tr:not(:first-child):not(:last-child) th {
+    border-bottom-color: #fff !important;
+  }
+
+  caption {
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    text-align: left;
+  }
+
+  dl {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  dl > * {
+    flex: 0 0 50%;
+    margin: 0;
+  }
+
+  dt {
+    padding-right: 0.5rem;
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  th button {
+    background-color: $grey-4;
+    border: 0;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-left: 1rem;
+  }
+
+  h3 {
+    // background-color: $grey-5;
+    padding: 0.5rem;
+  }
+
+  th svg {
+    stroke: currentColor;
+    stroke-width: 20;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    width: 0.5rem;
+    height: 1.5em;
+  }
+}

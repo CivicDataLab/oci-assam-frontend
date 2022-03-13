@@ -2063,6 +2063,70 @@ button {
   border-radius: 18px;
 }
 
+.table-container table {
+  border-collapse: collapse;
+  background-color: #fdfcfc;
+}
+.table-container th,
+.table-container td {
+  padding: 0.75rem;
+  text-align: left;
+}
+.table-container th {
+  font-weight: bold;
+  white-space: nowrap;
+}
+.table-container th {
+  background-color: #fdfcfc;
+}
+.table-container tr:first-of-type th:not(:last-child) {
+  border-right-color: #fff;
+}
+.table-container tr:first-child th:first-child,
+.table-container tr:not(:first-child):not(:last-child) th {
+  border-bottom-color: #fff !important;
+}
+.table-container caption {
+  margin-bottom: 0.5rem;
+  font-style: italic;
+  text-align: left;
+}
+.table-container dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+.table-container dl > * {
+  flex: 0 0 50%;
+  margin: 0;
+}
+.table-container dt {
+  padding-right: 0.5rem;
+}
+.table-container dt {
+  font-weight: bold;
+}
+.table-container th button {
+  background-color: #f1eef1;
+  border: 0;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  vertical-align: middle;
+  margin-left: 1rem;
+}
+.table-container h3 {
+  padding: 0.5rem;
+}
+.table-container th svg {
+  stroke: currentColor;
+  stroke-width: 20;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  width: 0.5rem;
+  height: 1.5em;
+}
+
 .stories-card {
   background-color: white;
   border-radius: 6px;
@@ -2589,6 +2653,12 @@ button {
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   height: 700px;
+  width: 100%;
+  overflow-x: auto;
+}
+.analysis .viz__bar {
+  max-height: 590px;
+  overflow-y: auto;
 }
 .analysis .viz__header {
   display: flex;
@@ -2604,12 +2674,11 @@ button {
 .analysis .viz__tabs {
   display: flex;
   align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 .analysis .viz__tabs li {
   min-width: 0;
-}
-.analysis .viz__tabs li:first-of-type {
-  margin-right: 1.25rem;
 }
 .analysis .viz__tabs a {
   white-space: nowrap;
