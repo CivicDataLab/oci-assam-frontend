@@ -22,27 +22,10 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
       }
     };
 
-    const handleRouteStart = () => {
-      if (
-        document.querySelector('.m-navbar__links > [aria-expanded="true"]') ||
-        document.querySelector('.navbar__links > [aria-expanded="true"]')
-      ) {
-        const currentActive = document.querySelector('[aria-expanded="true"]');
-        currentActive.nextElementSibling.setAttribute('hidden', 'true');
-        currentActive.setAttribute(
-          'aria-label',
-          currentActive.getAttribute('data-text-for-show')
-        );
-        currentActive.setAttribute('aria-expanded', 'false');
-      }
-    };
-
     Router.events.on('routeChangeComplete', handleRouteComplete);
-    Router.events.on('routeChangeStart', handleRouteStart);
 
     return () => {
       Router.events.off('routeChangeComplete', handleRouteComplete);
-      Router.events.on('routeChangeStart', handleRouteStart);
     };
   });
 

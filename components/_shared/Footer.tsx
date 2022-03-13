@@ -9,20 +9,24 @@ const Footer = () => {
       <footer className="footer">
         <div className="container">
           <div className="footer__logo">
-            <Image
-              src={cdlLogo}
-              width={165}
-              height={165}
-              alt="civicdatalab logo"
-              placeholder="blur"
-            />
-            <Image
-              src={ocpLogo}
-              width={193}
-              height={66}
-              alt="open contracting logo"
-              placeholder="blur"
-            />
+            <a href="https://civicdatalab.in/">
+              <Image
+                src={cdlLogo}
+                width={165}
+                height={165}
+                alt="civicdatalab logo"
+                placeholder="blur"
+              />
+            </a>
+            <a href="https://www.open-contracting.org/">
+              <Image
+                src={ocpLogo}
+                width={193}
+                height={66}
+                alt="open contracting logo"
+                placeholder="blur"
+              />
+            </a>
           </div>
           <section className="footer__pages">
             <h2>Other pages</h2>
@@ -33,7 +37,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/analysis">
+                <Link href="/kpi">
                   <a>Data Analysis</a>
                 </Link>
               </li>
@@ -43,7 +47,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/datasets">
+                <Link href="/about">
                   <a>About Us</a>
                 </Link>
               </li>

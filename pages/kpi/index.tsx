@@ -40,32 +40,24 @@ const carosuelData = [
 const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
   const { results, count } = data.result;
-  const { q, size, fq, from } = router.query;
+  const { q, fq } = router.query;
   const [search, setSearch] = useState(q);
-  const [items, setItems] = useState(size);
   const [filters, setFilters] = useState(fq);
-  const [pages, setPages] = useState(from);
 
   useEffect(() => {
-    router.push({
+    router.replace({
       pathname: router.pathname,
-      query: { fq: filters, q: search, size: items, from: pages },
+      query: { fq: filters, q: search },
     });
-  }, [filters, search, pages, items]);
+  }, [filters, search]);
 
   function handleRouteChange(val: any) {
     switch (val.query) {
       case 'q':
         setSearch(val.value);
         break;
-      case 'size':
-        setItems(val.value);
-        break;
       case 'fq':
         setFilters(val.value);
-        break;
-      case 'from':
-        setPages(val.value);
         break;
     }
   }

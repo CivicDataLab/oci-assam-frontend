@@ -23,17 +23,18 @@ Modal.setAppElement('#__next');
 type Props = {
   data: any;
   facets: any;
-  variables: any;
 };
 
 const list =
   '"fiscal_year", "organization", "tender_mainprocurementcategory", "tender_status"';
 
+const defaultSort = 'tender_bid_opening_date:asc';
+
 const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
   const { q, sort, size, fq, from } = router.query;
   const [search, setSearch] = useState(q);
-  const [sorts, setSorts] = useState(sort || 'tender_bid_opening_date:asc');
+  const [sorts, setSorts] = useState(sort);
   const [items, setItems] = useState(size);
   const [datsetsFilters, setDatasetsFilters] = useState(fq);
   const [pages, setPages] = useState(from);
@@ -41,16 +42,20 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
 
   const { results, count } = data.result;
   useEffect(() => {
-    router.push({
-      pathname: router.pathname,
-      query: {
-        fq: datsetsFilters,
-        q: search,
-        sort: sorts,
-        size: items,
-        from: pages,
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: {
+          fq: datsetsFilters,
+          q: search,
+          sort: sorts,
+          size: items,
+          from: pages,
+        },
       },
-    });
+      undefined,
+      { shallow: true }
+    );
   }, [datsetsFilters, search, sorts, pages, items]);
 
   function handleDatasetsChange(val: any) {
@@ -253,10 +258,19 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // get queries from url
   const query = context.query || {};
+
+  // if no sort in url, use a default sort
+  if (!query.sort) query.sort = defaultSort;
+
+  // format queries from url into an object
   const variables = convertToCkanSearchQuery(query);
+
+  // fetch fatcets values
   const facets = await getFilters(list, variables, 'tender_dataset');
 
+  // fetch datasets
   const data = await fetchDatasets('tender_dataset', variables);
   return {
     props: {
