@@ -115,7 +115,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                   <button
                     id="modalTrigger"
                     className="btn-primary"
-                    onClick={(e) => download_data(results)}
+                    onClick={() => download_data(results)}
                   >
                     <svg
                       width="10"

@@ -1,39 +1,27 @@
-
 @use '../../tools/mixins/media' as media;
 @use '../../objects/sr-only' as *;
 
-.skip-to-content {
-    $p: &;
+#top-of-site-pixel-anchor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  top: -100px;
+  left: 0;
+}
+
+.skip-to-content-link {
+  background: #355F5F;
+  color: #fff;
+  left: 50%;
+  padding: 8px;
+  position: absolute;
+  transform: translateY(-150%);
+  transition: transform 0.3s;
+  line-height: 1.5;
+  isolation: isolate;
+  z-index: 100;
+
+  &:focus {
     transform: translateY(0);
-    background-color: #fff;
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 1fr;
-    gap: 1em;
-    padding-block-start: 1em;
-    padding-block-end: 1.5em;
-    padding-inline: var(--site-padding);
-    z-index: 1;
-    
-    @include media.widerThan(seedling) {
-        display: flex;
-        justify-content: space-between;
-        gap: 2em;
-    }
-
-    a {
-        font-size: .85em;
-
-        @include media.widerThan(seedling) {
-            font-size: 1em;
-        }
-    }
-    
-    &:not(:where(:active, :focus, :focus-within)) {
-        @include sr-only();
-    }
-
-    &:where(:active, :focus, :focus-within) + .site-bar {
-        margin-block-start: 0;
-    }
+  }
 }

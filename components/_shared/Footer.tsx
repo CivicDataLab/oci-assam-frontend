@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import ocpLogo from '/public/assets/images/ocp-full.png';
 import cdlLogo from '/public/assets/images/cdl.png';
@@ -32,24 +31,16 @@ const Footer = () => {
             <h2>Other pages</h2>
             <ul>
               <li>
-                <Link href="/datasets">
-                  <a>Contracts Data</a>
-                </Link>
+                <a href="/datasets">Contracts Data</a>
               </li>
               <li>
-                <Link href="/kpi">
-                  <a>Data Analysis</a>
-                </Link>
+                <a href="/kpi">Data Analysis</a>
               </li>
               <li>
-                <Link href="/stories">
-                  <a>Data Stories</a>
-                </Link>
+                <a href="/stories">Data Stories</a>
               </li>
               <li>
-                <Link href="/about">
-                  <a>About Us</a>
-                </Link>
+                <a href="/about">About Us</a>
               </li>
             </ul>
           </section>

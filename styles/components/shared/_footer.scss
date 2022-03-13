@@ -74,7 +74,7 @@
     padding-left: 3rem;
 
     a {
-      max-width: max-content;
+      // max-width: max-content;
     }
 
     h2 {
@@ -104,12 +104,19 @@
   &__connect {
     margin-top: 1.5rem;
 
-    h2 {
-      margin-bottom: 1rem;
+    > div {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    svg {
-      margin-right: 14px;
+    a {
+      line-height: 0;
+      display: inline-block;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
     }
   }
 }

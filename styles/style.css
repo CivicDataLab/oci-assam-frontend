@@ -1121,48 +1121,28 @@ button {
   }
 }
 
-.skip-to-content {
-  transform: translateY(0);
-  background-color: #fff;
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-  gap: 1em;
-  -webkit-padding-before: 1em;
-          padding-block-start: 1em;
-  -webkit-padding-after: 1.5em;
-          padding-block-end: 1.5em;
-  padding-inline: var(--site-padding);
-  z-index: 1;
-}
-@media screen and (min-width: 720px) {
-  .skip-to-content {
-    display: flex;
-    justify-content: space-between;
-    gap: 2em;
-  }
-}
-.skip-to-content a {
-  font-size: 0.85em;
-}
-@media screen and (min-width: 720px) {
-  .skip-to-content a {
-    font-size: 1em;
-  }
-}
-.skip-to-content:not(:where(:active, :focus, :focus-within)) {
-  clip: rect(0 0 0 0);
-  -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
+#top-of-site-pixel-anchor {
   position: absolute;
-  white-space: nowrap;
   width: 1px;
+  height: 1px;
+  top: -100px;
+  left: 0;
 }
-.skip-to-content:where(:active, :focus, :focus-within) + .site-bar {
-  -webkit-margin-before: 0;
-          margin-block-start: 0;
+
+.skip-to-content-link {
+  background: #355F5F;
+  color: #fff;
+  left: 50%;
+  padding: 8px;
+  position: absolute;
+  transform: translateY(-150%);
+  transition: transform 0.3s;
+  line-height: 1.5;
+  isolation: isolate;
+  z-index: 100;
+}
+.skip-to-content-link:focus {
+  transform: translateY(0);
 }
 
 .search {
@@ -1281,11 +1261,6 @@ button {
 .footer__contact {
   padding-left: 3rem;
 }
-.footer__contact a {
-  max-width: -webkit-max-content;
-  max-width: -moz-max-content;
-  max-width: max-content;
-}
 .footer__contact h2 {
   font-size: 14px;
   font-weight: 400;
@@ -1311,11 +1286,17 @@ button {
 .footer__connect {
   margin-top: 1.5rem;
 }
+.footer__connect > div {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.footer__connect a {
+  line-height: 0;
+  display: inline-block;
+}
 .footer__connect h2 {
   margin-bottom: 1rem;
-}
-.footer__connect svg {
-  margin-right: 14px;
 }
 
 .ReactModal__Body--open {
@@ -2626,7 +2607,6 @@ button {
 }
 .analysis .viz__tabs li {
   min-width: 0;
-  margin-right: 20px;
 }
 .analysis .viz__tabs li:first-of-type {
   margin-right: 1.25rem;
@@ -2855,57 +2835,3 @@ button {
     height: 120px;
   }
 }
-
-.table-container th {
-  font-weight: 700;
-  white-space: nowrap;
-  background-color: #eff2f2;
-}
-
-.table-container th button {
-  background-color: #cdd1d1;
-  border: 0;
-  padding: .125rem .5rem;
-  border-radius: .25rem;
-  font-weight: 700;
-  vertical-align: middle;
-  margin-left: 1rem;
-}
-
-.table-container th svg {
-  stroke: currentColor;
-  stroke-width: 20;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-  width: .5rem;
-  height: 1.5em;
-}
-
-.analysis .viz figure {
-  margin: 0 2rem 2rem;
-  height: 600px;
-  overflow-y: auto;
-  overflow-x: auto;
-}
-
-.table-container td, .table-container th {
-  padding: .75rem;
-  text-align: left;
-}
-
-.table-container caption {
-  margin-bottom: .5rem;
-  font-style: italic;
-  text-align: left;
-}
-
-.table-container table {
-  border-collapse: collapse;
-  background-color: #eff2f2;
-}
-
-.table-container {
-  max-width : 500px
-}
-
