@@ -2621,16 +2621,10 @@ button {
 
 .analysis__heading {
   display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-}
-@media screen and (max-width: 479px) {
-  .analysis__heading {
-    grid-template-columns: 1fr;
-  }
-  .analysis__heading .btn-primary {
-    margin-top: 1rem;
-  }
 }
 .analysis__content {
   display: grid;
