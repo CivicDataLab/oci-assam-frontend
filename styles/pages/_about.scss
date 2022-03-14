@@ -61,10 +61,11 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 16px;
     }
 
     li {
-      width: 33.3%;
+      width: 30%;
       display: flex;
       justify-content: center;
     }
@@ -77,13 +78,13 @@
 
     @include media.narrowerThan('sprout') {
       li {
-        width: 50%;
+        width: 46%;
       }
     }
 
     @include media.narrowerThan('seedling') {
       ul {
-        padding: 0 1rem 5rem;
+        padding: 0 8px 80px;
       }
 
       li img {

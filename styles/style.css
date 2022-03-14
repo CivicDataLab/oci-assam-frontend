@@ -2883,9 +2883,10 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 16px;
 }
 .about__team li {
-  width: 33.3%;
+  width: 30%;
   display: flex;
   justify-content: center;
 }
@@ -2896,12 +2897,12 @@ button {
 }
 @media screen and (max-width: 979px) {
   .about__team li {
-    width: 50%;
+    width: 46%;
   }
 }
 @media screen and (max-width: 719px) {
   .about__team ul {
-    padding: 0 1rem 5rem;
+    padding: 0 8px 80px;
   }
   .about__team li img {
     width: 170px;
