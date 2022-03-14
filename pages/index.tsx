@@ -34,6 +34,7 @@ const Home = () => {
       </Head>
       <main className="home">
         <div className="home__header">
+          <div className="home__bg"></div>
           <div className="container">
             <figure>
               <Image

@@ -49,6 +49,23 @@
     }
   }
 
+  &__bg {
+    background-image: url('/assets/images/pattern_bg.png');
+    background-size: 50%;
+    background-position: center right;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    position: absolute;
+    filter: opacity(0.2);
+
+    @include media.narrowerThan('seedling') {
+    background-size: 100%;
+
+    }
+  }
+
   &__page-links {
     display: flex;
     flex-wrap: wrap;

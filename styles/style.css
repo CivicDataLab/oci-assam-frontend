@@ -2315,6 +2315,22 @@ button {
   line-height: 150%;
   margin-bottom: 2rem;
 }
+.home__bg {
+  background-image: url("/assets/images/pattern_bg.png");
+  background-size: 50%;
+  background-position: center right;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  position: absolute;
+  filter: opacity(0.2);
+}
+@media screen and (max-width: 719px) {
+  .home__bg {
+    background-size: 100%;
+  }
+}
 .home__page-links {
   display: flex;
   flex-wrap: wrap;
