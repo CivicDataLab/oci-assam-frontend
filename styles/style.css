@@ -2296,7 +2296,7 @@ button {
 }
 .home__header figure {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
 }
 .home__header section {
@@ -2346,6 +2346,8 @@ button {
 .home__page-links section {
   max-width: 512px;
   width: 40%;
+  display: flex;
+  flex-direction: column;
 }
 @media screen and (max-width: 719px) {
   .home__page-links section {

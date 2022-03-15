@@ -37,13 +37,7 @@ const Home = () => {
           <div className="home__bg"></div>
           <div className="container">
             <figure>
-              <Image
-                src={indiaMap}
-                alt=""
-                width={630}
-                height={836}
-                placeholder="blur"
-              />
+              <Image src={indiaMap} alt="" />
             </figure>
             <section>
               <h2>Assam Public Procurement Explorer</h2>
