@@ -110,6 +110,18 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           subTitle={headerData.description}
         />
       );
+    } else if (val == 'proportion-of-value-awarded-in-single-bid-tenders') {
+      return (
+        <BarChartViz
+          yAxisLabel="Percent"
+          xAxisLabel="Fiscal Year"
+          theme={['#4965B2', '#ED8686', '#69BC99']}
+          dataset={filteredData}
+          stack={isStacked}
+          Title={headerData.title}
+          subTitle={headerData.description}
+        />
+      );
     } else if (val == 'awardee-info') {
       return (
         <BubbleChart
