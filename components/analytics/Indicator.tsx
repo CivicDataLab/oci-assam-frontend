@@ -59,7 +59,7 @@ const Indicator = ({ data, newIndicator }) => {
     } else if (name == 'buyer_name') return 'buyer name';
     else if (name == 'tender/mainProcurementCategory') return 'category';
     else if (name == 'tender/stage') return 'tender stage';
-    else return name;
+    else return '';
   }
 
   function handleIndicatorChange(e: any) {
@@ -88,7 +88,7 @@ const Indicator = ({ data, newIndicator }) => {
     <div className="filters">
       <h3 className="heading3-w-line">Filters</h3>
       {Object.keys(data).map((filter: any, index: number) => (
-        <React.Fragment key={`filters-${index}`}>
+        formatFilterName(filter) ? <React.Fragment key={`filters-${index}`}>
           <h4 className="filters__heading" key={`indicator-${index}`}>
             <button aria-expanded="false">
               {formatFilterName(filter)}
@@ -134,7 +134,7 @@ const Indicator = ({ data, newIndicator }) => {
                 </li>
               ))}
           </ul>
-        </React.Fragment>
+        </React.Fragment> : ""
       ))}
     </div>
   );

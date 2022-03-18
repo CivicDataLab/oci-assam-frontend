@@ -11,7 +11,9 @@ export function kpiSelector(mainData, indicatorsData, id) {
     return PropSinglebidValue(mainData, indicatorsData);
   } else if (id == 'distribution-of-bids-as-per-value') {
     return DistribBidsValue(mainData, indicatorsData);
-  }else if (id == 'awardee-info') {
+  } else if (id == 'percentage-of-tenders-completed') {
+    return PercTenderCompltd(mainData, indicatorsData);
+  } else if (id == 'awardee-info') {
     return TopAwardees(mainData, indicatorsData);
   }
 }
@@ -312,7 +314,6 @@ function DistribBidsValue(mainData, indicatorsData) {
     }
   }
 
-  console.log("a", data_perc)
   // making the array values unique
   const header_array = ['fiscal_year', '1 bids', '2 bids', '3 bids', '4 and more bids']; //[...new Set(first_array)];
 
@@ -518,6 +519,96 @@ function PropSinglebidValue(mainData, indicatorsData) {
   return final_res;
 }
 
+// percent of tenders completed
+function PercTenderCompltd(mainData, indicatorsData) {
+  let data = mainData;
+
+  //filter the data by selected indicator
+  if (Object.keys(indicatorsData).length > 0) {
+    Object.keys(indicatorsData).forEach((key) => {
+      if (indicatorsData[key].length > 0) {
+        data = data.filter((item) => indicatorsData[key].includes(item[key]));
+      }
+    });
+  }
+
+  // loop through data to create a nested object of value and sum e.g.
+  // data_perc = {2016-17:{completed:4, cancelled:4},
+  //            2017-18:{completed:30, cancelled:70, sum:100},
+  //           }
+  const data_perc = {};
+
+  for (var i = 0; i < data.length; i++) {
+    if (data_perc[data[i]['fiscal_year']]) {
+      if (data_perc[data[i]['fiscal_year']][data[i]['tender_stage']]) {
+        data_perc[data[i]['fiscal_year']][data[i]['tender_stage']] =
+          data_perc[data[i]['fiscal_year']][data[i]['tender_stage']] +
+          Number.parseInt(data[i]['tender_count']);
+        data_perc[data[i]['fiscal_year']]['sum'] =
+          data_perc[data[i]['fiscal_year']]['sum'] +
+          Number.parseInt(data[i]['tender_count']);
+      } else {
+        data_perc[data[i]['fiscal_year']][data[i]['tender_stage']] =
+          Number.parseInt(data[i]['tender_count']);
+        data_perc[data[i]['fiscal_year']]['sum'] =
+          data_perc[data[i]['fiscal_year']]['sum'] +
+          Number.parseInt(data[i]['tender_count']);
+      }
+    } else {
+      var temp_obj = {};
+      temp_obj[data[i]['tender_stage']] = Number.parseInt(
+        data[i]['tender_count']
+      );
+      temp_obj['sum'] = Number.parseInt(data[i]['tender_count']);
+      if (data[i]['fiscal_year']) data_perc[data[i]['fiscal_year']] = temp_obj;
+    }
+  }
+
+  // convert the nested array values to percentage and
+  // Format the data in required shape
+  const first_array = ['fiscal_year'];
+  for (var key in data_perc) {
+    if (Object.prototype.hasOwnProperty.call(data_perc, key)) {
+      for (var prop in data_perc[key]) {
+        if (Object.prototype.hasOwnProperty.call(data_perc[key], prop)) {
+          if (prop != 'sum') {
+            // creating the header array for req format
+            first_array.push(prop);
+            //change value to perc
+            data_perc[key][prop] = (
+              (data_perc[key][prop] * 100) /
+              data_perc[key]['sum']
+            ).toFixed(2);
+          }
+        }
+      }
+    }
+  }
+
+  // making the array values unique
+  const header_array = [...new Set(first_array)];
+
+  const final_res = [];
+  final_res.push(header_array);
+
+  for (var item in data_perc) {
+    if (Object.prototype.hasOwnProperty.call(data_perc, item)) {
+      let temp_array = [item];
+
+      for (var j = 1; j < header_array.length; j++) {
+        if (data_perc[item][header_array[j]]) {
+          temp_array.push(data_perc[item][header_array[j]]);
+        } else {
+          temp_array.push(0);
+        }
+      }
+
+      final_res.push(temp_array);
+    }
+  }
+
+  return final_res;
+}
 
 
 
