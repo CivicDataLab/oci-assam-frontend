@@ -72,6 +72,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           stack={isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
+          left="8%"
         />
       );
     } else if (val == 'average-tendering-period') {
@@ -84,6 +85,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           stack={isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
+          left="8%"
         />
       );
     } else if (val == 'proportion-of-bids') {
@@ -96,6 +98,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           stack={isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
+          left="8%"
         />
       );
     } else if (val == 'proportion-of-saving') {
@@ -108,6 +111,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           stack={isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
+          left="8%"
         />
       );
     } else if (val == 'proportion-of-value-awarded-in-single-bid-tenders') {
@@ -120,6 +124,20 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
           stack={isStacked}
           Title={headerData.title}
           subTitle={headerData.description}
+          left="8%"
+        />
+      );
+    }else if (val == 'distribution-of-bids-as-per-value') {
+      return (
+        <BarChartViz
+          yAxisLabel="Award Value"
+          xAxisLabel="Fiscal Year"
+          theme={['#4965B2', '#ED8686', '#69BC99']}
+          dataset={filteredData}
+          stack={isStacked}
+          Title={headerData.title}
+          subTitle={headerData.description}
+          left="15%"
         />
       );
     } else if (val == 'awardee-info') {

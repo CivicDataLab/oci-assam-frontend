@@ -22,6 +22,7 @@ interface BarChartProps {
   stack: string;
   Title: string;
   subTitle: string;
+  left: string,
 }
 
 const BarChartViz: React.FC<BarChartProps> = ({
@@ -32,6 +33,7 @@ const BarChartViz: React.FC<BarChartProps> = ({
   stack,
   Title,
   subTitle,
+  left,
 }) => {
   const [series, setSeries] = useState([]);
   const [option, setOption] = useState({});
@@ -82,6 +84,7 @@ const BarChartViz: React.FC<BarChartProps> = ({
       grid: {
         show: false,
         top: '30%',
+        left: left,
       },
       xAxis: {
         type: 'category',

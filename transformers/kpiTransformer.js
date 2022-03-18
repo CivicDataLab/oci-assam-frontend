@@ -9,7 +9,9 @@ export function kpiSelector(mainData, indicatorsData, id) {
     return PropSaving(mainData, indicatorsData);
   } else if (id == 'proportion-of-value-awarded-in-single-bid-tenders') {
     return PropSinglebidValue(mainData, indicatorsData);
-  } else if (id == 'awardee-info') {
+  } else if (id == 'distribution-of-bids-as-per-value') {
+    return DistribBidsValue(mainData, indicatorsData);
+  }else if (id == 'awardee-info') {
     return TopAwardees(mainData, indicatorsData);
   }
 }
@@ -247,7 +249,7 @@ function PropBids(mainData, indicatorsData) {
   }
 
   // making the array values unique
-  const header_array = [...new Set(first_array)];
+  const header_array = ['fiscal_year', '0 bids', '1 bids', '2 bids', '3 bids', '4 and more bids']; //[...new Set(first_array)];
 
   const final_res = [];
   final_res.push(header_array);
@@ -259,6 +261,71 @@ function PropBids(mainData, indicatorsData) {
       for (var j = 1; j < header_array.length; j++) {
         if (data_perc[key][header_array[j]]) {
           temp_array.push(data_perc[key][header_array[j]]);
+        } else {
+          temp_array.push(0);
+        }
+      }
+
+      final_res.push(temp_array);
+    }
+  }
+
+  return final_res;
+}
+
+// distribution-of-bids-as-per-value
+function DistribBidsValue(mainData, indicatorsData) {
+  let data = mainData;
+  if (Object.keys(indicatorsData).length > 0) {
+    Object.keys(indicatorsData).forEach((key) => {
+      if (indicatorsData[key].length > 0) {
+        data = data.filter((item) => indicatorsData[key].includes(item[key]));
+      }
+    });
+  }
+
+  // loop through data to create a nested object of value and sum e.g.
+  // data_perc = {2016-17:{1bid:4, 2bids:4},
+  //            2017-18:{1bid:30, 2bid:70, 3bid:100},
+  //           }
+  const data_perc = {};
+  const first_array = ['fiscal_year'];
+
+  for (var i = 0; i < data.length; i++) {
+    first_array.push(data[i]['number_of_bids']);
+
+    if (data_perc[data[i]['fiscal_year']]) {
+      if (data_perc[data[i]['fiscal_year']][data[i]['number_of_bids']]) {
+        data_perc[data[i]['fiscal_year']][data[i]['number_of_bids']] =
+          data_perc[data[i]['fiscal_year']][data[i]['number_of_bids']] +
+          Number.parseFloat(data[i]['award_val']);
+      } else {
+        data_perc[data[i]['fiscal_year']][data[i]['number_of_bids']] =
+          Number.parseFloat(data[i]['award_val']);
+      }
+    } else {
+      var temp_obj = {};
+      temp_obj[data[i]['number_of_bids']] = Number.parseFloat(
+        data[i]['award_val']
+      );
+      if (data[i]['fiscal_year']) data_perc[data[i]['fiscal_year']] = temp_obj;
+    }
+  }
+
+  console.log("a", data_perc)
+  // making the array values unique
+  const header_array = ['fiscal_year', '1 bids', '2 bids', '3 bids', '4 and more bids']; //[...new Set(first_array)];
+
+  const final_res = [];
+  final_res.push(header_array);
+
+  for (var key in data_perc) {
+    if (Object.prototype.hasOwnProperty.call(data_perc, key)) {
+      let temp_array = [key];
+
+      for (var j = 1; j < header_array.length; j++) {
+        if (data_perc[key][header_array[j]]) {
+          temp_array.push((data_perc[key][header_array[j]]).toFixed(2));
         } else {
           temp_array.push(0);
         }
