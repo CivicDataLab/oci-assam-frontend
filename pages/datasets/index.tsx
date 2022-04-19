@@ -53,8 +53,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
           from: pages,
         },
       },
-      undefined,
-      { shallow: true }
+      undefined
     );
   }, [datsetsFilters, search, sorts, pages, items]);
 
