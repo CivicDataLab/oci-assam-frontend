@@ -47,15 +47,19 @@ export async function fetchDatasets(type, variables) {
   }
 
   variables.fq
-    ? (variables.fq = variables.fq.concat(` AND type:${type}`))
-    : (variables.fq = `type:${type}`);
+    ? (variables.fq = variables.fq.concat(
+        ` AND private:false AND type:${type}`
+      ))
+    : (variables.fq = `private:false AND type:${type}`);
 
   // creating a string of parameter from object of variables for CKAN API use
   const varArray = Object.keys(variables).map((key) => {
     return `${changeKeyName(key)}=${variables[key]}`;
   });
   const varString =
-    varArray.length > 0 ? varArray.join('&') : `fq=type:${type}`;
+    varArray.length > 0
+      ? varArray.join('&')
+      : `fq=private:false AND type:${type}`;
   const response = await fetch(
     `http://15.206.122.72/api/3/action/package_search?${varString}`
   );
