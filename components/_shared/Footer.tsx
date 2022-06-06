@@ -43,6 +43,9 @@ const Footer = () => {
                 <a href="/stories">Data Stories</a>
               </li>
               <li>
+                <a rel="nofollow" href="https://docs.google.com/document/d/1O1ScJWqRozlCWNEBDqfwzJ97B6aauCx74CUx76_7DH4/edit">Publication Policy</a>
+              </li>
+              <li>
                 <a href="/about">About Us</a>
               </li>
             </ul>
