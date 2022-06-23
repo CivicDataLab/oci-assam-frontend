@@ -25,25 +25,6 @@ type Props = {
   csv: any;
 };
 
-// const news = [
-//   {
-//     title: 'In Assam State',
-//     desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
-//   },
-//   {
-//     title: 'In Assam State',
-//     desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
-//   },
-//   {
-//     title: 'In Assam State',
-//     desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
-//   },
-//   {
-//     title: 'In Assam State',
-//     desc: 'New public procurement rules incated on 2nd Sept. Most of the tenders over the last five years were Open Tenders (98%).This indicates that most of the tenders published allowed/encouraged competition. For the National Health Mission it was about 93% with the 7% of Open Limited Tendersl.... Know more',
-//   },
-// ];
-
 const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [indicatorsList, setIndicatorsList] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -51,6 +32,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   const [filteredData, SetFilteredData] = useState([]);
   const [currentViz, setCurrentViz] = useState('#barGraph');
   const [isTable, setIsTable] = useState(false);
+  const [tableData, setTableData] = useState([]);
 
   const dataPackage = ckanToDataPackage(data.result);
 
@@ -277,11 +259,9 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
             graph: (
               <Table
                 headers={
-                  csv.analytics[0]
-                    ? Object.keys(csv.analytics[0])
-                    : ['header1']
+                  csv.analytics[0] ? Object.keys(tableData[0]) : ['header1']
                 }
-                rows={csv.analytics.map(Object.values)}
+                rows={tableData}
                 caption="Table"
                 sortable
               />
@@ -302,11 +282,9 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
             graph: (
               <Table
                 headers={
-                  csv.analytics[0]
-                    ? Object.keys(csv.analytics[0])
-                    : ['header1']
+                  csv.analytics[0] ? Object.keys(tableData[0]) : ['header1']
                 }
-                rows={csv.analytics.map(Object.values)}
+                rows={tableData}
                 caption="Table"
                 sortable
               />
@@ -363,6 +341,19 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
 
   useEffect(() => {
     SetFilteredData(kpiSelector(csv.analytics, indicators, data.result.name));
+
+    // Basic Filter for Table
+    let mainData = csv.analytics;
+    if (Object.keys(indicators).length > 0) {
+      Object.keys(indicators).forEach((key) => {
+        if (indicators[key].length > 0) {
+          mainData = mainData.filter((item) =>
+            indicators[key].includes(item[key])
+          );
+        }
+      });
+    }
+    setTableData(mainData);
   }, [indicators]);
 
   function handleNewVizData(val: any) {
@@ -386,22 +377,6 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
               viz={currentViz}
               isTable={isTable}
             />
-
-            {/* <button className="btn-primary" onClick={handleButtonClick}>
-              <svg
-                width="10"
-                height="12"
-                viewBox="0 0 10 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.05967 4H6.99967V0.666667C6.99967 0.3 6.69967 0 6.33301 0H3.66634C3.29967 0 2.99967 0.3 2.99967 0.666667V4H1.93967C1.34634 4 1.04634 4.72 1.46634 5.14L4.52634 8.2C4.78634 8.46 5.20634 8.46 5.46634 8.2L8.52634 5.14C8.94634 4.72 8.65301 4 8.05967 4ZM0.333008 10.6667C0.333008 11.0333 0.633008 11.3333 0.999674 11.3333H8.99967C9.36634 11.3333 9.66634 11.0333 9.66634 10.6667C9.66634 10.3 9.36634 10 8.99967 10H0.999674C0.633008 10 0.333008 10.3 0.333008 10.6667Z"
-                  fill="white"
-                />
-              </svg>
-              Download
-            </button> */}
 
             <Modal
               isOpen={modalIsOpen}
@@ -549,20 +524,6 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
               ))}
             </div>
           </section>
-          {/* 
-          <section className="analysis__news">
-            <h3 className="heading-w-line">Did you know?</h3>
-            <div>
-              {news.map((article, index) => {
-                return (
-                  <article key={`article-${index}`}>
-                    <h4>{article.title}</h4>
-                    <p>{article.desc}</p>
-                  </article>
-                );
-              })}
-            </div>
-          </section> */}
         </div>
       </main>
     </>

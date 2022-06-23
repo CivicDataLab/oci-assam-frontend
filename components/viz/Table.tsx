@@ -125,7 +125,7 @@ const Table = ({ headers, rows, caption, sortable }) => {
             </tr>
             {sortedRows.map((row, i) => (
               <tr key={i}>
-                {row.map((cell, i) => (
+                {Object.values(row).map((cell, i) => (
                   <td key={i}>{cell}</td>
                 ))}
               </tr>
@@ -133,25 +133,6 @@ const Table = ({ headers, rows, caption, sortable }) => {
           </tbody>
         </table>
       </div>
-      {/* <div className="lists-container">
-        <h2>{caption}</h2>
-        {sortedRows.map((row, i) => (
-          <div key={i}>
-            <h3>{row[0]}</h3>
-            <dl>
-              {headers.map(
-                (header, i) =>
-                  i > 0 && (
-                    <Fragment key={i}>
-                      <dt>{header}</dt>
-                      <dd>{row[i]}</dd>
-                    </Fragment>
-                  )
-              )}
-            </dl>
-          </div>
-        ))}
-      </div> */}
     </Fragment>
   );
 };
