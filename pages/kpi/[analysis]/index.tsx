@@ -119,7 +119,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
         <BarChartViz
           yAxisLabel="Percent"
           xAxisLabel="Fiscal Year"
-          theme={['#4965B2', '#ED8686', '#69BC99']}
+          theme={['#69BC99', '#ED8686']}
           dataset={filteredData}
           stack={isStacked}
           Title={headerData.title}

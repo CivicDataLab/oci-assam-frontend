@@ -22,7 +22,7 @@ interface BarChartProps {
   stack: string;
   Title: string;
   subTitle: string;
-  left: string,
+  left: string;
 }
 
 const BarChartViz: React.FC<BarChartProps> = ({
@@ -55,15 +55,13 @@ const BarChartViz: React.FC<BarChartProps> = ({
       vizSeries.push({
         type: 'bar',
         barMaxWidht: 16,
-        itemStyle: { color: theme[columnLength] },
+        itemStyle: { color: theme[columnLength - 1] },
         stack: stackTrue,
         label: {
-          normal: {
-            show: true,
-            position: 'top',
-            formatter: function () {
-              return ''; //d.data;
-            },
+          show: true,
+          position: 'top',
+          formatter: function () {
+            return ''; //d.data;
           },
         },
         // animation: false,
