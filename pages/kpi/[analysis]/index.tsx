@@ -259,7 +259,9 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
             graph: (
               <Table
                 headers={
-                  csv.analytics[0] ? Object.keys(tableData[0]) : ['header1']
+                  csv.analytics[0]
+                    ? Object.keys(tableData[0] ? tableData[0] : {})
+                    : ['header1']
                 }
                 rows={tableData}
                 caption="Table"
@@ -282,7 +284,9 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
             graph: (
               <Table
                 headers={
-                  csv.analytics[0] ? Object.keys(tableData[0]) : ['header1']
+                  csv.analytics[0]
+                    ? Object.keys(tableData[0] ? tableData[0] : {})
+                    : ['header1']
                 }
                 rows={tableData}
                 caption="Table"
