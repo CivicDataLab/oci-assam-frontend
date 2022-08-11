@@ -109,6 +109,13 @@ const team = [
     twitter: 'https://twitter.com/PixeledCode',
   },
   {
+    name: 'Rutwik Phatak',
+    title: 'Procurement Specialist',
+    org: 'Consultant',
+    image: '/assets/images/contributors/rutwik.jpg',
+    linkedin: 'https://www.linkedin.com/in/rutwik-phatak/',
+  },
+  {
     name: 'Upasana Hembram',
     title: 'Tech Policy Fellow',
     org: 'CivicDataLab',
