@@ -136,6 +136,14 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
       title: 'Tender Documents ID',
       desc: dataPackage.tender_documents_id || '--',
     },
+    {
+      title: 'Award Date',
+      desc: getDate(dataPackage.awards_date) || '--',
+    },
+    {
+      title: 'Award Value',
+      desc: dataPackage.awards_value_amount || '--',
+    },
   ];
 
   return (
