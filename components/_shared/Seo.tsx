@@ -5,13 +5,11 @@ const Seo: React.FC<{ seo?: any }> = ({ seo }) => {
   // const router = useRouter();
 
   const title =
-    seo && seo.title
-      ? seo.title
-      : 'Assam Public Procurement Explorer';
+    seo && seo.title ? seo.title : 'Assam Public Procurement Explorer';
   const description =
     seo && seo.description
       ? seo.description
-      : 'Assam Public Procurement Explorer is a tool for exploring and analyzing Assam\'s procurement data for improved citizen engagement and better decision making by government officials.';
+      : "Assam Public Procurement Explorer is a tool for exploring and analyzing Assam's procurement data for improved citizen engagement and better decision making by government officials.";
 
   const url = `https://open-contracting.in/`;
   return (
@@ -51,10 +49,7 @@ const Seo: React.FC<{ seo?: any }> = ({ seo }) => {
         content="https://assam.open-contracting.in/assets/images/oci_logo.png"
       />
 
-      <meta
-        name="application-name"
-        content="Open Contracting India"
-      />
+      <meta name="application-name" content="Open Contracting India" />
     </Head>
   );
 };

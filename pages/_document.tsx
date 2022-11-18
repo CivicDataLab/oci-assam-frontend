@@ -1,7 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Script from 'next/script';
-
-const GA_TRACKING_ID = 'G-NX72GYFHFS';
 export default class CustomDocument extends Document {
   render() {
     return (
@@ -33,13 +30,13 @@ export default class CustomDocument extends Document {
             rel="stylesheet"
           />
           <>
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-              />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -47,9 +44,9 @@ export default class CustomDocument extends Document {
               page_path: window.location.pathname,
             });
           `,
-                }}
-              />
-            </>
+              }}
+            />
+          </>
         </Head>
         <body>
           <Main />

@@ -87,55 +87,59 @@ const Indicator = ({ data, newIndicator }) => {
   return (
     <div className="filters">
       <h3 className="heading3-w-line">Filters</h3>
-      {Object.keys(data).map((filter: any, index: number) => (
-        formatFilterName(filter) ? <React.Fragment key={`filters-${index}`}>
-          <h4 className="filters__heading" key={`indicator-${index}`}>
-            <button aria-expanded="false">
-              {formatFilterName(filter)}
-              <svg aria-hidden="true" focusable="false" viewBox="0 0 144 72">
-                <path d="M72 72C72 71.98 0 0 0 0h144L72 72" />
-              </svg>
-            </button>
-          </h4>
-          <div className="filters__content" hidden>
-            <input
-              type="text"
-              className="filters__search"
-              placeholder={`search ${formatFilterName(data[filter].title)}`}
-              onChange={(e) => handleIndicatorSearch(e.target.value, filter)}
-            />
-            {indicatorResult[filter] &&
-              indicatorResult[filter].map((item: any) => (
-                <button
-                  className="filters__button"
-                  key={item.display_name}
-                  data-type={data[filter].title}
-                  id={item.display_name}
-                  onClick={handleIndicatorChange}
-                  type="button"
-                  aria-pressed="false"
-                >
-                  {`${item.display_name}`}
-                </button>
-              ))}
-          </div>
-          <ul className="filters__selected">
-            {indicatorObj[filter] &&
-              indicatorObj[filter].map((item: string) => (
-                <li key={item}>
+      {Object.keys(data).map((filter: any, index: number) =>
+        formatFilterName(filter) ? (
+          <React.Fragment key={`filters-${index}`}>
+            <h4 className="filters__heading" key={`indicator-${index}`}>
+              <button aria-expanded="false">
+                {formatFilterName(filter)}
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 144 72">
+                  <path d="M72 72C72 71.98 0 0 0 0h144L72 72" />
+                </svg>
+              </button>
+            </h4>
+            <div className="filters__content" hidden>
+              <input
+                type="text"
+                className="filters__search"
+                placeholder={`search ${formatFilterName(data[filter].title)}`}
+                onChange={(e) => handleIndicatorSearch(e.target.value, filter)}
+              />
+              {indicatorResult[filter] &&
+                indicatorResult[filter].map((item: any) => (
                   <button
-                    data-type={filter}
-                    data-id={item}
+                    className="filters__button"
+                    key={item.display_name}
+                    data-type={data[filter].title}
+                    id={item.display_name}
                     onClick={handleIndicatorChange}
+                    type="button"
+                    aria-pressed="false"
                   >
-                    {truncate(item.replace(/_/g, ' '), { length: 30 })}{' '}
-                    <Cross />
+                    {`${item.display_name}`}
                   </button>
-                </li>
-              ))}
-          </ul>
-        </React.Fragment> : ""
-      ))}
+                ))}
+            </div>
+            <ul className="filters__selected">
+              {indicatorObj[filter] &&
+                indicatorObj[filter].map((item: string) => (
+                  <li key={item}>
+                    <button
+                      data-type={filter}
+                      data-id={item}
+                      onClick={handleIndicatorChange}
+                    >
+                      {truncate(item.replace(/_/g, ' '), { length: 30 })}{' '}
+                      <Cross />
+                    </button>
+                  </li>
+                ))}
+            </ul>
+          </React.Fragment>
+        ) : (
+          ''
+        )
+      )}
     </div>
   );
 };

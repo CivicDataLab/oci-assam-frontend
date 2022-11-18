@@ -31,7 +31,9 @@ const Footer = () => {
             <h2>Other pages</h2>
             <ul>
               <li>
-                <a href="https://open-contracting.in/">Open Contracting India</a>
+                <a href="https://open-contracting.in/">
+                  Open Contracting India
+                </a>
               </li>
               <li>
                 <a href="/datasets">Contracts Data</a>
@@ -43,7 +45,12 @@ const Footer = () => {
                 <a href="/stories">Data Stories</a>
               </li>
               <li>
-                <a rel="nofollow" href="https://docs.google.com/document/d/1O1ScJWqRozlCWNEBDqfwzJ97B6aauCx74CUx76_7DH4/edit">Publication Policy</a>
+                <a
+                  rel="nofollow"
+                  href="https://docs.google.com/document/d/1O1ScJWqRozlCWNEBDqfwzJ97B6aauCx74CUx76_7DH4/edit"
+                >
+                  Publication Policy
+                </a>
               </li>
               <li>
                 <a href="/about">About Us</a>
