@@ -39,6 +39,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const [datsetsFilters, setDatasetsFilters] = useState(fq);
   const [pages, setPages] = useState(from);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [downloadMethod, setDownloadMethod] = useState('download-current');
 
   const { results, count } = data.result;
   useEffect(() => {
@@ -77,9 +78,16 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
     }
   }
 
-  function handleButtonClick(e: any) {
-    e.preventDefault();
+  function handleModalClick() {
     setModalIsOpen(!modalIsOpen);
+  }
+  function handleDownloadClick() {
+    setModalIsOpen(!modalIsOpen);
+    if (downloadMethod === 'download-current') {
+      download_data(results);
+    } else {
+      window.open('/files/contracts-data.xlsx');
+    }
   }
 
   const headerData = {
@@ -114,7 +122,8 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                   <button
                     id="modalTrigger"
                     className="btn-primary"
-                    onClick={() => download_data(results)}
+                    onClick={() => handleModalClick()}
+                    // onClick={() => download_data(results)}
                   >
                     <svg
                       width="10"
@@ -132,7 +141,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                   </button>
                   <Modal
                     isOpen={modalIsOpen}
-                    onRequestClose={handleButtonClick}
+                    onRequestClose={handleModalClick}
                     className="dialog dialog--download"
                     overlayClassName="dialog__backdrop"
                     contentLabel="Download Tenders"
@@ -146,9 +155,9 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                   >
                     <section className="dialog__header">
                       <div>
-                        <h1 id="dialog-head">Download Tenders</h1>
+                        <h1 id="dialog-head">Download Contracts</h1>
                         <p id="dialog-para">
-                          Select your desired option to download the tenders
+                          Select your desired option to download the Contracts
                         </p>
                       </div>
                       <button
@@ -156,35 +165,41 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                         className="dialog__close"
                         id="modalCancel"
                         aria-label="Close navigation"
-                        onClick={handleButtonClick}
+                        onClick={handleModalClick}
                       >
                         &#x78;
                       </button>
                     </section>
                     <section className="dialog__body">
-                      <div>
-                        <label htmlFor="downloadOption1">
+                      <fieldset
+                        onChange={(e: any) =>
+                          setDownloadMethod(e.target.value)
+                        }
+                      >
+                        <label htmlFor="download-current">
                           <input
                             type="radio"
-                            id="downloadOption1"
-                            name="dialog-option"
-                            value="tender-only"
+                            id="download-current"
+                            name="download-option"
+                            value="download-current"
+                            defaultChecked
                           />
-                          Download the details of this tender
+                          Download the contracts shown on this page
                         </label>
 
-                        <label htmlFor="downloadOption2">
+                        <label htmlFor="download-all">
                           <input
                             type="radio"
-                            id="downloadOption2"
-                            name="dialog-option"
-                            value="all-details"
+                            id="download-all"
+                            name="download-option"
+                            value="download-all"
                           />
-                          Download the details of this tender along with all
-                          the attached documents
+                          {`Download all ${Intl.NumberFormat('en-IN', {
+                            maximumSignificantDigits: 3,
+                          }).format(count)} Contracts`}
                         </label>
-                      </div>
-                      <div className="dialog__format">
+                      </fieldset>
+                      {/* <div className="dialog__format">
                         <p>Choose file format</p>
                         <div>
                           <label htmlFor="downloadFormat1">
@@ -227,12 +242,12 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                             ZIP File
                           </label>
                         </div>
-                      </div>
+                      </div> */}
                     </section>
                     <button
                       className="btn-primary dialog__submit"
                       id="modalSubmit"
-                      onClick={handleButtonClick}
+                      onClick={() => handleDownloadClick()}
                     >
                       Download
                     </button>
