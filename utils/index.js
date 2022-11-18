@@ -336,7 +336,7 @@ export function ckanToDataPackage(descriptor) {
           try {
             resource.fields = JSON.parse(resource.fields);
           } catch (e) {
-            console.log('Could not parse resource.fields');
+            console.error('Could not parse resource.fields');
           }
         }
         resource.schema = { fields: resource.fields };
