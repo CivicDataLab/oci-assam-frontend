@@ -205,10 +205,10 @@ export function convertToCkanSearchQuery(query) {
     }
     ckanQuery.sort = sortQueries.join(',');
   } else if (query.sort && query.sort.constructor == String) {
-    ckanQuery.sort = query.sort.replace(':', ' ');
+    ckanQuery.sort = query.sort ? query.sort.replace(':', ' ') : '';
   } else if (query.sort && query.sort.constructor == Array) {
     query.sort.forEach((sort) => {
-      sortQueries.push(sort.replace(':', ' '));
+      sortQueries.push(sort.replace ? sort.replace(':', ' ') : '');
     });
     ckanQuery.sort = sortQueries.join(',');
   }
@@ -324,7 +324,9 @@ export function ckanToDataPackage(descriptor) {
   datapackage.resources = datapackage.resources.map((resource) => {
     if (resource.name) {
       resource.title = resource.title || resource.name;
-      resource.name = resource.name.toLowerCase().replace(/ /g, '_');
+      resource.name = resource.name.toLowerCase()
+        ? resource.name.toLowerCase().replace(/ /g, '_')
+        : '';
     } else {
       resource.name = resource.id;
     }

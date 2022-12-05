@@ -56,10 +56,12 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
     {
       title: 'Tender amount',
       desc: `₹${
-        dataPackage.tender_value_amount.replace(
-          /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
-          ','
-        ) || '--'
+        dataPackage?.tender_value_amount
+          ? dataPackage.tender_value_amount.replace(
+              /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
+              ','
+            )
+          : '--'
       }`,
     },
     {
