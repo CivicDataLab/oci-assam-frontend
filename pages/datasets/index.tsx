@@ -40,7 +40,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const [pages, setPages] = useState(from);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [downloadMethod, setDownloadMethod] = useState('download-current');
-  const [downloadType, setDownloadType] = useState('csv');
+  const [downloadType, setDownloadType] = useState('xlsx');
 
   const { results, count } = data.result;
   useEffect(() => {
@@ -81,14 +81,15 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
 
   function handleModalClick() {
     setModalIsOpen(!modalIsOpen);
-    setDownloadType('csv');
+    setDownloadType('xlsx');
   }
   function handleDownloadClick() {
     setModalIsOpen(!modalIsOpen);
     if (downloadMethod === 'download-current') {
       download_data(results, downloadType);
     } else {
-      window.open('/files/contracts-data.xlsx');
+      if (downloadType === 'xlsx') window.open('/files/contracts-data.xlsx');
+      else window.open('/files/contracts-data.json');
     }
   }
 
@@ -125,7 +126,6 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                     id="modalTrigger"
                     className="btn-primary"
                     onClick={() => handleModalClick()}
-                    // onClick={() => download_data(results)}
                   >
                     <svg
                       width="10"
@@ -214,10 +214,13 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                                 type="radio"
                                 id="downloadFormat1"
                                 name="dialog-download"
-                                value="csv"
+                                value="xlsx"
                                 defaultChecked
                               />
-                              CSV File
+                              XLSX File{' '}
+                              {downloadMethod === 'download-all' ? (
+                                <span>(~6MB)</span>
+                              ) : null}
                             </label>
 
                             <label htmlFor="downloadFormat2">
@@ -227,7 +230,10 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                                 name="dialog-download"
                                 value="json"
                               />
-                              JSON File
+                              JSON File{' '}
+                              {downloadMethod === 'download-all' ? (
+                                <span>(~27MB)</span>
+                              ) : null}
                             </label>
                           </fieldset>
                         </div>

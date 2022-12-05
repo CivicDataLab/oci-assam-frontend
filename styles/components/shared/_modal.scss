@@ -94,6 +94,12 @@
       gap: 32px;
       justify-content: flex-start;
       padding: 0 4px;
+
+      span {
+        font-size: 0.875rem;
+        margin-left: 8px;
+        color: $text-light-medium;
+      }
     }
   }
 

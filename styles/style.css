@@ -1357,6 +1357,11 @@ button {
   justify-content: flex-start;
   padding: 0 4px;
 }
+.dialog__format fieldset span {
+  font-size: 0.875rem;
+  margin-left: 8px;
+  color: hsla(0deg, 0%, 0%, 0.6);
+}
 .dialog__submit {
   justify-self: center;
   margin-top: 1rem;

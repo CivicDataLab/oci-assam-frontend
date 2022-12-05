@@ -1,6 +1,5 @@
 export function download_data(data, format) {
-  console.log(format);
-  if (format === 'csv') {
+  if (format === 'xlsx') {
     const csvString =
       'data:text/csv;charset=utf-8,' +
       [
@@ -53,7 +52,7 @@ export function download_data(data, format) {
       encodeURIComponent(JSON.stringify(data));
     var downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute('href', dataStr);
-    downloadAnchorNode.setAttribute('download', 'name' + '.json');
+    downloadAnchorNode.setAttribute('download', 'contracts' + '.json');
     document.body.appendChild(downloadAnchorNode); // required for firefox
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
