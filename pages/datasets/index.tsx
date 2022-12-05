@@ -196,9 +196,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                             name="download-option"
                             value="download-all"
                           />
-                          {`Download all ${Intl.NumberFormat('en-IN', {
-                            maximumSignificantDigits: 3,
-                          }).format(count)} Contracts`}
+                          {`Download all Contracts`}
                         </label>
                       </fieldset>
                       <div className="dialog__format">
