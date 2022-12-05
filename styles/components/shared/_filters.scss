@@ -86,7 +86,7 @@
     transition: background-color 150ms ease;
 
     &:hover {
-      background-color: $grey-6;
+      background-color: $grey-4;
     }
 
     &:last-child {
@@ -115,7 +115,7 @@
       text-transform: capitalize;
 
       svg {
-        fill:#fefdfd;
+        fill: #fefdfd;
         pointer-events: none;
       }
     }

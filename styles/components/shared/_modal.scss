@@ -40,7 +40,7 @@
   }
 
   &__header {
-    background-color: $grey-6;
+    background-color: $grey-4;
     border-radius: 6px 6px 0px 0px;
     padding: 2rem;
     display: flex;
@@ -66,9 +66,14 @@
 
     label {
       display: flex;
-      margin-top: 1.5rem;
+      margin-top: 14px;
       align-items: center;
       font-weight: 500;
+    }
+
+    > fieldset {
+      padding: 0 4px;
+      margin-top: 8px;
     }
 
     @include media.narrowerThan('seedling') {
@@ -81,13 +86,14 @@
 
     p {
       font-size: 14px;
-      margin-bottom: 1.5rem;
     }
 
-    > div {
+    fieldset {
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
+      gap: 32px;
+      justify-content: flex-start;
+      padding: 0 4px;
     }
   }
 
@@ -109,6 +115,12 @@
     width: 44px;
     height: 44px;
     font-size: 1.5rem;
+    transition: background-color 200ms ease;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: $grey-5;
+    }
   }
 
   &__backdrop {

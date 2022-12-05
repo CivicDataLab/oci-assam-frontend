@@ -1331,9 +1331,13 @@ button {
 }
 .dialog__body label {
   display: flex;
-  margin-top: 1.5rem;
+  margin-top: 14px;
   align-items: center;
   font-weight: 500;
+}
+.dialog__body > fieldset {
+  padding: 0 4px;
+  margin-top: 8px;
 }
 @media screen and (max-width: 719px) {
   .dialog__body {
@@ -1345,12 +1349,13 @@ button {
 }
 .dialog__format p {
   font-size: 14px;
-  margin-bottom: 1.5rem;
 }
-.dialog__format > div {
+.dialog__format fieldset {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 32px;
+  justify-content: flex-start;
+  padding: 0 4px;
 }
 .dialog__submit {
   justify-self: center;
@@ -1369,6 +1374,11 @@ button {
   width: 44px;
   height: 44px;
   font-size: 1.5rem;
+  transition: background-color 200ms ease;
+  border-radius: 8px;
+}
+.dialog__close:hover {
+  background-color: #fdfcfc;
 }
 .dialog__backdrop {
   position: fixed;

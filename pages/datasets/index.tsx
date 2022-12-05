@@ -40,6 +40,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const [pages, setPages] = useState(from);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [downloadMethod, setDownloadMethod] = useState('download-current');
+  const [downloadType, setDownloadType] = useState('csv');
 
   const { results, count } = data.result;
   useEffect(() => {
@@ -80,11 +81,12 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
 
   function handleModalClick() {
     setModalIsOpen(!modalIsOpen);
+    setDownloadType('csv');
   }
   function handleDownloadClick() {
     setModalIsOpen(!modalIsOpen);
     if (downloadMethod === 'download-current') {
-      download_data(results);
+      download_data(results, downloadType);
     } else {
       window.open('/files/contracts-data.xlsx');
     }
@@ -157,7 +159,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                       <div>
                         <h1 id="dialog-head">Download Contracts</h1>
                         <p id="dialog-para">
-                          Select your desired option to download the Contracts
+                          Select your desired options to download the Contracts
                         </p>
                       </div>
                       <button
@@ -199,50 +201,37 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                           }).format(count)} Contracts`}
                         </label>
                       </fieldset>
-                      {/* <div className="dialog__format">
+                      <div className="dialog__format">
                         <p>Choose file format</p>
                         <div>
-                          <label htmlFor="downloadFormat1">
-                            <input
-                              type="radio"
-                              id="downloadFormat1"
-                              name="dialog-download"
-                              value="csv"
-                            />
-                            CSV File
-                          </label>
+                          <fieldset
+                            onChange={(e: any) =>
+                              setDownloadType(e.target.value)
+                            }
+                          >
+                            <label htmlFor="downloadFormat1">
+                              <input
+                                type="radio"
+                                id="downloadFormat1"
+                                name="dialog-download"
+                                value="csv"
+                                defaultChecked
+                              />
+                              CSV File
+                            </label>
 
-                          <label htmlFor="downloadFormat2">
-                            <input
-                              type="radio"
-                              id="downloadFormat2"
-                              name="dialog-download"
-                              value="xls"
-                            />
-                            XLS File
-                          </label>
-
-                          <label htmlFor="downloadFormat3">
-                            <input
-                              type="radio"
-                              id="downloadFormat3"
-                              name="dialog-download"
-                              value="pdf"
-                            />
-                            PDF File
-                          </label>
-
-                          <label htmlFor="downloadFormat4">
-                            <input
-                              type="radio"
-                              id="downloadFormat4"
-                              name="dialog-download"
-                              value="zip"
-                            />
-                            ZIP File
-                          </label>
+                            <label htmlFor="downloadFormat2">
+                              <input
+                                type="radio"
+                                id="downloadFormat2"
+                                name="dialog-download"
+                                value="json"
+                              />
+                              JSON File
+                            </label>
+                          </fieldset>
                         </div>
-                      </div> */}
+                      </div>
                     </section>
                     <button
                       className="btn-primary dialog__submit"
