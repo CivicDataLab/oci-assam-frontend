@@ -1,3 +1,5 @@
+import { config } from '../config';
+
 // fetch medium post banner URL
 export function getMediumBanner(postContent) {
   const srcIndex = postContent.indexOf('src=');
@@ -61,7 +63,7 @@ export async function fetchDatasets(type, variables) {
       ? varArray.join('&')
       : `fq=private:false AND type:${type}`;
   const response = await fetch(
-    `http://15.206.122.72/api/3/action/package_search?${varString}`
+    `${config.CKAN_API_URL}/package_search?${varString}`
   );
   const data = await response.json();
   return data;
@@ -70,7 +72,7 @@ export async function fetchDatasets(type, variables) {
 // fetch particular dataset
 export async function fetchAPI(path) {
   const response = await fetch(
-    `http://15.206.122.72/api/3/action/package_show?id=${path}`
+    `${config.CKAN_API_URL}/package_show?id=${path}`
   );
   const data = await response.json();
   return data;
@@ -84,7 +86,7 @@ export async function getFilters(list, variable, page) {
     }`;
 
     const fetchData = await fetch(
-      `http://15.206.122.72/api/3/action/package_search?facet.field=[${list}]&${queryVars}`
+      `${config.CKAN_API_URL}/package_search?facet.field=[${list}]&${queryVars}`
     ).then((res) => res.json());
     return fetchData.result.search_facets;
   } catch (error) {
@@ -93,7 +95,7 @@ export async function getFilters(list, variable, page) {
 }
 
 export function getOrgLogo(url) {
-  return `http://15.206.122.72/uploads/group/${url}`;
+  return `http://${config.CKAN_URL}/uploads/group/${url}`;
 }
 
 /*

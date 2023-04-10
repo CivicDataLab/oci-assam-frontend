@@ -2,6 +2,6 @@ const withTM = require('next-transpile-modules')(['echarts', 'zrender']);
 
 module.exports = withTM({
   images: {
-    domains: ['15.206.122.72'],
+    domains: ['15.207.1.169'],
   },
 });
