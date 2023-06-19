@@ -6,6 +6,8 @@ import MegaHeader from 'components/_shared/MegaHeader';
 import DList from 'components/_shared/DList';
 import Modal from 'react-modal';
 import { download_data } from 'utils/download_data';
+import { event } from 'utils/ga';
+import { useRouter } from 'next/router';
 Modal.setAppElement('#__next');
 
 type Props = {
@@ -14,6 +16,7 @@ type Props = {
 };
 
 const Tender: React.FC<Props> = ({ data, documents }) => {
+  const router = useRouter();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function handleButtonClick() {
@@ -162,7 +165,15 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
 
             <button
               className="btn-primary"
-              onClick={() => download_data([dataPackage])}
+              onClick={() => {
+                download_data([dataPackage]);
+                event({
+                  action: 'download-dataset',
+                  params: {
+                    path: router.pathname,
+                  },
+                });
+              }}
             >
               <svg
                 width="10"
