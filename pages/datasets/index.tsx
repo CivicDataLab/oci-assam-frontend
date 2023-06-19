@@ -17,6 +17,7 @@ import MegaHeader from 'components/_shared/MegaHeader';
 import Sort from 'components/_shared/Sort';
 import Modal from 'react-modal';
 import { download_data } from 'utils/download_data';
+import { event } from '../../utils/ga';
 
 Modal.setAppElement('#__next');
 
@@ -91,6 +92,13 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
       if (downloadType === 'xlsx') window.open('/files/contracts-data.xlsx');
       else window.open('/files/contracts-data.json');
     }
+
+    event({
+      action: 'download',
+      params: {
+        method: downloadMethod,
+      },
+    });
   }
 
   const headerData = {

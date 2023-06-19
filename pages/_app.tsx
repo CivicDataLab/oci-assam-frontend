@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
 import Layout from 'components/layout/layout';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import NextNprogress from 'nextjs-progressbar';
+import { useEffect } from 'react';
 import '../styles/style.css';
+import { pageview } from '../utils/ga';
 
 type Props = {
   Component: any;
@@ -10,8 +11,13 @@ type Props = {
 };
 
 const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
+  const router = useRouter();
+
   useEffect(() => {
-    const handleRouteComplete = () => {
+    const handleRouteComplete = (url) => {
+      // track pageview with google analytics
+      pageview(url);
+
       // change focus to top
       if (document.querySelector('#top-of-site-pixel-anchor')) {
         (
@@ -22,12 +28,12 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
       }
     };
 
-    Router.events.on('routeChangeComplete', handleRouteComplete);
+    router.events.on('routeChangeComplete', handleRouteComplete);
 
     return () => {
-      Router.events.off('routeChangeComplete', handleRouteComplete);
+      router.events.off('routeChangeComplete', handleRouteComplete);
     };
-  });
+  }, [router.events]);
 
   return (
     <Layout>
