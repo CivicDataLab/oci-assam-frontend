@@ -15,6 +15,7 @@ export const getServerSideProps = async function ({ res }) {
         '_document.tsx',
         '_error.tsx',
         'sitemap.xml.js',
+        'sitemap_index.xml.js',
         'index.tsx',
         '[state]',
         'explorer',
