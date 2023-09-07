@@ -52,7 +52,7 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
     <article className="stories-card">
       <Link href={data.link}>
         <a>
-          <img src={getMediumBanner(data['content:encoded'])} alt="" />
+          <img src={getMediumBanner(data['content'])} alt="" />
         </a>
       </Link>
 
@@ -62,7 +62,7 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
             <h3>{data.title}</h3>
 
             <p>
-              {truncate(data['content:encodedSnippet'], {
+              {truncate(data['content'], {
                 length: paraLen,
               })}
             </p>
@@ -71,10 +71,10 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
 
         <div className="stories-card__footer">
           <div>
-            <small className="stories-card__author">{data.creator}</small>
+            <small className="stories-card__author">{data.author}</small>
             <small>
-              {`${getDate(data.isoDate)} . 
-                  ${getReadTime(data['content:encodedSnippet'])} mins read`}
+              {`${(data.pubDate)} . 
+                  ${getReadTime(data['content'])} mins read`}
             </small>
           </div>
         </div>

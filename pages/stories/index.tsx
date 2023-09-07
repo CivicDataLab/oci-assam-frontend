@@ -117,13 +117,18 @@ const Stories = ({ data }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await parser.parseURL(
-    'https://medium.com/feed/civicdatalab/tagged/open-contracting'
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=86400, stale-while-revalidate=59'
   );
+
+  const data = await fetch(
+    'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/civicdatalab/tagged/open-contracting'
+  ).then((res) => res.json());
 
   return {
     props: {
-      data,
+      data ,
     },
   };
 };
