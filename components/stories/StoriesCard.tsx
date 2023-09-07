@@ -49,10 +49,14 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
   length,
 }) => {
   const [paraLen, setParaLen] = useState(length);
+  const [content, setContent] = useState(null)
+
   useEffect(() => {
     if (window.innerWidth < 720) {
       paraLen > 150 ? setParaLen(150) : null;
     }
+
+    setContent(strip(data['content']))
   }, []);
   return (
     <article className="stories-card">
@@ -68,7 +72,7 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
             <h3>{data.title}</h3>
 
             <p>
-              {truncate(strip(data['content']), {
+              {truncate(content ? content : data['content'], {
                 length: paraLen,
               })}
             </p>
