@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { getMediumBanner } from 'utils/index';
 import { truncate } from 'lodash';
 
+// strip html tags
+function strip(html){
+  let doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || "";
+} 
+
 // return post time in required format
 function getDate(time: string) {
   // ordinal suffix for date
@@ -62,7 +68,7 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
             <h3>{data.title}</h3>
 
             <p>
-              {truncate(data['content'], {
+              {truncate(strip(data['content']), {
                 length: paraLen,
               })}
             </p>
