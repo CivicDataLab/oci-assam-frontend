@@ -41,12 +41,13 @@
 
 Install a recent version of Node. Node 16 is recommended.
 
+For `error:0308010C:digital envelope routines::unsupported` follow [this](https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported)
+
 ## Guide
 
 ### Styling 🎨
 
 We use SASS preprocessor to manage styling. All of it can be found at `/styles` directory where it's managed by using ITCSS architecture to make it scalable. For naming, we use BEM methodology.
-
 
 ### Backend
 
@@ -77,7 +78,7 @@ $ export CMS=http://myblog.wordpress.com
 
 We use Apollo client which allows us to query data with GraphQL. We have setup CKAN API for the demo (it uses demo.ckan.org as DMS):
 
-Note that we don't have Apollo Server but we connect CKAN API using [`apollo-link-rest`](https://www.apollographql.com/docs/link/links/rest/) module. You can see how it works in [lib/apolloClient.ts](https://github.com/civicdatalab/opubfront-haq/blob/main/lib/apolloClient.ts) and then have a look at [pages/_app.tsx](https://github.com/civicdatalab/opubfront-haq/blob/main/pages/_app.tsx).
+Note that we don't have Apollo Server but we connect CKAN API using [`apollo-link-rest`](https://www.apollographql.com/docs/link/links/rest/) module. You can see how it works in [lib/apolloClient.ts](https://github.com/civicdatalab/opubfront-haq/blob/main/lib/apolloClient.ts) and then have a look at [pages/\_app.tsx](https://github.com/civicdatalab/opubfront-haq/blob/main/pages/_app.tsx).
 
 For development/debugging purposes, we suggest installing the Chrome extension - https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm.
 

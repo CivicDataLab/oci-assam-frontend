@@ -26,7 +26,7 @@ const Pagination: React.FC<{ total: number; newPage: any }> = ({
       String(pageNo);
 
     setPage(pageNo);
-  }, [router.query.from, router.query.size]);
+  }, [router.query.from, router.query.size, total]);
 
   function fetchNewResults(val: any, type: string) {
     newPage({
