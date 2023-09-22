@@ -92,6 +92,13 @@
     &:last-child {
       border-radius: 0px 0px 4px 4px;
     }
+
+    &--disabled {
+      cursor: not-allowed;
+      &:hover {
+        background-color: $bg-lightest;
+      }
+    }
   }
 
   &__selected {

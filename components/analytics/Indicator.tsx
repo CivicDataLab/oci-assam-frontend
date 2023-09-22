@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const indicatorObj = {};
 const indicatorSearch = {};
 
-const Indicator = ({ data, newIndicator }) => {
+const Indicator = ({ data, newIndicator, disableItems }) => {
   const [indicatorResult, setIndicatorResult] = useState({});
 
   function headingCollapsable() {
@@ -108,13 +108,18 @@ const Indicator = ({ data, newIndicator }) => {
               {indicatorResult[filter] &&
                 indicatorResult[filter].map((item: any) => (
                   <button
-                    className="filters__button"
+                    className={`filters__button ${
+                      disableItems.includes(item.display_name)
+                        ? 'filters__button--disabled'
+                        : ''
+                    }`}
                     key={item.display_name}
                     data-type={data[filter].title}
                     id={item.display_name}
                     onClick={handleIndicatorChange}
                     type="button"
                     aria-pressed="false"
+                    disabled={disableItems.includes(item.display_name)}
                   >
                     {`${item.display_name}`}
                   </button>

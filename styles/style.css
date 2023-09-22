@@ -314,7 +314,7 @@ body {
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   transition: background-color var(--base-animation-duration) var(--base-easing);
   background-color: #f2f2f2;
-  color: hsla(0deg, 0%, 0%, 0.87);
+  color: hsla(0, 0%, 0%, 0.87);
   min-height: 100vh;
 }
 
@@ -365,11 +365,10 @@ button {
   font-weight: 500;
   transition: background-color 200ms ease;
   display: block;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   background-color: #076775;
-  color: hsl(0deg, 33%, 99%);
+  color: hsl(0, 33%, 99%);
   border: 1px solid #076775;
 }
 @media screen and (max-width: 979px) {
@@ -395,12 +394,11 @@ button {
   font-weight: 500;
   transition: background-color 200ms ease;
   display: block;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   border: 1px solid #076775;
   color: #076775;
-  background-color: hsl(0deg, 33%, 99%);
+  background-color: hsl(0, 33%, 99%);
 }
 @media screen and (max-width: 979px) {
   .btn-primary-invert {
@@ -425,12 +423,11 @@ button {
   font-weight: 500;
   transition: background-color 200ms ease;
   display: block;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  background-color: hsl(224deg, 42%, 49%);
-  color: hsl(0deg, 0%, 100%);
-  border: 1px solid hsl(224deg, 42%, 49%);
+  background-color: hsl(224, 42%, 49%);
+  color: hsl(0, 0%, 100%);
+  border: 1px solid hsl(224, 42%, 49%);
 }
 @media screen and (max-width: 979px) {
   .btn-secondary {
@@ -455,12 +452,11 @@ button {
   font-weight: 500;
   transition: background-color 200ms ease;
   display: block;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  border: 1px solid hsl(224deg, 42%, 49%);
-  color: hsl(224deg, 42%, 49%);
-  background-color: hsl(0deg, 0%, 100%);
+  border: 1px solid hsl(224, 42%, 49%);
+  color: hsl(224, 42%, 49%);
+  background-color: hsl(0, 0%, 100%);
 }
 @media screen and (max-width: 979px) {
   .btn-secondary-invert {
@@ -495,10 +491,8 @@ button {
 .heading-w-line {
   font-size: 1.5rem;
   font-weight: 500;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  max-width: -webkit-max-content;
   max-width: -moz-max-content;
   max-width: max-content;
   line-height: 140%;
@@ -514,10 +508,8 @@ button {
 .heading3-w-line {
   font-size: 1.5rem;
   font-weight: 500;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  max-width: -webkit-max-content;
   max-width: -moz-max-content;
   max-width: max-content;
   line-height: 130%;
@@ -584,7 +576,6 @@ button {
 .home-search__button {
   margin: 3rem auto 0;
   display: block;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
 }
@@ -632,7 +623,6 @@ button {
 .carousel a {
   margin-top: 10px;
   display: block;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   font-weight: 500;
@@ -733,7 +723,7 @@ button {
 
 .list {
   padding-bottom: 1.5rem;
-  border-bottom: 2px solid hsla(300deg, 4%, 81%, 0.5);
+  border-bottom: 2px solid hsla(300, 4%, 81%, 0.5);
   padding-left: 0;
 }
 .list__item {
@@ -741,7 +731,7 @@ button {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   border: 1px solid #f2f2f2;
   border-radius: 8px;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   position: relative;
   z-index: 10;
   transition: box-shadow 250ms ease;
@@ -760,7 +750,7 @@ button {
   text-decoration: none;
   padding: 1.5rem;
   display: block;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   border-radius: 6px;
   display: flex;
   gap: 16px;
@@ -830,7 +820,7 @@ button {
 
 .header {
   background-color: #076775;
-  color: hsl(0deg, 33%, 99%);
+  color: hsl(0, 33%, 99%);
   padding-top: 20px;
 }
 .header a {
@@ -896,12 +886,12 @@ button {
   transform: translate3d(0, 0, 0);
 }
 .navbar__item--active {
-  box-shadow: inset 0 -3px 0 0 hsl(0deg, 0%, 100%);
+  box-shadow: inset 0 -3px 0 0 hsl(0, 0%, 100%);
   font-weight: 500;
 }
 @media screen and (max-width: 979px) {
   .navbar__item--active {
-    box-shadow: inset 3px 0 0 0 hsl(0deg, 0%, 100%);
+    box-shadow: inset 3px 0 0 0 hsl(0, 0%, 100%);
   }
 }
 .navbar__container {
@@ -987,7 +977,7 @@ button {
 
 .m-navbar {
   background: #076775;
-  color: hsl(0deg, 33%, 99%);
+  color: hsl(0, 33%, 99%);
 }
 .m-navbar a {
   text-decoration: none;
@@ -1056,7 +1046,7 @@ button {
 
 .mega-header {
   background-color: #076775;
-  color: hsl(0deg, 33%, 99%);
+  color: hsl(0, 33%, 99%);
 }
 .mega-header .container {
   padding-top: 3rem;
@@ -1154,7 +1144,7 @@ button {
   border-radius: 4px;
   box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.08);
   padding-left: 2.5rem;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   transition: background-color 150ms ease;
   width: 100%;
   height: 100%;
@@ -1170,7 +1160,7 @@ button {
 .footer {
   margin-top: 5rem;
   background-color: #076775;
-  color: hsl(0deg, 33%, 99%);
+  color: hsl(0, 33%, 99%);
 }
 .footer .container {
   display: flex;
@@ -1187,7 +1177,6 @@ button {
     width: 100%;
   }
   .footer .container > section {
-    width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
     padding-left: 2rem;
@@ -1205,8 +1194,8 @@ button {
   }
 }
 .footer__pages {
-  border-left: 1px solid hsl(0deg, 33%, 99%);
-  border-right: 1px solid hsl(0deg, 33%, 99%);
+  border-left: 1px solid hsl(0, 33%, 99%);
+  border-right: 1px solid hsl(0, 33%, 99%);
   padding-left: 3rem;
 }
 .footer__pages h2 {
@@ -1299,7 +1288,7 @@ button {
 }
 .dialog input {
   margin-right: 1rem;
-  accent-color: hsl(224deg, 42%, 49%);
+  accent-color: hsl(224, 42%, 49%);
 }
 .dialog input[type=radio] {
   padding: 6px 0;
@@ -1360,7 +1349,7 @@ button {
 .dialog__format fieldset span {
   font-size: 0.875rem;
   margin-left: 8px;
-  color: hsla(0deg, 0%, 0%, 0.6);
+  color: hsla(0, 0%, 0%, 0.6);
 }
 .dialog__submit {
   justify-self: center;
@@ -1369,10 +1358,9 @@ button {
 .dialog__clear {
   min-height: 44px;
   font-size: 1rem;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
   text-transform: capitalize;
-  color: hsl(224deg, 42%, 49%);
+  color: hsl(224, 42%, 49%);
   font-weight: 500;
 }
 .dialog__close {
@@ -1441,34 +1429,24 @@ button {
     transform: translateX(-100%) translateY(0);
     transition: transform 200ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
   }
-}
-@media screen and (max-width: 979px) {
   .dialog--menu.ReactModal__Content--after-open {
     transform: translateX(0);
   }
-}
-@media screen and (max-width: 979px) {
   .dialog--menu.ReactModal__Content--before-close {
     transform: translateX(-100%) translateY(0);
   }
-}
-@media screen and (max-width: 979px) {
   .dialog--download .dialog__header {
     padding: 1.5rem 2rem;
   }
   .dialog--download .dialog__body {
     padding: 0 2rem 2rem;
   }
-}
-@media screen and (max-width: 979px) {
   .dialog__header {
     padding: 1.5rem 1rem;
   }
   .dialog__header--filter {
     padding: 1rem;
   }
-}
-@media screen and (max-width: 979px) {
   .dialog__body {
     padding: 0 1rem 2rem;
     border-bottom: 2px solid #f1eef1;
@@ -1494,7 +1472,7 @@ button {
 .pagination {
   margin-top: 1rem;
   padding: 1.5rem;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   border-radius: 12px;
   border: 1px solid #f2eff2;
   display: flex;
@@ -1504,7 +1482,6 @@ button {
 @supports (display: grid) {
   .pagination {
     display: grid;
-    grid-template-columns: 1fr repeat(3, -webkit-max-content);
     grid-template-columns: 1fr repeat(3, max-content);
   }
   @media screen and (max-width: 719px) {
@@ -1573,7 +1550,7 @@ button {
 .pagination__control span {
   line-height: 140%;
   font-weight: 500;
-  color: hsla(0deg, 0%, 0%, 0.6);
+  color: hsla(0, 0%, 0%, 0.6);
 }
 @media screen and (max-width: 719px) {
   .pagination__control span {
@@ -1622,11 +1599,10 @@ button {
 
 .filters {
   scrollbar-width: thin;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
-  border: 1px solid hsl(300deg, 10%, 94%);
+  border: 1px solid hsl(300, 10%, 94%);
   border-radius: 4px;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   max-height: 776px;
@@ -1689,7 +1665,7 @@ button {
   background: #555;
 }
 .filters__button {
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   display: block;
   width: 100%;
   text-align: left;
@@ -1705,6 +1681,12 @@ button {
 .filters__button:last-child {
   border-radius: 0px 0px 4px 4px;
 }
+.filters__button--disabled {
+  cursor: not-allowed;
+}
+.filters__button--disabled:hover {
+  background-color: hsl(0, 0%, 100%);
+}
 .filters__selected {
   display: flex;
   flex-wrap: wrap;
@@ -1714,7 +1696,7 @@ button {
 .filters__selected button {
   border-radius: 18px;
   background-color: #076775;
-  color: hsl(0deg, 33%, 99%);
+  color: hsl(0, 33%, 99%);
   font-weight: 500;
   font-size: 12px;
   text-align: left;
@@ -1812,7 +1794,7 @@ button {
 
 .data-alter {
   padding: 1rem 1.5rem;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   border-radius: 8px;
   filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
   margin-top: 1rem;
@@ -1836,9 +1818,9 @@ button {
   }
 }
 .data-alter__buttons button {
-  border: 2px solid hsl(224deg, 42%, 49%);
+  border: 2px solid hsl(224, 42%, 49%);
   border-radius: 4px;
-  color: hsl(224deg, 42%, 49%);
+  color: hsl(224, 42%, 49%);
   font-weight: 500;
   vertical-align: middle;
   display: inline-flex;
@@ -1866,7 +1848,6 @@ button {
 }
 .data-alter__filter {
   display: grid;
-  grid-template-columns: -webkit-max-content 1fr;
   grid-template-columns: max-content 1fr;
   margin-top: 0.5rem;
 }
@@ -1891,7 +1872,7 @@ button {
   line-height: 137%;
 }
 .data-alter__filter ul a[aria-selected=true] {
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   font-weight: 500;
 }
 @media screen and (max-width: 479px) {
@@ -1914,7 +1895,7 @@ button {
   border: 1px solid #e9fbf0;
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
 }
 .dlist > div {
   display: flex;
@@ -1931,7 +1912,7 @@ button {
   }
 }
 .dlist > div:nth-child(2n) {
-  background-color: hsl(146deg, 64%, 98%);
+  background-color: hsl(146, 64%, 98%);
 }
 .dlist__multiple div {
   display: grid;
@@ -1940,7 +1921,6 @@ button {
   width: 100%;
 }
 .dlist__multiple div .dlist__desc {
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
 }
@@ -1990,7 +1970,7 @@ button {
   font-size: 12px;
   line-height: 14px;
   padding: 7px 12px;
-  background-color: hsl(146deg, 64%, 98%);
+  background-color: hsl(146, 64%, 98%);
   border: 1px solid #076775;
   border-radius: 4px;
   bottom: 150%;
@@ -2045,7 +2025,7 @@ button {
 }
 .selected-filters li {
   background-color: #076775;
-  color: hsl(0deg, 33%, 99%);
+  color: hsl(0, 33%, 99%);
   padding: 0.5rem 1rem;
   border-radius: 18px;
 }
@@ -2115,7 +2095,7 @@ button {
 }
 
 .stories-card {
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   padding: 2rem;
@@ -2186,7 +2166,7 @@ button {
 }
 
 .partners__card {
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   padding: 1.5rem;
   border-radius: 12px;
   filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.08));
@@ -2197,8 +2177,7 @@ button {
   align-items: center;
 }
 .partners__header a {
-  -webkit-text-decoration-color: transparent;
-          text-decoration-color: transparent;
+  text-decoration-color: transparent;
 }
 .partners__header h4 {
   font-size: 1.5rem;
@@ -2208,7 +2187,7 @@ button {
 .partners__header small {
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: hsla(0deg, 0%, 0%, 0.32);
+  color: hsla(0, 0%, 0%, 0.32);
   font-weight: 500;
 }
 .partners__header section {
@@ -2265,7 +2244,7 @@ button {
 
 .home__header {
   background-color: #076775;
-  color: hsl(0deg, 33%, 99%);
+  color: hsl(0, 33%, 99%);
   position: relative;
   overflow: hidden;
 }
@@ -2366,7 +2345,6 @@ button {
 .datasets__wrapper {
   display: grid;
   grid-template-columns: 312px 1fr;
-  grid-template-rows: -webkit-max-content 1fr;
   grid-template-rows: max-content 1fr;
   margin-top: 2.5rem;
   gap: 2rem;
@@ -2441,7 +2419,7 @@ button {
   border: 1px solid #e9fbf0;
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   display: grid;
 }
 .tender__image img {
@@ -2468,7 +2446,6 @@ button {
 }
 .tender__map {
   display: grid;
-  grid-template-rows: -webkit-max-content 1fr;
   grid-template-rows: max-content 1fr;
 }
 .tender__map:last-child {
@@ -2498,7 +2475,6 @@ button {
 .kpi__wrapper {
   display: grid;
   grid-template-columns: 312px 1fr;
-  grid-template-rows: -webkit-max-content 1fr;
   grid-template-rows: max-content 1fr;
   margin-top: 2.5rem;
   gap: 2rem;
@@ -2511,11 +2487,10 @@ button {
 .kpi__summary {
   grid-column: 1/2;
   padding: 20px 14px;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   border-radius: 4px;
-  border: 1px solid hsl(146deg, 64%, 98%);
+  border: 1px solid hsl(146, 64%, 98%);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   margin-top: 1rem;
@@ -2535,7 +2510,7 @@ button {
 .kpi__summary p {
   margin-top: 4px;
   line-height: 135%;
-  color: hsla(0deg, 0%, 0%, 0.6);
+  color: hsla(0, 0%, 0%, 0.6);
   font-size: 15px;
 }
 .kpi__explain {
@@ -2553,11 +2528,11 @@ button {
   gap: 20px;
 }
 .kpi-item {
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   min-height: 286px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   border-radius: 6px;
-  border-radius: 1px solid hsl(146deg, 64%, 98%);
+  border-radius: 1px solid hsl(146, 64%, 98%);
   transition: box-shadow 250ms ease;
 }
 .kpi-item:hover {
@@ -2577,7 +2552,6 @@ button {
 .kpi-item__link section {
   display: grid;
   height: 100%;
-  grid-template-rows: repeat(2, -webkit-max-content) 1fr;
   grid-template-rows: repeat(2, max-content) 1fr;
 }
 .kpi-item__heading, .kpi-item__desc {
@@ -2608,20 +2582,20 @@ button {
   margin-top: 0.5rem;
 }
 .kpi-item__tags li[data-id=tag-0] {
-  color: hsl(256deg, 50%, 51%);
-  background-color: hsl(256deg, 51%, 93%);
+  color: hsl(256, 50%, 51%);
+  background-color: hsl(256, 51%, 93%);
 }
 .kpi-item__tags li[data-id=tag-1] {
-  color: hsl(238deg, 90%, 33%);
-  background-color: hsl(213deg, 67%, 92%);
+  color: hsl(238, 90%, 33%);
+  background-color: hsl(213, 67%, 92%);
 }
 .kpi-item__tags li[data-id=tag-2] {
-  color: hsl(47deg, 100%, 32%);
-  background-color: hsl(0deg, 0%, 95%);
+  color: hsl(47, 100%, 32%);
+  background-color: hsl(0, 0%, 95%);
 }
 .kpi-item__tags li[data-id=tag-3] {
-  color: hsl(338deg, 53%, 39%);
-  background-color: hsl(338deg, 35%, 91%);
+  color: hsl(338, 53%, 39%);
+  background-color: hsl(338, 35%, 91%);
 }
 
 .analysis__heading {
@@ -2647,8 +2621,8 @@ button {
   max-height: 700px;
 }
 .analysis .viz {
-  background-color: hsl(0deg, 0%, 100%);
-  border: 1px solid hsl(146deg, 64%, 98%);
+  background-color: hsl(0, 0%, 100%);
+  border: 1px solid hsl(146, 64%, 98%);
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   height: 700px;
@@ -2721,8 +2695,8 @@ button {
 .analysis__news article {
   margin-top: 1.25rem;
   padding: 1.5rem;
-  background-color: hsl(0deg, 0%, 100%);
-  border: 1px solid hsl(146deg, 64%, 98%);
+  background-color: hsl(0, 0%, 100%);
+  border: 1px solid hsl(146, 64%, 98%);
   border-radius: 6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
   width: 48%;
@@ -2746,7 +2720,6 @@ button {
   padding-top: 1.5rem;
 }
 .stories .heading-w-line {
-  max-width: -webkit-max-content;
   max-width: -moz-max-content;
   max-width: max-content;
 }
@@ -2838,7 +2811,6 @@ button {
 .about .partners li > div {
   display: grid;
   height: 100%;
-  grid-template-rows: -webkit-max-content 1fr -webkit-max-content;
   grid-template-rows: max-content 1fr max-content;
 }
 .about__team {
@@ -2848,7 +2820,7 @@ button {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 130%;
-  color: hsla(0deg, 0%, 0%, 0.32);
+  color: hsla(0, 0%, 0%, 0.32);
 }
 .about__team h3 span {
   background: #4965b2;
@@ -2865,7 +2837,7 @@ button {
 }
 .about__team ul {
   margin-top: 3rem;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   border-radius: 12px;
   border: 1px solid #f1eef1;
   padding: 0 6rem 5rem;
