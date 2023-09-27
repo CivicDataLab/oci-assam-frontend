@@ -66,15 +66,18 @@
         overflow: hidden;
         text-overflow: ellipsis;
         text-decoration: none;
-        padding-bottom: 5px;
+        padding-bottom: 12px;
         min-width: 120%;
-        display: block;
         text-align: center;
         border-bottom: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         svg {
           margin-bottom: -3px;
           margin-right: 5px;
+          width: 16px;
 
           &.svg-stroke {
             stroke: $grey-1;
@@ -97,7 +100,7 @@
     }
 
     figure {
-      margin: 1rem 2rem;;
+      margin: 1rem 2rem;
     }
   }
 

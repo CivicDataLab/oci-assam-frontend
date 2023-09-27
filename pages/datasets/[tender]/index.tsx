@@ -8,6 +8,15 @@ import Modal from 'react-modal';
 import { download_data } from 'utils/download_data';
 import { event } from 'utils/ga';
 import { useRouter } from 'next/router';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'components/_shared';
 Modal.setAppElement('#__next');
 
 type Props = {
@@ -189,113 +198,6 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
               </svg>
               Download
             </button>
-            <Modal
-              isOpen={modalIsOpen}
-              onRequestClose={handleButtonClick}
-              className="dialog"
-              overlayClassName="dialog__backdrop"
-              contentLabel="Download Tenders"
-              aria={{
-                labelledby: 'dialog-head',
-                describedby: 'dialog-para',
-              }}
-              closeTimeoutMS={200}
-              preventScroll={true}
-              htmlOpenClassName="ReactModal__Html--open"
-            >
-              <section className="dialog__header">
-                <div>
-                  <h1 id="dialog-head">Download Tenders</h1>
-                  <p id="dialog-para">
-                    Select your desired option to download the tenders
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  className="dialog__close"
-                  id="modalCancel"
-                  aria-label="Close navigation"
-                  onClick={handleButtonClick}
-                >
-                  &#x78;
-                </button>
-              </section>
-              <section className="dialog__body">
-                <div>
-                  <label htmlFor="downloadOption1">
-                    <input
-                      type="radio"
-                      id="downloadOption1"
-                      name="dialog-option"
-                      value="tender-only"
-                    />
-                    Download the details of this tender
-                  </label>
-
-                  <label htmlFor="downloadOption2">
-                    <input
-                      type="radio"
-                      id="downloadOption2"
-                      name="dialog-option"
-                      value="all-details"
-                    />
-                    Download the details of this tender along with all the
-                    attached documents
-                  </label>
-                </div>
-                <div className="dialog__format">
-                  <p>Choose file format</p>
-                  <div>
-                    <label htmlFor="downloadFormat1">
-                      <input
-                        type="radio"
-                        id="downloadFormat1"
-                        name="dialog-download"
-                        value="csv"
-                      />
-                      CSV File
-                    </label>
-
-                    <label htmlFor="downloadFormat2">
-                      <input
-                        type="radio"
-                        id="downloadFormat2"
-                        name="dialog-download"
-                        value="xls"
-                      />
-                      XLS File
-                    </label>
-
-                    <label htmlFor="downloadFormat3">
-                      <input
-                        type="radio"
-                        id="downloadFormat3"
-                        name="dialog-download"
-                        value="pdf"
-                      />
-                      PDF File
-                    </label>
-
-                    <label htmlFor="downloadFormat4">
-                      <input
-                        type="radio"
-                        id="downloadFormat4"
-                        name="dialog-download"
-                        value="zip"
-                      />
-                      ZIP File
-                    </label>
-                  </div>
-                </div>
-              </section>
-              <button
-                className="btn-primary dialog__submit"
-                id="modalSubmit"
-                onClick={handleButtonClick}
-              >
-                Download
-              </button>
-            </Modal>
           </section>
 
           <section className="tender__basic">
@@ -316,49 +218,25 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
                 Basic Info
               </h3>
               <DList content={basicContent} />
+              <Table className="bg-white mt-4 rounded-sm shadow-sm">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[100px]">Invoice</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Method</TableHead>
+                    <TableHead className="text-right">Amount</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-medium">INV001</TableCell>
+                    <TableCell>Paid</TableCell>
+                    <TableCell>Credit Card</TableCell>
+                    <TableCell className="text-right">$250.00</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </div>
-            {/* uncomment next block to add a map on right side of basic section */}
-            {/* <div className="tender__map">
-              <h3 className="heading-3">
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 26 26"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8.15733 3.38543L4.50933 2.1681C4.10845 2.03458 3.68157 1.99823 3.26388 2.06205C2.84619 2.12587 2.44964 2.28804 2.10692 2.53519C1.7642 2.78233 1.48511 3.10738 1.29266 3.48355C1.10021 3.85971 0.999898 4.27623 1 4.69877V20.4094C0.999865 20.9693 1.17597 21.5151 1.50335 21.9693C1.83074 22.4235 2.29278 22.7632 2.824 22.9401L8.15733 24.7174C8.70434 24.8996 9.29566 24.8996 9.84267 24.7174L16.1573 22.6134C16.7043 22.4312 17.2957 22.4312 17.8427 22.6134L21.4907 23.8294C21.8917 23.963 22.3187 23.9993 22.7365 23.9354C23.1542 23.8715 23.5509 23.7093 23.8936 23.462C24.2364 23.2147 24.5154 22.8894 24.7078 22.5131C24.9002 22.1368 25.0003 21.7201 25 21.2974V5.5881C25.0002 5.02836 24.8243 4.48274 24.4972 4.02854C24.1701 3.57434 23.7083 3.23459 23.1773 3.05743L17.844 1.2801C17.2966 1.09761 16.7047 1.09761 16.1573 1.2801L9.84133 3.3841C9.29433 3.56629 8.70301 3.56629 8.156 3.3841L8.15733 3.38543Z"
-                    stroke="black"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9 3.66667V25"
-                    stroke="black"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M17 1V22.3333"
-                    stroke="black"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                Map
-              </h3>
-
-              <figure className="tender__image">
-                <Image
-                  src="/assets/icons/assam.png"
-                  width={450}
-                  height={350}
-                  layout="responsive"
-                />
-              </figure>
-            </div> */}
           </section>
 
           {documents.length > 0 && (

@@ -17,7 +17,7 @@ const TeamCard = ({ card }) => {
       <h4>{card.name}</h4>
       <small>{card.title}</small>
       <small>{card.org}</small>
-      <div className="team__social">
+      <div className="team__social flex gap-2 flex-wrap justify-center">
         {card.twitter && (
           <a href={card.twitter}>
             <svg

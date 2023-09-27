@@ -1,3 +1,4 @@
+@import 'tailwind.css';
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -360,13 +361,13 @@ button {
   font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
-  display: inline-block;
   line-height: 150%;
   font-weight: 500;
   transition: background-color 200ms ease;
-  display: block;
   width: -moz-max-content;
   width: max-content;
+  display: flex;
+  align-items: center;
   background-color: #076775;
   color: hsl(0, 33%, 99%);
   border: 1px solid #076775;
@@ -389,13 +390,13 @@ button {
   font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
-  display: inline-block;
   line-height: 150%;
   font-weight: 500;
   transition: background-color 200ms ease;
-  display: block;
   width: -moz-max-content;
   width: max-content;
+  display: flex;
+  align-items: center;
   border: 1px solid #076775;
   color: #076775;
   background-color: hsl(0, 33%, 99%);
@@ -418,13 +419,13 @@ button {
   font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
-  display: inline-block;
   line-height: 150%;
   font-weight: 500;
   transition: background-color 200ms ease;
-  display: block;
   width: -moz-max-content;
   width: max-content;
+  display: flex;
+  align-items: center;
   background-color: hsl(224, 42%, 49%);
   color: hsl(0, 0%, 100%);
   border: 1px solid hsl(224, 42%, 49%);
@@ -447,13 +448,13 @@ button {
   font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
-  display: inline-block;
   line-height: 150%;
   font-weight: 500;
   transition: background-color 200ms ease;
-  display: block;
   width: -moz-max-content;
   width: max-content;
+  display: flex;
+  align-items: center;
   border: 1px solid hsl(224, 42%, 49%);
   color: hsl(224, 42%, 49%);
   background-color: hsl(0, 0%, 100%);
@@ -1543,8 +1544,7 @@ button {
 }
 .pagination__control button {
   border-radius: 4px;
-  width: 40px;
-  height: 40px;
+  padding: 12px;
   cursor: pointer;
 }
 .pagination__control span {
@@ -2460,9 +2460,10 @@ button {
     margin-left: 0;
   }
 }
-.tender .heading-3 svg {
-  margin-bottom: -3px;
-  margin-right: 10px;
+.tender .heading-3 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .kpi .carousel {
@@ -2658,15 +2659,18 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   text-decoration: none;
-  padding-bottom: 5px;
+  padding-bottom: 12px;
   min-width: 120%;
-  display: block;
   text-align: center;
   border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .analysis .viz__tabs a svg {
   margin-bottom: -3px;
   margin-right: 5px;
+  width: 16px;
 }
 .analysis .viz__tabs a svg.svg-stroke {
   stroke: #0a0a0a;

@@ -6,12 +6,12 @@
   font-size: 14px;
   border-radius: 4px;
   text-decoration: none;
-  display: inline-block;
   line-height: 150%;
   font-weight: 500;
   transition: background-color 200ms ease;
-  display: block;
   width: max-content;
+  display: flex;
+  align-items: center;
 
   @include media.narrowerThan('sprout') {
     font-size: 0.9rem;

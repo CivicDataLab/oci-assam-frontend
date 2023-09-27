@@ -398,7 +398,11 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
                 <ul className="viz__tabs">
                   {vizToggle.map((item, index) => (
                     <li key={`toggleItem-${index}`}>
-                      <a href={item.id} onClick={(e) => changeViz(e)}>
+                      <a
+                        href={item.id}
+                        onClick={(e) => changeViz(e)}
+                        className="flex items-center"
+                      >
                         {item.icon}
                         {item.name}
                       </a>

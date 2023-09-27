@@ -18,7 +18,7 @@ const PartnerCard = ({ card }) => {
           <a href={card.url}>
             <h4>{card.name}</h4>
           </a>
-          <div className="partners__social">
+          <div className="partners__social flex gap-2 flex-wrap">
             <a href={card.twitter}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

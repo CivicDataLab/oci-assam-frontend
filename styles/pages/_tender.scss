@@ -109,8 +109,9 @@
     }
   }
 
-  .heading-3 svg {
-    margin-bottom: -3px;
-    margin-right: 10px;
+  .heading-3 {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 }
