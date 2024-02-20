@@ -189,7 +189,7 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
     },
     {
       title: 'Contract Value',
-      desc: dataPackage.statistics[0]
+      desc: dataPackage.statistics
         ? commaNumber(dataPackage.statistics[0].value)
         : '--',
     },
