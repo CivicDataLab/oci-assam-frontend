@@ -8,8 +8,6 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#__next');
 
-const parser = new Parser();
-
 const Stories = ({ data }) => {
   // const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -116,7 +114,7 @@ const Stories = ({ data }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({res}) => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   res.setHeader(
     'Cache-Control',
     'public, s-maxage=86400, stale-while-revalidate=59'
@@ -128,7 +126,7 @@ export const getServerSideProps: GetServerSideProps = async ({res}) => {
 
   return {
     props: {
-      data ,
+      data,
     },
   };
 };

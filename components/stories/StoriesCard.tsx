@@ -4,10 +4,10 @@ import { getMediumBanner } from 'utils/index';
 import { truncate } from 'lodash';
 
 // strip html tags
-function strip(html){
+function strip(html) {
   const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent || "";
-} 
+  return doc.body.textContent || '';
+}
 
 // return post time in required format
 function getDate(time: string) {
@@ -49,14 +49,14 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
   length,
 }) => {
   const [paraLen, setParaLen] = useState(length);
-  const [content, setContent] = useState(null)
+  const [content, setContent] = useState(null);
 
   useEffect(() => {
     if (window.innerWidth < 720) {
       paraLen > 150 ? setParaLen(150) : null;
     }
 
-    setContent(strip(data['content']))
+    setContent(strip(data['content']));
   }, []);
   return (
     <article className="stories-card">
@@ -83,7 +83,7 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
           <div>
             <small className="stories-card__author">{data.author}</small>
             <small>
-              {`${(data.pubDate)} . 
+              {`${data.pubDate} . 
                   ${getReadTime(data['content'])} mins read`}
             </small>
           </div>

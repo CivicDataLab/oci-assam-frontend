@@ -1,15 +1,14 @@
 const ErrorMessage: React.FC<{ message: any }> = ({ message }) => {
   return (
-    <aside>
+    <aside
+      style={{
+        padding: '1.5em',
+        fontSize: '14px',
+        color: 'white',
+        backgroundColor: 'red',
+      }}
+    >
       {message}
-      <style jsx>{`
-        aside {
-          padding: 1.5em;
-          font-size: 14px;
-          color: white;
-          background-color: red;
-        }
-      `}</style>
     </aside>
   );
 };
