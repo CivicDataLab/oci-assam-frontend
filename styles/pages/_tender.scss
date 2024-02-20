@@ -22,12 +22,11 @@
   }
 
   &__heading {
-    display: grid;
-    grid-template-columns: 1fr 121px;
-
-    @include media.narrowerThan('seed') {
-      grid-template-columns: 1fr;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .dlist {

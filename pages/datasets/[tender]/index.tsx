@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { fetchAPI, getDate } from 'utils/index';
+import { fetchAPI } from 'utils/index';
 import MegaHeader from 'components/_shared/MegaHeader';
 import DList from 'components/_shared/DList';
 import Modal from 'react-modal';
@@ -11,12 +11,12 @@ import { useRouter } from 'next/router';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from 'components/_shared';
+import type { Tender } from 'components/datasets/types';
 Modal.setAppElement('#__next');
 
 type Props = {
@@ -32,13 +32,13 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
     setModalIsOpen(!modalIsOpen);
   }
 
-  const dataPackage = data.result;
+  const dataPackage: Tender = data.result;
 
   const headerData = {
-    title: dataPackage.tender_title || dataPackage.name,
-    content: dataPackage.organization.title,
-    date: `${getDate(dataPackage.tender_bid_opening_date) || '--'} . ${
-      dataPackage.fiscal_year || '--'
+    title: dataPackage.tender[0].title,
+    content: dataPackage.buyer[0].name,
+    date: `${dataPackage.tender[0].datePublished || '--'} . ${
+      dataPackage.tender[0].fiscalYear || '--'
     }`,
     previousPage: 'Contracts Data',
     previousLink: '/datasets',
@@ -50,120 +50,165 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
       desc: dataPackage.ocid || '--',
     },
     {
-      title: 'Tender ID',
-      desc: dataPackage.tender_id || '--',
-    },
-    {
       title: 'Tender Title',
-      desc: dataPackage.tender_title || '--',
+      desc: dataPackage.tender[0].title || '--',
     },
     {
-      title: 'Tender description',
-      desc: dataPackage.tender_title || '--',
+      title: 'Tender ID',
+      desc: dataPackage.tender[0].id || '--',
     },
     {
-      title: 'Organisation name',
-      desc: dataPackage.organization.title,
+      title: 'Tender Reference Number',
+      desc: dataPackage.tender[0].identifiers[0].id || '--',
+    },
+
+    {
+      title: 'Organisation Chain',
+      desc: dataPackage.buyer[0].name || '--',
     },
     {
       title: 'Tender amount',
-      desc: `₹${
-        dataPackage?.tender_value_amount
-          ? dataPackage.tender_value_amount.replace(
-              /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
-              ','
-            )
-          : '--'
-      }`,
-    },
-    {
-      title: 'External Reference',
-      desc: dataPackage.tender_externalreference || '--',
-    },
-  ];
-
-  const dateContent = [
-    {
-      title: 'Published Date',
-      desc: getDate(dataPackage.tender_bid_opening_date) || '--',
-    },
-    {
-      title: 'Tender Period Duration In Days',
-      desc: dataPackage.tender_tenderperiod_durationindays || '--',
-    },
-    {
-      title: 'Bid Opening Date',
-      desc: getDate(dataPackage.tender_bid_opening_date) || '--',
-    },
-    {
-      title: 'Tender Milestones',
-      desc: getDate(dataPackage.tender_milestones_duedate) || '--',
-    },
-  ];
-
-  const details = [
-    {
-      title: 'Tender Detail',
-      desc: dataPackage.tender_title || '--',
+      desc: dataPackage.tender[0].value
+        ? `${dataPackage.tender[0].value[0].currency} ${commaNumber(
+            dataPackage.tender[0].value[0].amount
+          )}`
+        : '--',
     },
     {
       title: 'Tender Category',
-      desc: dataPackage.tender_mainprocurementcategory || '--',
+      desc:
+        dataPackage.tender[0].items[0].classification[0].description || '--',
     },
+  ];
+
+  const dateContent = dataPackage.tender[0].milestones.map(
+    (milestone: any) => {
+      return {
+        title: milestone.title,
+        desc: milestone.dueDate,
+      };
+    }
+  );
+
+  const tenderDetails = [
     {
-      title: 'Tender Type',
-      desc: dataPackage.tender_procurementmethod || '--',
-    },
-    {
-      title: 'Form of Contract',
-      desc: dataPackage.tender_contracttype || '--',
+      title: 'Work Description',
+      desc: dataPackage.tender[0].description || '--',
     },
     {
       title: 'Product Category',
-      desc: dataPackage.tenderclassification_description || '--',
+      desc:
+        dataPackage.tender[0].items[0].classification[0].description || '--',
+    },
+    // {
+    //   title: 'Sub Category',
+    //   desc: dataPackage.tender[0].items[0].classification || '--',
+    // },
+    {
+      title: 'Contract Type',
+      desc: dataPackage.tender[0].contractType || '--',
     },
     {
-      title: 'Two Stage Tender (Y/N)',
-      desc: dataPackage.tender_allowtwostagetender || '--',
+      title: 'Published Date',
+      desc: dataPackage.tender[0].datePublished || '--',
     },
     {
-      title: 'Preferential Bidding Allowed',
-      desc: dataPackage.tender_allowpreferentialbidder || '--',
-    },
-    {
-      title: 'Payment Mode',
-      desc: dataPackage.payment_mode || '--',
-    },
-    {
-      title: 'Tender Status',
-      desc: dataPackage.tender_status || '--',
-    },
-    {
-      title: 'Tender Stage',
-      desc: dataPackage.tender_stage || '--',
-    },
-    {
-      title: 'No of Bids Received',
-      desc: dataPackage.tender_numberoftenderers || '--',
-    },
-    {
-      title: 'Tender Documents ID',
-      desc: dataPackage.tender_documents_id || '--',
-    },
-    {
-      title: 'Award Date',
-      desc: getDate(dataPackage.awards_date) || '--',
-    },
-    {
-      title: 'Award Value',
-      desc: dataPackage.awards_value_amount || '--',
+      title: 'Period of Work (Days)',
+      desc: dataPackage.tender[0].contractPeriod[0].durationInDays || '--',
     },
   ];
+
+  const invitingAuthority = [
+    {
+      title: 'Work Description',
+      desc: dataPackage.tender[0].description || '--',
+    },
+  ];
+
+  const bidderDetails = [
+    {
+      title: 'Bid Validity(Days)',
+      desc:
+        dataPackage.tender[0].submissionTerms[0].bidValidityPeriod[0]
+          .durationInDays || '--',
+    },
+    {
+      title: 'Bid Opening Place',
+      desc:
+        dataPackage.tender[0].bidOpening[0].address[0].streetAddress || '--',
+    },
+    {
+      title: 'Bidder Information',
+      desc: (
+        <Table className="bg-white mt-4 rounded-sm shadow-sm">
+          <TableHeader>
+            <TableRow>
+              <TableHead className="">Bidder Name</TableHead>
+              {/* <TableHead>Bidder Number</TableHead> */}
+              <TableHead>Bid Submission Date</TableHead>
+              <TableHead>Bid Value</TableHead>
+              <TableHead>Bidder Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {dataPackage.bids[0].details.map((bid: any) => {
+              return (
+                <TableRow key={bid.id}>
+                  <TableCell>{bid.tenderers[0].name}</TableCell>
+                  {/* <TableCell>{bid.tenderers[0].id}</TableCell> */}
+                  <TableCell>{bid.date || '--'}</TableCell>
+                  <TableCell>{commaNumber(bid.id)}</TableCell>
+                  <TableCell>{bid.status || '--'}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      ),
+    },
+  ];
+
+  const awardDetails = [
+    {
+      title: 'Awarded Value',
+      desc: dataPackage.awards
+        ? commaNumber(dataPackage.awards[0].value[0].amount)
+        : '--',
+    },
+    {
+      title: 'Awarded Currency',
+      desc: dataPackage.awards
+        ? dataPackage.awards[0].value[0].currency
+        : '--',
+    },
+    {
+      title: 'Contract Date',
+      desc: dataPackage.awards
+        ? dataPackage.awards[0].contractPeriod[0].startDate
+        : '--',
+    },
+    {
+      title: 'Contract Value',
+      desc: dataPackage.statistics[0]
+        ? commaNumber(dataPackage.statistics[0].value)
+        : '--',
+    },
+    {
+      title: 'Work Completion Period in days',
+      desc: dataPackage.awards
+        ? dataPackage.awards[0].contractPeriod[0].durationInDays
+        : '--',
+    },
+  ];
+
+  function commaNumber(num: number | string) {
+    return String(num).replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+  }
 
   return (
     <>
       <Head>
-        <title>OCI | {dataPackage.title || dataPackage.name}</title>
+        <title>OCI | {dataPackage.tender[0].title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="tender">
@@ -218,24 +263,6 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
                 Basic Info
               </h3>
               <DList content={basicContent} />
-              <Table className="bg-white mt-4 rounded-sm shadow-sm">
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[100px]">Invoice</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Method</TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell className="font-medium">INV001</TableCell>
-                    <TableCell>Paid</TableCell>
-                    <TableCell>Credit Card</TableCell>
-                    <TableCell className="text-right">$250.00</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
             </div>
           </section>
 
@@ -254,11 +281,30 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
                     fill="#333333"
                   />
                 </svg>
-                Documents
+                Basic Details
               </h3>
               <DList content={documents} />
             </section>
           )}
+
+          <section className="tender__item">
+            <h3 className="heading-3">
+              <svg
+                width="28"
+                height="25"
+                viewBox="0 0 28 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.15 0C2.31457 0 1.51335 0.370395 0.922614 1.0297C0.331874 1.68901 0 2.58322 0 3.51562V7.42188C0 8.35428 0.331874 9.24849 0.922614 9.9078C1.51335 10.5671 2.31457 10.9375 3.15 10.9375H6.65C7.48543 10.9375 8.28665 10.5671 8.87739 9.9078C9.46813 9.24849 9.8 8.35428 9.8 7.42188V3.51562C9.8 2.58322 9.46813 1.68901 8.87739 1.0297C8.28665 0.370395 7.48543 0 6.65 0H3.15ZM12.95 1.5625C12.6715 1.5625 12.4045 1.68596 12.2075 1.90573C12.0106 2.1255 11.9 2.42357 11.9 2.73438C11.9 3.04518 12.0106 3.34325 12.2075 3.56302C12.4045 3.78279 12.6715 3.90625 12.95 3.90625H26.95C27.2285 3.90625 27.4956 3.78279 27.6925 3.56302C27.8894 3.34325 28 3.04518 28 2.73438C28 2.42357 27.8894 2.1255 27.6925 1.90573C27.4956 1.68596 27.2285 1.5625 26.95 1.5625H12.95ZM12.95 6.25C12.6715 6.25 12.4045 6.37347 12.2075 6.59324C12.0106 6.813 11.9 7.11107 11.9 7.42188C11.9 7.73268 12.0106 8.03075 12.2075 8.25051C12.4045 8.47028 12.6715 8.59375 12.95 8.59375H22.75C23.0285 8.59375 23.2955 8.47028 23.4925 8.25051C23.6894 8.03075 23.8 7.73268 23.8 7.42188C23.8 7.11107 23.6894 6.813 23.4925 6.59324C23.2955 6.37347 23.0285 6.25 22.75 6.25H12.95ZM3.15 14.0625C2.31457 14.0625 1.51335 14.4329 0.922614 15.0922C0.331874 15.7515 0 16.6457 0 17.5781V21.4844C0 21.9461 0.0814772 22.4032 0.23978 22.8297C0.398082 23.2563 0.630109 23.6438 0.922614 23.9703C1.21512 24.2968 1.56237 24.5557 1.94455 24.7324C2.32672 24.9091 2.73634 25 3.15 25H6.65C7.06366 25 7.47328 24.9091 7.85545 24.7324C8.23763 24.5557 8.58488 24.2968 8.87739 23.9703C9.16989 23.6438 9.40192 23.2563 9.56022 22.8297C9.71852 22.4032 9.8 21.9461 9.8 21.4844V17.5781C9.8 16.6457 9.46813 15.7515 8.87739 15.0922C8.28665 14.4329 7.48543 14.0625 6.65 14.0625H3.15ZM12.95 15.625C12.6715 15.625 12.4045 15.7485 12.2075 15.9682C12.0106 16.188 11.9 16.4861 11.9 16.7969C11.9 17.1077 12.0106 17.4057 12.2075 17.6255C12.4045 17.8453 12.6715 17.9688 12.95 17.9688H26.95C27.2285 17.9688 27.4956 17.8453 27.6925 17.6255C27.8894 17.4057 28 17.1077 28 16.7969C28 16.4861 27.8894 16.188 27.6925 15.9682C27.4956 15.7485 27.2285 15.625 26.95 15.625H12.95ZM12.95 20.3125C12.6715 20.3125 12.4045 20.436 12.2075 20.6557C12.0106 20.8755 11.9 21.1736 11.9 21.4844C11.9 21.7952 12.0106 22.0932 12.2075 22.313C12.4045 22.5328 12.6715 22.6562 12.95 22.6562H22.75C23.0285 22.6562 23.2955 22.5328 23.4925 22.313C23.6894 22.0932 23.8 21.7952 23.8 21.4844C23.8 21.1736 23.6894 20.8755 23.4925 20.6557C23.2955 20.436 23.0285 20.3125 22.75 20.3125H12.95Z"
+                  fill="black"
+                />
+              </svg>
+              Tender and Work Details
+            </h3>
+            <DList content={tenderDetails} />
+          </section>
 
           <section className="tender__item">
             <h3 className="heading-3">
@@ -275,7 +321,7 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
                   strokeWidth="2"
                 />
               </svg>
-              Important Dates
+              Critical Dates
             </h3>
             <DList content={dateContent} />
           </section>
@@ -294,9 +340,28 @@ const Tender: React.FC<Props> = ({ data, documents }) => {
                   fill="black"
                 />
               </svg>
-              Tender detail 1
+              Bid and Bidder Details
             </h3>
-            <DList content={details} />
+            <DList content={bidderDetails} />
+          </section>
+
+          <section className="tender__item">
+            <h3 className="heading-3">
+              <svg
+                width="28"
+                height="25"
+                viewBox="0 0 28 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.15 0C2.31457 0 1.51335 0.370395 0.922614 1.0297C0.331874 1.68901 0 2.58322 0 3.51562V7.42188C0 8.35428 0.331874 9.24849 0.922614 9.9078C1.51335 10.5671 2.31457 10.9375 3.15 10.9375H6.65C7.48543 10.9375 8.28665 10.5671 8.87739 9.9078C9.46813 9.24849 9.8 8.35428 9.8 7.42188V3.51562C9.8 2.58322 9.46813 1.68901 8.87739 1.0297C8.28665 0.370395 7.48543 0 6.65 0H3.15ZM12.95 1.5625C12.6715 1.5625 12.4045 1.68596 12.2075 1.90573C12.0106 2.1255 11.9 2.42357 11.9 2.73438C11.9 3.04518 12.0106 3.34325 12.2075 3.56302C12.4045 3.78279 12.6715 3.90625 12.95 3.90625H26.95C27.2285 3.90625 27.4956 3.78279 27.6925 3.56302C27.8894 3.34325 28 3.04518 28 2.73438C28 2.42357 27.8894 2.1255 27.6925 1.90573C27.4956 1.68596 27.2285 1.5625 26.95 1.5625H12.95ZM12.95 6.25C12.6715 6.25 12.4045 6.37347 12.2075 6.59324C12.0106 6.813 11.9 7.11107 11.9 7.42188C11.9 7.73268 12.0106 8.03075 12.2075 8.25051C12.4045 8.47028 12.6715 8.59375 12.95 8.59375H22.75C23.0285 8.59375 23.2955 8.47028 23.4925 8.25051C23.6894 8.03075 23.8 7.73268 23.8 7.42188C23.8 7.11107 23.6894 6.813 23.4925 6.59324C23.2955 6.37347 23.0285 6.25 22.75 6.25H12.95ZM3.15 14.0625C2.31457 14.0625 1.51335 14.4329 0.922614 15.0922C0.331874 15.7515 0 16.6457 0 17.5781V21.4844C0 21.9461 0.0814772 22.4032 0.23978 22.8297C0.398082 23.2563 0.630109 23.6438 0.922614 23.9703C1.21512 24.2968 1.56237 24.5557 1.94455 24.7324C2.32672 24.9091 2.73634 25 3.15 25H6.65C7.06366 25 7.47328 24.9091 7.85545 24.7324C8.23763 24.5557 8.58488 24.2968 8.87739 23.9703C9.16989 23.6438 9.40192 23.2563 9.56022 22.8297C9.71852 22.4032 9.8 21.9461 9.8 21.4844V17.5781C9.8 16.6457 9.46813 15.7515 8.87739 15.0922C8.28665 14.4329 7.48543 14.0625 6.65 14.0625H3.15ZM12.95 15.625C12.6715 15.625 12.4045 15.7485 12.2075 15.9682C12.0106 16.188 11.9 16.4861 11.9 16.7969C11.9 17.1077 12.0106 17.4057 12.2075 17.6255C12.4045 17.8453 12.6715 17.9688 12.95 17.9688H26.95C27.2285 17.9688 27.4956 17.8453 27.6925 17.6255C27.8894 17.4057 28 17.1077 28 16.7969C28 16.4861 27.8894 16.188 27.6925 15.9682C27.4956 15.7485 27.2285 15.625 26.95 15.625H12.95ZM12.95 20.3125C12.6715 20.3125 12.4045 20.436 12.2075 20.6557C12.0106 20.8755 11.9 21.1736 11.9 21.4844C11.9 21.7952 12.0106 22.0932 12.2075 22.313C12.4045 22.5328 12.6715 22.6562 12.95 22.6562H22.75C23.0285 22.6562 23.2955 22.5328 23.4925 22.313C23.6894 22.0932 23.8 21.7952 23.8 21.4844C23.8 21.1736 23.6894 20.8755 23.4925 20.6557C23.2955 20.436 23.0285 20.3125 22.75 20.3125H12.95Z"
+                  fill="black"
+                />
+              </svg>
+              Award Details
+            </h3>
+            <DList content={awardDetails} />
           </section>
         </div>
       </main>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { truncate, capitalize } from 'lodash';
-import { getDate, getOrgLogo } from 'utils/index';
+import { getOrgLogo } from 'utils/index';
 
 const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
   const router = useRouter();
@@ -34,14 +34,12 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
         <section>
           <h3 className="card__heading">{datapackage.organization.title}</h3>
           <small className="card__date">
-            {`${getDate(datapackage.tender_bid_opening_date)} . ${
-              datapackage.fiscal_year
-            }`}
+            {`${datapackage.tender[0].bidOpening[0].date} . ${datapackage.tender[0].fiscalYear}`}
           </small>
           <div className="card__content">
             <section className="card__id">
               <h4>
-                {truncate(datapackage.tender_id, {
+                {truncate(datapackage.tender[0].id, {
                   length: 40,
                 })}
               </h4>
@@ -49,18 +47,17 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
             </section>
             <section className="card__value">
               <h4>
-                ₹
-                {datapackage.tender_value_amount &&
-                  datapackage.tender_value_amount.replace(
-                    /\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g,
-                    ','
-                  )}
+                {datapackage.tender[0].value
+                  ? `${datapackage.tender[0].value[0].currency} ${String(
+                      datapackage.tender[0].value[0].amount
+                    ).replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}`
+                  : 'N/A'}
               </h4>
               <small>Tender value</small>
             </section>
             <section className="card__name">
               <h4>
-                {truncate(capitalize(datapackage.tender_title), {
+                {truncate(capitalize(datapackage.tender[0].title), {
                   length: 80,
                 })}
               </h4>
