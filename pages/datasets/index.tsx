@@ -27,7 +27,7 @@ type Props = {
 };
 
 const list =
-  '"fiscal_year", "organization", "tender_mainprocurementcategory", "tender_status"';
+  '"fiscalYear", "organization", "tender_mainprocurementcategory", "tender_status"';
 
 const defaultSort = 'tender_bid_opening_date:asc';
 
