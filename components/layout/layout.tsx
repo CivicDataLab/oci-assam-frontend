@@ -2,7 +2,9 @@ import Nav from 'components/_shared/Nav';
 import Footer from 'components/_shared/Footer';
 import Skiplink from 'components/_shared/Skiplink';
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => {
   return (
     <>
       <Skiplink />

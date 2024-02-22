@@ -2,18 +2,12 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import MegaHeader from 'components/_shared/MegaHeader';
-import Parser from 'rss-parser';
 import StoriesCard from 'components/stories/StoriesCard';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#__next');
 
 const Stories = ({ data }) => {
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  // function handleButtonClick() {
-  //   setModalIsOpen(!modalIsOpen);
-  // }
   const headerData = {
     title: 'Data Stories',
     content:

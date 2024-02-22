@@ -9,35 +9,6 @@ function strip(html) {
   return doc.body.textContent || '';
 }
 
-// return post time in required format
-function getDate(time: string) {
-  // ordinal suffix for date
-  const getOrdinal = function (d: number) {
-    let type: string;
-    if (d > 3 && d < 21) type = 'th';
-    switch (d % 10) {
-      case 1:
-        type = 'st';
-        break;
-      case 2:
-        type = 'nd';
-        break;
-      case 3:
-        type = 'rd';
-        break;
-      default:
-        type = 'th';
-        break;
-    }
-    return `${d}${type}`;
-  };
-
-  const dt = new Date(time);
-  const date = getOrdinal(dt.getDate());
-  const month = dt.toLocaleString('default', { month: 'short' });
-  return `${date} ${month}, ${dt.getFullYear()}`;
-}
-
 function getReadTime(text: string) {
   const wpm = 250;
   const words = text.trim().split(/\s+/).length;
