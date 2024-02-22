@@ -2,7 +2,6 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import MegaHeader from 'components/_shared/MegaHeader';
-import Parser from 'rss-parser';
 import StoriesCard from 'components/stories/StoriesCard';
 import Modal from 'react-modal';
 

@@ -125,7 +125,7 @@ const Table = ({ headers, rows, caption, sortable }) => {
             </tr>
             {sortedRows.map((row, i) => (
               <tr key={i}>
-                {Object.values(row).map((cell, i) => (
+                {Object.values(row).map((cell: string, i) => (
                   <td key={i}>{cell}</td>
                 ))}
               </tr>
