@@ -26,8 +26,10 @@ type Props = {
   facets: any;
 };
 
-const list =
-  '"fiscalYear", "organization", "tender_mainprocurementcategory", "tender_status"';
+// const list =
+//   '"fiscalYear", "organization", "tender_mainprocurementcategory", "tender_status"';
+const newList =
+  '"organization"';
 
 const defaultSort = 'tender_bid_opening_date:asc';
 
@@ -283,7 +285,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const variables = convertToCkanSearchQuery(query);
 
   // fetch fatcets values
-  const facets = await getFilters(list, variables, 'tender_dataset');
+  const facets = await getFilters(newList, variables, 'tender_dataset');
 
   // fetch datasets
   const data = await fetchDatasets('tender_dataset', variables);

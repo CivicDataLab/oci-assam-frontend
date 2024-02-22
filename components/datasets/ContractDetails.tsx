@@ -122,7 +122,7 @@ export const ContractDetails = ({ dataPackage }) => {
     },
     {
       title: 'Bidder Information',
-      desc: (
+      desc: dataPackage.bids ? (
         <Table className="bg-white mt-4 rounded-sm shadow-sm">
           <TableHeader>
             <TableRow>
@@ -145,6 +145,8 @@ export const ContractDetails = ({ dataPackage }) => {
             })}
           </TableBody>
         </Table>
+      ) : (
+        '--'
       ),
     },
   ];
