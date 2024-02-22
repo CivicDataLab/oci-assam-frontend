@@ -1,6 +1,6 @@
 import MegaHeader from 'components/_shared/MegaHeader';
 import { ContractDetails } from 'components/datasets/ContractDetails';
-import type { Tender } from 'components/datasets/types';
+import type { Tender as Type } from 'components/datasets/types';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -17,7 +17,7 @@ type Props = {
 const Tender: React.FC<Props> = ({ data }) => {
   const router = useRouter();
 
-  const dataPackage: Tender = data.result;
+  const dataPackage: Type = data.result;
 
   const headerData = {
     title: dataPackage.tender[0].title,
@@ -69,7 +69,7 @@ const Tender: React.FC<Props> = ({ data }) => {
             </button>
           </section>
 
-          <ContractDetails dataPackage={dataPackage} />
+          {dataPackage ? <ContractDetails dataPackage={dataPackage} /> : null}
         </div>
       </main>
     </>

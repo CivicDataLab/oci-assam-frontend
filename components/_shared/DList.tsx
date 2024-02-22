@@ -144,7 +144,7 @@ const DList = ({ content }) => {
                 </span>
               )}
             </dt>
-            <dd className="dlist__desc">{value.desc}</dd>
+            <dd className="dlist__desc">{value.desc || '--'}</dd>
           </div>
         );
       })}

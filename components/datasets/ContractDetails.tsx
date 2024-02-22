@@ -13,116 +13,114 @@ export const ContractDetails = ({ dataPackage }) => {
   const basicContent = [
     {
       title: 'Open contracting ID',
-      desc: dataPackage.ocid || '--',
+      desc: dataPackage?.ocid,
     },
     {
       title: 'Tender Title',
-      desc: dataPackage.tender[0].title || '--',
+      desc: dataPackage?.tender?.[0].title,
     },
     {
       title: 'Tender ID',
-      desc: dataPackage.tender[0].id || '--',
+      desc: dataPackage?.tender?.[0].id,
     },
     {
       title: 'Tender Reference Number',
-      desc: dataPackage.tender[0].identifiers[0].id || '--',
+      desc: dataPackage?.tender?.[0].identifiers?.[0].id,
     },
 
     {
       title: 'Organisation Chain',
-      desc: dataPackage.buyer[0].name || '--',
+      desc: dataPackage?.buyer?.[0].name,
     },
     {
       title: 'Tender amount',
-      desc: dataPackage.tender[0].value
-        ? `${dataPackage.tender[0].value[0].currency} ${commaNumber(
-            dataPackage.tender[0].value[0].amount
+      desc: dataPackage?.tender?.[0].value
+        ? `${dataPackage?.tender?.[0].value?.[0].currency} ${commaNumber(
+            dataPackage?.tender?.[0].value?.[0].amount
           )}`
-        : '--',
+        : undefined,
     },
     {
       title: 'Tender Category',
-      desc:
-        dataPackage.tender[0].items[0].classification[0].description || '--',
+      desc: dataPackage?.tender?.[0].items?.[0].classification?.[0]
+        .description,
     },
   ];
 
-  const dateContent = dataPackage.tender[0].milestones.map(
-    (milestone: any) => {
-      return {
-        title: milestone.title,
-        desc: milestone.dueDate,
-      };
-    }
-  );
+  const dateContent = dataPackage?.tender?.[0].milestones
+    ? dataPackage.tender[0].milestones.map((milestone: any) => {
+        return {
+          title: milestone.title,
+          desc: milestone.dueDate,
+        };
+      })
+    : [];
 
   const tenderDetails = [
     {
       title: 'Work Description',
-      desc: dataPackage.tender[0].description || '--',
+      desc: dataPackage?.tender?.[0].description,
     },
     {
       title: 'Product Category',
-      desc:
-        dataPackage.tender[0].items[0].classification[0].description || '--',
+      desc: dataPackage?.tender?.[0].items?.[0].classification?.[0]
+        .description,
     },
     {
       title: 'Contract Type',
-      desc: dataPackage.tender[0].contractType || '--',
+      desc: dataPackage?.tender?.[0].contractType,
     },
     {
       title: 'Published Date',
-      desc: dataPackage.tender[0].datePublished || '--',
+      desc: dataPackage?.tender?.[0].datePublished,
     },
     {
       title: 'Period of Work (Days)',
-      desc: dataPackage.tender[0].contractPeriod[0].durationInDays || '--',
+      desc: dataPackage?.tender?.[0].contractPeriod?.[0].durationInDays,
     },
   ];
 
   const invitingAuthority = [
     {
       title: 'Name',
-      desc: dataPackage.tender[0].procuringEntity[0].name || '--',
+      desc: dataPackage?.tender?.[0].procuringEntity?.[0].name,
     },
     {
       title: 'Fee Payable To',
-      desc: dataPackage.tender[0].participationFees[0].description || '--',
+      desc: dataPackage?.tender?.[0].participationFees?.[0].description,
     },
     {
       title: 'Tender Fee in Rs',
-      desc: dataPackage.tender[0].participationFees[0].value[0].amount || '--',
+      desc: dataPackage?.tender?.[0].participationFees?.[0].value?.[0].amount,
     },
     {
       title: 'Location',
-      desc:
-        dataPackage.tender[0].items[0].deliveryAddresses[0].streetAddress ||
-        '--',
+      desc: dataPackage?.tender?.[0].items?.[0].deliveryAddresses[0]
+        ?.streetAddress,
     },
     {
       title: 'Pincode',
-      desc:
-        Number.parseInt(
-          dataPackage.tender[0].items[0].deliveryAddresses[0].postalCode
-        ) || '--',
+      desc: Number.parseInt(
+        dataPackage?.tender?.[0].items?.[0].deliveryAddresses?.[0].postalCode
+      ),
     },
   ];
 
   const bidderDetails = [
     {
       title: 'Bid Validity(Days)',
-      desc:
-        dataPackage.tender[0].submissionTerms[0].bidValidityPeriod[0]
-          .durationInDays || '--',
+      desc: dataPackage?.tender?.[0].submissionTerms?.[0].bidValidityPeriod[0]
+        ?.durationInDays,
     },
     {
       title: 'Bid Opening Place',
       desc:
-        dataPackage.tender[0].bidOpening[0].address[0].streetAddress || '--',
+        dataPackage?.tender?.[0].bidOpening?.[0].address?.[0].streetAddress ||
+        '--',
     },
     {
       title: 'Bidder Information',
-      desc: dataPackage.bids ? (
+      desc: dataPackage?.bids ? (
         <Table className="bg-white mt-4 rounded-sm shadow-sm">
           <TableHeader>
             <TableRow>
@@ -136,9 +134,9 @@ export const ContractDetails = ({ dataPackage }) => {
             {dataPackage.bids[0].details.map((bid: any) => {
               return (
                 <TableRow key={bid.id}>
-                  <TableCell>{bid.tenderers[0].name}</TableCell>
+                  <TableCell>{bid.tenderers?.[0].name || '--'}</TableCell>
                   <TableCell>{bid.date || '--'}</TableCell>
-                  <TableCell>{commaNumber(bid.id)}</TableCell>
+                  <TableCell>{commaNumber(bid.id) || '--'}</TableCell>
                   <TableCell>{bid.status || '--'}</TableCell>
                 </TableRow>
               );
@@ -154,33 +152,23 @@ export const ContractDetails = ({ dataPackage }) => {
   const awardDetails = [
     {
       title: 'Awarded Value',
-      desc: dataPackage.awards
-        ? commaNumber(dataPackage.awards[0].value[0].amount)
-        : '--',
+      desc: commaNumber(dataPackage?.awards?.[0].value?.[0].amount),
     },
     {
       title: 'Awarded Currency',
-      desc: dataPackage.awards
-        ? dataPackage.awards[0].value[0].currency
-        : '--',
+      desc: dataPackage?.awards?.[0].value?.[0].currency,
     },
     {
       title: 'Contract Date',
-      desc: dataPackage.awards
-        ? dataPackage.awards[0].contractPeriod[0].startDate
-        : '--',
+      desc: dataPackage?.awards?.[0].contractPeriod?.[0].startDate,
     },
     {
       title: 'Contract Value',
-      desc: dataPackage.statistics
-        ? commaNumber(dataPackage.statistics[0].value)
-        : '--',
+      desc: commaNumber(dataPackage?.statistics?.[0].value),
     },
     {
       title: 'Work Completion Period in days',
-      desc: dataPackage.awards
-        ? dataPackage.awards[0].contractPeriod[0].durationInDays
-        : '--',
+      desc: dataPackage?.awards?.[0].contractPeriod?.[0].durationInDays,
     },
   ];
 
@@ -235,6 +223,8 @@ export const ContractDetails = ({ dataPackage }) => {
 };
 
 function commaNumber(num: number | string) {
+  if (!num) return null;
+
   return String(num).replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
 }
 
