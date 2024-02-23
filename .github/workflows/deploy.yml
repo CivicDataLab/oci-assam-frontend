@@ -25,15 +25,15 @@ jobs:
       - name: Send .next2 to EC2
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.EC2_HOST_OCI }}
+          host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_PRIVATE_KEY_OCI }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
           source: .next2
           target: oci-assam-frontend
       - name: Update with new Build
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.EC2_HOST_OCI }}
+          host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_PRIVATE_KEY_OCI }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: rm -rf oci-assam-frontend/.next; mv oci-assam-frontend/.next2 oci-assam-frontend/.next; pm2 restart oci-assam-frontend
