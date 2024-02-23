@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: npm install
@@ -36,4 +36,4 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-          script: rm -rf oci-assam-frontend/.next; mv oci-assam-frontend/.next2 oci-assam-frontend/.next; pm2 restart oci-assam-frontend
+          script: rm -rf oci-assam-frontend/.next; mv oci-assam-frontend/.next2 oci-assam-frontend/.next; pm2 restart deploy
