@@ -8,7 +8,7 @@ const PartnerCard = ({ card }) => {
           <Image
             src={card.img}
             alt={`${card.name} logo`}
-            className={card.class && card.class}
+            className={card.class ? card.class : ''}
             width={108}
             height={108}
             placeholder="blur"

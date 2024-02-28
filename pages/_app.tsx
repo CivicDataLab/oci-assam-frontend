@@ -33,7 +33,7 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
     return () => {
       router.events.off('routeChangeComplete', handleRouteComplete);
     };
-  }, [router.events]);
+  }, [router]);
 
   return (
     <Layout>
