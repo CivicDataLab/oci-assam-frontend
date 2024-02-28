@@ -121,7 +121,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   function handleDownloadClick() {
     setModalIsOpen(!modalIsOpen);
     if (downloadMethod === 'download-current') {
-      download_data(results, downloadType);
+      download_data(results);
     } else {
       if (downloadType === 'xlsx') window.open('/files/contracts-data.xlsx');
       else window.open('/files/contracts-data.json');
