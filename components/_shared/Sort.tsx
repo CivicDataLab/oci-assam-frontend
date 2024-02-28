@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { sortItems } from 'pages/datasets';
 
-const Sort: React.FC<{ newSort: any }> = ({ newSort }) => {
+const Sort: React.FC<{ newSort: any; defaultSort: string }> = ({
+  newSort,
+  defaultSort,
+}) => {
   const router = useRouter();
-  const [sort, setSort] = useState('tender_bid_opening_date:asc');
+  const [sort, setSort] = useState(defaultSort);
 
   useEffect(() => {
-    const currentSort = router.query.sort
-      ? router.query.sort
-      : 'tender_bid_opening_date:asc';
+    const currentSort = router.query.sort ? router.query.sort : defaultSort;
 
     setSort(currentSort as string);
   }, [router.query.sort]);
@@ -33,12 +35,11 @@ const Sort: React.FC<{ newSort: any }> = ({ newSort }) => {
         onChange={handleChange}
         value={sort}
       >
-        <option value="tender_bid_opening_date:asc">Date Asc</option>
-        <option value="tender_bid_opening_date:desc">Date Desc</option>
-        <option value="tender_value_amount:asc">Tender Value Asc</option>
-        <option value="tender_value_amount:desc">Tender Value Desc</option>
-        <option value="buyer_name:asc">Departments</option>
-        <option value="score:desc">Relevance</option>
+        {sortItems.map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.name}
+          </option>
+        ))}
       </select>
     </div>
   );

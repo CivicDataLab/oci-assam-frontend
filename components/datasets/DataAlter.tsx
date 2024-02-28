@@ -2,28 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
 import { tabbedInterface } from 'utils/index';
-import { formatFilterName } from 'pages/datasets';
+import { formatFilterName, sortItems } from 'pages/datasets';
 
 Modal.setAppElement('#__next');
-
-const sort = [
-  {
-    id: 'tender_bid_opening_date:asc',
-    name: 'Date',
-  },
-  {
-    id: 'tender_value_amount:asc',
-    name: 'Tender Value',
-  },
-  {
-    id: 'organization.title:desc',
-    name: 'Departments',
-  },
-  {
-    id: 'score:desc',
-    name: 'Relevance',
-  },
-];
 
 const objMobile = {};
 const DataAlter: React.FC<{
@@ -33,17 +14,26 @@ const DataAlter: React.FC<{
   sortShow?: boolean;
   newIndicator?: any;
   indicators?: any;
-}> = ({ data, newData, fq, sortShow, newIndicator, indicators }) => {
+  defaultSort?: string;
+}> = ({
+  data,
+  newData,
+  fq,
+  sortShow,
+  newIndicator,
+  indicators,
+  defaultSort,
+}) => {
   const displaySort = sortShow == false ? false : true;
 
   const router = useRouter();
   const [sortIsOpen, setSortIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [currentSort, setCurrentSort] = useState(
-    router.query.sort ? router.query.sort : 'tender_bid_opening_date:asc'
+    router.query.sort ? router.query.sort : defaultSort
   );
   const [selectedSort, setSelectedSort] = useState(
-    router.query.sort ? router.query.sort : 'tender_bid_opening_date:asc'
+    router.query.sort ? router.query.sort : defaultSort
   );
 
   function checkInput(selected) {
@@ -288,7 +278,7 @@ const DataAlter: React.FC<{
           </div>
           <fieldset className="dialog__body" id="modalSort">
             <legend className="sr-only">Sort Results</legend>
-            {sort.map((elm, index) => {
+            {sortItems.map((elm, index) => {
               return (
                 <label key={`sort-${index}`} htmlFor={elm.id}>
                   <input

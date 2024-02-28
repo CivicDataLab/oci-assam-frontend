@@ -25,6 +25,32 @@ type Props = {
   data: any;
   facets: any;
 };
+export const sortItems = [
+  {
+    id: 'bidOpeningDate:asc',
+    name: 'Date Asc',
+  },
+  {
+    id: 'bidOpeningDate:desc',
+    name: 'Date Desc',
+  },
+  {
+    id: 'tendeValueAmount:asc',
+    name: 'Tender Value Asc',
+  },
+  {
+    id: 'tendeValueAmount:desc',
+    name: 'Tender Value Desc',
+  },
+  {
+    id: 'organization:asc',
+    name: 'Departments',
+  },
+  {
+    id: 'score:desc',
+    name: 'Relevance',
+  },
+];
 
 const filterList = '"organization", "fiscalYear", "mainProcurementCategory"';
 export function formatFilterName(name: string) {
@@ -36,7 +62,7 @@ export function formatFilterName(name: string) {
   else return name;
 }
 
-const defaultSort = 'tender_bid_opening_date:asc';
+const defaultSort = 'bidOpeningDate:asc';
 
 const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
@@ -140,7 +166,10 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                 <Total text="contracts" total={count} />
 
                 <div className="datasets__sort">
-                  <Sort newSort={handleDatasetsChange} />
+                  <Sort
+                    newSort={handleDatasetsChange}
+                    defaultSort={defaultSort}
+                  />
                   <button
                     id="modalTrigger"
                     className="btn-primary"
@@ -272,6 +301,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                 newData={handleDatasetsChange}
                 fq={datsetsFilters}
                 sortShow={true}
+                defaultSort={defaultSort}
               />
               <List data={results} />
               <Pagination total={count} newPage={handleDatasetsChange} />
