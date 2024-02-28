@@ -362,7 +362,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   return (
     <>
       <Head>
-        <title>OCI | {dataPackage.title || dataPackage.name}</title>
+        <title>{`OCI | ${dataPackage.title}`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className=" analysis">

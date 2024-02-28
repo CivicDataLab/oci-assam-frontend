@@ -32,7 +32,7 @@ const Tender: React.FC<Props> = ({ data }) => {
   return (
     <>
       <Head>
-        <title>OCI | {dataPackage.tender[0].title}</title>
+        <title>{`OCI | ${dataPackage.tender[0].title}`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="tender">
