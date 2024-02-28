@@ -100,6 +100,16 @@
         margin-left: 8px;
         color: $text-light-medium;
       }
+
+      label {
+        &:has(input:disabled) {
+          color: $text-light-medium;
+
+          span {
+            font-size: 0.75rem;
+          }
+        }
+      }
     }
   }
 

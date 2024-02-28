@@ -1353,6 +1353,12 @@ button {
   margin-left: 8px;
   color: hsla(0, 0%, 0%, 0.6);
 }
+.dialog__format fieldset label:has(input:disabled) {
+  color: hsla(0, 0%, 0%, 0.6);
+}
+.dialog__format fieldset label:has(input:disabled) span {
+  font-size: 0.75rem;
+}
 .dialog__submit {
   justify-self: center;
   margin-top: 1rem;

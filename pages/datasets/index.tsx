@@ -25,6 +25,7 @@ type Props = {
   data: any;
   facets: any;
 };
+
 export const sortItems = [
   {
     id: 'bidOpeningDate:asc',
@@ -51,8 +52,10 @@ export const sortItems = [
     name: 'Relevance',
   },
 ];
+const defaultSort = 'bidOpeningDate:asc';
 
 const filterList = '"organization", "fiscalYear", "mainProcurementCategory"';
+
 export function formatFilterName(name: string) {
   if (name == 'fiscalYear') {
     return 'fiscal year';
@@ -61,8 +64,6 @@ export function formatFilterName(name: string) {
   else if (name == 'mainProcurementCategory') return 'category';
   else return name;
 }
-
-const defaultSort = 'bidOpeningDate:asc';
 
 const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();
@@ -255,30 +256,36 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                               setDownloadType(e.target.value)
                             }
                           >
-                            <label htmlFor="downloadFormat1">
-                              <input
-                                type="radio"
-                                id="downloadFormat1"
-                                name="dialog-download"
-                                value="xlsx"
-                                defaultChecked
-                              />
-                              XLSX File{' '}
-                              {downloadMethod === 'download-all' ? (
-                                <span>(~6MB)</span>
-                              ) : null}
-                            </label>
-
                             <label htmlFor="downloadFormat2">
                               <input
                                 type="radio"
                                 id="downloadFormat2"
                                 name="dialog-download"
                                 value="json"
+                                defaultChecked
                               />
                               JSON File{' '}
                               {downloadMethod === 'download-all' ? (
                                 <span>(~27MB)</span>
+                              ) : null}
+                            </label>
+
+                            <label htmlFor="downloadFormat1">
+                              <input
+                                type="radio"
+                                id="downloadFormat1"
+                                name="dialog-download"
+                                value="xlsx"
+                                disabled={downloadMethod !== 'download-all'}
+                              />
+                              XLSX File
+                              {downloadMethod === 'download-all' ? (
+                                <span>(~6MB)</span>
+                              ) : null}
+                              {downloadMethod !== 'download-all' ? (
+                                <span className="text-xs">
+                                  (Not supported)
+                                </span>
                               ) : null}
                             </label>
                           </fieldset>
