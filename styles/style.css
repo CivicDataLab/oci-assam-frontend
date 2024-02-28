@@ -897,6 +897,7 @@ button {
 }
 .navbar__container {
   display: flex;
+  gap: 4px;
 }
 .navbar__nested {
   display: block;
