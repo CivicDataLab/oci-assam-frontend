@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ReadMore } from './ReadMore';
 
 const MegaHeader = ({ data }) => {
   return (
@@ -9,7 +10,9 @@ const MegaHeader = ({ data }) => {
             <a>{`< Go Back to ${data.previousPage}`}</a>
           </Link>
         )}
-        <h2>{data.title}</h2>
+        <h2>
+          <ReadMore text={data.title} />
+        </h2>
         <p>{data.content}</p>
         {data.date && <p>{data.date}</p>}
       </div>
