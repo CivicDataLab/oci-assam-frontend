@@ -2,22 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
 import { tabbedInterface } from 'utils/index';
+import { formatFilterName } from 'pages/datasets';
 
 Modal.setAppElement('#__next');
-
-function formatFilterName(name: string) {
-  if (name == 'fiscal_year') {
-    return 'fiscal year';
-  } else if (name == 'buyer_name') return 'buyer name';
-  else if (
-    name == 'tender/mainProcurementCategory' ||
-    name == 'tender_mainprocurementcategory'
-  )
-    return 'category';
-  else if (name == 'tender/stage') return 'tender stage';
-  else if (name == 'tender_status') return 'status';
-  else return name;
-}
 
 const sort = [
   {
