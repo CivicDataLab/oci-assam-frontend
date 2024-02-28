@@ -132,9 +132,13 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
           {data && (
             <div className="datasets__right">
               <h2 className="heading-w-line">Browse Contracts</h2>
+              <div className="total-datasets mt-2">
+                Last Updated: <time dateTime="2024-02-27">27 Feb, 2024</time>
+              </div>
               <Search newSearch={handleDatasetsChange} />
               <div className="datasets__total">
                 <Total text="contracts" total={count} />
+
                 <div className="datasets__sort">
                   <Sort newSort={handleDatasetsChange} />
                   <button
