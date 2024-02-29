@@ -37,7 +37,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const [pages, setPages] = useState(from);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [downloadMethod, setDownloadMethod] = useState('download-current');
-  const [downloadType, setDownloadType] = useState('xlsx');
+  const [downloadType, setDownloadType] = useState('json');
 
   const { results, count } = data.result;
   useEffect(() => {
@@ -78,15 +78,23 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
 
   function handleModalClick() {
     setModalIsOpen(!modalIsOpen);
-    setDownloadType('xlsx');
+    setDownloadType('json');
+    setDownloadMethod('download-current');
   }
+
   function handleDownloadClick() {
     setModalIsOpen(!modalIsOpen);
     if (downloadMethod === 'download-current') {
       download_data(results);
     } else {
-      if (downloadType === 'xlsx') window.open('/files/contracts-data.xlsx');
-      else window.open('/files/contracts-data.json');
+      if (downloadType === 'xlsx')
+        window.open(
+          'https://raw.githubusercontent.com/CivicDataLab/assam-tenders-data/main/data/ProcessedData/ocds-mapped-data/current/ocds_mapped_data.xlsx.zip'
+        );
+      else
+        window.open(
+          'https://raw.githubusercontent.com/CivicDataLab/assam-tenders-data/main/data/ProcessedData/ocds-mapped-data/current/ocds_mapped_data.json.zip'
+        );
     }
 
     event({
@@ -162,7 +170,6 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                       labelledby: 'dialog-head',
                       describedby: 'dialog-para',
                     }}
-                    closeTimeoutMS={200}
                     preventScroll={true}
                     htmlOpenClassName="ReactModal__Html--open"
                   >
@@ -207,7 +214,10 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                             name="download-option"
                             value="download-all"
                           />
-                          {`Download all Contracts`}
+                          Download all Contracts
+                          <span className="text-xs ml-1 text-slate-600">
+                            (zipped)
+                          </span>
                         </label>
                       </fieldset>
                       <div className="dialog__format">
@@ -228,7 +238,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                               />
                               JSON File{' '}
                               {downloadMethod === 'download-all' ? (
-                                <span>(~27MB)</span>
+                                <span>(~13.4MB)</span>
                               ) : null}
                             </label>
 
@@ -242,7 +252,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                               />
                               XLSX File
                               {downloadMethod === 'download-all' ? (
-                                <span>(~6MB)</span>
+                                <span>(~16.5MB)</span>
                               ) : null}
                               {downloadMethod !== 'download-all' ? (
                                 <span className="text-xs">
