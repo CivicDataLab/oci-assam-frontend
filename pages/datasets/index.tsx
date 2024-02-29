@@ -18,6 +18,7 @@ import Sort from 'components/_shared/Sort';
 import Modal from 'react-modal';
 import { download_data } from 'utils/download_data';
 import { event } from '../../utils/ga';
+import { defaultSort, filterList } from 'components/datasets/data';
 
 Modal.setAppElement('#__next');
 
@@ -25,45 +26,6 @@ type Props = {
   data: any;
   facets: any;
 };
-
-export const sortItems = [
-  {
-    id: 'bidOpeningDate:asc',
-    name: 'Date Asc',
-  },
-  {
-    id: 'bidOpeningDate:desc',
-    name: 'Date Desc',
-  },
-  {
-    id: 'tendeValueAmount:asc',
-    name: 'Tender Value Asc',
-  },
-  {
-    id: 'tendeValueAmount:desc',
-    name: 'Tender Value Desc',
-  },
-  {
-    id: 'organization:asc',
-    name: 'Departments',
-  },
-  {
-    id: 'score:desc',
-    name: 'Relevance',
-  },
-];
-const defaultSort = 'bidOpeningDate:asc';
-
-const filterList = '"organization", "fiscalYear", "mainProcurementCategory"';
-
-export function formatFilterName(name: string) {
-  if (name == 'fiscalYear') {
-    return 'fiscal year';
-  } else if (name == 'organization' || name == 'buyer_name')
-    return 'buyer name';
-  else if (name == 'mainProcurementCategory') return 'category';
-  else return name;
-}
 
 const Datasets: React.FC<Props> = ({ data, facets }) => {
   const router = useRouter();

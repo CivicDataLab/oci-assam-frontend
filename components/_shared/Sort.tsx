@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { sortItems } from 'pages/datasets';
+import { sortItems } from 'components/datasets/data';
 
 const Sort: React.FC<{ newSort: any; defaultSort: string }> = ({
   newSort,

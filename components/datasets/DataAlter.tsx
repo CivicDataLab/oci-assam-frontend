@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Modal from 'react-modal';
 import { tabbedInterface } from 'utils/index';
-import { formatFilterName, sortItems } from 'pages/datasets';
+import { formatFilterName, sortItems } from './data';
 
 Modal.setAppElement('#__next');
 

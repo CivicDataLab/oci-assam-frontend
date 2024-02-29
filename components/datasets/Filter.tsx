@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Cross } from 'components/icons/shared';
 import { truncate } from 'lodash';
-import { formatFilterName } from 'pages/datasets';
+import { formatFilterName } from './data';
 
 const dataObj = {};
 const filterSearch = {};
