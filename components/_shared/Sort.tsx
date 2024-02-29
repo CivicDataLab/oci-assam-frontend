@@ -10,9 +10,7 @@ const Sort: React.FC<{ newSort: any; defaultSort: string }> = ({
   const [sort, setSort] = useState(defaultSort);
 
   useEffect(() => {
-    const currentSort = router.query.sort ? router.query.sort : defaultSort;
-
-    setSort(currentSort as string);
+    setSort((router.query.sort || defaultSort) as string);
   }, [router.query.sort]);
 
   const handleChange = (event: any) => {

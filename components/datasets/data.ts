@@ -24,7 +24,7 @@ export const sortItems = [
     name: 'Relevance',
   },
 ];
-export const defaultSort = 'bidOpeningDate:asc';
+export const defaultSort = 'score:desc';
 
 export const filterList =
   '"organization", "fiscalYear", "mainProcurementCategory"';
