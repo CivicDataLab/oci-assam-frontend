@@ -27,7 +27,7 @@ export const sortItems = [
 export const defaultSort = 'score:desc';
 
 export const filterList =
-  '"organization", "fiscalYear", "mainProcurementCategory"';
+  '"organization", "fiscalYear", "mainProcurementCategory", "tenderStatus"';
 
 export function formatFilterName(name: string) {
   if (name == 'fiscalYear') {
@@ -35,5 +35,6 @@ export function formatFilterName(name: string) {
   } else if (name == 'organization' || name == 'buyer_name')
     return 'buyer name';
   else if (name == 'mainProcurementCategory') return 'category';
+  else if (name == 'tenderStatus') return 'Status';
   else return name;
 }

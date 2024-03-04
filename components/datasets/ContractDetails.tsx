@@ -12,7 +12,7 @@ import React from 'react';
 export const ContractDetails = ({ dataPackage }) => {
   const basicContent = [
     {
-      title: 'Open contracting ID',
+      title: 'Open Contracting ID',
       desc: dataPackage?.ocid,
     },
     {
@@ -33,7 +33,11 @@ export const ContractDetails = ({ dataPackage }) => {
       desc: dataPackage?.buyer?.[0].name,
     },
     {
-      title: 'Tender amount',
+      title: 'Tender Status',
+      desc: dataPackage?.tenderStatus,
+    },
+    {
+      title: 'Tender Amount',
       desc: dataPackage?.tender?.[0].value
         ? `${dataPackage?.tender?.[0].value?.[0].currency} ${commaNumber(
             dataPackage?.tender?.[0].value?.[0].amount
