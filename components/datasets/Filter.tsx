@@ -150,19 +150,22 @@ const Filter = ({ data, newFilters, fq }) => {
               onChange={(e) => handleFilterSearch(e.target.value, filter)}
             />
             {filterResult[filter] &&
-              filterResult[filter].map((item: any) => (
-                <button
-                  className="filters__button"
-                  key={item.name}
-                  data-type={data[filter].title}
-                  id={item.name}
-                  onClick={handleFilterChange}
-                  type="button"
-                  aria-pressed="false"
-                >
-                  {`${item.display_name} (${item.count})`}
-                </button>
-              ))}
+              filterResult[filter].map((item: any) => {
+                if (item.name !== 'NaN')
+                  return (
+                    <button
+                      className="filters__button"
+                      key={item.name}
+                      data-type={data[filter].title}
+                      id={item.name}
+                      onClick={handleFilterChange}
+                      type="button"
+                      aria-pressed="false"
+                    >
+                      {`${item.display_name} (${item.count})`}
+                    </button>
+                  );
+              })}
           </div>
           <ul className="filters__selected">
             {dataObj[filter] &&
