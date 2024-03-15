@@ -11,15 +11,22 @@ import {
 } from 'components/_shared/Dialog';
 import { Download } from 'lucide-react';
 import { download_data } from 'utils/download_data';
+import { toast } from 'sonner';
 
 export const DownloadDataset = ({ filters }: { filters?: string | string[] }) => {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
-  const [downloadType, setDownloadType] = React.useState('json');
+  const [downloadType, setDownloadType] = React.useState<'json' | 'xlsx'>('json');
   const downloadMethod = filters?.length ? 'filtered' : 'all';
 
   async function handleDownloadClick() {
     setModalIsOpen(!modalIsOpen);
     if (downloadMethod === 'filtered') {
+      toast.info('Fetching data, please wait...', {
+        dismissible: false,
+        id: 'fetching-data',
+        duration: 60000,
+      });
+
       const data = await fetch(`/api/datasets`, {
         method: 'POST',
         body: JSON.stringify({ filters }),
@@ -28,7 +35,15 @@ export const DownloadDataset = ({ filters }: { filters?: string | string[] }) =>
       });
 
       download_data(data.data);
+      toast.dismiss('fetching-data');
+      toast.success('Downloaded started successfully!', {
+        duration: 4000,
+      });
     } else {
+      toast.success('Downloaded started successfully!', {
+        duration: 4000,
+        closeButton: true,
+      });
       window.open(
         `https://raw.githubusercontent.com/CivicDataLab/assam-tenders-data/main/data/ProcessedData/ocds-mapped-data/current/ocds_mapped_data.${downloadType}.zip`
       );
@@ -45,7 +60,13 @@ export const DownloadDataset = ({ filters }: { filters?: string | string[] }) =>
 
   return (
     <div>
-      <Dialog open={modalIsOpen} onOpenChange={setModalIsOpen}>
+      <Dialog
+        open={modalIsOpen}
+        onOpenChange={(e) => {
+          setModalIsOpen(e);
+          setDownloadType('json');
+        }}
+      >
         <DialogTrigger className="btn-primary">
           <Download size={18} />
           Download

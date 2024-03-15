@@ -47,6 +47,7 @@
     "react-modal": "^3.14.4",
     "rss-parser": "^3.12.0",
     "sharp": "^0.29.3",
+    "sonner": "^1.4.3",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^4.5.4"

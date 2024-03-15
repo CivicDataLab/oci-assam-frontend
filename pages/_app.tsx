@@ -4,6 +4,7 @@ import NextNprogress from 'nextjs-progressbar';
 import { useEffect } from 'react';
 import '../styles/style.css';
 import { pageview } from '../utils/ga';
+import { Toaster } from 'components/_shared/Sonner';
 
 type Props = {
   Component: any;
@@ -20,11 +21,7 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
 
       // change focus to top
       if (document.querySelector('#top-of-site-pixel-anchor')) {
-        (
-          document.querySelector(
-            '#top-of-site-pixel-anchor'
-          ) as HTMLInputElement
-        ).focus();
+        (document.querySelector('#top-of-site-pixel-anchor') as HTMLInputElement).focus();
       }
     };
 
@@ -44,6 +41,7 @@ const MyApp: React.FC<Props> = ({ Component, pageProps }) => {
         height={3}
         options={{ easing: 'ease', speed: 300, showSpinner: false }}
       />
+      <Toaster richColors />
       <Component {...pageProps} />
     </Layout>
   );
