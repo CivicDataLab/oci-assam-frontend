@@ -59,11 +59,6 @@
   }
 
   &__body {
-    padding: 2rem;
-    padding-top: 0;
-    max-height: 50vh;
-    overflow-y: auto;
-
     label {
       display: flex;
       margin-top: 14px;
@@ -94,6 +89,11 @@
       gap: 32px;
       justify-content: flex-start;
       padding: 0 4px;
+
+      @include media.narrowerThan('seedling') {
+        gap: 0px;
+        flex-direction: column;
+      }
 
       span {
         font-size: 0.875rem;
@@ -206,15 +206,6 @@
 
       &.ReactModal__Content--before-close {
         transform: translateX(-100%) translateY(0);
-      }
-    }
-
-    &--download {
-      .dialog__header {
-        padding: 1.5rem 2rem;
-      }
-      .dialog__body {
-        padding: 0 2rem 2rem;
       }
     }
 

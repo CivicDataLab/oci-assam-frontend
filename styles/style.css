@@ -1314,12 +1314,6 @@ button {
   font-size: 14px;
   margin-top: 0.3rem;
 }
-.dialog__body {
-  padding: 2rem;
-  padding-top: 0;
-  max-height: 50vh;
-  overflow-y: auto;
-}
 .dialog__body label {
   display: flex;
   margin-top: 14px;
@@ -1347,6 +1341,12 @@ button {
   gap: 32px;
   justify-content: flex-start;
   padding: 0 4px;
+}
+@media screen and (max-width: 719px) {
+  .dialog__format fieldset {
+    gap: 0px;
+    flex-direction: column;
+  }
 }
 .dialog__format fieldset span {
   font-size: 0.875rem;
@@ -1442,12 +1442,6 @@ button {
   }
   .dialog--menu.ReactModal__Content--before-close {
     transform: translateX(-100%) translateY(0);
-  }
-  .dialog--download .dialog__header {
-    padding: 1.5rem 2rem;
-  }
-  .dialog--download .dialog__body {
-    padding: 0 2rem 2rem;
   }
   .dialog__header {
     padding: 1.5rem 1rem;
