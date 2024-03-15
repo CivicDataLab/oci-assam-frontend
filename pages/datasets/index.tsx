@@ -12,11 +12,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import {
-  convertToCkanSearchQuery,
-  fetchDatasets,
-  getFilters,
-} from 'utils/index';
+import { convertToCkanSearchQuery, fetchDatasets, getFilters } from 'utils/index';
 
 type Props = {
   data: any;
@@ -85,11 +81,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
         <MegaHeader data={headerData} />
 
         <div className="datasets__wrapper container">
-          <Filter
-            data={facets}
-            newFilters={handleDatasetsChange}
-            fq={datsetsFilters}
-          />
+          <Filter data={facets} newFilters={handleDatasetsChange} fq={datsetsFilters} />
           {data && (
             <div className="datasets__right">
               <h2 className="heading-w-line">Browse Contracts</h2>
@@ -101,11 +93,8 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
                 <Total text="contracts" total={count} />
 
                 <div className="datasets__sort">
-                  <Sort
-                    newSort={handleDatasetsChange}
-                    defaultSort={defaultSort}
-                  />
-                  <DownloadDataset results={results} />
+                  <Sort newSort={handleDatasetsChange} defaultSort={defaultSort} />
+                  <DownloadDataset filters={datsetsFilters} />
                 </div>
               </div>
 
@@ -135,7 +124,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // format queries from url into an object
   const variables = convertToCkanSearchQuery(query);
-  console.log(variables, '----', query);
 
   // fetch fatcets values
   const facets = await getFilters(filterList, variables, 'tender_dataset');

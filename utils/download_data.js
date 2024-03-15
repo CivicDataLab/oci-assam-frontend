@@ -11,8 +11,8 @@ const acceptedFields = [
   'tags',
 ];
 
-export function download_data(data) {
-  const filteredData = data.map((item) => {
+export function getFilteredData(data) {
+  return data.map((item) => {
     const newItem = {};
     for (const key in item) {
       if (acceptedFields.includes(key)) {
@@ -21,10 +21,11 @@ export function download_data(data) {
     }
     return newItem;
   });
+}
 
+export function download_data(data) {
   var dataStr =
-    'data:text/json;charset=utf-8,' +
-    encodeURIComponent(JSON.stringify(filteredData));
+    'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
   var downloadAnchorNode = document.createElement('a');
   downloadAnchorNode.setAttribute('href', dataStr);
   downloadAnchorNode.setAttribute('download', 'contracts' + '.json');

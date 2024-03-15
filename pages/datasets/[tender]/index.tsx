@@ -6,7 +6,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { download_data } from 'utils/download_data';
+import { download_data, getFilteredData } from 'utils/download_data';
 import { event } from 'utils/ga';
 import { fetchAPI } from 'utils/index';
 
@@ -45,7 +45,7 @@ const Tender: React.FC<Props> = ({ data }) => {
             <button
               className="btn-primary"
               onClick={() => {
-                download_data([dataPackage]);
+                download_data(getFilteredData([dataPackage]));
                 event({
                   action: 'download-dataset',
                   params: {

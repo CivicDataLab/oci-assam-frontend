@@ -38,6 +38,7 @@
     "next-translate": "^0.20.2",
     "next-transpile-modules": "^9.0.0",
     "nextjs-progressbar": "^0.0.16",
+    "node-fetch": "^3.3.2",
     "papaparse": "^5.3.1",
     "postcss": "^8.4.5",
     "qs": "^6.9.4",

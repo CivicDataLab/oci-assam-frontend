@@ -22,9 +22,7 @@ export async function fetchDatasets(type, variables) {
   }
 
   variables.fq
-    ? (variables.fq = variables.fq.concat(
-        ` AND private:false AND type:${type}`
-      ))
+    ? (variables.fq = variables.fq.concat(` AND private:false AND type:${type}`))
     : (variables.fq = `private:false AND type:${type}`);
 
   // creating a string of parameter from object of variables for CKAN API use
@@ -32,21 +30,16 @@ export async function fetchDatasets(type, variables) {
     return `${changeKeyName(key)}=${variables[key]}`;
   });
   const varString =
-    varArray.length > 0
-      ? varArray.join('&')
-      : `fq=private:false AND type:${type}`;
-  const response = await fetch(
-    `${config.CKAN_API_URL}/package_search?${varString}`
-  );
+    varArray.length > 0 ? varArray.join('&') : `fq=private:false AND type:${type}`;
+
+  const response = await fetch(`${config.CKAN_API_URL}/package_search?${varString}`);
   const data = await response.json();
   return data;
 }
 
 // fetch particular dataset
 export async function fetchAPI(path) {
-  const response = await fetch(
-    `${config.CKAN_API_URL}/package_show?id=${path}`
-  );
+  const response = await fetch(`${config.CKAN_API_URL}/package_show?id=${path}`);
   const data = await response.json();
   return data;
 }
