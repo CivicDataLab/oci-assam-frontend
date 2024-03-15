@@ -152,6 +152,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = context.query || {};
   const variables = convertToCkanSearchQuery(query);
+
   const facets = await getFilters(list, variables, 'kpi_dataset');
 
   const data = await fetchDatasets('kpi_dataset', variables);
