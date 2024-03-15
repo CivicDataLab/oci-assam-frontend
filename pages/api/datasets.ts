@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getFilteredData } from 'utils/download_data';
+import archiver from 'archiver';
 
 async function fetchDatasets(filters: string) {
   const res = await fetch(
@@ -10,17 +11,30 @@ async function fetchDatasets(filters: string) {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const headers = new Headers();
-  headers.append('Accept', 'application/json');
-  headers.append('Content-Type', 'application/json');
+  const { filters } = req.body;
+  const archive = archiver('zip', {
+    zlib: { level: 9 },
+  });
 
-  const { filters } = JSON.parse(req.body);
+  archive.on('error', function (err) {
+    res.status(500).send({ error: err.message });
+  });
+
+  res.setHeader('Content-Type', 'application/zip');
+  res.setHeader('Content-Disposition', 'attachment; filename=contracts.zip');
 
   try {
     const result: any = await fetchDatasets(filters);
     const filteredData = getFilteredData(result.result.results);
 
-    res.status(200).json({ data: filteredData });
+    // Convert the filtered data to a string
+    const dataString = JSON.stringify(filteredData);
+
+    // Append the data string to the archive as a file
+    archive.append(dataString, { name: 'contracts.json' });
+    archive.pipe(res);
+
+    archive.finalize();
   } catch (err) {
     res.status(500).json({ error: 'failed to download' });
   }

@@ -33,3 +33,14 @@ export function download_data(data) {
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
 }
+
+export async function downloadAsBlob(res) {
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'contracts.zip';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

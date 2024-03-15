@@ -1,17 +1,17 @@
-import React from 'react';
-import { event } from '../../utils/ga';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTrigger,
   DialogTitle,
+  DialogTrigger,
 } from 'components/_shared/Dialog';
 import { Download } from 'lucide-react';
-import { download_data } from 'utils/download_data';
+import React from 'react';
 import { toast } from 'sonner';
+import { downloadAsBlob } from 'utils/download_data';
+import { event } from '../../utils/ga';
 
 export const DownloadDataset = ({ filters }: { filters?: string | string[] }) => {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
@@ -27,21 +27,29 @@ export const DownloadDataset = ({ filters }: { filters?: string | string[] }) =>
         duration: 60000,
       });
 
-      const data = await fetch(`/api/datasets`, {
+      const res = await fetch(`/api/datasets`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ filters }),
-      }).then((res) => {
-        return res.json();
       });
+      if (res.ok) {
+        downloadAsBlob(res);
+        toast.dismiss('fetching-data');
+        toast.success('Downloaded started successfully!', {
+          closeButton: true,
+        });
+      } else {
+        console.error('Failed to download file');
 
-      download_data(data.data);
-      toast.dismiss('fetching-data');
-      toast.success('Downloaded started successfully!', {
-        duration: 4000,
-      });
+        toast.dismiss('fetching-data');
+        toast.error('Failed to download file', {
+          closeButton: true,
+        });
+      }
     } else {
       toast.success('Downloaded started successfully!', {
-        duration: 4000,
         closeButton: true,
       });
       window.open(
