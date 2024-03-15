@@ -336,11 +336,10 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   }, []);
 
   useEffect(() => {
-    const filtered = kpiSelector(csv.analytics, indicators, data.result.name).filter(
-      (item) => item[0] !== '2023-2024'
-    );
+    const filtered: any = kpiSelector(csv.analytics, indicators, data.result.name);
+    const withoutLastYear = filtered.filter((item: any) => item[0] !== '2023-2024');
 
-    SetFilteredData(filtered);
+    SetFilteredData(withoutLastYear);
 
     // Basic Filter for Table
     let mainData = csv.analytics;
