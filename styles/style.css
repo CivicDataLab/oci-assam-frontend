@@ -378,8 +378,7 @@ button {
   }
 }
 .btn-primary svg {
-  margin-right: 1rem;
-  margin-bottom: -2px;
+  margin-right: 8px;
 }
 .btn-primary:hover {
   background-color: #087c8d;
@@ -407,8 +406,7 @@ button {
   }
 }
 .btn-primary-invert svg {
-  margin-right: 1rem;
-  margin-bottom: -2px;
+  margin-right: 8px;
 }
 .btn-primary-invert:hover {
   background-color: #ecdada;
@@ -436,8 +434,7 @@ button {
   }
 }
 .btn-secondary svg {
-  margin-right: 1rem;
-  margin-bottom: -2px;
+  margin-right: 8px;
 }
 .btn-secondary:hover {
   background-color: #5873bb;
@@ -465,8 +462,7 @@ button {
   }
 }
 .btn-secondary-invert svg {
-  margin-right: 1rem;
-  margin-bottom: -2px;
+  margin-right: 8px;
 }
 .btn-secondary-invert:hover {
   background-color: #e6e6e6;

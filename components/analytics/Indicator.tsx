@@ -1,5 +1,5 @@
-import { Cross } from 'components/icons/shared';
 import { truncate } from 'lodash';
+import { X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 const indicatorObj = {};
 const indicatorSearch = {};
@@ -135,7 +135,7 @@ const Indicator = ({ data, newIndicator, disableItems }) => {
                       onClick={handleIndicatorChange}
                     >
                       {truncate(item.replace(/_/g, ' '), { length: 30 })}{' '}
-                      <Cross />
+                      <X size={16} />
                     </button>
                   </li>
                 ))}

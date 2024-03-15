@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Cross } from 'components/icons/shared';
 import { truncate } from 'lodash';
 import { formatFilterName } from './data';
+import { X } from 'lucide-react';
 
 const dataObj = {};
 const filterSearch = {};
@@ -177,7 +177,7 @@ const Filter = ({ data, newFilters, fq }) => {
                     onClick={handleFilterChange}
                   >
                     {truncate(item.replace(/_/g, ' '), { length: 30 })}{' '}
-                    <Cross />
+                    <X size={16} />
                   </button>
                 </li>
               ))}
