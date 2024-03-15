@@ -98,72 +98,6 @@ export function getOrgLogo(url) {
   return `http://${config.CKAN_URL}/uploads/group/${url}`;
 }
 
-/*
-Takes single field descriptor from datastore data dictionary and coverts into
-tableschema field descriptor.
-*/
-export function dataStoreDataDictionaryToTableSchema(dataDictionary) {
-  const internalDataStoreFields = ['_id', '_full_text', '_count'];
-  if (internalDataStoreFields.includes(dataDictionary.id)) {
-    return null;
-  }
-  const dataDictionaryType2TableSchemaType = {
-    text: 'string',
-    int: 'integer',
-    float: 'number',
-    date: 'date',
-    time: 'time',
-    timestamp: 'datetime',
-    bool: 'boolean',
-    json: 'object',
-  };
-  const field = {
-    name: dataDictionary.id,
-    type: dataDictionaryType2TableSchemaType[dataDictionary.type] || 'any',
-  };
-  if (dataDictionary.info) {
-    const constraintsAttributes = [
-      'required',
-      'unique',
-      'minLength',
-      'maxLength',
-      'minimum',
-      'maximum',
-      'pattern',
-      'enum',
-    ];
-    field.constraints = {};
-    Object.keys(dataDictionary.info).forEach((key) => {
-      if (constraintsAttributes.includes(key)) {
-        field.constraints[key] = dataDictionary.info[key];
-      } else {
-        field[key] = dataDictionary.info[key];
-      }
-    });
-  }
-  return field;
-}
-
-export function convertToStandardCollection(descriptor) {
-  const standard = {
-    name: '',
-    title: '',
-    summary: '',
-    image: '',
-    count: null,
-  };
-
-  standard.name = descriptor.name;
-  standard.title = descriptor.title || descriptor.display_name;
-  standard.summary = descriptor.description || '';
-  standard.image = descriptor.image_display_url || descriptor.image_url;
-  standard.count = descriptor.package_count || 0;
-  standard.extras = descriptor.extras || [];
-  standard.groups = descriptor.groups || [];
-
-  return standard;
-}
-
 export function convertToCkanSearchQuery(query) {
   const ckanQuery = {
     q: '',
@@ -171,56 +105,21 @@ export function convertToCkanSearchQuery(query) {
     rows: '',
     start: '',
     sort: '',
-    'facet.field': '',
-    'facet.limit': '',
-    'facet.mincount': 0,
   };
-  // Split by space but ignore spaces within double quotes:
-  if (query.q) {
-    query.q.match(/(?:[^\s"]+|"[^"]*")+/g).forEach((part) => {
-      if (part.includes(':')) {
-        ckanQuery.fq += part + ' ';
-      } else {
-        ckanQuery.q += part + ' ';
-      }
-    });
-    ckanQuery.fq = ckanQuery.fq.trim();
-    ckanQuery.q = ckanQuery.q.trim();
-  }
+  ckanQuery.q = query.q.trim();
 
   if (query.fq) {
     ckanQuery.fq = ckanQuery.fq ? ckanQuery.fq + ' ' + query.fq : query.fq;
   }
 
   // standard 'size' => ckan 'rows'
-  ckanQuery.rows = query.size || '';
+  ckanQuery.rows = query.size;
 
   // standard 'from' => ckan 'start'
-  ckanQuery.start = query.from || '';
-  ckanQuery.organization = query.organization || '';
+  ckanQuery.start = query.from;
 
   // standard 'sort' => ckan 'sort'
-  const sortQueries = [];
-  if (query.sort && query.sort.constructor == Object) {
-    for (let [key, value] of Object.entries(query.sort)) {
-      sortQueries.push(`${key} ${value}`);
-    }
-    ckanQuery.sort = sortQueries.join(',');
-  } else if (query.sort && query.sort.constructor == String) {
-    ckanQuery.sort = query.sort ? query.sort.replace(':', ' ') : '';
-  } else if (query.sort && query.sort.constructor == Array) {
-    query.sort.forEach((sort) => {
-      sortQueries.push(sort.replace ? sort.replace(':', ' ') : '');
-    });
-    ckanQuery.sort = sortQueries.join(',');
-  }
-
-  // Facets
-  ckanQuery['facet.field'] = query['facet.field'] || ckanQuery['facet.field'];
-  ckanQuery['facet.limit'] = query['facet.limit'] || ckanQuery['facet.limit'];
-  ckanQuery['facet.mincount'] =
-    query['facet.mincount'] || ckanQuery['facet.mincount'];
-  ckanQuery['facet.field'] = query['facet.field'] || ckanQuery['facet.field'];
+  ckanQuery.sort = query.sort ? query.sort.replace(':', ' ') : '';
 
   // Remove attributes with empty string, null or undefined values
   Object.keys(ckanQuery).forEach(
