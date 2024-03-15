@@ -131,6 +131,19 @@ export const DownloadDataset = ({ filters }: { filters?: string | string[] }) =>
               Download
             </button>
           </DialogFooter>
+
+          <div className="bg-blue-100 border-t border-b border-blue-500  px-4 py-3 rounded-sm">
+            <p className="text-sm">
+              Note: Download raw contracts data from{' '}
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://drive.google.com/file/d/1jcw9GQqOGw3f08Tz113hCRYcXppRLPHe/view?usp=sharing"
+              >
+                this Drive Link
+              </a>
+            </p>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

@@ -68,7 +68,7 @@ const Datasets: React.FC<Props> = ({ data, facets }) => {
   const headerData = {
     title: 'Contracts Data',
     content:
-      'This page shows the public procurement data of the last 5 financial years for the state of Assam for the contracts over INR 50 lakh value. You can download the total compiled data or explore specific tender groups using the filters like financial year, tendering organization, tender status, tender types, etc.',
+      'This page shows the public procurement data of the last 7 financial years for the state of Assam for the contracts over INR 50 lakh value. You can download the total compiled data or explore specific tender groups using the filters like financial year, tendering organization, tender status, tender types, etc.',
   };
 
   return (
