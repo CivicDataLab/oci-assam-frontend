@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Modal from 'react-modal';
 import { cloneDeep } from 'lodash';
 
 import { tabbedInterface, ckanToDataPackage, fetchAPI } from 'utils/index';
@@ -16,8 +15,6 @@ import { kpiSelector } from 'transformers/kpiTransformer';
 import BarChartViz from 'components/viz/BarChart';
 import BubbleChart from 'components/viz/BubbleChart';
 import Table from 'components/viz/Table';
-
-Modal.setAppElement('#__next');
 
 type Props = {
   data: any;
