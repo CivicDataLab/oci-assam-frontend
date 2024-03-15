@@ -336,16 +336,18 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
   }, []);
 
   useEffect(() => {
-    SetFilteredData(kpiSelector(csv.analytics, indicators, data.result.name));
+    const filtered = kpiSelector(csv.analytics, indicators, data.result.name).filter(
+      (item) => item[0] !== '2023-2024'
+    );
+
+    SetFilteredData(filtered);
 
     // Basic Filter for Table
     let mainData = csv.analytics;
     if (Object.keys(indicators).length > 0) {
       Object.keys(indicators).forEach((key) => {
         if (indicators[key].length > 0) {
-          mainData = mainData.filter((item) =>
-            indicators[key].includes(item[key])
-          );
+          mainData = mainData.filter((item) => indicators[key].includes(item[key]));
         }
       });
     }
@@ -410,11 +412,7 @@ const Analysis: React.FC<Props> = ({ data, csv }) => {
 
               {/* viz graphs */}
               {vizItems.map((item, index) => (
-                <figure
-                  key={`vizIyem-${index}`}
-                  className="viz__bar"
-                  id={item.id}
-                >
+                <figure key={`vizIyem-${index}`} className="viz__bar" id={item.id}>
                   {filteredData.length > 0 && item.graph}
                 </figure>
               ))}
