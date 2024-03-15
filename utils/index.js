@@ -9,35 +9,8 @@ export function getMediumBanner(postContent) {
   return src;
 }
 
-// return post time in required format
-export function getDate(time) {
-  // ordinal suffix for date
-  const getOrdinal = function (d) {
-    let type;
-    if (d > 3 && d < 21) type = 'th';
-    switch (d % 10) {
-      case 1:
-        type = 'st';
-        break;
-      case 2:
-        type = 'nd';
-        break;
-      case 3:
-        type = 'rd';
-        break;
-      default:
-        type = 'th';
-        break;
-    }
-    return `${d}${type}`;
-  };
-
-  const dt = new Date(time);
-  if (dt instanceof Date && !isNaN(dt.valueOf())) {
-    const date = getOrdinal(dt.getDate());
-    const month = dt.toLocaleString('en-US', { month: 'short' });
-    return `${date} ${month}, ${dt.getFullYear()}`;
-  } else return time;
+export function getOrgLogo(url) {
+  return `http://${config.CKAN_URL}/uploads/group/${url}`;
 }
 
 // fetch list of datasets. Required: type - type of dataset; variables - from url parameters.
@@ -94,37 +67,26 @@ export async function getFilters(list, variable, page) {
   }
 }
 
-export function getOrgLogo(url) {
-  return `http://${config.CKAN_URL}/uploads/group/${url}`;
-}
-
 export function convertToCkanSearchQuery(query) {
-  const ckanQuery = {
-    q: '',
-    fq: '',
-    rows: '',
-    start: '',
-    sort: '',
-  };
-  ckanQuery.q = query.q.trim();
+  const ckanQuery = {};
+  // sort query
+  if (query.sort) {
+    ckanQuery.sort = query.sort ? query.sort.replace(':', ' ') : '';
+  }
 
+  // searched query
+  if (query.q) ckanQuery.q = query.q.trim();
+
+  // filtered query
   if (query.fq) {
     ckanQuery.fq = ckanQuery.fq ? ckanQuery.fq + ' ' + query.fq : query.fq;
   }
 
-  // standard 'size' => ckan 'rows'
-  ckanQuery.rows = query.size;
+  // number of datasets to return
+  if (query.size) ckanQuery.rows = query.size;
 
-  // standard 'from' => ckan 'start'
-  ckanQuery.start = query.from;
-
-  // standard 'sort' => ckan 'sort'
-  ckanQuery.sort = query.sort ? query.sort.replace(':', ' ') : '';
-
-  // Remove attributes with empty string, null or undefined values
-  Object.keys(ckanQuery).forEach(
-    (key) => !ckanQuery[key] && delete ckanQuery[key]
-  );
+  // pagination
+  if (query.from) ckanQuery.start = query.from;
 
   return ckanQuery;
 }
