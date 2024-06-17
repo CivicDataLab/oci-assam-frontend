@@ -3,47 +3,46 @@ import Link from 'next/link';
 import { getMediumBanner } from 'utils/index';
 import { truncate } from 'lodash';
 
-// strip html tags
+// Strip HTML tags
 function strip(html) {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   return doc.body.textContent || '';
 }
 
-function getReadTime(text: string) {
+function getReadTime(text) {
   const wpm = 250;
   const words = text.trim().split(/\s+/).length;
   return Math.ceil(words / wpm);
 }
 
-const StoriesCard: React.FC<{ data: any; length: number }> = ({
-  data,
-  length,
-}) => {
+const StoriesCard: React.FC<{ data: any; length: number }> = ({ data, length }) => {
   const [paraLen, setParaLen] = useState(length);
-  const [content, setContent] = useState(null);
+  const [content, setContent] = useState('');
 
   useEffect(() => {
     if (window.innerWidth < 720) {
-      paraLen > 150 ? setParaLen(150) : null;
+      setParaLen(150);
     }
 
-    setContent(strip(data['content']));
-  }, []);
+    const textContent = data['content:encoded'] ? strip(data['content:encoded']) : '';
+    setContent(textContent);
+  }, [data]);
+
   return (
     <article className="stories-card">
-      <Link href={data.link}>
+      <Link href={data.link[0]}>
         <a>
-          <img src={getMediumBanner(data['content'])} alt="" />
+          <img src={getMediumBanner(data['content:encoded'])} alt="" />
         </a>
       </Link>
 
       <div className="stories-card__content">
-        <Link href={data.link}>
+        <Link href={data.link[0]}>
           <a>
             <h3>{data.title}</h3>
 
             <p>
-              {truncate(content ? content : data['content'], {
+              {truncate(content, {
                 length: paraLen,
               })}
             </p>
@@ -52,11 +51,8 @@ const StoriesCard: React.FC<{ data: any; length: number }> = ({
 
         <div className="stories-card__footer">
           <div>
-            <small className="stories-card__author">{data.author}</small>
-            <small>
-              {`${data.pubDate} . 
-                  ${getReadTime(data['content'])} mins read`}
-            </small>
+            <small className="stories-card__author">{data['dc:creator']}</small>
+            <small>{`${data.pubDate} · ${getReadTime(content)} mins read`}</small>
           </div>
         </div>
       </div>

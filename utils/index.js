@@ -2,12 +2,16 @@ import { config } from '../config';
 
 // fetch medium post banner URL
 export function getMediumBanner(postContent) {
-  const srcIndex = postContent.indexOf('src=');
-  const srcStart = srcIndex + 5;
-  const srcEnd = postContent.substring(srcStart).indexOf('"') + srcStart;
-  const src = postContent.substring(srcStart, srcEnd);
-  return src;
+  if (!postContent || typeof postContent !== 'string') {
+    return null;
+  }
+
+  const srcRegex = /<img[^>]+src="([^">]+)"/;
+  const match = postContent.match(srcRegex);
+
+  return match && match[1] ? match[1] : null;
 }
+
 
 export function getOrgLogo(url) {
   return `http://${config.CKAN_URL}/uploads/group/${url}`;
