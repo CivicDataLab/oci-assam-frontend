@@ -21,11 +21,10 @@ const Tender: React.FC<Props> = ({ data }) => {
   const dataPackage: Type = data.result;
 
   const headerData = {
-    title: dataPackage.tender[0].title,
-    content: dataPackage.buyer[0].name,
-    date: `${dataPackage.tender[0].datePublished || '--'} . ${
-      dataPackage.tender[0].fiscalYear || '--'
-    }`,
+    title: dataPackage?.tender?.[0]?.title,
+    content: dataPackage?.buyer?.[0]?.name,
+    date: `${dataPackage?.tender?.[0]?.datePublished || '--'} . ${dataPackage?.tender?.[0]?.fiscalYear || '--'
+      }`,
     previousPage: 'Contracts Data',
     previousLink: '/datasets',
   };
@@ -33,7 +32,7 @@ const Tender: React.FC<Props> = ({ data }) => {
   return (
     <>
       <Head>
-        <title>{`OCI | ${dataPackage.tender[0].title}`}</title>
+        <title>{`OCI | ${dataPackage?.tender?.[0].title}`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="tender">
