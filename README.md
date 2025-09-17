@@ -54,7 +54,7 @@ We use SASS preprocessor to manage styling. All of it can be found at `/styles` 
 You can connect CMS and DMS backends easily via environment variables:
 
 ```console
-$ export DMS=http://ckan:5000
+$ export DMS=http://ckan
 $ export CMS=http://myblog.wordpress.com
 ```
 
