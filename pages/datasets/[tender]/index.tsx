@@ -19,11 +19,11 @@ const Tender: React.FC<Props> = ({ data }) => {
   const router = useRouter();
 
   const dataPackage: Type = data.result;
-
+  console.log(dataPackage);
   const headerData = {
-    title: dataPackage?.tender?.[0]?.title,
-    content: dataPackage?.buyer?.[0]?.name,
-    date: `${dataPackage?.tender?.[0]?.datePublished || '--'} . ${dataPackage?.tender?.[0]?.fiscalYear || '--'
+    title: dataPackage && dataPackage.tender && dataPackage.tender[0] && dataPackage.tender[0].title,
+    content: dataPackage && dataPackage.buyer && dataPackage.buyer[0] && dataPackage.buyer[0].name,
+    date: `${(dataPackage && dataPackage.tender && dataPackage.tender[0] && dataPackage.tender[0].datePublished) || '--'} . ${(dataPackage && dataPackage.tender && dataPackage.tender[0] && dataPackage.tender[0].fiscalYear) || '--'
       }`,
     previousPage: 'Contracts Data',
     previousLink: '/datasets',
@@ -32,7 +32,7 @@ const Tender: React.FC<Props> = ({ data }) => {
   return (
     <>
       <Head>
-        <title>{`OCI | ${dataPackage?.tender?.[0].title}`}</title>
+        <title>{`OCI | ${dataPackage && dataPackage.tender && dataPackage.tender[0] && dataPackage.tender[0].title || 'Tender Details'}`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="tender">

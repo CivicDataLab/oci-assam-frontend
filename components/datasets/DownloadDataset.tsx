@@ -16,7 +16,7 @@ import { event } from '../../utils/ga';
 export const DownloadDataset = ({ filters }: { filters?: string | string[] }) => {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const [downloadType, setDownloadType] = React.useState<'json' | 'xlsx'>('json');
-  const downloadMethod = filters?.length ? 'filtered' : 'all';
+  const downloadMethod = filters && filters.length ? 'filtered' : 'all';
 
   async function handleDownloadClick() {
     setModalIsOpen(!modalIsOpen);

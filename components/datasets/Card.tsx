@@ -31,16 +31,16 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
           )}
         </figure>
         <section>
-          <h3 className="card__heading">{datapackage?.organization?.title}</h3>
+          <h3 className="card__heading">{datapackage && datapackage.organization && datapackage.organization.title}</h3>
           <small className="card__date">
-            {datapackage?.tender?.[0]?.bidOpening?.[0]?.date &&
-              datapackage?.tender?.[0]?.fiscalYear &&
+            {datapackage && datapackage.tender && datapackage.tender[0] && datapackage.tender[0].bidOpening && datapackage.tender[0].bidOpening[0] && datapackage.tender[0].bidOpening[0].date &&
+              datapackage.tender[0].fiscalYear &&
               `${datapackage.tender[0].bidOpening[0].date} . ${datapackage.tender[0].fiscalYear}`}
           </small>
           <div className="card__content">
             <section className="card__id">
               <h4>
-                {datapackage?.tender?.[0]?.id &&
+                {datapackage && datapackage.tender && datapackage.tender[0] && datapackage.tender[0].id &&
                   truncate(datapackage.tender[0].id, {
                     length: 40,
                   })}
@@ -49,7 +49,7 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
             </section>
             <section className="card__value">
               <h4>
-                {datapackage?.tender?.[0]?.value?.[0] ?
+                {datapackage && datapackage.tender && datapackage.tender[0] && datapackage.tender[0].value && datapackage.tender[0].value[0] ?
                   `${datapackage.tender[0].value[0].currency} ${String(
                     datapackage.tender[0].value[0].amount
                   ).replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')}`
@@ -59,7 +59,7 @@ const Card: React.FC<{ datapackage: any }> = ({ datapackage }) => {
             </section>
             <section className="card__name">
               <h4>
-                {datapackage?.tender?.[0]?.title &&
+                {datapackage && datapackage.tender && datapackage.tender[0] && datapackage.tender[0].title &&
                   truncate(capitalize(datapackage.tender[0].title), {
                     length: 80,
                   })}

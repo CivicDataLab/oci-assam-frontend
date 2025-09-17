@@ -13,28 +13,28 @@ export const ContractDetails = ({ dataPackage }) => {
   const basicContent = [
     {
       title: 'Open Contracting ID',
-      desc: dataPackage?.ocid,
+      desc: dataPackage && dataPackage.ocid,
     },
     {
       title: 'Tender Title',
-      desc: dataPackage?.tender?.[0].title,
+      desc: dataPackage && dataPackage.tender && dataPackage.tender[0] && dataPackage.tender[0].title,
     },
     {
       title: 'Tender ID',
-      desc: dataPackage?.tender?.[0].id,
+      desc: dataPackage && dataPackage.tender && dataPackage.tender[0] && dataPackage.tender[0].id,
     },
     {
       title: 'Tender Reference Number',
-      desc: dataPackage?.tender?.[0].identifiers?.[0].id,
+      desc: dataPackage && dataPackage.tender && dataPackage.tender[0] && dataPackage.tender[0].identifiers && dataPackage.tender[0].identifiers[0] && dataPackage.tender[0].identifiers[0].id,
     },
 
     {
       title: 'Organisation Chain',
-      desc: dataPackage?.buyer?.[0].name,
+      desc: dataPackage && dataPackage.buyer && dataPackage.buyer[0] && dataPackage.buyer[0].name,
     },
     {
       title: 'Tender Status',
-      desc: dataPackage?.tenderStatus,
+      desc: dataPackage && dataPackage.tenderStatus,
     },
     {
       title: 'Tender Amount',
